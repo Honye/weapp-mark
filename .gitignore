@@ -58,4 +58,4 @@ typings/
 .env
 
 # 微信开发工具项目配置
-.project.config.json
+/project.config.json
