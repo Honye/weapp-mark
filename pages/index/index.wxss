@@ -1,0 +1,49 @@
+/**index.wxss**/
+@import '../common/cell/cell';
+
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 30rpx;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  justify-content: space-between;
+  background-color: #fff;
+}
+.userinfo .cell-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.userinfo .cell-left .userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  background-color: #f7f7f7;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.userinfo .cell-left .userinfo-avatar>image {
+  width: 100%;
+  height: 100%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+  margin-left: 30rpx;
+}
+
+.row-list {
+  padding: 30rpx 0;
+}
+
+.log-out {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 30rpx;
+  color: #D66D5C;
+  background-color: #fff;
+}

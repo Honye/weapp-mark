@@ -1,0 +1,35 @@
+<template name="circle">
+  <view class="circle-container">
+    <view class="circle-border"
+      bindtap='{{bindtap}}'>
+      <image 
+        wx:if="{{imgUrl}}" 
+        class="icon-img" 
+        src="{{imgUrl}}"
+        mode="aspectFit" />
+      <text class="circle-date">{{date}}</text>
+    </view>
+    <text class="title">{{title}}</text>
+  </view>
+</template>
+
+<template name="commingItem">
+  <view>
+    <image
+      class='img-big'
+      src='{{image}}'
+      mode='widthFix'
+    />
+    <view class='com-desc'>
+      <text class='com-title'>{{title}}</text>
+      <view class='count-like'>
+        <image
+          class='icon-like'
+          src="../../images/writer_article_like_icon.png"
+          mode='aspectFit'>
+        </image>
+        <text>{{likeCount}}</text>
+      </view>
+    </view>
+  </view>
+</template>

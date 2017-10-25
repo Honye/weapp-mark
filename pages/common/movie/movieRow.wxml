@@ -1,0 +1,29 @@
+<!-- 电影Item 单行 -->
+<import src='../rating/rating' />
+
+<template name="item-movie_row">
+  <view class="item-movie_row padding-surround">
+    <image class="item-img" src="{{images.large}}" mode='widthFix'></image>
+    <view class="item-info">
+      <text>{{title}}</text>
+      <text class='subtext'>{{pubdates[0]}}</text>
+      <text class='subtext'>{{durations[0]}} - {{genres}}</text>
+      <view>
+        <view wx:if='{{rating.average>0}}'>
+          <template is='rating' data='{{rating:rating.average,max:10}}'></template>
+          <text class='subtext'>{{rating.average}}分(豆瓣)</text>
+        </view>
+        <text wx:else class='subtext'>暂无评分(豆瓣)</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name='item-movie_grid'>
+  <view class='item-movie_grid'>
+    <view class='item-img'>
+      <image src='{{images.large}}' />
+    </view>
+    <view class='item-title single-line'>{{title}}</view>
+  </view>
+</template>

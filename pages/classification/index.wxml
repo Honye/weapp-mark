@@ -1,0 +1,14 @@
+<!--pages/classification/index.wxml-->
+<view class='container page-category'>
+  <view wx:for='{{classify}}' class='classify' wx:key='id'>
+    <view class='item big'>
+      <image class='icon' src='{{item.icon}}' mode='widthFix' />
+      <text>{{item.title}}</text>
+    </view>
+    <block wx:for='{{item.children}}' wx:key='*this'>
+      <view class='item small {{(item==" ")?"empty":""}}'>
+        <text>{{item}}</text>
+      </view>
+    </block>
+  </view>
+</view>

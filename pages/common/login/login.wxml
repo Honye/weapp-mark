@@ -1,0 +1,15 @@
+<template name="loginPannel">
+  <view class="login-pannel" hidden="{{ isHide }}" >
+    <view catchtap="__lgpanel_close" class="close-btn"></view>
+    <view class="form-area">
+      <view class="login-inline phone {{ phoneClass }}">
+        <input placeholder="请填写手机号码" maxlength="11" type="number" bindinput="__lgpanel_phoneInput" bindfocus="__lgpanel_phoneFocus" bindblur="__lgpanel_phoneBlur" />
+        <text catchtap="__lgpanel_sendCode" class="verify-btn">{{ verifyText }}</text>
+      </view>
+      <view class="login-inline vcode {{ vcodeClass }}">
+        <input placeholder="请填写验证码" maxlength="4" type="number" bindinput="__lgpanel_vcodeInput" bindfocus="__lgpanel_vcodeFocus" bindblur="__lgpanel_vcodeBlur" />
+      </view>
+    </view>
+    <text catchtap="__lgpanel_login" class="login-btn">注册/登录</text>
+  </view>
+</template>

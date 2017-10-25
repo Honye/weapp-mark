@@ -1,0 +1,150 @@
+/**
+ *question1:  (本小程序中没有用到)
+ *解决transform使用导致z-index失效而带来的层级问题 
+ *http://www.w3cplus.com/css/3d-transform-and-z-index.html
+ *http://www.zhangxinxu.com/wordpress/2016/08/safari-3d-transform-z-index/
+ */
+ 
+.page{
+    font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Droid Sans Fallback', 'Microsoft Yahei', sans-serif;
+    height: 100%;
+    background: #fff;
+    overflow: hidden;
+}
+
+@keyframes slidown{
+    from{
+        transform:  translateY(-100%);
+    }
+    to{
+        transform:  translateY(0%);
+    }
+}
+@keyframes slidup{
+    from{
+        transform:  translateY(0%);
+    }
+    to{
+        transform:  translateY(-100%);
+    }
+}
+
+.filter .nav{
+    position: relative;
+    z-index: 99;
+    display: flex;
+    border-bottom: 1px solid #d1d3d4;
+    background: #fff;
+}
+.nav .nav-son{
+    display: flex;
+    flex: 1;
+    height: 2.4em;
+    align-items:center;
+    justify-content:center;
+    box-sizing: border-box;
+}
+.nav .nav-son:not(:last-child) {
+    border-right: 1px solid #e6e6e6;
+}
+.nav-son .nav-icon{
+    display: inline-block;
+    border: 0.35em solid transparent;
+    border-top: 0.35em solid #9b9b9b;
+    border-bottom: 0;
+    margin-left: 0.3em;
+}
+.nav-son.active .content{
+    color: #61beff;
+}
+.nav-son.active .nav-icon{
+    border-bottom: 0.35em solid #61beff;
+    border-top:0;
+}
+
+.filter .drop-content {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  max-height: 450rpx;
+  color: #666;
+  display: none;
+}
+.filter .drop-content.slidown{
+    display: block;
+    animation: slidown .3s ease-in both;
+}
+.filter .drop-content.slidup{
+    display: block;
+    animation: slidup .3s ease-in both;
+}
+.drop-content view:not(:last-child){
+    border-bottom: 1px solid #d1d3d4;
+}
+
+.area .item-column{
+    overflow-y: scroll;
+    float: left;
+    width: 33.33%;
+    height: 450rpx;
+    line-height: 2.4em;
+    box-sizing: border-box; 
+    color: #717273;
+    background-color: #fff;
+}
+.item-column view{
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space:nowrap;  
+    padding-left: 30rpx; 
+}
+.area .provinces{
+    background: #c5c5c5;
+}
+.provinces .item-province.active{
+    background: #e0e0e0;
+}
+.area .cities{
+    background: #e0e0e0;
+}
+.cities .item-city.active{
+    background: #fff;
+}
+.area .areaes{
+    background: #fff;
+}
+
+.filter .drop-content.list{
+    overflow-y: scroll;
+    line-height: 3em;
+    background: #fff;
+    padding-left: 30rpx;
+}
+
+.fullbg{
+  position: fixed;
+  top:0;
+  width: 100%;
+  height: 100%;
+  background: rgba(1, 1, 1,0.5);
+  transition: all .3s;
+  display: block;
+}
+.fullbg.hidden{
+    display: none;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+.list .item-goods {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 4em;
+  border-bottom: 1px solid #c5c5c5;
+}
+.list .item-goods:active {
+  background-color: #e0e0e0;
+}

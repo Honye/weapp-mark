@@ -1,0 +1,30 @@
+/*  */
+.row-cell:first-child {
+  border-top: 0.1px solid #ddd;
+}
+.row-cell {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  color: #496069;
+  border-bottom: 0.1px solid #ddd;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.row-cell .row-left,
+.row-cell .row-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.row-cell .row-icon {
+  width: 1.5em;
+  height: 1.5em;
+  margin-right: 1em;
+}
+.row-right .row-subtitle {
+  color: #aaa;
+  margin-right: 0.5em;
+}

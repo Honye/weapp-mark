@@ -1,0 +1,2 @@
+/* pages/views/views.wxss */
+@import "../movies/movies.wxss";

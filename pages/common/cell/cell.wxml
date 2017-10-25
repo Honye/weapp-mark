@@ -1,0 +1,13 @@
+<!--  -->
+<template name='row-cell'>
+  <view class='row-cell' bindtap='{{bindTap}}'>
+    <view class='row-left'>
+      <image class='row-icon' src='{{iconPath}}' mode='widthFix'></image>
+      <text>{{title}}</text>
+    </view>
+    <view class='row-right'>
+      <text class='row-subtitle'>{{subtitle||""}}</text>
+      <view class='arrow-right'></view>
+    </view>
+  </view>
+</template>

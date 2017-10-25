@@ -1,0 +1,104 @@
+/* pages/movies/movieDetails.wxss */
+@import '../common/rating/rating';
+
+.bg-img {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.bg-img .brief {
+  width: 100%;
+  height: 100%;
+  background-color:rgba(0,0,0,0.7);
+  display: flex;
+  display: -webkit-flex;
+  align-items: flex-end; 
+}
+.brief .img-mv {
+  width:220rpx;
+  min-width: 220rpx;
+  margin:0rpx 35rpx -40rpx;
+}
+.brief .brief-info {
+  color: #fff;
+  margin-right: 40rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.brief-info .title {
+  font-size: 1.2em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.brief .rating {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.brief .rating>text:first-child {
+  display: flex;
+  align-items: flex-end;
+  font-size: 2em;
+  vertical-align: bottom;
+  padding: 0;
+}
+.brief .rating>view {
+  color: #ccc;
+  margin-left: 0.32em;
+  margin-bottom: 0.32em;
+  display: flex;
+  flex-direction: column;
+}
+.com-rating .rating-on {
+  color: #F4D02F;
+}
+
+.brief-time {
+  margin: 80rpx 35rpx 0;
+}
+
+.brief-summary {
+  padding: 35rpx;
+}
+.subtitle {
+  color: #bbb;
+  line-height: 2em;
+}
+
+.comments {
+  padding: 30rpx;
+}
+.comments .item-comment {
+  margin-bottom: 1em;
+}
+.item-comment {
+  display: flex;
+  flex-direction: row;
+}
+.item-comment .user-header {
+  width: 75rpx;
+  height: 75rpx;
+  background-color: #f7f7f7;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.item-comment .comment-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+}
+.item-comment .comment-right .name-rating .username{
+  margin-right: 0.2em;
+}
+.item-comment .comment-right .date {
+  color: #bbb;
+  font-size: 0.85em;
+}
+
+.page-detail .more {
+  color: #5D6BEE;
+  margin-left: 30rpx;
+}

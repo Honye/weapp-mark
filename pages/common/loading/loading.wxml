@@ -1,0 +1,20 @@
+<!-- 加载动画 -->
+<template name='loading-more'>
+  <view class="weui-loadmore">
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
+  </view>
+</template>
+
+<template name='loading-none'>
+  <view class="weui-loadmore weui-loadmore_line">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+  </view>
+</template>
+
+<template name='loading-dot'>
+  <view class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line weui-loadmore__tips_in-dot"></view>
+  </view>
+</template>
+        

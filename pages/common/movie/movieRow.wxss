@@ -1,0 +1,48 @@
+/* 电影Item 单行 */
+
+.item-movie_row {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+}
+
+.item-movie_row .item-img {
+  width: 160rpx;
+}
+
+.item-movie_row .item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 1em;
+}
+
+.item-movie_row .item-info .subtext {
+  font-size: 0.8em;
+  color: #7c858a;
+}
+
+.item-movie_row .item-info .rating {
+  margin-right: 0.5em;
+}
+
+.padding-surround {
+  padding: 30rpx;
+  border-bottom: .5px solid #eee;
+}
+
+.item-movie_grid {
+  border: .5px solid #ddd;
+  background-color: #fff;
+}
+
+.item-movie_grid .item-img, .item-movie_grid .item-img>image {
+  width: 100%;
+  height: 182px;
+}
+
+.item-movie_grid .item-title {
+  width: 100%;
+  line-height: 2em;
+  text-align: center;
+}

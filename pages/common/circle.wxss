@@ -1,0 +1,59 @@
+.icon-img {
+  width: 50%;
+  height: 35%;
+  border-width: 2px;
+  border-color: #f00;
+}
+.title {
+  font-size: 0.8rem;
+}
+.circle-border {
+  width: 120rpx;
+  height: 120rpx;
+  border: 2rpx solid #496069;
+  border-radius: 50%;
+  margin: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.circle-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.circle-date {
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: #496069;
+}
+/* circle end */
+
+.img-big {
+  display: block;
+  width: 100%;
+  height: 450rpx;
+}
+.com-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.com-title {
+  padding: 10rpx 10rpx 5rpx;
+}
+.count-like {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #818C91;
+  padding: 5rpx 10rpx 10rpx;
+}
+.icon-like {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+}

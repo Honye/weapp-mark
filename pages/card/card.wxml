@@ -1,0 +1,39 @@
+<!--pages/card/card.wxml-->
+<swiper
+  bindchange='onChange'>
+  <block wx:for='{{cards}}' wx:key='id'>
+  <swiper-item>
+    <view class='card'>
+      <image class='card-img'
+      src='{{item.image}}'
+      mode='widthFix'>
+      </image>
+      <view class='card-text'>
+        <text wx:if='{{item.quote}}'>{{item.quote}}\n\n</text>
+        <text wx:else class='place-text'></text>
+        <view class='source'>
+          <text  wx:if='{{item.source}}'>——{{item.source}}</text>
+          <text wx:else class='place-source'></text>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  </block>
+</swiper>
+
+<view class='action'>
+  <view class='look'>
+    <image class='icon' src='../../images/daily_card_detail_icon.png'></image>
+    <text>查看电影</text>
+  </view>
+  <view class='action-right'>
+    <view class='count'>
+      <image class='icon-big' src='../../images/daily_card_like_unchecked.png'></image>
+      <text>{{cards[current].likeCount}}</text>
+    </view>
+    <view class='count'>
+      <image class='icon-big' src='../../images/daily_card_share_icon.png'></image>
+      <text>{{cards[current].shareCount}}</text>
+    </view>
+  </view>
+</view>

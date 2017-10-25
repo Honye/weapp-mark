@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/discovery/discovery",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/first/first",
+    "pages/movies/movies",
+    "pages/books/books",
+    "pages/views/views",
+    "pages/movies/movieDetails",
+    "pages/classification/index",
+    "pages/card/card",
+    "pages/setting/setting",
+    "pages/intheaters/in_theaters",
+    "pages/dropdown/index",
+    "pages/marked/marked"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#4CDFAA",
+    "navigationBarTitleText": "HONYE",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f7f7f7"
+  },
+  "tabBar": {
+    "color": "#496069",
+    "selectedColor": "#000",
+    "backgroundColor": "#4cdfaa",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/discovery/discovery",
+        "text": "发现",
+        "iconPath": "images/tab_discover_unchecked.png",
+        "selectedIconPath": "images/tab_discover_checked.png"
+      },
+      {
+        "pagePath": "pages/movies/movies",
+        "text": "我的电影",
+        "iconPath": "images/tab_movies_unchecked.png",
+        "selectedIconPath": "images/tab_movies_checked.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "账号",
+        "iconPath": "images/tab_usercenter_unchecked.png",
+        "selectedIconPath": "images/tab_usercenter_checked.png"
+      }
+    ]
+  }
+}

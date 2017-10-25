@@ -1,0 +1,29 @@
+<!--pages/setting/setting.wxml-->
+<import src='../common/cell/cell' />
+
+<view class='subtitle'>
+  <text>消息设置</text>
+</view>
+<view>
+  <view class='row-cell'>
+    <view class='row-left'>
+      <image class='row-icon' src='../../images/notify_switch_icon.png' mode='widthFix'></image>
+      <text>接受消息提醒</text>
+    </view>
+    <view class='row-right'>
+      <switch color='#69C942' bindchange='switchNotice' checked='{{notice}}'></switch>
+    </view>
+  </view>
+  <view class='tips'>
+    <text>小程序是建立在微信基础上，若关闭了微信通知则接受不到通知。</text>
+  </view>
+  <view class='row-cell' bindtap='clearCache'>
+    <view class='row-left'>
+      <image class='row-icon' src='../../images/clear_cache_icon.png' mode='widthFix'></image>
+      <text>清除缓存</text>
+    </view>
+    <view class='row-right'>
+      <text>{{storageSize}}kb</text>
+    </view>
+  </view>
+</view>

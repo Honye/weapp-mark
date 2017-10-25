@@ -1,0 +1,31 @@
+<!--发现-->
+<import src="../common/circle.wxml"/>
+
+<swiper 
+  indicator-dots
+  autoplay
+  indicator-active-color="{{indicatorActiveColor}}"
+  circular="{{circular}}"
+  style='height:{{swiperHeight}}px'>
+  <block wx:for="{{banner}}" wx:key="id">
+    <swiper-item>
+      <image data-index='{{index}}' src="{{item.image}}" class="slide-image"  bindtap='onBannerTap'/>
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class="kind-container">
+  <template is="circle" 
+    data="{{imgUrl:'../../images/discover_classify_group_icon.png',title:'分类查找',bindtap:'bindClassifyTap'}}">
+  </template>
+  <template is="circle" 
+    data="{{date:nowDay,title:'每日电影卡片',bindtap:'toCard'}}">
+  </template>
+  <template is="circle" 
+    data="{{imgUrl:'../../images/discover_classify_cinema_icon.png',title:'影院热映',bindtap:'toTheatre'}}">
+  </template>
+</view>
+
+<view wx:for="{{articles}}" wx:key='id'>
+  <template is="commingItem" data="{{...item}}" />
+</view>

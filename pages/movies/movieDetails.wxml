@@ -1,0 +1,59 @@
+<!--pages/movies/movieDetails.wxml-->
+<import src='../common/rating/rating' />
+
+<view wx:if='{{loaded}}' class='container page-detail'>
+  <view 
+    class='bg-img'
+    wx:if='{{details.images}}'
+    style='height:{{bgImgHeight}}px;background-image:url({{details.images.large}};'>
+    <view class='brief'>
+      <image
+        class='img-mv'
+        src='{{details.images.large}}'
+        mode='widthFix'>
+      </image>
+      <view class='.brief-info'>
+        <text wx:if='{{details.title}}' class='title'>{{details.title}}</text>
+        <text 
+          class='title' 
+          wx:if='{{details.original_title && details.original_title !== details.title}}'>{{details.original_title}}</text>
+        <view class='rating'>
+          <text wx:if='{{details.rating}}'>{{details.rating.average}}</text>
+          <view>
+            <template is='rating' data='{{rating:details.rating.average,max:10}}'/>
+            <text wx:if='{{details.ratings_count}}'>{{details.ratings_count}}人评价</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='brief-time'>
+    <text>{{details.durations[0]}} {{genres}}
+    {{pubdates}} {{countries}}
+    {{details.directors[0].name}}(导演) / {{casts}}</text>
+  </view>
+
+  <view class='brief-summary'>
+    <text class='subtitle'>{{details.title}}的剧情简介\n</text>
+    <text>{{details.summary}}</text>
+  </view>
+
+  <view class='comments'>
+    <text class='subtitle'>短评({{comments_count}})</text>
+    <block wx:for='{{comments}}' wx:key='id'>
+      <view class='item-comment'>
+        <image class='user-header' src='{{item.author.avatar}}'></image>
+        <view class='comment-right'>
+          <view class='name-rating'>
+            <text class='username'>{{item.author.name}}</text>
+            <template is='rating' data='{{rating:item.rating.value,max:5}}' />
+          </view>
+          <text class='date'>{{item.created_at}}</text>
+          <text>{{item.content}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  
+</view>

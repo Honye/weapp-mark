@@ -1,0 +1,12 @@
+/* pages/discovery/discovery.wxss */
+@import "../common/circle.wxss";
+
+.slide-image {
+  display: block;
+  width: 100%;
+}
+.kind-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20rpx;
+}

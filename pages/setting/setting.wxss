@@ -1,0 +1,34 @@
+/* pages/setting/setting.wxss */
+.subtitle {
+  font-size: 0.8em;
+  padding: 15rpx 30rpx;
+  color: #ababab;
+}
+
+.row-cell {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  color: #496069;
+  border-top: 0.1px solid #ccc;
+  border-bottom: 0.1px solid #ccc;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.row-cell .row-left,
+.row-cell .row-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.row-cell .row-icon {
+  width: 1.5em;
+  margin-right: 1em;
+}
+
+.tips {
+  padding: 30rpx;
+  font-size: 0.9em;
+}
