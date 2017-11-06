@@ -1,5 +1,6 @@
 /* pages/movies/movieDetails.wxss */
 @import '../common/rating/rating';
+@import '../common/casts/casts';
 
 .bg-img {
   width: 100%;
@@ -59,14 +60,58 @@
   margin: 80rpx 35rpx 0;
 }
 
+.page-detail .play-source {
+  margin-top: 2em;
+}
+.page-detail .play-source .source-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 2.4em;
+  margin-left: 30rpx;
+  padding-right: 30rpx;
+  border-bottom: 1px solid #ddd;
+}
+.page-detail .play-source .source-container .fa-play-circle {
+  color: #9B9B9B;
+  margin-right: .5em;
+}
+.page-detail .play-source .source-container .sources {
+  color: #9E9E9E;
+}
+.page-detail .play-source .source-container .fa-angle-right {
+  color: #CCCCCC;
+  margin-left: .3em;
+  font-size: 1.2em;
+}
+
 .brief-summary {
   padding: 35rpx;
 }
 .subtitle {
-  color: #bbb;
-  line-height: 2em;
+  color: #7C858A;
+  line-height: 2.8em;
+  font-size: .9em;
 }
 
+/* 影人 start */
+.page-detail .casts .subtitle {
+  margin-left: 30rpx;
+}
+.casts>scroll-view {
+  white-space: nowrap;
+}
+.casts>scroll-view .casts-item {
+  margin-right: 15rpx;
+}
+.casts>scroll-view .casts-item:first-child {
+  margin-left: 30rpx;
+}
+.casts>scroll-view .casts-item:last-child {
+  margin-right: 30rpx;
+}
+
+/* 短评 start */
 .comments {
   padding: 30rpx;
 }
@@ -101,4 +146,63 @@
 .page-detail .more {
   color: #5D6BEE;
   margin-left: 30rpx;
+}
+
+
+
+.scroll-view_H{
+  white-space: nowrap;
+}
+.scroll-view-item{
+  height: 300rpx;
+}
+.scroll-view-item_H{
+  display: inline-block;
+  width: 100%;
+  height: 300rpx;
+}
+.demo-text-1{
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: #1AAD19;
+  color: #FFFFFF;
+  font-size: 36rpx;
+}
+.demo-text-1:before{
+  content: 'A';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.demo-text-2{
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: #2782D7;
+  color: #FFFFFF;
+  font-size: 36rpx;
+}
+.demo-text-2:before{
+  content: 'B';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.demo-text-3{
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: #F1F1F1;
+  color: #353535;
+  font-size: 36rpx;
+}
+.demo-text-3:before{
+  content: 'C';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

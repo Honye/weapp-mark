@@ -1,4 +1,6 @@
 /* 电影Item 单行 */
+@import '../rating/rating';
+
 
 .item-movie_row {
   display: flex;
@@ -8,6 +10,7 @@
 
 .item-movie_row .item-img {
   width: 160rpx;
+  min-height: 224rpx;
 }
 
 .item-movie_row .item-info {
@@ -38,7 +41,7 @@
 
 .item-movie_grid .item-img, .item-movie_grid .item-img>image {
   width: 100%;
-  height: 182px;
+  height: 321.6rpx;
 }
 
 .item-movie_grid .item-title {

@@ -1,11 +1,13 @@
 <!--pages/movies/movieDetails.wxml-->
 <import src='../common/rating/rating' />
+<import src='../common/casts/casts' />
+<wxs src='./../../utils/WxUtil.wxs' module='WxUtil' />
 
 <view wx:if='{{loaded}}' class='container page-detail'>
   <view 
     class='bg-img'
     wx:if='{{details.images}}'
-    style='height:{{bgImgHeight}}px;background-image:url({{details.images.large}};'>
+    style='height:{{bgImgHeight}}px;background-image:url({{details.images.large}});'>
     <view class='brief'>
       <image
         class='img-mv'
@@ -29,14 +31,42 @@
   </view>
 
   <view class='brief-time'>
-    <text>{{details.durations[0]}} {{genres}}
-    {{pubdates}} {{countries}}
+    <text>{{details.durations[0]}} {{WxUtil.arr2str(details.genres," / ")}}
+    {{pubdates}} {{WxUtil.arr2str(details.countries, " / ")}}
     {{details.directors[0].name}}(导演) / {{casts}}</text>
+  </view>
+
+  <view class='play-source' wx:if='{{details.videos.length>0}}'>
+    <navigator url='./../sources/sources?id={{id}}'>
+      <view class='source-container'>
+        <view>
+          <i class="fa fa-play-circle" aria-hidden="true"></i>
+          <text>在线观看</text>
+        </view>
+        <view>
+          <text class='sources'>{{details.videos.length}}个播放源</text>
+          <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </view>
+      </view>
+    </navigator>
   </view>
 
   <view class='brief-summary'>
     <text class='subtitle'>{{details.title}}的剧情简介\n</text>
     <text>{{details.summary}}</text>
+  </view>
+
+  <view class='casts'>
+    <text class='subtitle'>影人</text>
+    <scroll-view scroll-x>
+      <block wx:for='{{details.directors}}' wx:key='id'>
+        <template is='item-casts' data='{{item,isDirec:true}}' />
+      </block>
+      <block wx:for='{{details.casts}}' wx:key='id'>
+        <template is='item-casts' data='{{item,isDirec:false}}' />
+      </block>
+      <template is='item-casts-all' />
+    </scroll-view>
   </view>
 
   <view class='comments'>

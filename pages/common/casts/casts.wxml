@@ -1,0 +1,20 @@
+<template name='item-casts'>
+  <view class='casts-item'>
+    <view class='item-container'>
+      <image class='avatar' src='{{item.avatars.medium}}' />
+      <view class='item-casts-name'>
+        <text class='single-line'>{{item.name}}</text>
+        <text class='single-line'>{{isDirec?"导演":"饰"}}</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name='item-casts-all'>
+  <view class='casts-item'>
+    <view class='item-all'>
+      <text>全部</text>
+      <text>00人</text>
+    </view>
+  </view>
+</template>

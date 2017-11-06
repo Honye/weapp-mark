@@ -1,0 +1,29 @@
+/* pages/sources/sources.wxss */
+.page-source .title {
+  color: #999;
+  padding: 20rpx;
+  font-size: .8em;
+}
+.page-source .sources-item {
+  padding: 0 20rpx;
+}
+.page-source .item-container {
+  height: 3em;
+  border-bottom: .5px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.page-source .item-container>view {
+  display: flex;
+  align-items: center;
+}
+.page-source .item-container .icon {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: .5em;
+}
+.page-source .item-container>view .fa-angle-right {
+  margin-left: .5em;
+  font-size: 1.2em;
+}

@@ -1,0 +1,47 @@
+<!--pages/search/search.wxml-->
+<import src='./../common/movie/movieRow' />
+
+<view class='container page-search'>
+  <view>
+    <view class="search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" 
+            placeholder="输入影名/演员" value="{{inputVal}}" 
+            focus bindinput="inputTyping" confirm-type='search'
+            bindconfirm='searchMovie'
+          />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+      </view>
+      <view class='search-bar_cancle' bindtap='goBack'>取消</view>
+    </view>
+  </view>
+  <view class='content'>
+    <scroll-view scroll-y>
+      <view class='paragraph' wx:if='{{!result}}'>
+        <image src='./../../images/movie_search_word_icon.png' mode='widthFix' />
+        <text space='nbsp' decode>{{paragraph}}</text>
+        <text>---《千与千寻》</text>
+      </view>
+      <view wx:elif='{{result.length>0}}'>
+        <block wx:for='{{result}}' wx:key='id'>
+          <navigator url='./../movies/movieDetails?title={{item.title}}&id={{item.id}}'>
+            <template 
+              is="item-movie_row" 
+              data="{{...item}}">
+            </template>
+          </navigator>
+        </block>
+      </view>
+      <view wx:else class='none'>
+        <image src='./../../images/search_empty_icon.png' mode='widthFix' />
+        <text>抱歉，未找到相关影视</text>
+        <text>输入电影名/导演/演员/编剧搜索</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

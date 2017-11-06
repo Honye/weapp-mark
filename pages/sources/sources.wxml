@@ -1,0 +1,18 @@
+<!--pages/sources/sources.wxml-->
+<view class='container page-source'>
+  <text class='title'>观看完整剧集</text>
+  <block wx:for='{{sources}}' wx:key='source.literal'>
+    <view class='sources-item' bindtap='copyUrl' data-url='{{item.sample_link}}'>
+      <view class='item-container'>
+        <view>
+          <image class='icon' src='{{item.source.pic}}' mode='widthFix'/>
+          <text>{{item.source.name}}</text>
+        </view>
+        <view>
+          <text>{{item.need_pay?"收费":"免费"}}</text>
+          <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

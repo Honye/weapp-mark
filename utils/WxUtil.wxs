@@ -1,0 +1,14 @@
+// 用于wxml文件
+
+var stringify = function (obj) {
+  return JSON.stringify(obj);
+}
+
+var arr2str = function (array, separator) {
+  return array.join(separator);
+}
+
+module.exports = {
+  stringify: stringify,
+  arr2str: arr2str
+}

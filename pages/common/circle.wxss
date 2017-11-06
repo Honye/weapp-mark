@@ -43,6 +43,7 @@
 }
 .com-title {
   padding: 10rpx 10rpx 5rpx;
+  text-align: center;
 }
 .count-like {
   display: flex;

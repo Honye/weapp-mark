@@ -16,7 +16,7 @@ App({
       },
     })
 
-    this.getDefaultConfig();
+    // this.getDefaultConfig();
   },
 
   getUserInfo:function(cb){
@@ -41,7 +41,9 @@ App({
   globalData:{
     userInfo:null,
     setting: {},
-    config: {}
+    config: {
+      hasPermission: true
+    }
   },
 
   showCommonModal: function(msg) {

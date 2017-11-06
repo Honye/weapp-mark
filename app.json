@@ -13,7 +13,9 @@
     "pages/setting/setting",
     "pages/intheaters/in_theaters",
     "pages/dropdown/index",
-    "pages/marked/marked"
+    "pages/marked/marked",
+    "pages/search/search",
+    "pages/sources/sources"
   ],
   "window": {
     "backgroundTextStyle": "dark",

@@ -1,0 +1,65 @@
+/* pages/search/search.wxss */
+@import '../common/movie/movieRow';
+
+page,
+.page-search {
+  height: 100%;
+}
+
+.page-search .search-bar {
+  padding: 8px 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+  background-color: #efeff4;
+  border-bottom: 1rpx solid #d7d6dc;
+}
+
+.search-bar_cancle {
+  margin-left: 10px;
+  color: #09bb07;
+  white-space: nowrap;
+}
+
+.page-search .content {
+  flex: 1;
+  display: flex;
+}
+.content scroll-view {
+  height: 100%;
+}
+.page-search .content .paragraph {
+  padding: 75rpx;
+  display: flex;
+  flex-direction: column;
+}
+.content .paragraph>image {
+  width: 1.5em;
+  height: 1.5em;
+}
+.content .paragraph>text:last-child {
+  margin-top: 1em;
+  text-align: end;
+}
+.page-search .content .none {
+  display: flex;
+  flex-direction: column;
+  padding: 75rpx;
+  align-items: center;
+}
+.page-search .content .none>image {
+  width: 3em;
+  height: 3em;
+  margin-bottom: 1em;
+}
+.page-search .content .none>text:last-child {
+  background-color: #EBEBEB;
+  line-height: 2.8em;
+  margin-top: 2em;
+  color: #384D56;
+  text-align: center;
+  width: 100%;
+  font-size: .9em;
+  border-radius: 5px;
+}

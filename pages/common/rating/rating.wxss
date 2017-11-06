@@ -4,6 +4,10 @@
   font-size: 1.2em;
   letter-spacing: .3em;
 }
+.com-rating .rating-on,
+.com-rating .rating-off {
+  display: inline-block;
+}
 .com-rating .rating-on {
   color: black;
   position: absolute;

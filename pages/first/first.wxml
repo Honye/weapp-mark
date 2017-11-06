@@ -48,3 +48,6 @@
     <view class="weui-loading"></view>
     <view class="weui-loadmore__tips">正在加载</view>
 </view>
+
+<i class='fa fa-star'></i>
+<i class="fa fa-play-circle" aria-hidden="true"></i>

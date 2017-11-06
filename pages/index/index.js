@@ -38,6 +38,9 @@ Page({
     })
   },
 
+  /**
+   * 退出登录
+   */
   logout: function() {
     wx.navigateTo({
       url: '../first/first',

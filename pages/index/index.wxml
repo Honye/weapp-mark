@@ -20,7 +20,7 @@
     <template is='row-cell' data='{{iconPath:"../../images/about_icon.png",title:"关于",subtitle:"v1.0.1(22)",bindTap:"toAbout"}}' />
   </view>
   
-  <view class='button log-out'>
+  <view class='button log-out' bindtap='logout'>
     <text>退出登录</text>
   </view>
 

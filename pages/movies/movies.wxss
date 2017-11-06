@@ -1,5 +1,4 @@
 /* pages/movies/movies.wxss */
-@import '../common/rating/rating';
 @import '../common/movie/movieRow';
 
 page {

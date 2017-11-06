@@ -26,6 +26,8 @@ var config = {
   commingSoonUrl: `${douBanHost}/v2/movie/coming_soon`,
   // 影视条目信息
   subjectInfoUrl: `${douBanHost}/v2/movie/subject`,
+  // 影视搜索
+  searchUrl: `${douBanHost}/v2/movie/search`,
 };
 
 module.exports = config;

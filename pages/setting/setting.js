@@ -17,7 +17,7 @@ Page({
   onLoad: function (options) {
     let size = 0;
     wx.getStorageInfo({
-      success: function(res) {
+      success: function (res) {
         size = res.currentSize;
       },
     })
@@ -28,61 +28,15 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 通知开关
    */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
-
-  switchNotice: function(event) {
+  switchNotice: function (event) {
     const _this = this;
     wx.setStorage({
       key: 'setting',
-      data: {...app.globalData.setting,notice:event.detail.value},
+      data: { ...app.globalData.setting, notice: event.detail.value },
       success: () => {
-        app.globalData.setting = { ...app.globalData.setting, notice: event.detail.value};
+        app.globalData.setting = { ...app.globalData.setting, notice: event.detail.value };
         _this.setData({
           notice: event.detail.value
         })
@@ -93,14 +47,10 @@ Page({
   /**
    * 清除缓存
    */
-  clearCache: function() {
-    // wx.removeStorage({
-    //   key: '',
-    //   success: function(res) {},
-    // });
+  clearCache: function () {
     try {
       wx.clearStorageSync();
-    } catch(e) {
+    } catch (e) {
       console.error(e);
     }
     wx.showToast({
