@@ -5,17 +5,17 @@
     "pages/logs/logs",
     "pages/first/first",
     "pages/movies/movies",
-    "pages/books/books",
     "pages/views/views",
     "pages/movies/movieDetails",
     "pages/classification/index",
     "pages/card/card",
     "pages/setting/setting",
     "pages/intheaters/in_theaters",
-    "pages/dropdown/index",
     "pages/marked/marked",
     "pages/search/search",
-    "pages/sources/sources"
+    "pages/sources/sources",
+    "pages/favMovieList/index",
+    "pages/favCards/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",

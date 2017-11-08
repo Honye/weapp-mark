@@ -2,27 +2,45 @@
 @import '../common/rating/rating';
 @import '../common/casts/casts';
 
-.bg-img {
+.page-detail .big-bg {
+  height: 750rpx;
   width: 100%;
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: 100% auto;
+}
+.big-bg>view {
+  width: 100%;
+  height: 100%;
+  background-color:rgba(0,0,0,.7);
+}
+
+.page-detail .scroll {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.page-detail .brief-time,
+.page-detail .play-source,
+.page-detail .brief-summary,
+.page-detail .casts,
+.page-detail .comments {
+  background-color: #f7f7f7;
 }
 .bg-img .brief {
   width: 100%;
   height: 100%;
-  background-color:rgba(0,0,0,0.7);
   display: flex;
   display: -webkit-flex;
   align-items: flex-end; 
 }
 .brief .img-mv {
   width:220rpx;
-  min-width: 220rpx;
   margin:0rpx 35rpx -40rpx;
 }
 .brief .brief-info {
   color: #fff;
-  margin-right: 40rpx;
+  margin-right: 35rpx;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -56,12 +74,12 @@
   color: #F4D02F;
 }
 
-.brief-time {
-  margin: 80rpx 35rpx 0;
+.page-detail .brief-time {
+  padding: 80rpx 35rpx 0;
 }
 
 .page-detail .play-source {
-  margin-top: 2em;
+  padding-top: 2em;
 }
 .page-detail .play-source .source-container {
   display: flex;
@@ -85,7 +103,7 @@
   font-size: 1.2em;
 }
 
-.brief-summary {
+.page-detail .brief-summary {
   padding: 35rpx;
 }
 .subtitle {
@@ -112,7 +130,7 @@
 }
 
 /* 短评 start */
-.comments {
+.page-detail .comments {
   padding: 30rpx;
 }
 .comments .item-comment {
@@ -146,63 +164,4 @@
 .page-detail .more {
   color: #5D6BEE;
   margin-left: 30rpx;
-}
-
-
-
-.scroll-view_H{
-  white-space: nowrap;
-}
-.scroll-view-item{
-  height: 300rpx;
-}
-.scroll-view-item_H{
-  display: inline-block;
-  width: 100%;
-  height: 300rpx;
-}
-.demo-text-1{
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  background-color: #1AAD19;
-  color: #FFFFFF;
-  font-size: 36rpx;
-}
-.demo-text-1:before{
-  content: 'A';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.demo-text-2{
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  background-color: #2782D7;
-  color: #FFFFFF;
-  font-size: 36rpx;
-}
-.demo-text-2:before{
-  content: 'B';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.demo-text-3{
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  background-color: #F1F1F1;
-  color: #353535;
-  font-size: 36rpx;
-}
-.demo-text-3:before{
-  content: 'C';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }

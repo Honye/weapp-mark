@@ -7,7 +7,7 @@
     </view>
     <block wx:for='{{item.children}}' wx:key='*this'>
       <view class='item small {{(item==" ")?"empty":""}}'>
-        <text>{{item}}</text>
+        <text class='single-line'>{{item}}</text>
       </view>
     </block>
   </view>

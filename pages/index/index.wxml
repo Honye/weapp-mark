@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <import src='../common/cell/cell' />
 
-<view class="container">
+<view class="container page-user">
   <view  bindtap="bindViewTap" class="userinfo">
     <view class="cell-left">
       <view class="userinfo-avatar">
@@ -15,9 +15,19 @@
   </view>
 
   <view class='row-list'>
-    <template is='row-cell' 
-      data='{{iconPath:"../../images/setting_icon.png",title:"设置",bindTap:"toSetting"}}' />
-    <template is='row-cell' data='{{iconPath:"../../images/about_icon.png",title:"关于",subtitle:"v1.0.1(22)",bindTap:"toAbout"}}' />
+    <template is='row-cell' data='{{iconPath:"../../images/user_favorite_singles_icon.png",title:"我喜欢的影单",bindTap:"toFavMovieList"}}' />
+    <template is='row-cell' data='{{iconPath:"../../images/user_favorite_cards_icon.png",title:"我喜欢的卡片",bindTap:"toFavCards"}}' />
+  </view>
+
+  <view class='row-list'>
+    <button class='contactBtn' open-type='share' hover-class='none'>
+      <template is='row-cell' data='{{iconPath:"../../images/user_share_icon.png",title:"分享给朋友"}}' />
+    </button>
+    <button class='contactBtn' open-type='contact' hover-class='none'>
+      <template is='row-cell' data='{{iconPath:"./../../images/feedback_icon.png",title:"客服反馈"}}' />
+    </button>
+    <template is='row-cell' data='{{iconPath:"../../images/setting_icon.png",title:"设置",bindTap:"toSetting"}}' />
+    <template is='row-cell' data='{{iconPath:"../../images/about_icon.png",title:"关于",subtitle:"v1.0.4(22)",bindTap:"toAbout"}}' />
   </view>
   
   <view class='button log-out' bindtap='logout'>

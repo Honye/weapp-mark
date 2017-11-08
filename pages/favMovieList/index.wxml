@@ -1,0 +1,12 @@
+<!-- 喜欢的影单 -->
+<view class='container page-favlist'>
+  <block wx:for='{{list}}' wx:key='id'>
+    <view class='item-bgimg' style='background-image:url({{item.image}})'>
+      <text class='item-title'>{{item.title}}</text>
+      <view class='item-count'>
+        <image src='./../../images/daily_card_like_checked.png' mode='widthFix' />
+        <text>{{item.likeCount}}</text>
+      </view>
+    </view>
+  </block>
+</view>

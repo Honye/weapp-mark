@@ -34,7 +34,9 @@
 }
 
 .row-list {
-  padding: 30rpx 0;
+  margin: 30rpx 0 0;
+  border-top: 0.5px solid #ddd;
+  border-bottom: 0.5px solid #ddd;
 }
 
 .log-out {
@@ -46,4 +48,22 @@
   padding: 30rpx;
   color: #D66D5C;
   background-color: #fff;
+  margin: 30rpx 0;
+}
+
+.page-user .contactBtn {
+   width:100%;
+   border:none;
+   border-radius: 0;
+   padding:0;
+   margin:0;
+   font-size: 1em;
+   position: static;
+   line-height: normal;
+}
+.page-user .contactBtn::after {
+  content: none;
+}
+.page-user .contactBtn>.row-cell {
+  border-bottom: 0.5px solid #ddd;
 }

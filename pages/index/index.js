@@ -13,7 +13,6 @@ Page({
     })
   },
   onLoad: function () {
-    console.log('onLoad')
     var _this = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
@@ -51,5 +50,41 @@ Page({
    */
   toAbout: function() {
     return;
+  },
+
+  /**
+   * 转发
+   */
+  onShareAppMessage: function(opt) {
+    console.log("转发", opt);
+    return {
+      title: "好用得不得了",
+      path: "/pages/discovery/discovery",
+      imageUrl: "http://xpic.588ku.com/figure/00/00/00/08/56/5355a15b1f68dfd.jpg!/fw/800",
+      success: res => {
+        console.log("成功", res);
+      },
+      complete: res => {
+        console.log("完成", res);
+      }
+    };
+  },
+
+  /**
+   * 我喜欢的影单
+   */
+  toFavMovieList: function() {
+    wx.navigateTo({
+      url: './../favMovieList/index',
+    })
+  },
+  /**
+   * 我喜欢的卡片
+   */
+  toFavCards: function() {
+    wx.navigateTo({
+      url: './../favCards/index',
+    })
   }
+
 })

@@ -2,8 +2,9 @@
 import config from './config';
 
 App({
+
   onLaunch: function () {
-    var _this = this;
+    var that = this;
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -11,19 +12,22 @@ App({
 
     var setting = wx.getStorage({
       key: 'setting',
-      success: function(res) {
-        _this.globalData.setting = res.data;
+      success: function (res) {
+        that.globalData.setting = res.data;
       },
     })
 
     // this.getDefaultConfig();
   },
 
-  getUserInfo:function(cb){
+  /**
+   * 获取用户信息
+   */
+  getUserInfo: function (cb) {
     var that = this
-    if(this.globalData.userInfo){
+    if (this.globalData.userInfo) {
       typeof cb == "function" && cb(this.globalData.userInfo)
-    }else{
+    } else {
       //调用登录接口
       wx.login({
         success: function () {
@@ -38,16 +42,16 @@ App({
     }
   },
 
-  globalData:{
-    userInfo:null,
+  globalData: {
+    userInfo: null,
     setting: {},
     config: {
       hasPermission: true
     }
   },
 
-  showCommonModal: function(msg) {
-    wx:wx.showModal({
+  showCommonModal: function (msg) {
+    wx: wx.showModal({
       title: '提示',
       content: msg || '抱歉，还在开发中...',
       showCancel: false

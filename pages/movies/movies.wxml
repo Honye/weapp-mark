@@ -5,7 +5,7 @@
 <view class='container page-movie'>
   <view class='topbar'>
     <view class='layout' bindtap='changeLayout'>
-      <image src='{{isGrid?"../../images/gird_mode_icon.png":"../../images/list_mode_icon.png"}}' mode='widthFix' />
+      <image src='{{isGrid?"../../images/list_mode_icon.png":"../../images/gird_mode_icon.png"}}' mode='widthFix' />
     </view>
   </view>
 

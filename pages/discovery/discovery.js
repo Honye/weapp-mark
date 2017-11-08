@@ -140,6 +140,24 @@ Page({
         url: './../search/search',
       })
     }
+  },
+
+  /**
+   * 转发
+   */
+  onShareAppMessage: function (opt) {
+    console.log("转发", opt);
+    return {
+      title: "好用得不得了",
+      path: "/pages/discovery/discovery",
+      imageUrl: "http://xpic.588ku.com/figure/00/00/00/08/56/5355a15b1f68dfd.jpg!/fw/800",
+      success: res => {
+        console.log("成功", res);
+      },
+      complete: res => {
+        console.log("完成", res);
+      }
+    };
   }
 
 })

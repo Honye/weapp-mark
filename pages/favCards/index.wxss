@@ -1,0 +1,43 @@
+/* pages/favCards/index.wxss */
+
+.page-favcards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10rpx;
+}
+
+.item-favcard {
+  width: 345rpx;
+  height: 360rpx;
+  overflow: hidden;
+  margin: 10rpx;
+  border-radius: 10rpx;
+  box-shadow: 2rpx 2rpx #ccc;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+.item-favcard .favcard-img {
+  width: 100%;
+  height: 350rpx;
+  max-height: 216rpx;
+}
+.item-favcard text {
+  padding: .3em;
+  box-sizing: border-box;
+  font-size: .8em;
+}
+.item-favcard .favcard-source {
+  width: 100%;
+  text-align: end;
+}
+
+.dLine{
+  display: -webkit-box; 
+  word-break: break-all; 
+  text-overflow: ellipsis; 
+  overflow: hidden; 
+  -webkit-box-orient: vertical; 
+  -webkit-line-clamp:2; 
+}

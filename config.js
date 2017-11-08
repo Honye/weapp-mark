@@ -11,15 +11,15 @@ var config = {
 
   codingHost,
   // 默认配置
-  configUrl: `${gitHubHost}/static/json/config.json`,
+  configUrl: `${gitHubHost}/static/json/config`,
   // 首页轮播图
-  bannersUrl: `${gitHubHost}/static/json/banner.json`,
+  bannersUrl: `${gitHubHost}/static/json/banner`,
   // 首页文章
-  acticlesUrl: `${gitHubHost}/static/json/articles.json`,
+  acticlesUrl: `${gitHubHost}/static/json/articles`,
   // 分类类别
-  classifyUrl: `${gitHubHost}/static/json/classify.json`,
+  classifyUrl: `${gitHubHost}/static/json/classify`,
   // 每日卡片
-  cardsUrl: `${gitHubHost}/static/json/cards.json`,
+  cardsUrl: `${gitHubHost}/static/json/cards`,
   // 豆瓣热映
   inTheatersUrl: `${douBanHost}/v2/movie/in_theaters`,
   // 即将上映

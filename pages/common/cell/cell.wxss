@@ -1,7 +1,4 @@
 /*  */
-.row-cell:first-child {
-  border-top: 0.1px solid #ddd;
-}
 .row-cell {
   display: flex;
   flex-direction: row;
@@ -9,9 +6,12 @@
   align-items: center;
   padding: 30rpx;
   color: #496069;
-  border-bottom: 0.1px solid #ddd;
+  border-bottom: 0.5px solid #ddd;
   background-color: #fff;
   box-sizing: border-box;
+}
+.row-cell:last-child {
+  border:none;
 }
 .row-cell .row-left,
 .row-cell .row-right {

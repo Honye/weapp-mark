@@ -17,11 +17,9 @@ page {
   align-items: center;
   padding: 0 30rpx;
 }
-.page-movie .topbar .layout {
-  width: 1.5em;
-}
 .page-movie .topbar .layout > image {
-  width: 100%;
+  width: 1.5em;
+  height: .8em;
 }
 
 .page-movie .movie-container {

@@ -1,0 +1,10 @@
+<!--pages/favCards/index.wxml 我喜欢的卡片-->
+<view class='container page-favcards'>
+  <block wx:for='{{cards}}' wx:key='id'>
+    <view class='item-favcard'>
+      <image class='favcard-img' src='{{item.image}}' mode='widthFix' />
+      <text class='favcard-quote dLine'>{{item.quote}}</text>
+      <text class='favcard-source'>--{{item.source}}</text>
+    </view>
+  </block>
+</view>

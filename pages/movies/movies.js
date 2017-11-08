@@ -12,7 +12,7 @@ Page({
     loading: true,
     loadmore: true,
     movies: [],
-    isGrid: false
+    isGrid: app.globalData.setting.wantSeeLayout === 'grid'
   },
 
   /**
@@ -20,34 +20,6 @@ Page({
    */
   onLoad: function (options) {
     this.getMovies()
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
   },
 
   /**
@@ -69,13 +41,6 @@ Page({
       });
       this.getMovies()
     }
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   },
 
   /**
@@ -124,8 +89,20 @@ Page({
     }
   },
 
+  /**
+   * 改变布局方式
+   */
   changeLayout: function() {
     const { isGrid } = this.data;
-    this.setData({ isGrid: !isGrid });
+    const wantSeeLayout = isGrid ? 'linear' : 'grid';
+    wx.setStorage({
+      key: 'setting',
+      data: { ...app.globalData.setting, wantSeeLayout },
+    })
+    this.setData({ 
+      isGrid: !isGrid
+    }, () => {
+      app.globalData.setting = { ...app.globalData.setting, wantSeeLayout };
+    });
   }
 })
