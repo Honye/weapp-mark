@@ -27,7 +27,7 @@
       <template is='row-cell' data='{{iconPath:"./../../images/feedback_icon.png",title:"客服反馈"}}' />
     </button>
     <template is='row-cell' data='{{iconPath:"../../images/setting_icon.png",title:"设置",bindTap:"toSetting"}}' />
-    <template is='row-cell' data='{{iconPath:"../../images/about_icon.png",title:"关于",subtitle:"v1.0.4(22)",bindTap:"toAbout"}}' />
+    <template is='row-cell' data='{{iconPath:"../../images/about_icon.png",title:"关于",subtitle:"v"+version.versionName,bindTap:"toAbout"}}' />
   </view>
   
   <view class='button log-out' bindtap='logout'>

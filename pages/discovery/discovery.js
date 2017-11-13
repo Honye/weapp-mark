@@ -9,6 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    published: app.globalData.version.versionCode <= app.globalData.config.newestVersion,
+    remoted: false,
     banner: [],
     articles: [],
     indicatorActiveColor: "#fff",
@@ -29,6 +31,7 @@ Page({
       },
     })
     this.getData();
+    this.getRemoteConfig();
   },
 
   /**
@@ -122,13 +125,9 @@ Page({
    * 影院热映
    */
   toTheatre: function() {
-    if (app.globalData.config.hasPermission) {
-      wx.navigateTo({
-        url: './../intheaters/in_theaters',
-      })
-    } else {
-      app.showCommonModal();
-    }
+    wx.navigateTo({
+      url: './../intheaters/in_theaters',
+    })
   },
 
   /**
@@ -158,6 +157,27 @@ Page({
         console.log("完成", res);
       }
     };
+  },
+
+  /**
+   * 获取在线配置
+   */
+  getRemoteConfig: function() {
+    const that = this;
+    wx.showLoading({
+      title: 'loading...',
+    })
+    wx.request({
+      url: config.configUrl,
+      success: res => {
+        app.globalData.config = res.data;
+        that.setData({
+          published: app.globalData.version.versionCode <= res.data.newestVersion,
+          remoted: true
+        })
+        wx.hideLoading();
+      }
+    })
   }
 
 })

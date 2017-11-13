@@ -24,8 +24,8 @@
     <scroll-view scroll-y>
       <view class='paragraph' wx:if='{{!result}}'>
         <image src='./../../images/movie_search_word_icon.png' mode='widthFix' />
-        <text space='nbsp' decode>{{paragraph}}</text>
-        <text>---《千与千寻》</text>
+        <text space='nbsp' decode>&emsp;{{quote.content}}</text>
+        <text>---{{quote.source}}</text>
       </view>
       <view wx:elif='{{result.length>0}}'>
         <block wx:for='{{result}}' wx:key='id'>

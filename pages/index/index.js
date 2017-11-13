@@ -3,7 +3,7 @@
 var app = getApp()
 Page({
   data: {
-    motto: 'Hello World',
+    version: app.globalData.version,
     userInfo: {}
   },
   //事件处理函数
@@ -41,6 +41,7 @@ Page({
    * 退出登录
    */
   logout: function() {
+    return;
     wx.navigateTo({
       url: '../first/first',
     })
@@ -49,7 +50,11 @@ Page({
    * 关于
    */
   toAbout: function() {
-    return;
+    const { version, config } = app.globalData;
+    if (version.versionCode <= config.newestVersion)
+    wx.navigateTo({
+      url: './../about/index',
+    })
   },
 
   /**
@@ -74,6 +79,8 @@ Page({
    * 我喜欢的影单
    */
   toFavMovieList: function() {
+    const { version, config } = app.globalData;
+    if(version.versionCode <= config.newestVersion)
     wx.navigateTo({
       url: './../favMovieList/index',
     })
@@ -82,6 +89,8 @@ Page({
    * 我喜欢的卡片
    */
   toFavCards: function() {
+    const { version, config } = app.globalData;
+    if (version.versionCode <= config.newestVersion)
     wx.navigateTo({
       url: './../favCards/index',
     })

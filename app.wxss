@@ -1,9 +1,13 @@
 /**app.wxss**/
 @import './style/weui.wxss';
 @import './style/font-awesome/css/font-awesome.min.wxss';
+@import "./pages/common/wxParse/wxParse.wxss";
 
 page {
   background-color: #f7f7f7;
+}
+view[hidden] {
+  display: none !important;
 }
 .container {
   height: 100%;

@@ -1,6 +1,11 @@
 //app.js
 import config from './config';
 
+const version = {
+  versionCode: 5,
+  versionName: '1.0.4'
+};
+
 App({
 
   onLaunch: function () {
@@ -17,7 +22,7 @@ App({
       },
     })
 
-    // this.getDefaultConfig();
+    this.getDefaultConfig();
   },
 
   /**
@@ -43,6 +48,7 @@ App({
   },
 
   globalData: {
+    version,
     userInfo: null,
     setting: {},
     config: {

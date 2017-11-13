@@ -1,0 +1,4 @@
+<!--pages/about/index.wxml-->
+<import src='./../common/self/index.wxml' />
+
+<template is='self-honye' />

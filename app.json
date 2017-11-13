@@ -15,7 +15,11 @@
     "pages/search/search",
     "pages/sources/sources",
     "pages/favMovieList/index",
-    "pages/favCards/index"
+    "pages/favCards/index",
+    "pages/article/detail",
+    "pages/common/self/index",
+    "pages/webview/index",
+    "pages/about/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",

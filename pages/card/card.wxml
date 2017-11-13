@@ -2,22 +2,22 @@
 <swiper
   bindchange='onChange'>
   <block wx:for='{{cards}}' wx:key='id'>
-  <swiper-item>
-    <view class='card'>
-      <image class='card-img'
-      src='{{item.image}}'
-      mode='widthFix'>
-      </image>
-      <view class='card-text'>
-        <text wx:if='{{item.quote}}'>{{item.quote}}\n\n</text>
-        <text wx:else class='place-text'></text>
-        <view class='source'>
-          <text  wx:if='{{item.source}}'>——{{item.source}}</text>
-          <text wx:else class='place-source'></text>
+    <swiper-item>
+      <view class='card'>
+        <image class='card-img'
+        src='{{item.image}}'
+        mode='widthFix'>
+        </image>
+        <view class='card-text'>
+          <text wx:if='{{item.quote}}'>{{item.quote}}\n\n</text>
+          <text wx:else class='place-text'></text>
+          <view class='source'>
+            <text  wx:if='{{item.source}}'>——{{item.source}}</text>
+            <text wx:else class='place-source'></text>
+          </view>
         </view>
       </view>
-    </view>
-  </swiper-item>
+    </swiper-item>
   </block>
 </swiper>
 

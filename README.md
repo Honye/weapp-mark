@@ -1,83 +1,19 @@
 # Mark
 仿 Mark 应用页面的微信小程序
+
+小程序个人开发功能限制太多，无法完全上线，为了过审核都要费尽心思。原想项目完全上线了再开源的，方便大家看效果，但疲于过审核，算了，直接开源再一步一步完善吧。
+
 你要是喜欢这清爽的界面，又觉得功能不够强悍，体验又不是很美观，我强烈建议你去体验原生应用 Mark。各大应用商店都可下载（搜索“Mark”）
 
+![整体效果图](./doc/screenshot/all.png)
+
 **注意事项：**
-此小程序因没有后台服务，大多数据都采用本地存储，所以使用过程中若是删除了微信缓存可能导致数据丢失，请谨慎使用。在后续开发中会添加数据备份功能。
+此小程序因没有后台服务，数据都是网络静态数据和本地存储。
 
-**持久化存储：**
-1. 设置
- ```js
-    setting: {
-         // 是否接收通知 {boolean}
-        notice: true,
-        // “想看
-        wantSee: {
-            layout: 'linear',  // 布局方式 {enum['linear', 'grid']}
-            sort: 'addtime'  // 排序方式  ['add', 'release', 'rating', 'name']
-        },
-        // “已看”布局方式 {enum['linear', 'grid']} 
-        hasSeenLayout: 'grid', 
-        hasSeen: {
-            layout: 'grid',
-            sort: 'rating'
-        }
-        // 搜索历史记录 {array['string']}
-        searchHistory: [ '成龙', '战狼2' ],
-    }
- ```
+## 运行
+没有使用其它打包工具，无需额外的环境配置，直接 clone 本项目，使用微信 Web 开发工具打开即可看见效果。
 
-2. 用户
- ```js
-    movies: {
-        // 想看 {array[object]}
-        wantSee: [
-            {
-                id: 26743549,  // 影视ID
-                title: "大话西游之爱你一万年",  // 影名
-                image: "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2500309240.jpg",  // 封面图
-                pubdates: [ "2017-09-28(中国大陆)" ],  // 上映时间
-                duration: "40分钟",  // 时长/单集时长
-                genres: [ "喜剧", "爱情", "古装" ],  // 影视类型
-                rating: 3.4,  // 豆瓣评分
-                date: "2017年11月5日"  // 加入时间
-            }
-        ],
-        // 已看 {arr[object]}
-        hasSeen: [
-            {
-                id: 26743549,  // 影视ID
-                title: "大话西游之爱你一万年",  // 影名
-                image: "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2500309240.jpg",  // 封面图
-                pubdates: [ "2017-09-28(中国大陆)" ],  // 上映时间
-                duration: "40分钟",  // 时长/单集时长
-                genres: [ "喜剧", "爱情", "古装" ],  // 影视类型
-                rating: 3.4,  // 用户评分
-                date: "2017年11月5日"  // 观影时间
-            }
-        ],
-        // 用户影单 array[object]
-        collection: [
-            id: 11,  // 影单ID
-            title: "我喜欢的电影",  // 影单名
-            movies: [  // 影单中内容
-                {
-                    id: 26743549,  // 影视ID
-                    title: "大话西游之爱你一万年",  // 影名
-                    image: "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2500309240.jpg"  // 封面图
-                }
-            ]
-        ],
-        // 喜欢的卡片
-        cards: [
-            {
-                id: 123,  // 卡片ID
-                content: "春生，夏糜，秋去，冬烬，春又来。",  // 内容
-                source: "春夏秋冬又一春",  // 来源
-                image: "https://.......jpg"  // 图片
-            }
-        ]
-    }
- ```
-
-**网络数据**
+## 资源
+1. [weui-wxss(微信官方UI样式)](https://github.com/Tencent/weui-wxss/)
+2. [wxParse(富文本解析, 支持HTML和Markdown)](https://github.com/icindy/wxParse)
+3. [小程序使用外部字体](http://www.wxapp-union.com/forum.php?mod=viewthread&tid=1211)

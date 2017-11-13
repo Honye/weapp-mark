@@ -1,0 +1,26 @@
+/* pages/common/self/index.wxss */
+.self-honye .banner {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.self-honye .banner>image {
+  width: 100%;
+  height: 375rpx;
+  border-radius: 10rpx;
+}
+.self-honye .blogger,
+.self-honye .advert {
+  background-color: #fff;
+  margin: 0 20rpx 20rpx;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  font-size: .9em;
+  line-height: 1.8em;
+  
+}
+.self-honye .blogger {
+  color: #21BF8F;
+}
+.self-honye .advert {
+  color: #46BAC5;
+}

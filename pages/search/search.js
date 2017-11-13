@@ -1,6 +1,7 @@
 // pages/search/search.js
 import { searchUrl } from './../../config';
 
+const app = getApp();
 Page({
 
   /**
@@ -16,7 +17,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      quote: app.globalData.config.quote
+    })
   },
 
   clearInput: function () {

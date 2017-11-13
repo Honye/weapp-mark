@@ -1,0 +1,29 @@
+<!--pages/article/detail.wxml 影单详情-->
+<import src="./../common/wxParse/wxParse.wxml"/>
+
+<view class='container page-article'>
+  <view class='bg-title'>
+    <image class='bg-img' src='{{detail.image}}' mode='widthFix' />
+     <view class='gradient'>
+      <text class='title'>{{detail.title}}</text>
+    </view> 
+  </view>
+
+  <!-- 撰稿人信息 hidden -->
+  <view class='writer' hidden>
+    <view>
+      <image class='avatar' src='{{detail.writer.avatar}}' />
+      <view class='personal'>
+        <text class='name'>红叶秋鸣</text>
+        <text class='motto'>影，乐赏俞乐，悲赏愈悲</text>
+      </view>
+    </view>
+    <view class='footer'>
+      <text>Mark.撰稿人</text>
+    </view>
+  </view>
+
+  <view class='content'>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  </view>
+</view>

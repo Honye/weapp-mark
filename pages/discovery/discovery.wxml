@@ -1,7 +1,8 @@
 <!--发现-->
 <import src="../common/circle.wxml"/>
+<import src='./../common/self/index.wxml' />
 
-<view class='container page-discovery'>
+<view class='container page-discovery' wx:if='{{published}}'>
   <view class='search-bar' bindtap='toSearch'>
     <view class='search-radius'>
       <icon type='search' size='14'></icon>
@@ -36,9 +37,14 @@
         </template>
       </view>
 
-      <view wx:for="{{articles}}" wx:key='id'>
-        <template is="commingItem" data="{{...item}}" />
-      </view>
+      <block wx:for="{{articles}}" wx:key='id'>
+        <navigator url='./../article/detail?id={{item.id}}'>
+          <template is="commingItem" data="{{...item}}" />
+        </navigator>
+      </block>
+      
     </scroll-view>
   </view>
 </view>
+
+<template is='self-honye' wx:elif='{{remoted}}' />

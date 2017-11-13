@@ -16,6 +16,8 @@ var config = {
   bannersUrl: `${gitHubHost}/static/json/banner`,
   // 首页文章
   acticlesUrl: `${gitHubHost}/static/json/articles`,
+  // 文章详情
+  articleDetail: `${gitHubHost}/static/json/article/detail`,
   // 分类类别
   classifyUrl: `${gitHubHost}/static/json/classify`,
   // 每日卡片
