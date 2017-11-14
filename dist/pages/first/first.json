@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "com-rating": "./../../components/rating/rating",
+    "component-tag-name": "./../../components/first/first"
+  }
+}

@@ -1,0 +1,31 @@
+<!-- 第一次尝试 -->
+
+<view>
+  <view class='com-rating'>
+    <block wx:for='{{[1,2,3,4,5]}}' wx:key='*this'>
+      <view class='rating-on' style='width:{{rating >= (max/5)*item ? 1 : rating < (max/5)*(item-1) ? 0 : (rating*10)%(max/5*10)/(max/5*10)}}em'>
+        <i class='fa fa-star'></i>
+      </view>
+      <view class='rating-off'>
+        <i class='fa fa-star'></i>
+      </view>
+    </block>
+  </view>
+</view>
+
+
+<view class='test-rating'>
+  <com-rating />
+</view>
+
+<view>
+  <view>自定义组件 Component</view>
+  <!-- 以下是对一个自定义组件的引用 -->
+  <component-tag-name inner-text="Some text">
+    <text>组件子节点</text>
+  </component-tag-name>
+</view>
+
+<switch wx:for="{{objectArray}}" wx:key="unique" style="display: block;"> {{item.id}} </switch>
+<button bindtap="switch"> Switch </button>
+<button bindtap="addToFront"> Add to the front </button>

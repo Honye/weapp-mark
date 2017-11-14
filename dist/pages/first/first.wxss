@@ -1,0 +1,6 @@
+/* pages/first/first.wxss */
+@import './../common/rating/rating.wxss';
+.test-rating {
+  position: relative;
+  font-size: 1.3em;
+}
