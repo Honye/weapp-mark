@@ -59,19 +59,14 @@ typings/
 
 # 微信开发工具项目配置
 /project.config.json
+project.config.json
 
+# MarkEditor 配置文件
 .Archive
-
 .sync/*
-
 .me_configs.data
-
 .z_sync_configs.data
-
 sync_changes.log
-
 sync_hook.script
-
 **/.Archive
-
 .md_configs.data
