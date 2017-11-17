@@ -1,0 +1,22 @@
+<!-- 分享上拉菜单 -->
+
+<template name='com-share'>
+  <view class='action-sheet-backdrop {{animateCss[1]}}' wx:if='{{visible}}' bindtap='{{cancel}}'>
+    <view class='action-sheet-wrapper {{animateCss[0]}}'>
+      <view class='action-sheet' catch:tap='none'>
+        <view class='title' wx:if='{{titleText}}'>{{titleText}}</view>
+        <view class='grid'>
+          <block wx:for='{{buttons}}' wx:key='*index'>
+            <button class='button' open-type='{{item.openType}}' plain='{{true}}' data-index='{{index}}' catchtap='{{buttonClicked}}'>
+              <view class='icon'>
+                <image src='{{item.iconPath}}' mode='widthFix' />
+              </view>
+              <view class='single-line'>{{item.title}}</view>
+            </button>
+          </block>
+        </view>
+        <view class='title button cancel' catchtap='{{cancel}}'>{{cancelText}}</view>
+      </view>
+    </view>
+  </view>
+</template>

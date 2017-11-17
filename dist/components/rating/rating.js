@@ -3,29 +3,30 @@
 Component({
 
   properties: {
-    // 这里定义了innerText属性，属性值可以在组件使用时指定
-    innerText: {
-      type: String,
-      value: 'default value',
-    },
     rating: {
       type: Number,
-      value: 7.5
+      value: 10
     },
     max: {
       type: Number,
-      value: 10
+      value: 5
+    },
+    disabled: {
+      type: Boolean,
+      value: false
     }
   },
 
-  data: {
-    // 这里是一些组件内部数据
-    someData: {}
-  },
-
   methods: {
-    // 这里是一个自定义方法
-    customMethod: function () { }
+    _handleTap: function (e) {
+      if (this.data.disabled) return;
+      const { max } = this.data;
+      const { num } = e.currentTarget.dataset;
+      this.setData({
+        rating: max / 5 * num
+      })
+      this.triggerEvent('change', { value: max / 5 * num }, e);
+    }
   }
 
 })

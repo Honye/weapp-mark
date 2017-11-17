@@ -1,4 +1,6 @@
 // pages/card/card.js
+import { $markShare } from '../common/index.js'
+
 const cardsUrl = require('../../config').cardsUrl;
 
 Page({
@@ -8,7 +10,16 @@ Page({
    */
   data: {
     cards: [{}],
-    current: 0
+    current: 0,
+    visible: false,
+    buttons: [
+      { iconPath:'/images/weixin_icon.png', title:'微信好友'},
+      { iconPath:'/images/weixin_circle_icon.png', title:'微信朋友圈'},
+      { iconPath:'/images/qq_icon.png', title:'QQ好友'},
+      { iconPath:'/images/weibo_icon.png', title:'微博'},
+      { iconPath:'/images/save_pic_icon.png', title:'保存图片'},
+      { iconPath:'/images/share_more_icon.png', title:'更多'},
+    ]
   },
 
   /**
@@ -16,55 +27,21 @@ Page({
    */
   onLoad: function (options) {
     this.initData();
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
+    this.setData({
+      current: options.current?options.current:0
+    })
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    const {cards, current} = this.data;
+    return {
+      title: cards[current].quote,
+      path: `/pages/card/card?current=${current}`,
+      imageUrl: cards[current].image
+    }
   },
 
   initData: function() {
@@ -77,6 +54,7 @@ Page({
       method: 'GET',
       dataType: 'json',
       success: function (res) {
+        console.log("结果", res);
         _this.setData({
           cards: res.data
         });
@@ -91,5 +69,30 @@ Page({
     this.setData({
       current: event.detail.current
     })
-  }
+  },
+
+  /**
+   * 分享
+   */
+  showShareMenu: function(e) {
+    $markShare.show({
+      titleText: '',
+      buttons: [
+        { iconPath: '/images/weixin_icon.png', title: '微信好友', openType:'share' },
+        { iconPath: '/images/weixin_circle_icon.png', title: '微信朋友圈' },
+        { iconPath: '/images/qq_icon.png', title: 'QQ好友' },
+        { iconPath: '/images/weibo_icon.png', title: '微博' },
+        { iconPath: '/images/save_pic_icon.png', title: '保存图片' },
+        { iconPath: '/images/share_more_icon.png', title: '更多' },
+      ],
+      buttonClicked(index, item) {
+        if(!item.openType)
+          wx.showModal({
+            content: item.title,
+          })
+        return true;
+      }
+    })
+  },
+
 })

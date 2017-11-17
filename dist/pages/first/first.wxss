@@ -1,6 +1,17 @@
 /* pages/first/first.wxss */
 @import './../common/rating/rating.wxss';
-.test-rating {
-  position: relative;
-  font-size: 1.3em;
+
+.page-first {
+  padding: 20rpx;
+}
+
+.rating-temp {
+  font-size: 1.5em;
+}
+.rating-comp {
+  font-size: 2em;
+}
+.rating-comp .rate-show {
+  margin-left: 1em;
+  font-size: .8em;
 }

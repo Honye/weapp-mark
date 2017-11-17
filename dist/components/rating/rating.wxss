@@ -5,9 +5,13 @@
   letter-spacing: .3em;
   position: relative;
 }
+.com-rating .rating-icon,
 .com-rating .rating-on,
 .com-rating .rating-off {
   display: inline-block;
+}
+.com-rating .rating-icon:not(:last-child) {
+  margin-right: .2em;
 }
 .com-rating .rating-on {
   color: black;

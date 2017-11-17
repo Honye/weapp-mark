@@ -1,0 +1,78 @@
+
+.action-sheet-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.4);
+}
+.action-sheet-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    z-index: 12;
+}
+.action-sheet {
+    width: auto;
+    z-index: 11;
+    overflow: hidden;
+    background-color: #efeff4;
+    font-size: .8em;
+}
+.action-sheet .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .8em;
+  border-bottom: .5px solid #e3e3e3;
+  color: #818c91;
+}
+.action-sheet .grid {
+  padding: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+.grid .button {
+  width: 177.5rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: none;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+.grid .button::after {
+  content: none;
+}
+.button .icon {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon > image {
+  width: 50%;
+  height: 50%;
+}
+.button > view {
+  width: 100%;
+  text-align: center;
+  color: #818c91;
+  padding: .25em 0;
+}
+.action-sheet .cancel {
+  border-top: .5px solid #e3e3e3;
+  color: #3f3f3f;
+}
