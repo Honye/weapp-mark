@@ -7,7 +7,7 @@ page {
 }
 .page-discovery .search-bar {
   padding: 10rpx 20rpx;
-  background-color: #4CDFAA;
+  background-color: #496069;
 }
 .search-bar .search-radius {
   background-color: #fff;

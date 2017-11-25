@@ -15,3 +15,9 @@
   margin-left: 1em;
   font-size: .8em;
 }
+
+.canvas {
+  width: 100%;
+  height: 700rpx;
+  background-color: #C3E1ED;
+}

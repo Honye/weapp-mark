@@ -14,4 +14,10 @@
     <text class='rate-show'>{{rating}}分</text>
   </view>
 
+  <canvas class='canvas' canvas-id='firstCanvas'></canvas>
+
+  <button bindtap='saveCanvas'>生成图片</button>
+
+  <image src='{{path}}' mode='widthFix' />
+
 </view>

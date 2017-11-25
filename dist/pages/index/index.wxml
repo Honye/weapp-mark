@@ -23,6 +23,7 @@
     <button class='contactBtn' open-type='share' hover-class='none'>
       <template is='row-cell' data='{{iconPath:"../../images/user_share_icon.png",title:"分享给朋友"}}' />
     </button>
+    <template is='row-cell' data='{{iconPath:"../../images/evaluate_icon.png",title:"给我评分吧",bindTap:"toEvalute"}}' />
     <button class='contactBtn' open-type='contact' hover-class='none'>
       <template is='row-cell' data='{{iconPath:"./../../images/feedback_icon.png",title:"客服反馈"}}' />
     </button>

@@ -94,6 +94,15 @@ Page({
     wx.navigateTo({
       url: './../favCards/index',
     })
+  },
+
+  /**
+   * 作出评价
+   */
+  toEvalute() {
+    wx.navigateTo({
+      url: './../evaluate/evaluate',
+    })
   }
 
 })

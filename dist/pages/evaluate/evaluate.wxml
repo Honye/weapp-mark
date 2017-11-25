@@ -1,0 +1,13 @@
+<!--pages/evaluate/evaluate.wxml-->
+<view class='container page-evalute'>
+  <view class='action'>
+    <com-rating max="5" rating='0' bindchange='handleChange' />
+    <text>{{!rating?'轻点星形来评分':
+      rating===5?'谢谢您的认可！':
+      rating>3?'我会努力的！':'抱歉，让您失望了！'}}</text>
+  </view>
+  <view class='tips'>
+    <text>如果您有什么问题或者建议可以电邮我
+      hongye.jun@qq.com</text>
+  </view>
+</view>

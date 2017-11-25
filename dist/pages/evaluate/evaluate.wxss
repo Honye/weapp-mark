@@ -1,0 +1,21 @@
+/* pages/evaluate/evaluate.wxss */
+.page-evalute .action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30%;
+}
+.page-evalute .action com-rating {
+  font-size: 2.5em;
+}
+.page-evalute .action>text:last-child {
+  margin-top: 2em;
+  font-size: 1.2em;
+}
+
+.tips {
+  padding: 50rpx 20rpx;
+  display: flex;
+  justify-content: center;
+  color: #496069;
+}

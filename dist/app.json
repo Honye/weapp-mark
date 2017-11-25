@@ -19,11 +19,12 @@
     "pages/article/detail",
     "pages/common/self/index",
     "pages/webview/index",
-    "pages/about/index"
+    "pages/about/index",
+    "pages/evaluate/evaluate"
   ],
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#4CDFAA",
+    "navigationBarBackgroundColor": "#496069",
     "navigationBarTitleText": "HONYE",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#f7f7f7"
@@ -31,8 +32,8 @@
   "tabBar": {
     "color": "#496069",
     "selectedColor": "#000",
-    "backgroundColor": "#4cdfaa",
-    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/discovery/discovery",
