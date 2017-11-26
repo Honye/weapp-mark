@@ -6,7 +6,8 @@
 ```js
     colors: {
         mainColor: '#496069',
-        cyan: '#4CDFAA'
+        cyan: '#4CDFAA',
+        placeColor: '#eee'
     }
 ```
 

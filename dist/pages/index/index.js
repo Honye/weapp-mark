@@ -9,7 +9,7 @@ Page({
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '../userinfo/userinfo'
     })
   },
   onLoad: function () {
@@ -61,7 +61,6 @@ Page({
    * 转发
    */
   onShareAppMessage: function(opt) {
-    console.log("转发", opt);
     return {
       title: "好用得不得了",
       path: "/pages/discovery/discovery",

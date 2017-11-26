@@ -6,7 +6,7 @@
       <text>{{item.title}}</text>
     </view>
     <block wx:for='{{item.children}}' wx:key='*this'>
-      <view class='item small {{(item==" ")?"empty":""}}'>
+      <view class='item small {{(item==" ")?"empty":""}}' data-item='{{item}}' bindtap='toList'>
         <text class='single-line'>{{item}}</text>
       </view>
     </block>

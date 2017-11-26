@@ -1,5 +1,4 @@
 {
-  "navigationBarTitleText": "我喜欢的影单",
   "usingComponents": {
     "com-article": "/components/article/article"
   }

@@ -20,7 +20,10 @@
     "pages/common/self/index",
     "pages/webview/index",
     "pages/about/index",
-    "pages/evaluate/evaluate"
+    "pages/evaluate/evaluate",
+    "pages/article/list",
+    "pages/userinfo/userinfo",
+    "pages/bindphone/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",

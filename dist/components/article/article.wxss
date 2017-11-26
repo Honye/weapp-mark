@@ -1,0 +1,35 @@
+/* components/article/article.wxss */
+.item-bgimg {
+  margin: 10rpx 20rpx;
+  height: 360rpx;
+  border-radius: 10rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+.item-bgimg .item-title {
+  color: #fff;
+  padding: 15rpx;
+  font-weight: bold;
+}
+.item-bgimg .item-count {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 0;
+  right: 20rpx;
+  padding: .5em .3em .3em;
+  background-color: rgba(0,0,0,.5);
+  border-radius: 0 0 10rpx 10rpx;
+}
+.item-bgimg .item-count>image {
+  width: 1.2em;
+  height: 1.2em;
+}
+.item-bgimg .item-count>text {
+  color: #fff;
+  font-size: .8em;
+}

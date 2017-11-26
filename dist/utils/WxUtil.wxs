@@ -8,7 +8,14 @@ var arr2str = function (array, separator) {
   return array.join(separator);
 }
 
+var cutPhone = function(phone) {
+  var frontStr = phone.substring(0,3);
+  var endStr = phone.substring(7);
+  return frontStr+'****'+endStr;
+}
+
 module.exports = {
   stringify: stringify,
-  arr2str: arr2str
+  arr2str: arr2str,
+  cutPhone: cutPhone
 }

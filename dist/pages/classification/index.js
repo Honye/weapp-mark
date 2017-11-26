@@ -54,5 +54,14 @@ Page({
       classify,
       loaded: true
     });
+  },
+
+  toList(e) {
+    const {item} = e.currentTarget.dataset;
+    if(item!=" ") {
+      wx.navigateTo({
+        url: `./../article/list?title=${item}`,
+      })
+    }
   }
 })

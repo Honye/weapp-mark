@@ -1,0 +1,37 @@
+<!--pages/userinfo/userinfo.wxml-->
+<wxs src='./../../utils/WxUtil.wxs' module='wxUtil' />
+
+<view class='container page-userinfo'>
+  <view class='top'>
+    <view class='row-cell' bindtap='showActionSheet'>
+      <text>头像</text>
+      <view class='avatar'>
+        <image src='{{userInfo.avatarUrl}}' />
+        <image class='icon' src='./../../images/change_head_img_icon.png' mode='widthFix' />
+      </view>
+    </view>
+    <view class='row-cell'>
+      <text>昵称</text>
+      <view>
+        <text>{{userInfo.nickName}}</text>
+        <image class='icon' src='./../../images/right_arrow.png' mode='widthFix' />
+      </view>
+    </view>
+    <view class='row-cell' bindtap='bindPhone'>
+      <text>手机号</text>
+      <view>
+        <text>{{wxUtil.cutPhone(phone)}}</text>
+        <image class='icon' src='./../../images/right_arrow.png' mode='widthFix' />
+      </view>
+    </view>
+  </view>
+  <view class='tips'>绑定第三方账号后可以直接登录</view>
+  <view class='bottom'>
+    <block wx:for='{{thirdAuthor}}' wx:key='id'>
+      <view class='row-cell'>
+        <text>{{item.title}}</text>
+        <switch color='#4CD864' checked='{{item.isAuthor}}' />
+      </view>
+    </block>
+  </view>
+</view>

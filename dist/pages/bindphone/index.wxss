@@ -1,0 +1,11 @@
+/* pages/bindphone/index.wxss */
+.page-phone {
+  align-items: center;
+}
+.img-phone {
+  width: 5em;
+  margin: 100rpx 0 50rpx;
+}
+.tips {
+  margin-top: 120rpx;
+}

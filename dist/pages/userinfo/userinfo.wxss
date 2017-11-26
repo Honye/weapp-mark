@@ -1,0 +1,49 @@
+/* pages/userinfo/userinfo.wxss */
+.page-userinfo .top {
+  margin-top: 1em;
+}
+.top,.bottom {
+  border-top: .5px solid #ddd;
+  border-bottom: .5px solid #ddd;
+}
+.row-cell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 25rpx;
+  background-color: #fff;
+  color: #496069;
+}
+.row-cell:not(:last-child) {
+  border-bottom: .5px solid #ddd;
+}
+.row-cell>view {
+  display: flex;
+  align-items: center;
+}
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  position: relative;
+  padding: 0 5rpx 5rpx 0;
+}
+.avatar>image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.avatar>image.icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  height: 45%;
+}
+.icon {
+  width: .5em;
+  height: .5em;
+  margin-left: 1em;
+}
+.tips {
+  padding: 25rpx;
+}
