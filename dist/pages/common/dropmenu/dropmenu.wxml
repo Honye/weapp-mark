@@ -1,0 +1,18 @@
+<!-- 分享上拉菜单 -->
+
+<template name='temp-dropmenu'>
+  <view class='dropdown-menu-backdrop {{animateCss[1]}}' wx:if='{{visible}}' bindtap='{{cancel}}' catchtouchmove='none'>
+    <view class='dropdown-menu-wrapper {{animateCss[0]}}'>
+      <view class='dropdown-menu' catch:tap='none'>
+        <block wx:for='{{buttons}}' wx:key='id'>
+          <view class='item-container' bindtap='{{onChange}}' data-index='{{index}}'>
+            <view class='icon'>
+              <image hidden='{{choosedId!=item.id}}' src='/images/movie_sort_check_icon.png' mode='widthFix' />
+            </view>
+            <text>{{item.title}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</template>

@@ -1,4 +1,5 @@
 // pages/userinfo/userinfo.js
+import { $wuxActionSheet } from '../common/index.js';
 
 const app = getApp();
 Page({
@@ -25,25 +26,6 @@ Page({
     this.initData();
   },
 
-  showActionSheet() {
-    const that = this;
-    wx.showActionSheet({
-      itemList: ['拍照','从相册中选取'],
-      success: res => {
-        wx.chooseImage({
-          count: 1,
-          sourceType: res.tapIndex===0?['camera']:['album'],
-          success: function(result) {
-            const {userInfo} = that.data;
-            that.setData({
-              userInfo: { ...userInfo, avatarUrl: result.tempFilePaths[0] }
-            })
-          },
-        })
-      }
-    })
-  },
-
   bindPhone() {
     wx.navigateTo({
       url: './../bindphone/index',
@@ -57,6 +39,30 @@ Page({
         {id:'qq', title:'QQ', isAuthor: false},
         {id:'sina', title:'微博', isAuthor: false}
       ]
+    })
+  },
+
+  showActionSheet() {
+    const that = this;
+    $wuxActionSheet.show({
+      theme: 'wx',
+      buttons: [
+        {text:'拍照'},
+        {text:'从相册中选取'},
+      ],
+      buttonClicked(index, item) {
+        wx.chooseImage({
+          count: 1,
+          sourceType: index===0 ? ['camera'] : ['album'],
+          success: function(res) {
+            const { userInfo } = that.data;
+            that.setData({
+              userInfo: { ...userInfo, avatarUrl: res.tempFilePaths[0] }
+            })
+          },
+        })
+        return true;
+      }
     })
   }
 })

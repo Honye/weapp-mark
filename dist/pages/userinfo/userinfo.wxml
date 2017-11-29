@@ -1,5 +1,8 @@
 <!--pages/userinfo/userinfo.wxml-->
+<import src='./../common/actionsheet/actionsheet' />
 <wxs src='./../../utils/WxUtil.wxs' module='wxUtil' />
+
+<template is='temp-actionsheet' data='{{...$wux.actionSheet}}' />
 
 <view class='container page-userinfo'>
   <view class='top'>

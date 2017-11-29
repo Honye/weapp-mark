@@ -12,14 +12,6 @@ Page({
     cards: [{}],
     current: 0,
     visible: false,
-    buttons: [
-      { iconPath:'/images/weixin_icon.png', title:'微信好友'},
-      { iconPath:'/images/weixin_circle_icon.png', title:'微信朋友圈'},
-      { iconPath:'/images/qq_icon.png', title:'QQ好友'},
-      { iconPath:'/images/weibo_icon.png', title:'微博'},
-      { iconPath:'/images/save_pic_icon.png', title:'保存图片'},
-      { iconPath:'/images/share_more_icon.png', title:'更多'},
-    ]
   },
 
   /**

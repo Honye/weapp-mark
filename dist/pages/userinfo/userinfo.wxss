@@ -1,4 +1,6 @@
 /* pages/userinfo/userinfo.wxss */
+@import './../common/actionsheet/actionsheet';
+
 .page-userinfo .top {
   margin-top: 1em;
 }

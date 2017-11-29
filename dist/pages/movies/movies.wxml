@@ -1,38 +1,45 @@
 <!--电影列表-->
 <import src='../common/movie/movieRow' />
 <import src='../common/loading/loading' />
+<import src='../common/dropmenu/dropmenu' />
 
+<template is='temp-dropmenu' data='{{...$mark.dropMenu}}' />
 <view class='container page-movie'>
   <view class='topbar'>
     <view class='layout' bindtap='changeLayout'>
       <image src='{{isGrid?"../../images/list_mode_icon.png":"../../images/gird_mode_icon.png"}}' mode='widthFix' />
     </view>
+    <view class='sort' bindtap='changeSort'>
+      <text>排序</text>
+      <image src='../../images/movie_sort_icon.png' mode='widthFix' />
+    </view>
   </view>
 
-  <view wx:if='{{isGrid}}' class='movie-container'>
-    <block wx:for='{{movies}}' wx:key='id'>
+  <view class='content'>    
+    <view wx:if='{{isGrid}}' class='movie-container'>
+      <block wx:for='{{movies}}' wx:key='id'>
+        <view data-title="{{item.title}}"
+          data-id="{{item.id}}"
+          bindtap="bindViewTap">
+          <template 
+            is="item-movie_grid" 
+            data="{{...item}}">
+          </template>
+        </view>
+      </block>
+    </view>
+    
+    <block wx:for='{{movies}}' wx:key='id' wx:if='{{!isGrid}}'>
       <view data-title="{{item.title}}"
-        data-id="{{item.id}}"
-        bindtap="bindViewTap">
+          data-id="{{item.id}}"
+          bindtap="bindViewTap">
         <template 
-          is="item-movie_grid" 
+          is="item-movie_row" 
           data="{{...item}}">
         </template>
       </view>
     </block>
-  </view>
-  
-  <block wx:for='{{movies}}' wx:key='id' wx:if='{{!isGrid}}'>
-    <view data-title="{{item.title}}"
-        data-id="{{item.id}}"
-        bindtap="bindViewTap">
-      <template 
-        is="item-movie_row" 
-        data="{{...item}}">
-      </template>
-    </view>
-  </block>
 
-  <template is='loading-more' wx:if="{{loading}}" />
-  
+    <template is='loading-more' wx:if="{{loading}}" />
+  </view>
 </view>

@@ -22,8 +22,7 @@
             layout: 'linear',  // 布局方式 {enum['linear', 'grid']}
             sort: 'addtime'  // 排序方式  ['add', 'release', 'rating', 'name']
         },
-        // “已看”布局方式 {enum['linear', 'grid']} 
-        hasSeenLayout: 'grid', 
+        // “已看”
         hasSeen: {
             layout: 'grid',
             sort: 'rating'

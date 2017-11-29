@@ -10,7 +10,7 @@
   </view>
   <swiper class='swiper' bindchange='onSwiperChange' current='{{currentNav}}'>
     <swiper-item>
-      <scroll-view class='content-container' scroll-y bindscrolltolower='onScrolTolLower' data-nav='theater'>
+      <scroll-view class='content-container' scroll-y bindscrolltolower='onScrolTolLower' data-nav='theater' enable-back-to-top>
         <view class='boss'>敬请期待</view>
         <block wx:for='{{movies}}' wx:key="id">
           <view data-title="{{item.title}}" data-id="{{item.id}}"
@@ -25,7 +25,7 @@
         </scroll-view>
     </swiper-item>
     <swiper-item>
-      <scroll-view class='content-container' scroll-y bindscrolltolower='onScrolTolLower' data-nav='comming'>
+      <scroll-view class='content-container' scroll-y bindscrolltolower='onScrolTolLower' data-nav='comming' enable-back-to-top>
         <view class='boss'>敬请期待</view>
         <block wx:for='{{commingMovies}}' wx:key="id">
           <view data-title="{{item.title}}" data-id="{{item.id}}"

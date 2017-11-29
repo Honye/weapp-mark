@@ -6,6 +6,7 @@
 
 page {
   background-color: #f7f7f7;
+  min-height: 100%;
 }
 view[hidden] {
   display: none !important;

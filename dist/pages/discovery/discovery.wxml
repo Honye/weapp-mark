@@ -11,7 +11,7 @@
   </view>
   
   <view class='content'>
-    <scroll-view scroll-y>
+    <scroll-view scroll-y enable-back-to-top>
       <swiper 
         indicator-dots
         autoplay

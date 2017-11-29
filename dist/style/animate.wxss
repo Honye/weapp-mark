@@ -313,3 +313,60 @@
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
+
+@-webkit-keyframes dropUp {
+    0% {
+        -webkit-transform: translate3d(0);
+        transform: translate3d(0)
+    }
+
+    to {
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%)
+    }
+}
+
+@keyframes dropUp {
+    0% {
+        -webkit-transform: translate3d(0);
+        transform: translate3d(0)
+    }
+
+    to {
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%)
+    }
+}
+
+@-webkit-keyframes dropDown {
+    0% {
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%)
+    }
+
+    to {
+        -webkit-transform: translate3d(0);
+        transform: translate3d(0)
+    }
+}
+
+@keyframes dropDown {
+    0% {
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%)
+    }
+
+    to {
+        -webkit-transform: translate3d(0);
+        transform: translate3d(0)
+    }
+}
+
+.weui-animate-drop-up {
+    -webkit-animation: dropUp ease .3s forwards;
+    animation: dropUp ease .3s forwards
+}
+.weui-animate-drop-down {
+    -webkit-animation: dropDown ease .3s forwards;
+    animation: dropDown ease .3s forwards
+}
