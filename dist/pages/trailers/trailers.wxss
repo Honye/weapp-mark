@@ -1,0 +1,37 @@
+/* pages/trailers/trailers.wxss */
+page {
+  height: 100%;
+}
+video {
+  display: flex;
+  width: 100%;
+  height: 450rpx;
+}
+image {
+  width: 100%;
+  height: 100%;
+}
+.page-trailers>scroll-view {
+  flex: 1;
+  display: flex;
+}
+.trailer {
+  display: flex;
+  padding: 15rpx 25rpx;
+  border-bottom: .5px solid #ddd;
+}
+.trailer .image {
+  width: 250rpx;
+  height: 178rpx;
+}
+.trailer .title {
+  flex: 1;
+  margin-left: 25rpx;
+}
+.trailer.active .image {
+  border: 1px solid #F59624;
+  box-sizing: border-box;
+}
+.trailer.active .title {
+  color: #F59624;
+}

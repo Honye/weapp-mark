@@ -1,0 +1,15 @@
+<!--pages/trailers/trailers.wxml-->
+<view class='container page-trailers'>
+  <video autoplay src="{{currUrl}}" bindended='videoEnded' />
+  <scroll-view scroll-y>
+    <block wx:for='{{trailers}}' wx:key='id'>
+      <view class='trailer button {{currUrl==item.resource_url?"active":""}}' bindtap='changeTrailer'
+        data-index='{{index}}' data-url='{{item.resource_url}}'>
+        <view class='image'>
+          <image src='{{item.medium}}' />
+        </view>
+        <view class='title'>{{item.title}}</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

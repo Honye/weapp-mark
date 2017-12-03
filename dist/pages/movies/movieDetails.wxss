@@ -2,6 +2,10 @@
 @import '../common/rating/rating';
 @import '../common/casts/casts';
 
+image {
+  width: 100%;
+  height: 100%;
+}
 .page-detail .big-bg {
   height: 750rpx;
   width: 100%;
@@ -24,7 +28,8 @@
 .page-detail .play-source,
 .page-detail .brief-summary,
 .page-detail .casts,
-.page-detail .comments {
+.page-detail .comments,
+.page-detail .photos {
   background-color: #f7f7f7;
 }
 .bg-img .brief {
@@ -36,11 +41,11 @@
 }
 .brief .img-mv {
   width:220rpx;
-  margin:0rpx 35rpx -40rpx;
+  margin:0rpx 30rpx -40rpx;
 }
 .brief .brief-info {
   color: #fff;
-  margin-right: 35rpx;
+  margin-right: 30rpx;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -75,7 +80,7 @@
 }
 
 .page-detail .brief-time {
-  padding: 80rpx 35rpx 0;
+  padding: 80rpx 30rpx 0;
 }
 
 .page-detail .play-source {
@@ -104,7 +109,7 @@
 }
 
 .page-detail .brief-summary {
-  padding: 35rpx;
+  padding: 30rpx;
 }
 .subtitle {
   color: #7C858A;
@@ -127,6 +132,52 @@
 }
 .casts>scroll-view .casts-item:last-child {
   margin-right: 30rpx;
+}
+
+/* 预告片/剧照 */
+.photos .subtitle {
+  margin-left: 30rpx;
+}
+.photos>scroll-view {
+  width: 100%;
+  display: flex;
+  white-space: nowrap;
+}
+.trailer {
+  width: 385rpx;
+  height: 275rpx;
+  position: relative;
+  display: inline-flex;
+}
+.trailer:not(:last-child) {
+  margin-right: 15rpx; 
+}
+.trailer:first-child {
+  margin-left: 30rpx;
+}
+.trailer:last-child {
+  margin-right: 30rpx;
+}
+.front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+}
+.front>.icon {
+  width: 1em;
+  height: 1em;
+  padding: .3em;
+  background-color: rgba(0, 0, 0, .5);
+  border: 1px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 /* 短评 start */

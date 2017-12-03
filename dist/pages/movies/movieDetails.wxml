@@ -9,7 +9,7 @@
     <view></view>
   </view>
 
-  <scroll-view class='scroll' scroll-y>
+  <scroll-view class='scroll' scroll-y enable-back-to-top>
     <view class='bg-img' wx:if='{{details.images}}' style='height:{{bgImgHeight}}px;'>
       <view class='brief'>
         <image class='img-mv' src='{{details.images.large}}' mode='widthFix'>
@@ -64,6 +64,25 @@
           <template is='item-casts' data='{{item,isDirec:false}}' />
         </block>
         <template is='item-casts-all' />
+      </scroll-view>
+    </view>
+
+    <view class='photos'>
+      <text class='subtitle'>预告片 / 剧照</text>
+      <scroll-view scroll-x>
+        <navigator wx:if='{{details.trailers}}' url='../trailers/trailers?id={{details.id}}&resource={{details.trailers[0].resource_url}}' class='trailer'>
+          <image class='image' src='{{details.trailers[0].medium}}' />
+          <view class='front'>
+            <view class='icon'>
+              <image src='/images/white_play_icon.png' mode='widthFix' />
+            </view>
+          </view>
+        </navigator>
+        <block wx:for='{{details.photos}}' wx:key='id'>
+          <view class='trailer'>
+            <image class='image' src='{{item.image}}' />
+          </view>
+        </block>
       </scroll-view>
     </view>
 
