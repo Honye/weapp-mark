@@ -2,7 +2,6 @@
 <template name='self-honye'>
   <view class='container self-honye'>
     <view class='banner'>
-      <!-- http://xpic.588ku.com/figure/00/00/00/08/73/8955a15d675b86e.jpg!/fw/800 -->
       <image src='https://bing.ioliu.cn/v1/rand' mode='widthFix'/>
     </view>
 

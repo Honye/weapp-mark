@@ -42,20 +42,20 @@
       {
         "pagePath": "pages/discovery/discovery",
         "text": "发现",
-        "iconPath": "images/tab_discover_unchecked.png",
-        "selectedIconPath": "images/tab_discover_checked.png"
+        "iconPath": "assets/images/tab_discover_unchecked.png",
+        "selectedIconPath": "assets/images/tab_discover_checked.png"
       },
       {
         "pagePath": "pages/movies/movies",
         "text": "我的电影",
-        "iconPath": "images/tab_movies_unchecked.png",
-        "selectedIconPath": "images/tab_movies_checked.png"
+        "iconPath": "assets/images/tab_movies_unchecked.png",
+        "selectedIconPath": "assets/images/tab_movies_checked.png"
       },
       {
         "pagePath": "pages/index/index",
         "text": "账号",
-        "iconPath": "images/tab_usercenter_unchecked.png",
-        "selectedIconPath": "images/tab_usercenter_checked.png"
+        "iconPath": "assets/images/tab_usercenter_unchecked.png",
+        "selectedIconPath": "assets/images/tab_usercenter_checked.png"
       }
     ]
   }

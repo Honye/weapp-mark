@@ -1,5 +1,6 @@
 // pages/discovery/discovery.js
 const config = require('../../config');
+import utils from './../../utils/util.js';
 const { bannersUrl, acticlesUrl} = config;
 
 var app = getApp();
@@ -15,7 +16,8 @@ Page({
     articles: [],
     indicatorActiveColor: "#fff",
     circular: true,
-    nowDay: new Date().getDate()
+    nowDay: new Date().getDate(),
+    bings: []
   },
 
   /**
@@ -176,8 +178,25 @@ Page({
           remoted: true
         })
         wx.hideLoading();
+        if (app.globalData.version.versionCode > res.data.newestVersion) {
+          that.initBing()
+        }
       }
     })
+  },
+
+  /**
+   * 必应壁纸数据（三方）
+   */
+  initBing() {
+    let bings = [];
+    for(let i=0; i<10; i++) {
+      let bing = {};
+      bing.title = utils.getPreDate(i);
+      bing.image = `https://bing.ioliu.cn/v1?d=${i}`;
+      bings.push(bing);
+    }
+    this.setData({ bings });
   }
 
 })

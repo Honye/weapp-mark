@@ -7,7 +7,7 @@
 <view>
   <view class='row-cell'>
     <view class='row-left'>
-      <image class='row-icon' src='../../images/notify_switch_icon.png' mode='widthFix'></image>
+      <image class='row-icon' src='/assets/images/notify_switch_icon.png' mode='widthFix'></image>
       <text>接受消息提醒</text>
     </view>
     <view class='row-right'>
@@ -19,7 +19,7 @@
   </view>
   <view class='row-cell' bindtap='clearCache'>
     <view class='row-left'>
-      <image class='row-icon' src='../../images/clear_cache_icon.png' mode='widthFix'></image>
+      <image class='row-icon' src='/assets/images/clear_cache_icon.png' mode='widthFix'></image>
       <text>清除缓存</text>
     </view>
     <view class='row-right'>

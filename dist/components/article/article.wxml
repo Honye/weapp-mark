@@ -3,7 +3,7 @@
   <view class='item-bgimg' style='background-image:url({{image}})'>
     <text class='item-title'>{{title}}</text>
     <view class='item-count' catchtap='toggleLike'>
-      <image src='./../../images/daily_card_like_checked.png' mode='widthFix' />
+      <image src='/assets/images/daily_card_like_checked.png' mode='widthFix' />
       <text>{{likeCount}}</text>
     </view>
   </view>

@@ -7,7 +7,7 @@
         <block wx:for='{{buttons}}' wx:key='id'>
           <view class='item-container' bindtap='{{onChange}}' data-index='{{index}}'>
             <view class='icon'>
-              <image hidden='{{choosedId!=item.id}}' src='/images/movie_sort_check_icon.png' mode='widthFix' />
+              <image hidden='{{choosedId!=item.id}}' src='/assets/images/movie_sort_check_icon.png' mode='widthFix' />
             </view>
             <text>{{item.title}}</text>
           </view>

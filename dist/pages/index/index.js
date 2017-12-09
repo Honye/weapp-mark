@@ -102,6 +102,12 @@ Page({
     wx.navigateTo({
       url: './../evaluate/evaluate',
     })
+  },
+
+  onContactTap() {
+    wx.setClipboardData({
+      data: '浪里个儿浪 浪里个儿浪 我要调戏你了',
+    })
   }
 
 })

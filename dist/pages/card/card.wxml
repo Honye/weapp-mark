@@ -27,16 +27,16 @@
 
 <view class='action'>
   <view class='look'>
-    <image class='icon' src='../../images/daily_card_detail_icon.png'></image>
+    <image class='icon' src='/assets/images/daily_card_detail_icon.png'></image>
     <text>查看电影</text>
   </view>
   <view class='action-right'>
     <view class='count'>
-      <image class='icon-big' src='../../images/daily_card_like_unchecked.png'></image>
+      <image class='icon-big' src='/assets/images/daily_card_like_unchecked.png'></image>
       <text>{{cards[current].likeCount}}</text>
     </view>
     <view class='count' bindtap='showShareMenu'>
-      <image class='icon-big' src='../../images/daily_card_share_icon.png'></image>
+      <image class='icon-big' src='/assets/images/daily_card_share_icon.png'></image>
       <text>{{cards[current].shareCount}}</text>
     </view>
   </view>

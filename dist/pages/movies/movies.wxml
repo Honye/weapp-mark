@@ -7,11 +7,11 @@
 <view class='container page-movie'>
   <view class='topbar'>
     <view class='layout' bindtap='changeLayout'>
-      <image src='{{isGrid?"../../images/list_mode_icon.png":"../../images/gird_mode_icon.png"}}' mode='widthFix' />
+      <image src='{{isGrid?"/assets/images/list_mode_icon.png":"/assets/images/gird_mode_icon.png"}}' mode='widthFix' />
     </view>
     <view class='sort' bindtap='changeSort'>
       <text>排序</text>
-      <image src='../../images/movie_sort_icon.png' mode='widthFix' />
+      <image src='/assets/images/movie_sort_icon.png' mode='widthFix' />
     </view>
   </view>
 

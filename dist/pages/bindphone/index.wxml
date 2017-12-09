@@ -2,7 +2,7 @@
 <wxs src='./../../utils/WxUtil.wxs' module='wxUtil' />
 
 <view class='container page-phone'>
-  <image class='img-phone' src='./../../images/bind_phone_big_icon.png' mode='widthFix' />
+  <image class='img-phone' src='/assets/images/bind_phone_big_icon.png' mode='widthFix' />
   <text>{{wxUtil.cutPhone(phone)}}</text>
   <text class='tips'>号码纯属虚构，切勿拨打！</text>
 </view>

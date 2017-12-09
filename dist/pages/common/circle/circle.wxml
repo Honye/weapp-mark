@@ -25,7 +25,7 @@
       <view class='count-like'>
         <image
           class='icon-like'
-          src="../../images/writer_article_like_icon.png"
+          src="/assets/images/writer_article_like_icon.png"
           mode='aspectFit'>
         </image>
         <text>{{likeCount}}</text>

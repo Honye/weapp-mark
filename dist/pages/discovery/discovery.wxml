@@ -1,6 +1,6 @@
 <!--发现-->
-<import src="../common/circle.wxml"/>
-<import src='./../common/self/index.wxml' />
+<import src="../common/circle/circle.wxml"/>
+<import src='./../common/bing/bing.wxml' />
 
 <view class='container page-discovery' wx:if='{{published}}'>
   <view class='search-bar' bindtap='toSearch'>
@@ -27,18 +27,18 @@
 
       <view class="kind-container">
         <template is="circle" 
-          data="{{imgUrl:'../../images/discover_classify_group_icon.png',title:'分类查找',bindtap:'bindClassifyTap'}}">
-        </template>
+          data="{{imgUrl:'/assets/images/discover_classify_group_icon.png',title:'分类查找',bindtap:'bindClassifyTap'}}"
+        />
         <template is="circle" 
-          data="{{date:nowDay,title:'每日电影卡片',bindtap:'toCard'}}">
-        </template>
+          data="{{date:nowDay,title:'每日电影卡片',bindtap:'toCard'}}"
+        />
         <template is="circle" 
-          data="{{imgUrl:'../../images/discover_classify_cinema_icon.png',title:'影院热映',bindtap:'toTheatre'}}">
-        </template>
+          data="{{imgUrl:'/assets/images/discover_classify_cinema_icon.png',title:'影院热映',bindtap:'toTheatre'}}"
+        />
       </view>
 
       <block wx:for="{{articles}}" wx:key='id'>
-        <navigator url='./../article/detail?id={{item.id}}'>
+        <navigator url='/assets/article/detail?id={{item.id}}'>
           <template is="commingItem" data="{{...item}}" />
         </navigator>
       </block>
@@ -47,4 +47,4 @@
   </view>
 </view>
 
-<template is='self-honye' wx:elif='{{remoted}}' />
+<template is='temp-bing' wx:elif='{{remoted}}' data='{{bings}}' />
