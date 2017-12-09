@@ -4,7 +4,7 @@
 <view class='container page-article'>
   <view class='bg-title'>
     <image class='bg-img' src='{{detail.image}}' mode='widthFix' />
-     <view class='gradient'>
+    <view class='gradient'>
       <text class='title'>{{detail.title}}</text>
     </view> 
   </view>

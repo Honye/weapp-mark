@@ -27,7 +27,10 @@ page {
   display: flex;
   flex: 1;
 }
-
+.banner {
+  height: 450rpx;
+  background-color: #eee;
+}
 .slide-image {
   display: block;
   width: 100%;

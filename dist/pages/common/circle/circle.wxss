@@ -35,6 +35,7 @@
   display: block;
   width: 100%;
   height: 450rpx;
+  background-color: #eee;
 }
 .com-desc {
   display: flex;

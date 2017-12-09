@@ -1,7 +1,9 @@
 <!--components/article/article.wxml-->
 <navigator url='/pages/article/detail?id={{1074}}' hover-class='none'>
   <view class='item-bgimg' style='background-image:url({{image}})'>
-    <text class='item-title'>{{title}}</text>
+    <view class='gradient'>
+      <text class='item-title'>{{title}}</text>
+    </view>
     <view class='item-count' catchtap='toggleLike'>
       <image src='/assets/images/daily_card_like_checked.png' mode='widthFix' />
       <text>{{likeCount}}</text>

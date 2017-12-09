@@ -14,8 +14,6 @@ Page({
     remoted: false,
     banner: [],
     articles: [],
-    indicatorActiveColor: "#fff",
-    circular: true,
     nowDay: new Date().getDate(),
     bings: []
   },

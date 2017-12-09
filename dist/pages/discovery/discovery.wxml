@@ -12,12 +12,11 @@
   
   <view class='content'>
     <scroll-view scroll-y enable-back-to-top>
-      <swiper 
+      <swiper class='banner'
         indicator-dots
         autoplay
-        indicator-active-color="{{indicatorActiveColor}}"
-        circular="{{circular}}"
-        style='height:{{75*6}}rpx'>
+        indicator-active-color="#fff"
+        circular>
         <block wx:for="{{banner}}" wx:key="id">
           <swiper-item>
             <image data-index='{{index}}' src="{{item.image}}" class="slide-image"  bindtap='onBannerTap'/>
@@ -38,7 +37,7 @@
       </view>
 
       <block wx:for="{{articles}}" wx:key='id'>
-        <navigator url='/assets/article/detail?id={{item.id}}'>
+        <navigator url='/pages/article/detail?id={{item.id}}'>
           <template is="commingItem" data="{{...item}}" />
         </navigator>
       </block>
