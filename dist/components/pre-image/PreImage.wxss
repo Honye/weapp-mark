@@ -1,0 +1,19 @@
+/* components/pre-image/PreImage.wxss */
+.comp-preImg {
+  background-color: #eee;
+}
+.comp-preImg-pre {
+  width: 0;
+  height: 0;
+}
+.fade-in {
+  animation: fadeIn 1s both;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0
+  }
+  100% {
+    opacity: 1
+  }
+}

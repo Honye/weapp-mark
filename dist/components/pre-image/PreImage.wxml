@@ -1,0 +1,13 @@
+<!--components/pre-image/PreImage.wxml-->
+<image class='comp-preImg fade-in'
+  src='{{loaded?src:placeImg}}' 
+  style='width:{{width}};height:{{height}};'
+  mode='{{mode}}' lazy-load='{{lazyLoad}}'
+>
+  <image class='comp-preImg-pre' 
+    src='{{src}}'
+    bindload='_onImageLoad'
+    binderror='_onImgeErr'
+  />
+</image>
+

@@ -1,0 +1,20 @@
+<!-- 必应壁纸 -->
+
+<template name='temp-bing'>
+  <view class='container'>
+    <block wx:for="{{bings}}"
+      wx:key='index'
+    >
+      <template is='item-bing' data='{{...item}}' />
+    </block>
+  </view>
+</template>
+
+<template name='item-bing'>
+  <view class='item-bing-wrapper'>
+    <view class='item-img'>
+      <comp-preImg src="{{image}}" height="370rpx" mode="aspectFill" />  
+    </view>
+    <view class='item-title single-line'>{{title}}</view>
+  </view>
+</template>

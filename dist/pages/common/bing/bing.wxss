@@ -1,0 +1,15 @@
+
+.item-bing-wrapper {
+  background-color: #fff;
+}
+
+.item-bing-wrapper .item-img, .item-bing-wrapper .item-img>image {
+  width: 100%;
+  height: 370rpx;
+}
+
+.item-bing-wrapper .item-title {
+  width: 100%;
+  line-height: 2em;
+  text-align: center;
+}
