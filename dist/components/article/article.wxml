@@ -1,11 +1,16 @@
 <!--components/article/article.wxml-->
 <navigator url='/pages/article/detail?id={{1074}}' hover-class='none'>
   <view class='item-bgimg' style='background-image:url({{image}})'>
-    <view class='gradient'>
+     <view class='gradient'> 
       <text class='item-title'>{{title}}</text>
-    </view>
-    <view class='item-count' catchtap='toggleLike'>
-      <image src='/assets/images/daily_card_like_checked.png' mode='widthFix' />
+     </view> 
+    <view class='item-count'>
+      <comp-btnFav width='1.2em' height='1.2em' 
+        checked='{{checked}}'
+        iconChecked='/assets/images/like_checked.png'
+        iconNormal='/assets/images/like_unchecked.png'
+        bindchange='onFavChange'
+      />
       <text>{{likeCount}}</text>
     </view>
   </view>

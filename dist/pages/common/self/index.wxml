@@ -2,7 +2,8 @@
 <template name='self-honye'>
   <view class='container self-honye'>
     <view class='banner'>
-      <image src='https://bing.ioliu.cn/v1/rand' mode='widthFix'/>
+      <!-- <image src='https://bing.ioliu.cn/v1/rand' mode='widthFix'/> -->
+      <pre-image src='https://bing.ioliu.cn/v1/rand' mode='widthFix' />
     </view>
 
     <view class='blogger'>

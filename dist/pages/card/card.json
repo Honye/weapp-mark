@@ -1,5 +1,8 @@
 {
   "backgroundColor": "#f4f4f4",
   "navigationBarTitleText": "每日卡片",
-  "disableScroll": true
+  "disableScroll": true,
+  "usingComponents": {
+    "comp-btnFav": "/components/btn-fav/FavButton"
+  }
 }

@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "pre-image": "/components/pre-image/PreImage"
+  }
+}

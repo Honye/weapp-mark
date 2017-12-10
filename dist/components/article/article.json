@@ -1,4 +1,6 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "comp-btnFav": "/components/btn-fav/FavButton"
+  }
 }

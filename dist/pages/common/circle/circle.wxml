@@ -15,11 +15,7 @@
 
 <template name="commingItem">
   <view>
-    <image
-      class='img-big'
-      src='{{image}}'
-      mode='widthFix'
-    />
+    <comp-preImg src='{{image}}' mode='widthFix' height='450rpx' />
     <view class='com-desc'>
       <text class='com-title'>{{title}}</text>
       <view class='count-like'>

@@ -74,7 +74,7 @@
           <image class='image' src='{{details.trailers[0].medium}}' />
           <view class='front'>
             <view class='icon'>
-              <image src='/images/white_play_icon.png' mode='widthFix' />
+              <image src='/assets/images/white_play_icon.png' mode='widthFix' />
             </view>
           </view>
         </navigator>

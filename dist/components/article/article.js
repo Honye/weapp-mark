@@ -19,6 +19,10 @@ Component({
     likeCount: {
       type: Number,
       value: 0
+    },
+    checked: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -33,8 +37,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    toggleLike(e){
-      console.log("开关", e);
+    onFavChange(e){
+      this.triggerEvent('change', {
+        checked: e.detail.checked,
+      })
     }
   }
 })

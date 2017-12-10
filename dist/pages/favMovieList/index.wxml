@@ -2,10 +2,13 @@
 <view class='container page-favlist'>
   <block wx:for='{{list}}' wx:key='id'>
     <com-article
+      checked
       aid='{{item.id}}'
       image='{{item.image}}'
       title='{{item.title}}'
       like-count='{{item.likeCount}}'
+      bindchange='onFavChange'
+      data-index='{{index}}'
     />
   </block>
 </view>

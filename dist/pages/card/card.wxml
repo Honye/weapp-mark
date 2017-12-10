@@ -32,12 +32,15 @@
   </view>
   <view class='action-right'>
     <view class='count'>
-      <image class='icon-big' src='/assets/images/daily_card_like_unchecked.png'></image>
-      <text>{{cards[current].likeCount}}</text>
+      <comp-btnFav checked='{{!!(cards[current].checked)}}' bindchange='onFavChange' />
+      <text>{{cards[current].likeCount||0}}</text>
     </view>
     <view class='count' bindtap='showShareMenu'>
-      <image class='icon-big' src='/assets/images/daily_card_share_icon.png'></image>
-      <text>{{cards[current].shareCount}}</text>
+      <image class='icon-big' 
+        src='/assets/images/daily_card_share_icon.png'
+        mode='widthFix'
+      />
+      <text>{{cards[current].shareCount||0}}</text>
     </view>
   </view>
 </view>

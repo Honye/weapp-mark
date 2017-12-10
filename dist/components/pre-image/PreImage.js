@@ -18,7 +18,7 @@ Component({
     },
     placeImg: {
       type: String,
-      value: '/images/img-loding.jpg'
+      value: '/assets/images/img-loding.jpg'
     },
     width: {
       type: String,

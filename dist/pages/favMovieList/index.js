@@ -80,5 +80,16 @@ Page({
         }
       ]
     })
+  },
+
+  onFavChange(e) {
+    const { index } = e.currentTarget.dataset,
+          { checked } = e.detail,
+          that = this;
+    let { list } = that.data;
+    if(checked) {
+      list.splice(index, 1);
+      that.setData({ list })
+    }
   }
 })

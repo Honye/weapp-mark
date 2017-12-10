@@ -70,12 +70,12 @@ Page({
     $markShare.show({
       titleText: '',
       buttons: [
-        { iconPath: '/images/weixin_icon.png', title: '微信好友', openType:'share' },
-        { iconPath: '/images/weixin_circle_icon.png', title: '微信朋友圈' },
-        { iconPath: '/images/qq_icon.png', title: 'QQ好友' },
-        { iconPath: '/images/weibo_icon.png', title: '微博' },
-        { iconPath: '/images/save_pic_icon.png', title: '保存图片' },
-        { iconPath: '/images/share_more_icon.png', title: '更多' },
+        { iconPath: '/assets/images/weixin_icon.png', title: '微信好友', openType:'share' },
+        { iconPath: '/assets/images/weixin_circle_icon.png', title: '微信朋友圈' },
+        { iconPath: '/assets/images/qq_icon.png', title: 'QQ好友' },
+        { iconPath: '/assets/images/weibo_icon.png', title: '微博' },
+        { iconPath: '/assets/images/save_pic_icon.png', title: '保存图片' },
+        { iconPath: '/assets/images/share_more_icon.png', title: '更多' },
       ],
       buttonClicked(index, item) {
         if(!item.openType)
@@ -87,4 +87,11 @@ Page({
     })
   },
 
+  onFavChange(e) {
+    const { checked } = e.detail;
+    let { cards, current } = this.data;
+    cards[current].checked = !checked;
+    cards[current].likeCount = checked ? --cards[current].likeCount : ++cards[current].likeCount;
+    this.setData({ cards })
+  }
 })
