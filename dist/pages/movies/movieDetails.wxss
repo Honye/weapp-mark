@@ -41,6 +41,7 @@ image {
 }
 .brief .img-mv {
   width:220rpx;
+  height: 308rpx;
   margin:0rpx 30rpx -40rpx;
 }
 .brief .brief-info {

@@ -26,6 +26,18 @@ var getPreDate = function (days) {
   return [year, month, day].map(formatNumber).join('-');
 }
 
+/**
+ * Object参数格式化
+ * @param {Object} params 参数
+ */
+export const parseParams = params => {
+  let paramArr = [];
+  for (const key in params) {
+    paramArr.push(`${key}=${params[key]}`);
+  }
+  return paramArr.join('&');
+};
+
 module.exports = {
   formatTime: formatTime,
   getPreDate: getPreDate

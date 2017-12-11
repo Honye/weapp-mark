@@ -1,5 +1,5 @@
 // pages/sources/sources.js
-import { subjectInfoUrl } from './../../config';
+import { Douban } from './../../utils/apis.js';
 
 Page({
 
@@ -29,21 +29,12 @@ Page({
       title: 'loading...',
     });
     let _this = this;
-    wx.request({
-      url: `${subjectInfoUrl}/${id}`,
-      data: {
-        apikey: '0b2bdeda43b5688921839c8ecb20399b'
-      },
-      header: { "Content-Type": "json" },
-      method: 'GET',
-      success: function (res) {
-        const data = res.data;
-        wx.hideLoading();
+    Douban.get(`${Douban.DETAILS}/${id}`)
+      .then(res => {
         _this.setData({
-          sources: data.videos
+          sources: res.videos
         });
-      }
-    })
+      })
   },
 
   /**

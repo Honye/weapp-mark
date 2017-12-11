@@ -38,5 +38,9 @@ page {
 .kind-container {
   display: flex;
   flex-direction: row;
-  margin-bottom: 20rpx;
+  border-bottom: .5px solid #ddd;
+}
+.article-item-container {
+  margin-top: 15rpx;
+  border-bottom: .5px solid #ddd;
 }

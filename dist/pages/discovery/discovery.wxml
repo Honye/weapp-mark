@@ -37,7 +37,7 @@
       </view>
 
       <block wx:for="{{articles}}" wx:key='id'>
-        <navigator url='/pages/article/detail?id={{item.id}}'>
+        <navigator class='article-item-container' url='/pages/article/detail?id={{item.id}}'>
           <template is="commingItem" data="{{...item}}" />
         </navigator>
       </block>

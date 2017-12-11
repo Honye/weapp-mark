@@ -12,8 +12,7 @@
   <scroll-view class='scroll' scroll-y enable-back-to-top>
     <view class='bg-img' wx:if='{{details.images}}' style='height:{{bgImgHeight}}px;'>
       <view class='brief'>
-        <image class='img-mv' src='{{details.images.large}}' mode='widthFix'>
-        </image>
+        <image class='img-mv' src='{{details.images.large}}' mode='widthFix' />
         <view class='.brief-info'>
           <text wx:if='{{details.title}}' class='title'>{{details.title}}</text>
           <text class='title' wx:if='{{details.original_title && details.original_title !== details.title}}'>{{details.original_title}}</text>

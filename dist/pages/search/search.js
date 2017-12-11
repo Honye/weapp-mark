@@ -1,5 +1,5 @@
 // pages/search/search.js
-import { searchUrl } from './../../config';
+import { Douban } from './../../utils/apis.js';
 
 const app = getApp();
 Page({
@@ -43,23 +43,12 @@ Page({
     wx.showLoading({
       title: 'loading...',
     })
-    wx.request({
-      url: searchUrl,
-      header: {
-        "Content-Type": "json"
-      },
-      data: {
-        q: inputVal
-      },
-      success: res => {
+    Douban.get(Douban.SEARCH, {q: inputVal})
+      .then(res => {
         that.setData({
-          result: res.data.subjects
+          result: res.subjects
         })
-      },
-      complete: res => {
-        wx.hideLoading()
-      }
-    })
+      })
   },
 
   /**

@@ -2,7 +2,7 @@
 <import src='../common/cell/cell' />
 
 <view class="container page-user">
-  <view  bindtap="bindViewTap" class="userinfo">
+  <view  bindtap="bindViewTap" class="userinfo btn-bg">
     <view class="cell-left">
       <view class="userinfo-avatar">
         <image
@@ -33,7 +33,7 @@
     <template is='row-cell' data='{{iconPath:"/assets/images/about_icon.png",title:"关于",subtitle:"v"+version.versionName,bindTap:"toAbout"}}' />
   </view>
   
-  <view class='button log-out' bindtap='logout'>
+  <view class='btn-bg log-out' bindtap='logout'>
     <text>退出登录</text>
   </view>
 

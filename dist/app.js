@@ -1,5 +1,5 @@
 //app.js
-import config from './config';
+import { Honye } from './utils/apis.js';
 
 const version = {
   versionCode: 5,
@@ -10,10 +10,6 @@ App({
 
   onLaunch: function () {
     var that = this;
-    //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
 
     var setting = wx.getStorage({
       key: 'setting',
@@ -56,25 +52,15 @@ App({
     }
   },
 
-  showCommonModal: function (msg) {
-    wx: wx.showModal({
-      title: '提示',
-      content: msg || '抱歉，还在开发中...',
-      showCancel: false
-    })
-  },
-
   /**
    * 从服务器获取默认配置
    */
   getDefaultConfig() {
     const that = this;
-    wx.request({
-      url: config.configUrl,
-      success: res => {
-        that.globalData.config = res.data;
-      }
-    })
+    Honye.get(Honye.CONFIG)
+      .then(res => {
+        that.globalData.config = res;
+      })
   }
 
 })

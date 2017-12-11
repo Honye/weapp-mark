@@ -2,7 +2,7 @@
 <import src='../rating/rating' />
 
 <template name="item-movie_row">
-  <view class="item-movie_row padding-surround">
+  <view class="item-movie_row padding-surround btn-bg">
     <image class="item-img" src="{{images.large}}" mode='widthFix'></image>
     <view class="item-info">
       <text>{{title}}</text>
@@ -20,7 +20,7 @@
 </template>
 
 <template name='item-movie_grid'>
-  <view class='item-movie_grid'>
+  <view class='item-movie_grid btn-opacity'>
     <view class='item-img'>
       <image src='{{images.large}}' />
     </view>

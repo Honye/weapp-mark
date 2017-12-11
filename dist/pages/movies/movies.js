@@ -1,6 +1,6 @@
 // pages/movies/movies.js
 import { $markDropmenu } from '../common/index.js';
-const inTheatersUrl = require('../../config').inTheatersUrl;
+import { Douban } from './../../utils/apis.js';
 
 var app = getApp();
 let pageNo = 0;
@@ -51,35 +51,30 @@ Page({
    */
   getMovies: function() {
     let that = this;
-    wx.request({
-      url: inTheatersUrl,
-      header: {
-        "Content-Type": "json"
-      },
-      data: {
-        apikey: '0b2bdeda43b5688921839c8ecb20399b',
+    Douban.get(
+      Douban.IN_THEATERS,
+      {
         start: pageNo * pageSize,
         count: pageSize
-      },
-      success: function (res) {
-        wx.stopPullDownRefresh();
-        let subjects = res.data.subjects;
-        for(let item of subjects) {
-          item.genres = item.genres.join('/')
-        }
-        if(pageNo == 0) {
-          that.setData({
-            loading: false,
-            movies: subjects,
-            loadmore: subjects.length >= pageSize
-          });
-        } else {
-          that.setData({
-            loading: false,
-            movies: that.data.movies.concat(subjects),
-            loadmore: subjects.length >= pageSize
-          });
-        }
+      }
+    ).then(res => {
+      wx.stopPullDownRefresh();
+      let subjects = res.subjects;
+      for (let item of subjects) {
+        item.genres = item.genres.join('/')
+      }
+      if (pageNo == 0) {
+        that.setData({
+          loading: false,
+          movies: subjects,
+          loadmore: subjects.length >= pageSize
+        });
+      } else {
+        that.setData({
+          loading: false,
+          movies: that.data.movies.concat(subjects),
+          loadmore: subjects.length >= pageSize
+        });
       }
     })
   },

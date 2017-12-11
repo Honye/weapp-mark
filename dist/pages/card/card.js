@@ -1,7 +1,6 @@
 // pages/card/card.js
 import { $markShare } from '../common/index.js'
-
-const cardsUrl = require('../../config').cardsUrl;
+import { Honye } from './../../utils/apis.js';
 
 Page({
 
@@ -38,19 +37,10 @@ Page({
 
   initData: function() {
     let _this = this;
-    wx.request({
-      url: cardsUrl,
-      header: {
-        "Content-Type": "json"
-      },
-      method: 'GET',
-      dataType: 'json',
-      success: function (res) {
-        console.log("结果", res);
-        _this.setData({
-          cards: res.data
-        });
-      }
+    Honye.get(Honye.CARDS).then(res => {
+      _this.setData({
+        cards: res
+      })
     })
   },
 

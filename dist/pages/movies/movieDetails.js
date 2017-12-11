@@ -1,5 +1,5 @@
 // pages/movies/movieDetails.js
-const {subjectInfoUrl} = require('../../config');
+import { Douban } from './../../utils/apis.js';
 
 var app = getApp();
 Page({
@@ -43,34 +43,26 @@ Page({
       title: 'loading...',
     });
     let _this = this;
-    wx.request({
-      url: `${subjectInfoUrl}/${id}`,
-      data: {
-        apikey: '0b2bdeda43b5688921839c8ecb20399b'
-      },
-      header: { "Content-Type": "json" },
-      method: 'GET',
-      success: function(res) {
-        const data = res.data;
-        let pubdates = '';
-        for (let item of res.data.pubdates) {
-          if(item.indexOf("中国")>0) {
-            pubdates = item+"上映";
-          }
+    Douban.get(`${Douban.DETAILS}/${id}`).then(res => {
+      const data = res;
+      let pubdates = '';
+      for (let item of res.pubdates) {
+        if (item.indexOf("中国") > 0) {
+          pubdates = item + "上映";
         }
-        let casts = [];
-        for (let item of data.casts) {
-          casts.push(item.name);
-        }
-        wx.hideLoading();
-        _this.setData({
-          details: res.data,
-          pubdates,
-          casts: casts.join(' / '),
-          loaded: true,
-          comments_count: data.comments_count
-        });
       }
+      let casts = [];
+      for (let item of data.casts) {
+        casts.push(item.name);
+      }
+      wx.hideLoading();
+      _this.setData({
+        details: res,
+        pubdates,
+        casts: casts.join(' / '),
+        loaded: true,
+        comments_count: data.comments_count
+      });
     })
   },
 
@@ -79,21 +71,15 @@ Page({
    */
   getComments: function(id) {
     const that = this;
-    wx.request({
-      url: `${subjectInfoUrl}/${id}/comments`,
-      data: {
-        apikey: '0b2bdeda43b5688921839c8ecb20399b',
-        start: 0,
-        count: 6
-      },
-      header: { "Content-Type": "json" },
-      method: 'GET',
-      success: (res) => {
+    Douban.get(
+        `${Douban.DETAILS}/${id}/comments`,
+        { start: 0, count: 6 }
+      ).then(res => {
         that.setData({
-          comments: res.data.comments
+          comments: res.comments
         })
       }
-    })
+    )
   },
 
   onMoreTap: function(e) {

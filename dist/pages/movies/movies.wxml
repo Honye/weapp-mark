@@ -6,10 +6,10 @@
 <template is='temp-dropmenu' data='{{...$mark.dropMenu}}' />
 <view class='container page-movie'>
   <view class='topbar'>
-    <view class='layout' bindtap='changeLayout'>
+    <view class='layout btn-opacity' bindtap='changeLayout'>
       <image src='{{isGrid?"/assets/images/list_mode_icon.png":"/assets/images/gird_mode_icon.png"}}' mode='widthFix' />
     </view>
-    <view class='sort' bindtap='changeSort'>
+    <view class='sort btn-opacity' bindtap='changeSort'>
       <text>排序</text>
       <image src='/assets/images/movie_sort_icon.png' mode='widthFix' />
     </view>

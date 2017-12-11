@@ -1,24 +1,21 @@
 // pages/article/detail.js
-import { articleDetail } from './../../config.js';
-
+import { Honye } from './../../utils/apis.js';
 var WxParse = require('./../common/wxParse/wxParse.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    detail: null,
-    temp: ``
+    detail: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("文章ID", options.id);
     this.getDetail(options.id);
-    // WxParse.wxParse('article', 'html', this.data.temp, this);
   },
 
   /**
@@ -33,15 +30,12 @@ Page({
    */
   getDetail: function(id) {
     const that = this;
-    wx.request({
-      url: `${articleDetail}/${id}`,
-      success: res => {
-        that.setData({
-          detail: res.data
-        }, () => {
-          WxParse.wxParse('article', 'html', that.data.detail.content, that);
-        })
-      }
+    Honye.get(`${Honye.ARTICLE_DETAIL}/${id}`).then(res => {
+      that.setData({
+        detail: res
+      }, () => {
+        WxParse.wxParse('article', 'html', that.data.detail.content, that);
+      })
     })
   }
 })

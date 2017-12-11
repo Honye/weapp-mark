@@ -11,6 +11,8 @@
 .item-movie_row .item-img {
   width: 160rpx;
   min-height: 224rpx;
+  height: 224rpx;
+  background-color: #eee;
 }
 
 .item-movie_row .item-info {

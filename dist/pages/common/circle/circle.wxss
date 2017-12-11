@@ -23,6 +23,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 20rpx;
+  background-color: #fff;
 }
 .circle-date {
   font-weight: bold;
@@ -36,6 +38,9 @@
   width: 100%;
   height: 450rpx;
   background-color: #eee;
+}
+.item-article {
+  background-color: #fff;
 }
 .com-desc {
   display: flex;

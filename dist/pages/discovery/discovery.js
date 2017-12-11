@@ -1,7 +1,6 @@
 // pages/discovery/discovery.js
-const config = require('../../config');
 import utils from './../../utils/util.js';
-const { bannersUrl, acticlesUrl} = config;
+import { Honye } from './../../utils/apis.js';
 
 var app = getApp();
 Page({
@@ -64,21 +63,11 @@ Page({
    * 获取轮播数据
    */
   getBanners: function() {
-    let _this = this;
-    wx.request({
-      url: bannersUrl,
-      header: {
-        "Content-Type": "json"
-      },
-      method: 'GET',
-      dataType: 'json',
-      success: function(res) {
-        _this.setData({
-          banner: res.data
-        });
-      },
-      fail: function(res) {},
-      complete: function(res) {},
+    let that = this;
+    Honye.get(Honye.BANNERS).then( res => {
+      that.setData({
+        banner: res
+      })
     })
   },
 
@@ -86,19 +75,11 @@ Page({
    * 文章数据
    */
   getArticles: function() {
-    let _this = this;
-    wx.request({
-      url: acticlesUrl,
-      header: {
-        "Content-Type": "json"
-      },
-      method: 'GET',
-      dataType: 'json',
-      success: function (res) {
-        _this.setData({
-          articles: res.data
-        });
-      },
+    let that = this;
+    Honye.get(Honye.ARTICLES).then( res => {
+      that.setData({
+        articles: res
+      })
     })
   },
 
@@ -167,19 +148,16 @@ Page({
     wx.showLoading({
       title: 'loading...',
     })
-    wx.request({
-      url: config.configUrl,
-      success: res => {
-        app.globalData.config = res.data;
-        that.setData({
-          published: app.globalData.version.versionCode <= res.data.newestVersion,
-          remoted: true
-        })
-        wx.hideLoading();
-        if (app.globalData.version.versionCode > res.data.newestVersion) {
-          that.initBing()
-        }
+    Honye.get(Honye.CONFIG).then(res => {
+      app.globalData.config = res;
+      that.setData({
+        published: app.globalData.version.versionCode <= res.newestVersion,
+        remoted: true
+      })
+      if (app.globalData.version.versionCode > res.newestVersion) {
+        that.initBing()
       }
+      wx.hideLoading();
     })
   },
 

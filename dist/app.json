@@ -2,10 +2,8 @@
   "pages": [
     "pages/discovery/discovery",
     "pages/index/index",
-    "pages/logs/logs",
     "pages/first/first",
     "pages/movies/movies",
-    "pages/views/views",
     "pages/movies/movieDetails",
     "pages/classification/index",
     "pages/card/card",

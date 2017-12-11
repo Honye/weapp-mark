@@ -1,5 +1,5 @@
 // 分类查找
-import { classifyUrl } from './../../config.js';
+import { Honye } from './../../utils/apis.js';
 
 Page({
 
@@ -26,12 +26,9 @@ Page({
       title: 'loading...',
     })
     let that = this;
-    wx.request({
-      url: classifyUrl,
-      success: function (res) {
-        that.modifyData(res.data);
-        wx.hideLoading();
-      }
+    Honye.get(Honye.CLASSIFY).then(res => {
+      that.modifyData(res);
+      wx.hideLoading();
     })
   },
 

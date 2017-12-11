@@ -1,5 +1,5 @@
 // pages/intheaters/in_theaters.js
-import { inTheatersUrl, commingSoonUrl } from '../../config';
+import { Douban } from './../../utils/apis.js';
 
 let pageNo1 = 0;
 let pageNo2 = 0;
@@ -25,27 +25,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
@@ -68,28 +47,17 @@ Page({
   },
 
   /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
-  /**
    * 影院热映
    */
   getInTheater: function () {
     const that = this;
-    wx.request({
-      url: inTheatersUrl,
-      header: {
-        "Content-Type": "json"
-      },
-      data: {
-        apikey: '0b2bdeda43b5688921839c8ecb20399b',
-        start: pageNo1 * 20
-      },
-      success: function (res) {
-        let subjects = res.data.subjects;
+    Douban.get(
+        Douban.IN_THEATERS,
+        {
+          start: pageNo1 * 20
+        }
+      ).then(res => {
+        let subjects = res.subjects;
         for (let item of subjects) {
           item.genres = item.genres.join('/')
         }
@@ -107,7 +75,7 @@ Page({
           });
         }
       }
-    })
+    )
   },
   /**
    * Swiper页发生变化
@@ -147,17 +115,11 @@ Page({
    */
   getComming: function () {
     const that = this;
-    wx.request({
-      url: commingSoonUrl,
-      header: {
-        "Content-Type": "json"
-      },
-      data: {
-        apikey: '0b2bdeda43b5688921839c8ecb20399b',
-        start: pageNo2 * 20
-      },
-      success: function (res) {
-        let subjects = res.data.subjects;
+    Douban.get(
+        Douban.COMMING,
+        { start: pageNo2 * 20 }
+      ).then(res => {
+        let subjects = res.subjects;
         for (let item of subjects) {
           item.genres = item.genres.join('/')
         }
@@ -175,7 +137,7 @@ Page({
           });
         }
       }
-    })
+    )
   },
   /**
    * Scroll触底事件

@@ -1,6 +1,6 @@
 <!--  -->
 <template name='row-cell'>
-  <view class='row-cell' bindtap='{{bindTap}}'>
+  <view class='row-cell {{disabled?"":"btn-bg"}}' bindtap='{{bindTap}}'>
     <view class='row-left'>
       <image class='row-icon' src='{{iconPath}}' mode='widthFix'></image>
       <text>{{title}}</text>

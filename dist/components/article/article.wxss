@@ -1,6 +1,6 @@
 /* components/article/article.wxss */
 .item-bgimg {
-  margin: 10rpx 20rpx;
+  margin: 10rpx;
   height: 360rpx;
   border-radius: 10rpx;
   background-repeat: no-repeat;
@@ -8,6 +8,7 @@
   display: flex;
   align-items: flex-end;
   position: relative;
+  overflow: hidden;
 }
 .item-bgimg .gradient {
   position: absolute;
