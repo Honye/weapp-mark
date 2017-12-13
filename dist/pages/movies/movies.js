@@ -100,6 +100,7 @@ Page({
       key: 'setting',
       data: { ...app.globalData.setting, wantSee },
     })
+    this.dropMenu && this.dropMenu(); // 如果排序菜单已打开则关闭
     this.setData({ 
       isGrid: !isGrid
     }, () => {

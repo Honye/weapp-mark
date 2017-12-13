@@ -31,15 +31,18 @@
 │        ├── wxParse  富文本、HTML 和 MD 解析
 │        └── component.js  wux 针对 template 的组件化，写得挺好，借鉴一下
 ├── style  静态样式资源
+│    ├── weui.wxss
+│    ├── animate.wxss CSS 动画
+│    └── font-awesome.min.wxss Font Awesome 字体图标
 ├── utils  封装的工具
+│    └── apis.js API 配置及网络请求
 ├── app.js  应用入口
 ├── app.json  页面路径及窗口配置
-├── app.wxss  应用共用样式
-└── config.js 配置常量
+└── app.wxss  应用共用样式
 ```
 
 ## 资源
 1. 微信官方UI样式 [weui-wxss](https://github.com/Tencent/weui-wxss/)
 2. 富文本、HTML 和 Markdown 解析 [wxParse](https://github.com/icindy/wxParse)
-3. [小程序使用外部字体](http://www.wxapp-union.com/forum.php?mod=viewthread&tid=1211)，本人使用的是 [Font Awesome](http://fontawesome.io/)
-4. 针对 template 的自定义组件[wux](https://github.com/skyvow/wux)
+3. [小程序使用外部字体](./doc/小程序使用外部字体.md)，本人使用的是 [Font Awesome](http://fontawesome.io/)
+4. 针对 template 的自定义组件 [wux](https://github.com/skyvow/wux)

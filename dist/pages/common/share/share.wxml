@@ -7,7 +7,7 @@
         <view class='title' wx:if='{{titleText}}'>{{titleText}}</view>
         <view class='grid'>
           <block wx:for='{{buttons}}' wx:key='*index'>
-            <button class='button' open-type='{{item.openType}}' plain='{{true}}' data-index='{{index}}' catchtap='{{buttonClicked}}'>
+            <button class='button btn-opacity' open-type='{{item.openType}}' plain='{{true}}' data-index='{{index}}' catchtap='{{buttonClicked}}'>
               <view class='icon'>
                 <image src='{{item.iconPath}}' mode='widthFix' />
               </view>
@@ -15,7 +15,7 @@
             </button>
           </block>
         </view>
-        <view class='title button cancel' catchtap='{{cancel}}'>{{cancelText}}</view>
+        <view class='title btn-opacity cancel' catchtap='{{cancel}}'>{{cancelText}}</view>
       </view>
     </view>
   </view>

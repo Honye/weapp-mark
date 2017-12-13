@@ -2,7 +2,6 @@
 <import src='./../common/rating/rating' />
 
 <view class='container page-first'>
-
   <view>template 模板</view>
   <view class='rating-temp'>
     <template is='rating' data='{{rating:7.5,max:10}}' />

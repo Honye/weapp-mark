@@ -7,6 +7,7 @@
   border-radius: 10rpx;
   overflow: hidden;
   height: 375rpx;
+  box-shadow: 2px 2px 2px 1px #ddd;
 }
 .self-honye .banner>image {
   width: 100%;
@@ -20,7 +21,7 @@
   padding: 20rpx;
   font-size: .9em;
   line-height: 1.8em;
-  
+  box-shadow: 2px 2px 2px 1px #ddd;
 }
 .self-honye .blogger {
   color: #21BF8F;
