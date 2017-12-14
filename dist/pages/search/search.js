@@ -2,6 +2,7 @@
 import { Douban } from './../../utils/apis.js';
 
 const app = getApp();
+const count = 20;  // 每页加载数据数目
 Page({
 
   /**
@@ -10,7 +11,10 @@ Page({
   data: {
     inputVal: "",
     paragraph: '&emsp;人生就是一列开往坟墓的列车，路途上会有很多站，很难有人可以自始至终陪着走完。当陪你的人下车时，即使不舍也该心存感激，然后挥手道别。',
-    result: null
+    result: null,
+    loading: false,
+    pageNo: 0,
+    hasMore: true
   },
 
   /**
@@ -35,18 +39,43 @@ Page({
   },
 
   /**
+   * 用户确认搜索
+   */
+  inputConfirm() {
+    const that = this;
+    this.setData({
+      scrollTop: 0,
+      pageNo: 0,
+      hasMore: true
+    }, () => {
+      that.searchMovie()
+    })
+  },
+
+  /**
    * 搜索
    */
-  searchMovie: function(e) {
+  searchMovie: function (e) {
     const that = this;
-    const { inputVal } = this.data;
+    const { inputVal, pageNo, result } = this.data;
+    this.setData({
+      loading: true
+    })
     wx.showLoading({
       title: 'loading...',
     })
-    Douban.get(Douban.SEARCH, {q: inputVal})
+    const body = {
+      q: inputVal,
+      start: count * pageNo,
+      count
+    }
+    Douban.get(Douban.SEARCH, body)
       .then(res => {
         that.setData({
-          result: res.subjects
+          result: pageNo?[...result, ...res.subjects]:[...res.subjects],
+          loading: false,
+          pageNo: pageNo+1,
+          hasMore: res.total > count*(pageNo+1)
         })
       })
   },
@@ -54,8 +83,18 @@ Page({
   /**
    * 取消返回
    */
-  goBack: function() {
+  goBack: function () {
     wx.navigateBack()
+  },
+
+  /**
+   * 触底加载更多
+   */
+  loadMore: function (e) {
+    const { loading, hasMore } = this.data;
+    if (!loading && hasMore) {
+      this.searchMovie()
+    }
   }
 
 })

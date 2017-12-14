@@ -63,19 +63,11 @@ Page({
       for (let item of subjects) {
         item.genres = item.genres.join('/')
       }
-      if (pageNo == 0) {
-        that.setData({
-          loading: false,
-          movies: subjects,
-          loadmore: subjects.length >= pageSize
-        });
-      } else {
-        that.setData({
-          loading: false,
-          movies: that.data.movies.concat(subjects),
-          loadmore: subjects.length >= pageSize
-        });
-      }
+      that.setData({
+        loading: false,
+        movies: pageNo ? [...that.data.movies, ...subjects ]:subjects,
+        loadmore: subjects.length >= pageSize
+      });
     })
   },
 

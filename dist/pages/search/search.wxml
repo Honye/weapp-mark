@@ -10,7 +10,7 @@
           <input type="text" class="weui-search-bar__input" 
             placeholder="输入影名/演员" value="{{inputVal}}" 
             focus bindinput="inputTyping" confirm-type='search'
-            bindconfirm='searchMovie'
+            bindconfirm='inputConfirm'
           />
           <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
             <icon type="clear" size="14"></icon>
@@ -21,9 +21,11 @@
     </view>
   </view>
   <view class='content'>
-    <scroll-view scroll-y>
+    <scroll-view scroll-y bindscrolltolower='loadMore'
+      enable-back-to-top scroll-top='{{scrollTop}}' scroll-with-animation
+    >
       <view class='paragraph' wx:if='{{!result}}'>
-        <image src='./../../images/movie_search_word_icon.png' mode='widthFix' />
+        <image src='/assets/images/movie_search_word_icon.png' mode='widthFix' />
         <text space='nbsp' decode>&emsp;{{quote.content}}</text>
         <text>---{{quote.source}}</text>
       </view>
@@ -38,7 +40,7 @@
         </block>
       </view>
       <view wx:else class='none'>
-        <image src='./../../images/search_empty_icon.png' mode='widthFix' />
+        <image src='/assets/images/search_empty_icon.png' mode='widthFix' />
         <text>抱歉，未找到相关影视</text>
         <text>输入电影名/导演/演员/编剧搜索</text>
       </view>

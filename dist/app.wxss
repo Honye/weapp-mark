@@ -1,6 +1,6 @@
 /**app.wxss**/
 @import './style/weui.wxss';
 @import '/style/animate.wxss';
-@import './style/font-awesome/css/font-awesome.min.wxss';
+@import './style/font-awesome.min.wxss';
 @import "./pages/common/wxParse/wxParse.wxss";
 @import '/style/common.wxss';
