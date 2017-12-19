@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/splash/splash",
     "pages/discovery/discovery",
     "pages/index/index",
-    "pages/first/first",
     "pages/movies/movies",
     "pages/movies/movieDetails",
     "pages/classification/index",
@@ -14,15 +14,16 @@
     "pages/sources/sources",
     "pages/favMovieList/index",
     "pages/favCards/index",
-    "pages/article/detail",
+    "pages/article/detail/detail",
     "pages/common/self/index",
     "pages/webview/index",
     "pages/about/index",
     "pages/evaluate/evaluate",
-    "pages/article/list",
+    "pages/article/list/list",
     "pages/userinfo/userinfo",
     "pages/bindphone/index",
-    "pages/trailers/trailers"
+    "pages/trailers/trailers",
+    "pages/first/first"
   ],
   "window": {
     "backgroundTextStyle": "dark",

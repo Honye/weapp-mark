@@ -1,0 +1,4 @@
+<!-- 启动闪屏 -->
+<view class='container'>
+  <image src='/assets/images/login_bg.jpg' mode='aspectFill' />
+</view>

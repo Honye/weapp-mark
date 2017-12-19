@@ -9,7 +9,7 @@
           wx:if='{{userInfo.avatarUrl}}'
           src="{{userInfo.avatarUrl}}" />
       </view>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <text class="userinfo-nickname">{{userInfo.nickName || "未登录"}}</text>
     </view>
     <view class="arrow-right"> </view>
   </view>

@@ -1,7 +1,6 @@
 <template name="circle">
   <view class="circle-container btn-bg">
-    <view class="circle-border"
-      bindtap='{{bindtap}}'>
+    <view class="circle-border">
       <image 
         wx:if="{{imgUrl}}" 
         class="icon-img" 

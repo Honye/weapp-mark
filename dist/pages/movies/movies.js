@@ -23,6 +23,17 @@ Page({
    */
   onLoad: function (options) {
     this.getMovies()
+    this.setData({
+      isGrid: app.globalData.setting.wantSee ? app.globalData.setting.wantSee.layout === 'grid' : false,
+      sortId: app.globalData.setting.wantSee ? app.globalData.setting.wantSee.sort : 'addTime'
+    })
+  },
+
+  /**
+   * 页面隐藏
+   */
+  onHide: function(options) {
+    this.dropMenu && this.dropMenu();
   },
 
   /**
@@ -100,6 +111,9 @@ Page({
     });
   },
 
+  /**
+   * 改变排序方式
+   */
   changeSort() {
     const that = this;
     that.dropMenu = that.dropMenu ? that.dropMenu() : $markDropmenu.show({

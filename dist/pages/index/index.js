@@ -1,30 +1,57 @@
-//index.js
+// 个人中心
+
 //获取应用实例
 var app = getApp()
+
 Page({
+
   data: {
     version: app.globalData.version,
     userInfo: {}
   },
-  //事件处理函数
+
+  /**
+   * 进入个人资料
+   */
   bindViewTap: function() {
-    wx.navigateTo({
-      url: '../userinfo/userinfo'
-    })
+    const that = this;
+    const { version, config } = app.globalData;
+    if(app.globalData.userInfo) {
+      if (version.versionCode > config.newestVersion) return;
+      wx.navigateTo({
+        url: '../userinfo/userinfo'
+      })
+    } else {
+      wx.getSetting({
+        success: res => {
+          if(!res.authSetting['scope.userInfo']) {
+            wx.openSetting({
+              success: res => {
+                if (res.authSetting['scope.userInfo']){
+                  app.getUserInfo(userInfo => {
+                    that.setData({ userInfo })
+                  })
+                }
+              }
+            })
+          } else {
+            app.getUserInfo(userInfo => {
+              that.setData({ userInfo })
+            })
+          }
+        }
+      })
+    }
   },
+
   onLoad: function () {
     var _this = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
       //更新数据
       _this.setData({
-        userInfo:userInfo
+        userInfo
       })
-    })
-  },
-  gotoFirst: function() {
-    wx.navigateTo({
-      url: '../first/first'
     })
   },
 
@@ -41,11 +68,18 @@ Page({
    * 退出登录
    */
   logout: function() {
-    return;
-    wx.navigateTo({
-      url: '../first/first',
+    wx.showModal({
+      content: '确定要退出？',
+      success: (res) => {
+        res.confirm && app.logout(() => {
+          this.setData({
+            userInfo: {}
+          })
+        })
+      }
     })
   },
+
   /**
    * 关于
    */
@@ -84,6 +118,7 @@ Page({
       url: './../favMovieList/index',
     })
   },
+
   /**
    * 我喜欢的卡片
    */
@@ -104,6 +139,9 @@ Page({
     })
   },
 
+  /**
+   * 客服按钮监听
+   */
   onContactTap() {
     wx.setClipboardData({
       data: '浪里个儿浪 浪里个儿浪 我要调戏你了',

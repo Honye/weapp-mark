@@ -1,4 +1,6 @@
-// pages/setting/setting.js 设置
+// 设置
+import Storage from './../../utils/storage.js';
+
 const app = getApp();
 
 Page({
@@ -48,11 +50,7 @@ Page({
    * 清除缓存
    */
   clearCache: function () {
-    try {
-      wx.clearStorageSync();
-    } catch (e) {
-      console.error(e);
-    }
+    Storage.clear()
     wx.showToast({
       title: '已清除',
       icon: 'success'

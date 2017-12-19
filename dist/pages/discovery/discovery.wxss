@@ -40,6 +40,9 @@ page {
   flex-direction: row;
   border-bottom: .5px solid #ddd;
 }
+.item-container {
+  flex: 1;
+}
 .article-item-container {
   margin-top: 15rpx;
   border-bottom: .5px solid #ddd;

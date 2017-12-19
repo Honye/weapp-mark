@@ -1,6 +1,6 @@
 // pages/discovery/discovery.js
-import utils from './../../utils/util.js';
 import { Honye } from './../../utils/apis.js';
+import Bing from './../common/bing/bing.js';
 
 var app = getApp();
 Page({
@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    published: app.globalData.version.versionCode <= app.globalData.config.newestVersion,
+    published: false,
     remoted: false,
     banner: [],
     articles: [],
@@ -31,24 +31,6 @@ Page({
     })
     this.getData();
     this.getRemoteConfig();
-  },
-
-  /**
-   * 进入分类查找
-   */
-  bindClassifyTap: function() {
-    wx.navigateTo({
-      url: '../classification/index',
-    })
-  },
-
-  /**
-   * 每日电影卡片
-   */
-  toCard: function() {
-    wx:wx.navigateTo({
-      url: '../card/card'
-    })
   },
 
   /**
@@ -103,26 +85,6 @@ Page({
   },
 
   /**
-   * 影院热映
-   */
-  toTheatre: function() {
-    wx.navigateTo({
-      url: './../intheaters/in_theaters',
-    })
-  },
-
-  /**
-   * 搜索
-   */
-  toSearch: function() {
-    if (app.globalData.config.hasPermission) {
-      wx.navigateTo({
-        url: './../search/search',
-      })
-    }
-  },
-
-  /**
    * 转发
    */
   onShareAppMessage: function (opt) {
@@ -132,10 +94,8 @@ Page({
       path: "/pages/discovery/discovery",
       imageUrl: "http://xpic.588ku.com/figure/00/00/00/08/56/5355a15b1f68dfd.jpg!/fw/800",
       success: res => {
-        console.log("成功", res);
       },
       complete: res => {
-        console.log("完成", res);
       }
     };
   },
@@ -148,31 +108,14 @@ Page({
     wx.showLoading({
       title: 'loading...',
     })
-    Honye.get(Honye.CONFIG).then(res => {
-      app.globalData.config = res;
+    app.hasPublished(res => {
       that.setData({
-        published: app.globalData.version.versionCode <= res.newestVersion,
+        published: res,
         remoted: true
       })
-      if (app.globalData.version.versionCode > res.newestVersion) {
-        that.initBing()
-      }
-      wx.hideLoading();
-    })
-  },
-
-  /**
-   * 必应壁纸数据（三方）
-   */
-  initBing() {
-    let bings = [];
-    for(let i=0; i<10; i++) {
-      let bing = {};
-      bing.title = utils.getPreDate(i);
-      bing.image = `https://bing.ioliu.cn/v1?d=${i}`;
-      bings.push(bing);
-    }
-    this.setData({ bings });
+      if(!res) new Bing()
+      wx.hideLoading()
+    });
   }
 
 })

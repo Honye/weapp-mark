@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "影单详情",
+  "disableScroll": true,
+  "usingComponents": {
+    "comp-btnFav": "/components/btn-fav/FavButton"
+  }
+}

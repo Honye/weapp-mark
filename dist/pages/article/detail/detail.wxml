@@ -1,0 +1,52 @@
+<!--pages/article/detail.wxml 影单详情-->
+<import src="./../../common/wxParse/wxParse.wxml"/>
+<import src='./../../common/share/share.wxml' />
+
+<template is='com-share' data='{{...$mark.share}}'/>
+
+<view class='container page-article'>
+  <scroll-view class='scroll' scroll-y>
+  <view class='bg-title'>
+    <image class='bg-img' src='{{detail.image}}' mode='widthFix' />
+    <view class='gradient'>
+      <text class='title'>{{detail.title}}</text>
+    </view> 
+  </view>
+
+  <!-- 撰稿人信息 hidden -->
+  <view class='writer' hidden>
+    <view>
+      <image class='avatar' src='{{detail.writer.avatar}}' />
+      <view class='personal'>
+        <text class='name'>红叶秋鸣</text>
+        <text class='motto'>影，乐赏俞乐，悲赏愈悲</text>
+      </view>
+    </view>
+    <view class='footer'>
+      <text>Mark.撰稿人</text>
+    </view>
+  </view>
+
+  <view class='content'>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  </view>
+  </scroll-view>
+
+  <view class='bottom-actions'>
+    <view class='flex-1' capture-bind:tap='handleFavChange'>
+      <comp-btnFav checked='{{checked}}' width='1.2em' height='1.2em'
+        iconNormal='/assets/images/movie_list_detail_like_unchecked.png'
+        iconChecked='/assets/images/movie_list_detail_like_checked.png'
+      />
+      <text>12</text>
+    </view>
+    <view class='flex-1' bindtap='handleComment'>
+      <image class='icon' src='/assets/images/movie_list_comment_icon.png' mode='widthFix' />
+      <text>12</text>
+    </view>
+    <view class='flex-1' bindtap='handleShare'>
+      <image class='icon' src='/assets/images/movie_list_detail_share.png' mode='widthFix' />
+      <text>12</text>
+    </view>
+  </view>
+</view>

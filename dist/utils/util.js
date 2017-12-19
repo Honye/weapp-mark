@@ -38,7 +38,18 @@ export const parseParams = params => {
   return paramArr.join('&');
 };
 
+export function isEmpty(object) {
+  try {
+    for(let item of object) 
+      return false;
+  } catch (e) {
+    return true;
+  }
+  return true
+}
+
 module.exports = {
   formatTime: formatTime,
-  getPreDate: getPreDate
+  getPreDate: getPreDate,
+  isEmpty
 }

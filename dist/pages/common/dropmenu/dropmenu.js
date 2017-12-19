@@ -50,7 +50,7 @@ export default {
           }
         },
         /**
-         * 取消按钮点击事件
+         * 取消
          */
         cancel() {
           this.removeShare(options.cancel)

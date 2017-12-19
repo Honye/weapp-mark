@@ -57,7 +57,7 @@ Page({
     const {item} = e.currentTarget.dataset;
     if(item!=" ") {
       wx.navigateTo({
-        url: `./../article/list?title=${item}`,
+        url: `/pages/article/list/list?title=${item}`,
       })
     }
   }
