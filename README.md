@@ -15,6 +15,8 @@
 
 **注意事项：**
 此小程序因没有后台服务，数据都是网络静态数据和本地存储。
+使用自定义组件 [Component](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/custom-component/)，小程序基础版本库要在 1.6.3 以上；
+使用 [wxParse](https://github.com/icindy/wxParse)，小程序基础版本库要在 1.6.6 及以上。
 
 ## 运行
 没有使用其它打包工具，无需额外的环境配置，直接 clone 本项目，使用微信 Web 开发工具打开 `dist` 文件夹即可看见效果。
@@ -24,13 +26,13 @@
 ├── assets 静态资源
 │    ├── images 图片资源
 │    └── styles 公用样式
-├── components  组件化 Component
+├── components  组件化 Component，小程序基础版本库 1.6.3 以上
 │    ├── pre-image 图片预加载
 │    └── rating 评分
 ├── pages  页面
 │    └── common  模板 template
 │        ├── rating  评分
-│        ├── wxParse  富文本、HTML 和 MD 解析
+│        ├── wxParse  富文本、HTML 和 MD 解析，小程序基础版本库 1.6.6 及以上
 │        └── component.js  wux 针对 template 的组件化，写得挺好，借鉴一下
 ├── style  静态样式资源
 │    ├── weui.wxss
@@ -45,7 +47,7 @@
 
 ## 待办
 
-- [] 自定义轮播
+- [ ] 自定义轮播
 - [ ] ScrollView 下拉刷新
 - [ ] 数据本地存储工具
 - [ ] 绘制卡片且保存
