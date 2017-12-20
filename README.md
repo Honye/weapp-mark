@@ -14,8 +14,11 @@
 ![效果图3](http://opz28dn03.bkt.clouddn.com/images/CTJB2779.GIF?imageslim&imageView2/2/h/300)
 
 **注意事项：**
+
 此小程序因没有后台服务，数据都是网络静态数据和本地存储。
+
 使用自定义组件 [Component](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/custom-component/)，小程序基础版本库要在 1.6.3 以上；
+
 使用 [wxParse](https://github.com/icindy/wxParse)，小程序基础版本库要在 1.6.6 及以上。
 
 ## 运行
