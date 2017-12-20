@@ -9,11 +9,17 @@
 
 简单计算流程：
 > 五角星数量num: 5
+> 
 > 最大评分max: 10
+> 
 > 一颗星代表unit: max/num = 2
+> 
 > 实际评分value: 7.3
+> 
 > 去除整星剩余百分比percent: value%unit/unit
+> 
 > 为避免计算精确问题从而使用整数运算
+> 
 > 最终: percent = (value*10)%(unit*10)/(unit*10)
 
 ![计算精度问题](http://upload-images.jianshu.io/upload_images/3762216-c9d30d25207ee000.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
