@@ -1,6 +1,8 @@
 # Mark
 仿 Mark 应用页面的微信小程序
 
+[WePY 版本](https://github.com/Hongye567/wepy-mark)，还在完善中…
+
 小程序个人开发功能限制太多，无法完全上线。将项目克隆下来运行程序体验全部功能。
 
 ![小程序码](http://oz126ti4w.bkt.clouddn.com/image/mark.jpg)
