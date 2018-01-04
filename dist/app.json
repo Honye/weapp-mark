@@ -15,7 +15,6 @@
     "pages/favMovieList/index",
     "pages/favCards/index",
     "pages/article/detail/detail",
-    "pages/common/self/index",
     "pages/webview/index",
     "pages/about/index",
     "pages/evaluate/evaluate",

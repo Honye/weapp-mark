@@ -13,6 +13,7 @@ Page({
     comments_count: 0,
     comments: [],
     loaded: false,
+    isFold: true
   },
 
   /**
@@ -28,7 +29,7 @@ Page({
       },
     })
     wx.setNavigationBarTitle({
-      title: options.title,
+      title: options.title || '详情',
     })
     this.setData({ id: options.id })
     this.getDetails(options.id);
@@ -63,6 +64,9 @@ Page({
         loaded: true,
         comments_count: data.comments_count
       });
+      wx.setNavigationBarTitle({
+        title: res.title,
+      })
     })
   },
 
@@ -92,6 +96,15 @@ Page({
           showCancel: false,
         })
       }
+    })
+  },
+  /**
+   * 折叠开关
+   */
+  foldToggle() {
+    const {isFold} = this.data;
+    this.setData({
+      isFold: !isFold
     })
   }
 })

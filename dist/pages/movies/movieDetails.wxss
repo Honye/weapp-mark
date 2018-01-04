@@ -117,7 +117,41 @@ image {
   line-height: 2.8em;
   font-size: .9em;
 }
-
+.summary {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5; 
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.fold {
+  color: #888888;
+  font-size: .9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .3em 0;
+}
+.fold::after {
+  content: ' ';
+  height: .5em;
+  width: .5em;
+  border-right: 1px solid #888;
+  border-bottom: 1px solid #888;
+  border-top: 1px solid transparent;
+  border-left: 1px solid transparent;
+  margin-left: .5em;
+  margin-top: -0.35em;
+  transform: rotate(45deg);
+}
+.fold.active::after {
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid #888;
+  border-left: 1px solid #888;
+  margin-top: 0.35em;
+}
 /* 影人 start */
 .page-detail .casts .subtitle {
   margin-left: 30rpx;

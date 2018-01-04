@@ -50,7 +50,8 @@
 
     <view class='brief-summary'>
       <text class='subtitle'>{{details.title}}的剧情简介\n</text>
-      <text>{{details.summary}}</text>
+      <text class='{{isFold && "summary"}}'>{{details.summary}}</text>
+      <view class='fold {{!isFold && "active"}}' bindtap='foldToggle'>{{isFold?"展开":"收起"}}</view>
     </view>
 
     <view class='casts'>

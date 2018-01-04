@@ -26,10 +26,11 @@
 </swiper>
 
 <view class='action'>
-  <view class='look'>
+  <navigator class='look' hover-class='hover-opacity'
+    url='/pages/movies/movieDetails?id={{cards[current].movieId}}'>
     <image class='icon' src='/assets/images/daily_card_detail_icon.png'></image>
     <text>查看电影</text>
-  </view>
+  </navigator>
   <view class='action-right'>
     <view class='count'>
       <comp-btnFav checked='{{!!(cards[current].checked)}}' bindchange='onFavChange' />

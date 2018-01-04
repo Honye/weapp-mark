@@ -18,9 +18,6 @@ Page({
    */
   onLoad: function (options) {
     this.initData();
-    this.setData({
-      current: options.current?options.current:0
-    })
   },
 
   /**
@@ -76,7 +73,9 @@ Page({
       }
     })
   },
-
+  /**
+   * 喜欢/取消喜欢
+   */
   onFavChange(e) {
     const { checked } = e.detail;
     let { cards, current } = this.data;
@@ -84,4 +83,5 @@ Page({
     cards[current].likeCount = checked ? --cards[current].likeCount : ++cards[current].likeCount;
     this.setData({ cards })
   }
+
 })
