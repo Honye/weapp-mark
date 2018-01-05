@@ -50,6 +50,10 @@ Component({
       this.triggerEvent('load', e.detail);
     },
     _onImgeErr: function(e) {
+      let msgs = e.detail.errMsg.split('(');
+      this.setData({
+        error: "(" + msgs[msgs.length-1]
+      })
       this.triggerEvent('error', e.detail);
     }
   }

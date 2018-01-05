@@ -1,6 +1,8 @@
 /* components/pre-image/PreImage.wxss */
 .comp-preImg {
   background-color: #eee;
+  width: 100%;
+  height: 100%;
 }
 .comp-preImg-pre {
   width: 0;
@@ -8,6 +10,15 @@
 }
 .fade-in {
   animation: fadeIn 1s both;
+}
+.errors {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #F7AF41;
 }
 @keyframes fadeIn {
   0% {

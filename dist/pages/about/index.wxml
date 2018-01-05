@@ -1,7 +1,12 @@
 <!--pages/about/index.wxml-->
 <view class='container self-honye'>
   <view class='banner'>
-    <pre-image src='https://bing.ioliu.cn/v1/rand' mode='widthFix' />
+    <pre-image 
+      src='https://bing.ioliu.cn/v1/rand' 
+      mode='widthFix'
+      height='100%'
+      place-img='/assets/images/bg-default.jpg'
+    />
   </view>
 
   <view class='blogger'>
