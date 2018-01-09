@@ -2,7 +2,7 @@
 <view class='container self-honye'>
   <view class='banner'>
     <pre-image 
-      src='https://bing.ioliu.cn/v1/rand' 
+      src='{{datas.image}}' 
       mode='widthFix'
       height='100%'
       place-img='/assets/images/bg-default.jpg'
@@ -10,27 +10,18 @@
   </view>
 
   <view class='blogger'>
-    <view class='row-cell'>
-      <text>博主：</text>
-      <text>红叶</text>
-    </view>
-    <view class='row-cell'>
-      <text>职业：</text>
-      <text>Web、Android</text>
-    </view>
-    <view class='row-cell'>
-      <text>简书：</text>
-      <text>红叶、秋鸣</text>
-    </view>
-    <view class='row-cell'>
-      <text>邮箱：</text>
-      <text>hongye.jun@qq.com</text>
-    </view>
+    <block wx:for='{{datas.labels}}' wx:key='index'>
+      <view class='row-cell'>
+        <text>{{item.label}}：</text>
+        <text>{{item.value}}</text>
+      </view>
+    </block>
   </view>
 
   <view class='advert'>
-    <text>由于个人小程序限制，诸多功能无法上线。此小程序是模仿原生应用 Mark 开发的，仅供学习交流。</text>
+    <text>{{datas.content}}</text>
   </view>
 </view>
 
-<i class="fa fa-music icon-music {{playing && 'active'}}" aria-hidden="true" bindtap='audioToggle'></i>
+<i wx:if='{{playing}}' class="active fa fa-music" bindtap='audioToggle'></i>
+<i wx:else class="fa fa-music" bindtap='audioToggle'></i>

@@ -1,4 +1,6 @@
 // pages/about/index.js
+import {Honye} from '../../utils/apis.js';
+
 const app = getApp()
 Page({
 
@@ -6,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    datas: {},
     playing: false
   },
 
@@ -13,15 +16,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.initAudio();
+    this.getData()
+    this.initAudioListener()
   },
 
-  onShow(options) {
-    if (app.audioManager) {
-      this.setData({
-        playing: !app.audioManager.paused
-      })
-    }
+  onShow: function(options) {
+    const that = this;
+    wx.getBackgroundAudioPlayerState({
+      success: res => {
+        that.setData({
+          playing: res.status === 1
+        })
+      },
+      fail: res => {
+        console.log("获取音乐播放状态失败", res)
+      }
+    })
   },
 
   /**
@@ -31,31 +41,68 @@ Page({
   
   },
 
-  initAudio() {
-    const { that } = this;
-    if(app.audioManager) return;
+  getData() {
+    const that = this;
+    Honye.get(Honye.ABOUT).then(res => {
+      that.setData({ datas: res })
+      wx.getBackgroundAudioPlayerState({
+        fail: ret => {
+          that.initAudio(res.bgm)
+        }
+      })
+    })
+  },
+
+  /**
+   * 播放背景音乐
+   */
+  initAudio(bgm) {
+    const that = this;
     wx.playBackgroundAudio({
-      dataUrl: 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46',
-      title: 'HONYE',
+      dataUrl: bgm.url,
+      title: bgm.title,
       success: () => {
-        app.audioManager = wx.getBackgroundAudioManager()
         that.setData({ playing: true })
       }
     })
   },
+
   /**
    * 播放/暂停
    */
   audioToggle() {
-    const {playing} = this.data;
-    if(!app.audioManager) 
-      app.audioManager = wx.getBackgroundAudioManager()
-    if (app.audioManager.paused) {
-      app.audioManager.play()
-      this.setData({ playing: true })
-    } else {
-      app.audioManager.pause()
-      this.setData({ playing: false })
-    }
+    const that = this;
+    wx.getBackgroundAudioPlayerState({
+      success: res => {
+        if (res.status === 1) 
+          wx.getBackgroundAudioManager().pause()
+        else if(res.status === 2)
+          that.initAudio(that.data.datas.bgm)
+        else
+          wx.getBackgroundAudioManager().play()
+      },
+      fail: res => {
+        that.initAudio(that.data.datas.bgm)
+      }
+    })
+  },
+
+  /**
+   * 初始化音乐播放/暂停/停止监听
+   */
+  initAudioListener() {
+    const that = this;
+    wx.onBackgroundAudioPlay(res => {
+      console.log("播放");
+      that.setData({ playing: true })
+    })
+    wx.onBackgroundAudioPause(res => {
+      console.log("暂停")
+      that.setData({ playing: false })
+    })
+    wx.onBackgroundAudioStop(res => {
+      console.log("停止")
+      that.setData({ playing: false })
+    })
   }
 })

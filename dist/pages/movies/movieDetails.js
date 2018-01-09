@@ -86,18 +86,6 @@ Page({
     )
   },
 
-  onMoreTap: function(e) {
-    const {url} = e.currentTarget.dataset;
-    wx.setClipboardData({
-      data: url,
-      success: res => {
-        wx.showModal({
-          content: '因小程序限制无法直接查看，请前往浏览器粘贴访问更多',
-          showCancel: false,
-        })
-      }
-    })
-  },
   /**
    * 折叠开关
    */

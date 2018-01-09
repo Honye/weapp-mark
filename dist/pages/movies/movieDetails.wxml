@@ -4,7 +4,7 @@
 <wxs src='./../../utils/WxUtil.wxs' module='WxUtil' />
 
 <view wx:if='{{loaded}}' class='container page-detail'>
-
+  <!-- 背景图 -->
   <view class='big-bg' style='background-image:url({{details.images.large}});'>
     <view></view>
   </view>
@@ -26,13 +26,13 @@
         </view>
       </view>
     </view>
-
+    <!-- 概述 -->
     <view class='brief-time'>
       <text>{{details.durations[0]}} {{WxUtil.arr2str(details.genres," / ")}}
       {{pubdates}} {{WxUtil.arr2str(details.countries, " / ")}}
       {{details.directors[0].name}}(导演) / {{casts}}</text>
     </view>
-
+    <!-- 播放源 -->
     <view class='play-source' wx:if='{{details.videos.length>0}}'>
       <navigator url='./../sources/sources?id={{id}}'>
         <view class='source-container'>
@@ -47,13 +47,13 @@
         </view>
       </navigator>
     </view>
-
+    <!-- 剧情简介 -->
     <view class='brief-summary'>
       <text class='subtitle'>{{details.title}}的剧情简介\n</text>
       <text class='{{isFold && "summary"}}'>{{details.summary}}</text>
       <view class='fold {{!isFold && "active"}}' bindtap='foldToggle'>{{isFold?"展开":"收起"}}</view>
     </view>
-
+    <!-- 影人 -->
     <view class='casts'>
       <text class='subtitle'>影人</text>
       <scroll-view scroll-x>
@@ -66,7 +66,7 @@
         <template is='item-casts-all' />
       </scroll-view>
     </view>
-
+    <!-- 预告及剧照 -->
     <view class='photos'>
       <text class='subtitle'>预告片 / 剧照</text>
       <scroll-view scroll-x>
@@ -85,7 +85,7 @@
         </block>
       </scroll-view>
     </view>
-
+    <!-- 短评 -->
     <view class='comments'>
       <text class='subtitle'>短评({{comments_count}})</text>
       <block wx:for='{{comments}}' wx:key='id'>

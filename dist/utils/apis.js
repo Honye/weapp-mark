@@ -18,6 +18,8 @@ export const Honye = {
   CLASSIFY: `${HY_HOST}/static/json/classify`,
   // 每日卡片
   CARDS: `${HY_HOST}/static/json/cards`,
+  // 关于
+  ABOUT: `${HY_HOST}/static/json/about`,
 }
 
 export const Douban = {

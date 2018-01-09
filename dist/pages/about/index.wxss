@@ -29,7 +29,7 @@
 .self-honye .advert {
   color: #46BAC5;
 }
-.icon-music {
+.fa-music {
   height: 1.8em;
   width: 1.8em;
   background-color: rgba(0,0,0, .5);
@@ -41,8 +41,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: none;
 }
-.icon-music.active {
+.fa-music.active {
   animation: roate 5s linear infinite;
 }
 
