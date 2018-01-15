@@ -11,9 +11,13 @@
 
 如果你喜欢这类应用，我强烈建议你去体验原生应用 Mark，毕竟我这小程序没有后台。各大应用商店都可下载（搜索“Mark”）。
 
-![效果图1](http://opz28dn03.bkt.clouddn.com/images/IMG_1558.JPG?imageslim&imageView2/2/h/300)
-![效果图2](http://opz28dn03.bkt.clouddn.com/images/IMG_1559.JPG?imageslim&imageView2/2/h/300)
-![效果图3](http://opz28dn03.bkt.clouddn.com/images/CTJB2779.GIF?imageslim&imageView2/2/h/300)
+![思维导图](http://oz126ti4w.bkt.clouddn.com/image/MarkMind.png)
+[在线思维导图](https://www.processon.com/view/5a5c45d7e4b0abe85d562bda)
+
+为了节省篇幅，效果图就不一一展示了，扫小程序码基本能体验全部了
+[效果图1](http://opz28dn03.bkt.clouddn.com/images/IMG_1558.JPG?imageslim&imageView2/2/h/300)
+[效果图2](http://opz28dn03.bkt.clouddn.com/images/IMG_1559.JPG?imageslim&imageView2/2/h/300)
+[效果图3](http://opz28dn03.bkt.clouddn.com/images/CTJB2779.GIF?imageslim&imageView2/2/h/300)
 
 **注意事项：**
 
@@ -22,6 +26,15 @@
 使用自定义组件 [Component](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/custom-component/)，小程序基础版本库要在 1.6.3 以上；
 
 使用 [wxParse](https://github.com/icindy/wxParse)，小程序基础版本库要在 1.6.6 及以上。
+
+## 技术
+- API 的灵活使用
+- 图片显示预览、视频加载播放、背景音乐播放
+- 本地数据存储
+- 列表加载显示
+- CSS3 属性动画
+- template、Component 分别实现自定义组件
+- ES6、Promise 的灵活使用
 
 ## 运行
 没有使用其它打包工具，无需额外的环境配置，直接 clone 本项目，使用微信 Web 开发工具打开 `dist` 文件夹即可看见效果。
@@ -40,6 +53,7 @@
 ## 项目结构
 ```
 ├── assets 静态资源
+│    ├── libs 三方支持库
 │    ├── images 图片资源
 │    └── styles 公用样式
 ├── components  组件化 Component，小程序基础版本库 1.6.3 以上

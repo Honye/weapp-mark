@@ -7,8 +7,8 @@ import Util from './utils/util.js';
  * 本地版本号小余等于服务端版本号代表已发布
  */
 const version = {
-  versionCode: 7,
-  versionName: '1.0.4'
+  versionCode: 8,
+  versionName: '1.0.4(8)'
 };
 
 App({
