@@ -29,6 +29,12 @@
 
 使用 [wxParse](https://github.com/icindy/wxParse)，小程序基础版本库要在 1.6.6 及以上。
 
+## 日志
+2018-01-15
+
+- 新增 [LeanCloud 云服务](https://leancloud.cn/)
+- 修复没有预告时显示空白视图问题
+
 ## 技术
 - API 的灵活使用
 - 图片显示预览、视频加载播放、背景音乐播放
