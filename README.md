@@ -12,9 +12,11 @@
 如果你喜欢这类应用，我强烈建议你去体验原生应用 Mark，毕竟我这小程序没有后台。各大应用商店都可下载（搜索“Mark”）。
 
 ![思维导图](http://oz126ti4w.bkt.clouddn.com/image/MarkMind.png)
+
 [在线思维导图](https://www.processon.com/view/5a5c45d7e4b0abe85d562bda)
 
 为了节省篇幅，效果图就不一一展示了，扫小程序码基本能体验全部了
+
 [效果图1](http://opz28dn03.bkt.clouddn.com/images/IMG_1558.JPG?imageslim&imageView2/2/h/300)
 [效果图2](http://opz28dn03.bkt.clouddn.com/images/IMG_1559.JPG?imageslim&imageView2/2/h/300)
 [效果图3](http://opz28dn03.bkt.clouddn.com/images/CTJB2779.GIF?imageslim&imageView2/2/h/300)
