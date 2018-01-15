@@ -2,6 +2,7 @@
 import { Honye } from './../../../utils/apis.js';
 var WxParse = require('./../../common/wxParse/wxParse.js');
 import { $markShare } from './../../common/index.js'
+import AV from './../../../assets/libs/av-live-query-weapp-min.js';
 
 Page({
 
@@ -17,7 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getDetail(options.id);
+    this.fetchDetails(Number(options.id))
   },
 
   /**
@@ -29,18 +30,16 @@ Page({
 
   /**
    * 获取详情
-   * @param {String} id 文章 ID
+   * @param {Number} id 文章ID
    */
-  getDetail: function(id) {
-    const that = this;
-    Honye.get(`${Honye.ARTICLE_DETAIL}/${id}`)
-      .then(res => {
-        that.setData({
-          detail: res
-        }, () => {
-          WxParse.wxParse('article', 'html', that.data.detail.content, that);
-        })
+  fetchDetails(id) {
+    const that = this
+    const query = new AV.Query('Article').equalTo('id', id)
+    return query.first().then(detail => {
+      that.setData({ detail }, () => {
+        WxParse.wxParse('article', 'html', that.data.detail.get('content'), that);
       })
+    })
   },
 
   /**

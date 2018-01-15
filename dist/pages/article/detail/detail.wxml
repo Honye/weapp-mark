@@ -38,15 +38,15 @@
         iconNormal='/assets/images/movie_list_detail_like_unchecked.png'
         iconChecked='/assets/images/movie_list_detail_like_checked.png'
       />
-      <text>12</text>
+      <text>{{detail.likeCount || 0}}</text>
     </view>
     <view class='flex-1' bindtap='handleComment'>
       <image class='icon' src='/assets/images/movie_list_comment_icon.png' mode='widthFix' />
-      <text>12</text>
+      <text>{{detail.commentCount || 0}}</text>
     </view>
     <view class='flex-1' bindtap='handleShare'>
       <image class='icon' src='/assets/images/movie_list_detail_share.png' mode='widthFix' />
-      <text>12</text>
+      <text>{{detail.shareCount || 0}}</text>
     </view>
   </view>
 </view>

@@ -1,6 +1,7 @@
 //app.js
 import { Honye } from './utils/apis.js';
 import Util from './utils/util.js';
+import AV from './assets/libs/av-live-query-weapp-min.js';
 /**
  * 主要用来提供两版显示
  * 本地版本号大于服务端版本号代表未发布，简版显示应对审核
@@ -10,6 +11,11 @@ const version = {
   versionCode: 8,
   versionName: '1.0.4(8)'
 };
+
+AV.init({
+  appId: '2IeNe8Y91CoyD64fDLMLNOJL-gzGzoHsz',
+  appKey: 'sk3lhMKf6p224UoA9x1fUQDc',
+})
 
 App({
 
@@ -55,15 +61,16 @@ App({
     const that = this;
     const { config } = this.globalData;
     if(config) {
-      typeof callback == "function" && callback(config)
-    } else {
-      Honye.get(Honye.CONFIG)
-        .then(res => {
-          that.globalData.config = res;
-          that.globalData.published = version.versionCode <= res.newestVersion
-          typeof callback == "function" && callback(res)
-        })
+      return new Promise((resolve, reject) => {
+        resolve(config)
+      })
     }
+
+    return new AV.Query('Config').first().then(config => {
+      that.globalData.config = config;
+      that.globalData.published = version.versionCode <= config.get('newestVersion')
+      return config
+    })
   },
 
   /**
@@ -71,16 +78,19 @@ App({
    * @param {Function} callback 回调返回 Boolean 结果
    */
   hasPublished(callback) {
-    if(this.globalData.config) {
-      typeof callback == "function" &&
-      callback(this.globalData.published)
-    } else {
-      this.getDefaultConfig((res) => {
-        const published = version.versionCode <= res.newestVersion
-        typeof callback == "function" &&
-        callback(published)
+    const that = this;
+    const { config } = this.globalData;
+    if(config) {
+      return new Promise((resolve, reject) => {
+        resolve(version.versionCode <= config.get('newestVersion'))
       })
-    }
+    } 
+    
+    return new Promise((resolve, reject) => {
+      that.getDefaultConfig().then(res => {
+        resolve(version.versionCode <= res.get('newestVersion'))
+      })
+    })
   },
 
   /**

@@ -84,7 +84,7 @@ Page({
 
   bindViewTap: function(event) {
     const { version, config } = app.globalData;
-    if(version.versionCode <= config.newestVersion) {
+    if(version.versionCode <= config.get('newestVersion')) {
       const { id, title } = event.currentTarget.dataset;
       wx.navigateTo({
         url: `./movieDetails?title=${title}&id=${id}`,

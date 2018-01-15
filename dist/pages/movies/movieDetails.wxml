@@ -70,7 +70,7 @@
     <view class='photos'>
       <text class='subtitle'>预告片 / 剧照</text>
       <scroll-view scroll-x>
-        <navigator wx:if='{{details.trailers}}' url='../trailers/trailers?id={{details.id}}&resource={{details.trailers[0].resource_url}}' class='trailer'>
+        <navigator wx:if='{{details.trailers&&details.trailers[0]}}' url='../trailers/trailers?id={{details.id}}&resource={{details.trailers[0].resource_url}}' class='trailer'>
           <image class='image' src='{{details.trailers[0].medium}}' />
           <view class='front'>
             <view class='icon'>

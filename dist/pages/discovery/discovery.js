@@ -1,6 +1,8 @@
 // pages/discovery/discovery.js
 import { Honye } from './../../utils/apis.js';
 import Bing from './../common/bing/bing.js';
+import AV from './../../assets/libs/av-live-query-weapp-min.js';
+import bind from './../../assets/libs/live-query-binding.js';
 
 var app = getApp();
 Page({
@@ -37,20 +39,10 @@ Page({
    * 获取数据
    */
   getData: function() {
-    this.getBanners();
-    this.getArticles();
-  },
-
-  /**
-   * 获取轮播数据
-   */
-  getBanners: function() {
-    let that = this;
-    Honye.get(Honye.BANNERS).then( res => {
-      that.setData({
-        banner: res
-      })
-    })
+    return AV.Promise.all([
+      this.fetchBanners.call(this),
+      this.fetchArticles()
+    ])
   },
 
   /**
@@ -58,19 +50,23 @@ Page({
    */
   getArticles: function() {
     let that = this;
-    Honye.get(Honye.ARTICLES).then( res => {
+    return Honye.get(Honye.ARTICLES).then( res => {
       that.setData({
         articles: res
       })
     })
   },
 
+  /**
+   * Banner 点击事件
+   */
   onBannerTap: function(event) {
     const {banner} = this.data;
-    const {index}=event.currentTarget.dataset;
+    const {index} = event.currentTarget.dataset;
+    console.log(index, banner);
     const urls = [];
     for(let item of banner) {
-      urls.push(item.image)
+      urls.push(item.get('image'))
     }
     wx.previewImage({
       current: urls[index],
@@ -78,17 +74,10 @@ Page({
     })
   },
 
-  toDropDown: function() {
-    wx.navigateTo({
-      url: './../marked/marked',
-    })
-  },
-
   /**
    * 转发
    */
   onShareAppMessage: function (opt) {
-    console.log("转发", opt);
     return {
       title: "好用得不得了",
       path: "/pages/discovery/discovery",
@@ -115,7 +104,56 @@ Page({
       })
       if(!res) new Bing()
       wx.hideLoading()
+    }).then(res => {
+      that.setData({
+        published: res,
+        remoted: true
+      })
+      if (!res) new Bing()
+      wx.hideLoading()
     });
+  },
+
+  login() {
+    return AV.Promise.resolve(AV.User.current())
+      .then( user => (
+        user ? (user.isAuthenticated().then(authed => {
+          authed ? user : null
+        })) : null
+      ))
+      .then(user => (
+        user ? user : AV.User.loginWithWeapp()
+      ))
+      .catch(error => console.error(error.message))
+  },
+
+  fetchBanners() {
+    const query = new AV.Query('Banner').descending('createdAt');
+    const setBanners = this.setBanners.bind(this)
+    return AV.Promise.all([query.find().then(setBanners), query.subscribe()])
+      .then(([banners, subscription]) => {
+        this.subscription = subscription;
+        if(this.unbind) this.unbind()
+        this.unbind = bind(subscription, banners, setBanners)
+      }).catch(error => console.error(error.message))
+  },
+
+  fetchArticles() {
+    const that = this
+    const query = new AV.Query('Article').descending('createdAt').limit(6)
+    return query.find().then(articles => {
+      that.setData({ articles })
+    })
+  },
+
+  setBanners(banners) {
+    this.setData({banner: banners})
+    return banners;
+  },
+
+  onUnload(options) {
+    this.subcription.unsubscribe()
+    this.unbind()
   }
 
 })

@@ -17,7 +17,7 @@ Page({
     const that = this;
     const { version, config } = app.globalData;
     if(app.globalData.userInfo) {
-      if (version.versionCode > config.newestVersion) return;
+      if (version.versionCode > config.get('newestVersion')) return;
       wx.navigateTo({
         url: '../userinfo/userinfo'
       })
@@ -85,7 +85,7 @@ Page({
    */
   toAbout: function() {
     const { version, config } = app.globalData;
-    if (version.versionCode <= config.newestVersion)
+    if (version.versionCode <= config.get('newestVersion'))
     wx.navigateTo({
       url: './../about/index',
     })
@@ -113,7 +113,7 @@ Page({
    */
   toFavMovieList: function() {
     const { version, config } = app.globalData;
-    if(version.versionCode <= config.newestVersion)
+    if(version.versionCode <= config.get('newestVersion'))
     wx.navigateTo({
       url: './../favMovieList/index',
     })
@@ -124,7 +124,7 @@ Page({
    */
   toFavCards: function() {
     const { version, config } = app.globalData;
-    if (version.versionCode <= config.newestVersion)
+    if (version.versionCode <= config.get('newestVersion'))
     wx.navigateTo({
       url: './../favCards/index',
     })

@@ -1,6 +1,7 @@
 // pages/card/card.js
 import { $markShare } from '../common/index.js'
 import { Honye } from './../../utils/apis.js';
+import AV from './../../assets/libs/av-live-query-weapp-min.js';
 
 Page({
 
@@ -17,7 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.initData();
+    this.fetchCards.call(this)
   },
 
   /**
@@ -26,18 +27,19 @@ Page({
   onShareAppMessage: function () {
     const {cards, current} = this.data;
     return {
-      title: cards[current].quote,
+      title: cards[current].get('quote'),
       path: `/pages/card/card?current=${current}`,
-      imageUrl: cards[current].image
+      imageUrl: cards[current].get('image')
     }
   },
 
-  initData: function() {
-    let _this = this;
-    Honye.get(Honye.CARDS).then(res => {
-      _this.setData({
-        cards: res
-      })
+  fetchCards() {
+    const that = this;
+    const query = new AV.Query('Card').descending('createdAt').limit(6)
+    return query.find().then(cards => {
+      this.setData({ cards })
+    }).catch(error => {
+      console.error(error.message)
     })
   },
 

@@ -1,5 +1,6 @@
 // pages/about/index.js
 import {Honye} from '../../utils/apis.js';
+import AV from '../../assets/libs/av-live-query-weapp-min.js';
 
 const app = getApp()
 Page({
@@ -29,7 +30,7 @@ Page({
         })
       },
       fail: res => {
-        console.log("获取音乐播放状态失败", res)
+        console.warn("没有背景音频", res)
       }
     })
   },
@@ -43,11 +44,12 @@ Page({
 
   getData() {
     const that = this;
-    Honye.get(Honye.ABOUT).then(res => {
+    const query = new AV.Query('About')
+    query.first().then(res => {
       that.setData({ datas: res })
       wx.getBackgroundAudioPlayerState({
         fail: ret => {
-          that.initAudio(res.bgm)
+          that.initAudio(res.get('bgm'))
         }
       })
     })
@@ -77,12 +79,12 @@ Page({
         if (res.status === 1) 
           wx.getBackgroundAudioManager().pause()
         else if(res.status === 2)
-          that.initAudio(that.data.datas.bgm)
+          that.initAudio(that.data.datas.get('bgm'))
         else
           wx.getBackgroundAudioManager().play()
       },
       fail: res => {
-        that.initAudio(that.data.datas.bgm)
+        that.initAudio(that.data.datas.get('bgm'))
       }
     })
   },
@@ -93,15 +95,12 @@ Page({
   initAudioListener() {
     const that = this;
     wx.onBackgroundAudioPlay(res => {
-      console.log("播放");
       that.setData({ playing: true })
     })
     wx.onBackgroundAudioPause(res => {
-      console.log("暂停")
       that.setData({ playing: false })
     })
     wx.onBackgroundAudioStop(res => {
-      console.log("停止")
       that.setData({ playing: false })
     })
   }

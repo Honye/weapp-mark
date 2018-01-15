@@ -9,7 +9,6 @@
     "pages/card/card",
     "pages/setting/setting",
     "pages/intheaters/in_theaters",
-    "pages/marked/marked",
     "pages/search/search",
     "pages/sources/sources",
     "pages/favMovieList/index",
