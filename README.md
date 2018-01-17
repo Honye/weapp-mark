@@ -9,7 +9,7 @@
 
 作为学习项目一步一步走来，我会记录下我是如何从零完成此小程序的（doc 文件夹），以及途中遇到的所有问题，以后不定期更新，尽量做到更好，如果你有什么建议也请告诉我（issues）。项目中自己有封装一些组件，可在项目结构查看。
 
-如果你喜欢这类应用，我强烈建议你去体验原生应用 Mark，毕竟我这小程序没有后台。各大应用商店都可下载（搜索“Mark”）。
+后台数据由 [LeanCloud 云服务](https://leancloud.cn/)支撑和[豆瓣](https://developers.douban.com/)提供的电影 Api。数据由我个人维护，由于缺少数据源，不会定期更新。如果你喜欢这类应用，你可以去下载原生应用 [Mark](http://a.app.qq.com/o/simple.jsp?pkgname=com.intlime.mark&fromcase=40002)。
 
 ![思维导图](http://oz126ti4w.bkt.clouddn.com/image/MarkMind.png)
 
@@ -22,8 +22,6 @@
 [效果图3](http://opz28dn03.bkt.clouddn.com/images/CTJB2779.GIF?imageslim&imageView2/2/h/300)
 
 **注意事项：**
-
-此小程序因没有后台服务，数据都是网络静态数据和本地存储。
 
 使用自定义组件 [Component](https://mp.weixin.qq.com/debug/wxadoc/dev/framework/custom-component/)，小程序基础版本库要在 1.6.3 以上；
 
@@ -43,11 +41,12 @@
 - CSS3 属性动画
 - template、Component 分别实现自定义组件
 - ES6、Promise 的灵活使用
+- LeanCloud 云服务的使用
 
 ## 运行
 没有使用其它打包工具，无需额外的环境配置，直接 clone 本项目，使用微信 Web 开发工具打开 `dist` 文件夹即可看见效果。
 
-## 文档
+## 文档（持续更新）
 [写项目时的想法](./doc/thought.md)
 
 [边写边记](./doc/小程序笔记)
@@ -90,10 +89,11 @@
 - [ ] 数据本地存储工具
 - [ ] 绘制卡片且保存
 - [ ] 分组列表
-- [ ] 后台开发
+- [x]  后台开发（目前使用 LeanCloud）
 
 ## 资源
 1. 微信官方UI样式 [weui-wxss](https://github.com/Tencent/weui-wxss/)
 2. 富文本、HTML 和 Markdown 解析 [wxParse](https://github.com/icindy/wxParse)
 3. [小程序使用外部字体](./doc/小程序使用外部字体.md)，本人使用的是 [Font Awesome](http://fontawesome.io/)
 4. 针对 template 的自定义组件 [wux](https://github.com/skyvow/wux)
+5. [LeanCloud 云服务](https://leancloud.cn/)提供后台支撑

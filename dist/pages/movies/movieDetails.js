@@ -94,5 +94,21 @@ Page({
     this.setData({
       isFold: !isFold
     })
+  },
+
+  /**
+   * 剧照预览
+   */
+  onImagePre(e) {
+    const { img } = e.currentTarget.dataset;
+    const { details } = this.data;
+    let urls = [];
+    for (let item of details.photos) {
+      urls.push(item.image)
+    }
+    wx.previewImage({
+      current: img,
+      urls
+    })
   }
 })

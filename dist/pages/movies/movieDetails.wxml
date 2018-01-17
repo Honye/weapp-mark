@@ -79,7 +79,7 @@
           </view>
         </navigator>
         <block wx:for='{{details.photos}}' wx:key='id'>
-          <view class='trailer'>
+          <view class='trailer' data-img='{{item.image}}' bindtap='onImagePre'>
             <image class='image' src='{{item.image}}' />
           </view>
         </block>
