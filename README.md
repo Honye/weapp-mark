@@ -1,4 +1,6 @@
 # Mark
+[![Honye](https://img.shields.io/badge/Honye-%E7%BA%A2%E5%8F%B6-000000.svg)](https://hongye567.github.io/)  
+[![license](https://img.shields.io/badge/license-Apache%202.0-000000.svg)](https://github.com/Hongye567/weapp-mark/blob/master/LICENSE)
 仿 Mark 应用页面的微信小程序
 
 [WePY 版本](https://github.com/Hongye567/wepy-mark)，还在完善中…

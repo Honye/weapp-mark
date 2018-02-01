@@ -46,8 +46,15 @@ Page({
    * 💓 / 💔
    */
   handleFavChange(e) {
-    const { checked } = this.data;
+    const { checked, detail } = this.data;
     this.setData({ checked: !checked })
+    const currentUser = AV.User.current()
+    currentUser.isAuthenticated().then(function (authenticated) {
+      currentUser.set('likedArticles', 1059)
+      currentUser.save().then(function(user) {
+        console.log('用户', user)
+      })
+    });
   },
 
   /**
