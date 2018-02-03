@@ -8,7 +8,7 @@ import AV from './assets/libs/av-live-query-weapp-min.js';
  * 本地版本号小余等于服务端版本号代表已发布
  */
 const version = {
-  versionCode: 8,
+  versionCode: 7,
   versionName: '1.0.4(8)'
 };
 

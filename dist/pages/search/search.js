@@ -22,7 +22,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      quote: app.globalData.config.quote
+      quote: app.globalData.config.get('quote')
     })
   },
 
@@ -58,9 +58,7 @@ Page({
   searchMovie: function (e) {
     const that = this;
     const { inputVal, pageNo, result } = this.data;
-    this.setData({
-      loading: true
-    })
+    this.setData({ loading: true })
     wx.showLoading({
       title: 'loading...',
     })
