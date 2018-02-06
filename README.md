@@ -101,3 +101,5 @@
 3. [小程序使用外部字体](./doc/小程序使用外部字体.md)，本人使用的是 [Font Awesome](http://fontawesome.io/)
 4. 针对 template 的自定义组件 [wux](https://github.com/skyvow/wux)
 5. [LeanCloud 云服务](https://leancloud.cn/)提供后台支撑
+6. [云服务开发环境（官方）](https://cloud.tencent.com/document/product/619/11447)
+7. [小程序解决方案（官方）](https://cloud.tencent.com/solution/la)i
