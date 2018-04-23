@@ -4,7 +4,7 @@ Page({
   data: {
     rating: 7.5,
     max: 10,
-    path: ''
+    path: '',
   },
 
   handleChange: function(e) {
@@ -64,5 +64,20 @@ Page({
       }
     })
   },
+
+  onClick(event) {
+    console.log(event)
+    const { max } = this.data;
+    const { index } = event.currentTarget.dataset;
+    this.setData({
+      rating: (index+1) * (max/5)
+    })
+  },
+
+  toMini() {
+    wx.navigateToMiniProgram({
+      appId: 'wx5363d9bd45509430',
+    })
+  }
 
 })

@@ -1,0 +1,63 @@
+<!--发现-->
+<import src="/pages/common/circle/circle.wxml"/>
+<import src='/pages/common/bing/bing.wxml' />
+
+<view class='container page-discovery' wx:if='{{published}}'>
+  <navigator url='/pages/search/search' hover-class='none'>
+    <view class='search-bar'>
+      <view class='search-radius btn-opacity'>
+        <icon type='search' size='14'></icon>
+        <text>搜索</text>
+      </view>
+    </view>
+  </navigator>
+  
+  <view class='content'>
+    <scroll-view scroll-y enable-back-to-top>
+      <swiper class='banner'
+        indicator-dots
+        autoplay
+        indicator-active-color="#fff"
+        circular>
+        <block wx:for="{{banner}}" wx:key="id">
+          <swiper-item>
+            <image data-index='{{index}}' src="{{item.image}}" class="slide-image"  bindtap='onBannerTap'/>
+          </swiper-item>
+        </block>
+      </swiper>
+
+      <view class="kind-container">
+        <navigator class='item-container' hover-class='hover-bg'
+          url='/pages/pArticle/pages/classification/index'
+        >
+          <template is="circle" 
+            data="{{imgUrl:'/assets/images/discover_classify_group_icon.png',title:'分类查找'}}"
+          />
+        </navigator>
+        <navigator class='item-container' hover-class='hover-bg'
+          url='/pages/pMovie/pages/cards/card'
+        >
+          <template is="circle" 
+            data="{{date:nowDay,title:'每日电影卡片'}}"
+          />
+        </navigator>
+        <navigator class='item-container' hover-class='hover-bg'
+          url='/pages/pMovie/pages/intheaters/in_theaters'
+        >
+          <template is="circle" 
+            data="{{imgUrl:'/assets/images/discover_classify_cinema_icon.png',title:'影院热映'}}"
+          />
+        </navigator>
+      </view>
+
+      <block wx:for="{{articles}}" wx:key='id'>
+        <navigator class='article-item-container' url='/pages/pArticle/pages/details/detail?id={{item.id}}'>
+          <template is="commingItem" data="{{...item}}" />
+        </navigator>
+      </block>
+      
+    </scroll-view>
+  </view>
+</view>
+
+<template is='temp-bing' wx:elif='{{remoted}}' data='{{bings}}' />

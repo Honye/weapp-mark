@@ -22,7 +22,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      quote: app.globalData.config.get('quote')
+      quote: app.globalData.config.quote
     })
   },
 
@@ -43,13 +43,18 @@ Page({
    */
   inputConfirm() {
     const that = this;
-    this.setData({
-      scrollTop: 0,
-      pageNo: 0,
-      hasMore: true
-    }, () => {
-      that.searchMovie()
-    })
+    const { inputVal } = this.data;
+    if(inputVal.indexOf('hy:')===0) {
+      this.hiddenCommand()
+    } else {
+      this.setData({
+        scrollTop: 0,
+        pageNo: 0,
+        hasMore: true
+      }, () => {
+        that.searchMovie()
+      })
+    }
   },
 
   /**
@@ -58,7 +63,9 @@ Page({
   searchMovie: function (e) {
     const that = this;
     const { inputVal, pageNo, result } = this.data;
-    this.setData({ loading: true })
+    this.setData({
+      loading: true
+    })
     wx.showLoading({
       title: 'loading...',
     })
@@ -92,6 +99,31 @@ Page({
     const { loading, hasMore } = this.data;
     if (!loading && hasMore) {
       this.searchMovie()
+    }
+  },
+
+  /**
+   * 隐藏命令
+   */
+  hiddenCommand() {
+    const { inputVal } = this.data;
+    const command = inputVal.split('hy:')[1].trim().toUpperCase();
+    switch(command) {
+      case 'OPEN MARK':  // 打开 Mark 小程序
+        wx.navigateToMiniProgram({
+          appId: 'wx5363d9bd45509430',
+        })
+        break;
+      case 'OPEN TEST':  // 打开测试页
+        wx.navigateTo({
+          url: '/pages/first/first',
+        })
+        break;
+      default:
+        wx.showToast({
+          title: '命令错误！',
+        })
+        break;
     }
   }
 

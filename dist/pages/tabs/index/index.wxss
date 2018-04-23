@@ -1,0 +1,69 @@
+/**index.wxss**/
+@import '/pages/common/cell/cell';
+
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 30rpx;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  justify-content: space-between;
+  background-color: #fff;
+}
+.userinfo .cell-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.userinfo .cell-left .userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  background-color: #f7f7f7;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.userinfo .cell-left .userinfo-avatar>image {
+  width: 100%;
+  height: 100%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+  margin-left: 30rpx;
+}
+
+.row-list {
+  margin: 30rpx 0 0;
+  border-top: 0.5px solid #ddd;
+  border-bottom: 0.5px solid #ddd;
+}
+
+.log-out {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 30rpx;
+  color: #D66D5C;
+  background-color: #fff;
+  margin: 30rpx 0;
+}
+
+.page-user .contactBtn {
+   width:100%;
+   border:none;
+   border-radius: 0;
+   padding:0;
+   margin:0;
+   font-size: 1em;
+   position: static;
+   line-height: normal;
+}
+.page-user .contactBtn::after {
+  content: none;
+}
+.page-user .contactBtn>.row-cell {
+  border-bottom: 0.5px solid #ddd;
+}

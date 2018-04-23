@@ -1,26 +1,13 @@
 {
   "pages": [
     "pages/splash/splash",
-    "pages/discovery/discovery",
-    "pages/index/index",
-    "pages/movies/movies",
-    "pages/movies/movieDetails",
-    "pages/classification/index",
-    "pages/card/card",
+    "pages/tabs/discovery/discovery",
+    "pages/tabs/index/index",
+    "pages/tabs/movies/movies",
     "pages/setting/setting",
-    "pages/intheaters/in_theaters",
+    "pages/marked/marked",
     "pages/search/search",
-    "pages/sources/sources",
-    "pages/favMovieList/index",
-    "pages/favCards/index",
-    "pages/article/detail/detail",
-    "pages/webview/index",
     "pages/about/index",
-    "pages/evaluate/evaluate",
-    "pages/article/list/list",
-    "pages/userinfo/userinfo",
-    "pages/bindphone/index",
-    "pages/trailers/trailers",
     "pages/first/first"
   ],
   "window": {
@@ -37,23 +24,53 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/discovery/discovery",
+        "pagePath": "pages/tabs/discovery/discovery",
         "text": "发现",
         "iconPath": "assets/images/tab_discover_unchecked.png",
         "selectedIconPath": "assets/images/tab_discover_checked.png"
       },
       {
-        "pagePath": "pages/movies/movies",
+        "pagePath": "pages/tabs/movies/movies",
         "text": "我的电影",
         "iconPath": "assets/images/tab_movies_unchecked.png",
         "selectedIconPath": "assets/images/tab_movies_checked.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/tabs/index/index",
         "text": "账号",
         "iconPath": "assets/images/tab_usercenter_unchecked.png",
         "selectedIconPath": "assets/images/tab_usercenter_checked.png"
       }
     ]
-  }
+  },
+  "subPackages": [
+    {
+      "root": "pages/pArticle/",
+      "pages": [
+        "pages/classification/index",
+        "pages/list/list",
+        "pages/details/detail"
+      ]
+    },
+    {
+      "root": "pages/pMovie/",
+      "pages": [
+        "pages/cards/card",
+        "pages/details/movieDetails",
+        "pages/intheaters/in_theaters",
+        "pages/sources/sources",
+        "pages/trailers/trailers"
+      ]
+    },
+    {
+      "root": "pages/pUser/",
+      "pages": [
+        "pages/favMovieList/index",
+        "pages/bindphone/index",
+        "pages/evaluate/evaluate",
+        "pages/favCards/index",
+        "pages/userinfo/userinfo"
+      ]
+    }
+  ]
 }

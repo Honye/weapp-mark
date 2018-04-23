@@ -3,8 +3,6 @@
 
 仿 Mark 应用页面的微信小程序
 
-[WePY 版本](https://github.com/Hongye567/wepy-mark)，还在完善中…
-
 小程序个人开发功能限制太多，无法完全上线。建议将项目克隆下来运行程序体验全部功能。
 
 ![小程序体验](http://oz126ti4w.bkt.clouddn.com/image/mark.jpg)
@@ -53,7 +51,7 @@
 ## 文档（持续更新）
 [写项目时的想法](./doc/thought.md)
 
-[边写边记](./doc/小程序笔记)
+[边写边记](./doc/小程序笔记.md)
 
 [小程序使用外部字体](./doc/小程序使用外部字体.md)
 
@@ -102,4 +100,4 @@
 4. 针对 template 的自定义组件 [wux](https://github.com/skyvow/wux)
 5. [LeanCloud 云服务](https://leancloud.cn/)提供后台支撑
 6. [云服务开发环境（官方）](https://cloud.tencent.com/document/product/619/11447)
-7. [小程序解决方案（官方）](https://cloud.tencent.com/solution/la)i
+7. [小程序解决方案（官方）](https://cloud.tencent.com/solution/la)

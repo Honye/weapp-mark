@@ -1,10 +1,11 @@
 <!-- 尝试 -->
 <import src='./../common/rating/rating' />
+<wxs src='../../utils/WxUtil.wxs' module='wxUtil' />
 
 <view class='container page-first'>
   <view>template 模板</view>
   <view class='rating-temp'>
-    <template is='rating' data='{{rating:7.5,max:10}}' />
+    <template is='rating' data='{{rating,max}}' />
   </view>
 
   <view>component 自定义组件</view>
@@ -12,11 +13,13 @@
     <com-rating max="10" rating='6.5' bindchange='handleChange' />
     <text class='rate-show'>{{rating}}分</text>
   </view>
-
+,
   <canvas class='canvas' canvas-id='firstCanvas'></canvas>
 
   <button bindtap='saveCanvas'>生成图片</button>
 
   <image src='{{path}}' mode='widthFix' />
+
+  <button bindtap='toMini'>Mark with LeanCloud</button>
 
 </view>

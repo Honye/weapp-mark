@@ -1,0 +1,49 @@
+/* pages/discovery/discovery.wxss */
+@import "/pages/common/circle/circle.wxss";
+@import '/pages/common/bing/bing.wxss';
+
+page {
+  height: 100%;
+}
+.page-discovery .search-bar {
+  padding: 10rpx 20rpx;
+  background-color: #496069;
+}
+.search-bar .search-radius {
+  background-color: #fff;
+  border-radius: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: .8em;
+  color: #888;
+  padding: .3em 0;
+}
+.search-bar .search-radius text {
+  margin-left: .5em;
+}
+
+.page-discovery .content {
+  display: flex;
+  flex: 1;
+}
+.banner {
+  height: 450rpx;
+  background-color: #eee;
+}
+.slide-image {
+  display: block;
+  width: 100%;
+}
+.kind-container {
+  display: flex;
+  flex-direction: row;
+  border-bottom: .5px solid #ddd;
+}
+.item-container {
+  flex: 1;
+}
+.article-item-container {
+  margin-top: 15rpx;
+  border-bottom: .5px solid #ddd;
+}

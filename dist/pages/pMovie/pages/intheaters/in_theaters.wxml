@@ -1,0 +1,43 @@
+<!--pages/intheaters/in_theaters.wxml-->
+<import src='/pages/common/movie/movieRow' />
+<import src='/pages/common/loading/loading' />
+
+<view class='container page-theatre'>
+  <view class='navbar'>
+    <view class='{{currentNav==0?"active":""}}' bindtap='changeSwiper' data-nav='{{0}}'>热映</view>
+    <view class='divider'></view>
+    <view class='{{currentNav==1?"active":""}}' bindtap='changeSwiper' data-nav='{{1}}'>待映</view>
+  </view>
+  <swiper class='swiper' bindchange='onSwiperChange' current='{{currentNav}}'>
+    <swiper-item>
+      <scroll-view class='content-container' scroll-y bindscrolltolower='onScrolTolLower' data-nav='theater' enable-back-to-top>
+        <view class='boss'>敬请期待</view>
+        <block wx:for='{{movies}}' wx:key="id">
+          <view data-title="{{item.title}}" data-id="{{item.id}}"
+            bindtap="toDetail">
+            <template 
+              is="item-movie_row" 
+              data="{{...item}}">
+            </template>
+          </view>
+        </block>
+        <template is='loading-more' wx:if='{{loadmore1}}' />
+        </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view class='content-container' scroll-y bindscrolltolower='onScrolTolLower' data-nav='comming' enable-back-to-top>
+        <view class='boss'>敬请期待</view>
+        <block wx:for='{{commingMovies}}' wx:key="id">
+          <view data-title="{{item.title}}" data-id="{{item.id}}"
+            bindtap="toDetail">
+            <template 
+              is="item-movie_row" 
+              data="{{...item}}">
+            </template>
+          </view>
+        </block>
+        <template is='loading-more' wx:if='{{loadmore2}}' />
+        </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>
