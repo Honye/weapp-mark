@@ -7,38 +7,11 @@ import Util from './utils/util.js';
  * 本地版本号小余等于服务端版本号代表已发布
  */
 const version = {
-  versionCode: 8,
+  versionCode: 9,
   versionName: '1.0.5(9)'
 };
 
 App({
-
-  onLaunch: function () {
-    this.getSetting()
-    this.getDefaultConfig();
-  },
-
-  /**
-   * 获取用户信息
-   */
-  getUserInfo: function (cb) {
-    var that = this
-    if (this.globalData.userInfo) {
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    } else {
-      //调用登录接口
-      wx.login({
-        success: function () {
-          wx.getUserInfo({
-            success: function (res) {
-              that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo)
-            }
-          })
-        }
-      })
-    }
-  },
 
   globalData: {
     version,
@@ -48,22 +21,56 @@ App({
     published: false,  // 是否为发布版
   },
 
+  onLaunch: function () {
+    this.getSetting()
+    this.getDefaultConfig();
+  },
+
+  /**
+   * 获取用户信息
+   * 支持 callback 和 Promise
+   * @param {function} cb (object:userInfo) => void
+   */
+  getUserInfo(cb) {
+    const _this = this
+    return new Promise((resolve, reject) => {
+      if (_this.globalData.userInfo) {
+        typeof cb === 'function' && cb(_this.globalData.userInfo)
+        resolve(_this.globalData.userInfo)
+      } else {
+        wx.login({
+          success: function() {
+            wx.getUserInfo({
+              success: function(res) {
+                _this.globalData.userInfo = res.userInfo
+                typeof cb === 'function' && cb(_this.globalData.userInfo)
+                resolve(_this.globalData.userInfo)
+              }
+            })
+          }
+        })
+      }
+    })
+  },
+
   /**
    * 从服务器获取默认配置
    */
   getDefaultConfig(callback) {
-    const that = this;
-    const { config } = this.globalData;
-    if(config) {
-      typeof callback == "function" && callback(config)
-    } else {
-      Honye.get(Honye.CONFIG)
-        .then(res => {
-          that.globalData.config = res;
-          that.globalData.published = version.versionCode <= res.newestVersion
-          typeof callback == "function" && callback(res)
-        })
-    }
+    return new Promise((resolve, reject) => {
+      if(this.globalData.config) {
+        typeof callback === 'function' && callback(this.globalData.config)
+        resolve(this.globalData.config)
+      } else {
+        Honye.get(Honye.CONFIG)
+          .then( res => {
+            this.globalData.config = res
+            this.globalData.published = version.versionCode <= res.newestVersion
+            typeof callback === 'function' && callback(res)
+            resolve(res)
+          })
+      }
+    })
   },
 
   /**

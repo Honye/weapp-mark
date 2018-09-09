@@ -45,11 +45,10 @@ Page({
   },
 
   onLoad: function () {
-    var _this = this
     //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo){
+    app.getUserInfo().then(userInfo => {
       //更新数据
-      _this.setData({
+      this.setData({
         userInfo
       })
     })

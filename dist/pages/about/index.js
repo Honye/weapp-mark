@@ -29,7 +29,7 @@ Page({
         })
       },
       fail: res => {
-        console.log("获取音乐播放状态失败", res)
+        // console.log("获取音乐播放状态失败", res)
       }
     })
   },
@@ -93,15 +93,15 @@ Page({
   initAudioListener() {
     const that = this;
     wx.onBackgroundAudioPlay(res => {
-      console.log("播放");
+      // console.log("播放");
       that.setData({ playing: true })
     })
     wx.onBackgroundAudioPause(res => {
-      console.log("暂停")
+      // console.log("暂停")
       that.setData({ playing: false })
     })
     wx.onBackgroundAudioStop(res => {
-      console.log("停止")
+      // console.log("停止")
       that.setData({ playing: false })
     })
   }
