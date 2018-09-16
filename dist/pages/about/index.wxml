@@ -19,7 +19,8 @@
   </view>
 
   <view class='advert'>
-    <text>{{datas.content}}</text>
+    <view>此小程序模仿于原生应用“Mark”，仅用于学习，更多功能请下载原生应用体验。</view>
+    <view>该小程序已在 GitHub 上开源，源码可在<text class='link' bindtap='toWebview' data-url='https://mp.weixin.qq.com/s/wEkgBTlbBNDT9ALZmdijeA'>公众号文章</text>内找到。</view>
   </view>
 </view>
 

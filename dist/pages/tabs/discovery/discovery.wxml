@@ -19,7 +19,7 @@
         autoplay
         indicator-active-color="#fff"
         circular>
-        <block wx:for="{{banner}}" wx:key="id">
+        <block wx:for="{{banners}}" wx:key="id">
           <swiper-item>
             <image data-index='{{index}}' src="{{item.image}}" class="slide-image"  bindtap='onBannerTap'/>
           </swiper-item>

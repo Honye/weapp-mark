@@ -1,5 +1,7 @@
 //app.js
-import { Honye } from './utils/apis.js';
+import {
+    Honye
+} from './utils/apis.js';
 import Util from './utils/util.js';
 /**
  * 主要用来提供两版显示
@@ -7,114 +9,121 @@ import Util from './utils/util.js';
  * 本地版本号小余等于服务端版本号代表已发布
  */
 const version = {
-  versionCode: 9,
-  versionName: '1.0.5(9)'
+    versionCode: 9,
+    versionName: '1.0.5(9)'
 };
+
+wx.cloud.init({
+    traceUser: true,
+    env: 'dv-963c46'
+})
 
 App({
 
-  globalData: {
-    version,
-    userInfo: null,
-    setting: {},
-    config: null,
-    published: false,  // 是否为发布版
-  },
+    globalData: {
+        version,
+        userInfo: null,
+        setting: {},
+        config: null,
+        published: false, // 是否为发布版
+    },
 
-  onLaunch: function () {
-    this.getSetting()
-    this.getDefaultConfig();
-  },
+    onLaunch: function() {
+        this.getSetting()
+        this.getDefaultConfig();
+    },
 
-  /**
-   * 获取用户信息
-   * 支持 callback 和 Promise
-   * @param {function} cb (object:userInfo) => void
-   */
-  getUserInfo(cb) {
-    const _this = this
-    return new Promise((resolve, reject) => {
-      if (_this.globalData.userInfo) {
-        typeof cb === 'function' && cb(_this.globalData.userInfo)
-        resolve(_this.globalData.userInfo)
-      } else {
-        wx.login({
-          success: function() {
-            wx.getUserInfo({
-              success: function(res) {
-                _this.globalData.userInfo = res.userInfo
+    /**
+     * 获取用户信息
+     * 支持 callback 和 Promise
+     * @param {function} cb (object:userInfo) => void
+     */
+    getUserInfo(cb) {
+        const _this = this
+        return new Promise((resolve, reject) => {
+            if (_this.globalData.userInfo) {
                 typeof cb === 'function' && cb(_this.globalData.userInfo)
                 resolve(_this.globalData.userInfo)
-              }
-            })
-          }
+            } else {
+                wx.login({
+                    success: function() {
+                        wx.getUserInfo({
+                            success: function(res) {
+                                _this.globalData.userInfo = res.userInfo
+                                typeof cb === 'function' && cb(_this.globalData.userInfo)
+                                resolve(_this.globalData.userInfo)
+                            }
+                        })
+                    }
+                })
+            }
         })
-      }
-    })
-  },
+    },
 
-  /**
-   * 从服务器获取默认配置
-   */
-  getDefaultConfig(callback) {
-    return new Promise((resolve, reject) => {
-      if(this.globalData.config) {
-        typeof callback === 'function' && callback(this.globalData.config)
-        resolve(this.globalData.config)
-      } else {
-        Honye.get(Honye.CONFIG)
-          .then( res => {
-            this.globalData.config = res
-            this.globalData.published = version.versionCode <= res.newestVersion
-            typeof callback === 'function' && callback(res)
-            resolve(res)
-          })
-      }
-    })
-  },
+    /**
+     * 从服务器获取默认配置
+     */
+    getDefaultConfig(callback) {
+        return new Promise((resolve, reject) => {
+            if (this.globalData.config) {
+                typeof callback === 'function' && callback(this.globalData.config)
+                resolve(this.globalData.config)
+            } else {
+                Honye.get(Honye.CONFIG)
+                    .then(res => {
+                        this.globalData.config = res
+                        this.globalData.published = version.versionCode <= res.newestVersion
+                        typeof callback === 'function' && callback(res)
+                        resolve(res)
+                    })
+            }
+        })
+    },
 
-  /**
-   * 是否已经发布
-   * @param {Function} callback 回调返回 Boolean 结果
-   */
-  hasPublished(callback) {
-    if(this.globalData.config) {
-      typeof callback == "function" &&
-      callback(this.globalData.published)
-    } else {
-      this.getDefaultConfig((res) => {
-        const published = version.versionCode <= res.newestVersion
-        typeof callback == "function" &&
-        callback(published)
-      })
-    }
-  },
-
-  /**
-   * 退出登录
-   */
-  logout(callback) {
-    this.globalData.userInfo = null
-    callback && callback(this.globalData)
-  },
-
-  /**
-   * 获取本地设置
-   */
-  getSetting(callback) {
-    const that = this;
-    const { setting } = this.globalData
-    if(setting && (!Util.isEmpty(setting))) {
-     typeof callback == "function" && callback(setting)
-    } else {
-      wx.getStorage({
-        key: 'setting',
-        success: function (res) {
-          that.globalData.setting = res.data
-          typeof callback == "function" && callback(res.data)
+    /**
+     * 是否已经发布
+     * @param {Function} callback 回调返回 Boolean 结果
+     */
+    hasPublished(callback) {
+        if (this.globalData.config) {
+            typeof callback == "function" &&
+                callback(this.globalData.published)
+        } else {
+            this.getDefaultConfig((res) => {
+                const published = version.versionCode <= res.newestVersion
+                typeof callback == "function" &&
+                    callback(published)
+            })
         }
-      })
+    },
+
+    /**
+     * 退出登录
+     */
+    logout(callback) {
+        this.globalData.userInfo = null
+        callback && callback(this.globalData)
+    },
+
+    /**
+     * 获取本地设置
+     */
+    getSetting(callback) {
+        const that = this;
+        const {
+            setting
+        } = this.globalData
+        if (setting && (!Util.isEmpty(setting))) {
+            typeof callback == "function" && callback(setting)
+        } else {
+            wx.getStorage({
+                key: 'setting',
+                success: function(res) {
+                    that.globalData.setting = res.data
+                    typeof callback == "function" && callback(res.data)
+                }
+            })
+        }
     }
-  }
 
 })

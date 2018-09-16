@@ -1,15 +1,27 @@
 # Mark
 [![Honye](https://img.shields.io/badge/Honye-%E7%BA%A2%E5%8F%B6-000000.svg)](https://hongye567.github.io/)  [![license](https://img.shields.io/badge/license-Apache%202.0-000000.svg)](https://github.com/Hongye567/weapp-mark/blob/master/LICENSE)
 
-仿 Mark 应用页面的微信小程序
-
-小程序个人开发功能限制太多，无法完全上线。建议将项目克隆下来运行程序体验全部功能。
+仿 Mark 应用页面的微信小程序。
 
 ![小程序体验](http://oz126ti4w.bkt.clouddn.com/image/mark.jpg)
 
-作为学习项目一步一步走来，我会记录下我是如何从零完成此小程序的（doc 文件夹），以及途中遇到的所有问题，以后不定期更新，尽量做到更好，如果你有什么建议也请告诉我（issues）。项目中自己有封装一些组件，可在项目结构查看。
+作为学习项目一步一步走来，我会记录下我是如何从零完成此小程序的，以及途中遇到的所有问题，以后不定期更新，尽量做到更好，如果你有什么建议也请告诉我（issues）。项目中自己有封装一些组件，可在项目结构查看。
 
-后台数据由 [LeanCloud 云服务](https://leancloud.cn/)支撑和[豆瓣](https://developers.douban.com/)提供的电影 Api。数据由我个人维护，由于缺少数据源，不会定期更新。如果你喜欢这类应用，你可以去下载原生应用 [Mark](http://a.app.qq.com/o/simple.jsp?pkgname=com.intlime.mark&fromcase=40002)。
+影视数据全部由[豆瓣](https://developers.douban.com/) API 提供。小程序个人开发功能限制太多，无法完全上线。如若喜欢可以下载原生应用 [Mark](http://a.app.qq.com/o/simple.jsp?pkgname=com.intlime.mark&fromcase=40002) 体验全部功能。
+
+## Branch
+
+1. [master](https://github.com/Hongye567/weapp-mark/tree/master)
+
+   后台服务由 [LeanCloud 云服务](https://leancloud.cn/)支撑。
+
+2. [cdn-ui](https://github.com/Hongye567/weapp-mark/tree/cdn-ui)
+
+   没有后台服务支撑，全部采用 HTTP 请求的个人博客的静态 JSON 文件。
+
+3. [cloud](https://github.com/Hongye567/weapp-mark/tree/cloud)
+
+   采用[微信小程序云开发](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)，无需后台也能开发一款完整的小程序。
 
 ![思维导图](http://oz126ti4w.bkt.clouddn.com/image/MarkMind.png)
 
@@ -28,12 +40,19 @@
 使用 [wxParse](https://github.com/icindy/wxParse)，小程序基础版本库要在 1.6.6 及以上。
 
 ## 日志
+2018-09-16
+
+- [微信小程序云开发](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)初体验
+
+​	
+
 2018-01-15
 
 - 新增 [LeanCloud 云服务](https://leancloud.cn/)
 - 修复没有预告时显示空白视图问题
 
 ## 技术
+
 - API 的灵活使用
 - 图片显示预览、视频加载播放、背景音乐播放
 - 本地数据存储
@@ -51,15 +70,16 @@
 ## 文档（持续更新）
 [写项目时的想法](./doc/thought.md)
 
-[边写边记](./doc/小程序笔记.md)
+[边写边记](https://github.com/Hongye567/notes/blob/master/Wechat/weapp-notes.md)
 
-[小程序使用外部字体](./doc/小程序使用外部字体.md)
+[小程序使用外部字体](https://github.com/Hongye567/notes/blob/master/Wechat/use-other-font.md)
 
-[小程序自定义评分组件template（精度0.1）](./doc/小程序自定义评分组件template（精度0.1）.md)
+[小程序自定义评分组件template（精度0.1）](https://github.com/Hongye567/notes/blob/master/Wechat/template-rating.md)
 
-[小程序自定义评分组件Component（精度0.1）](./doc/小程序自定义评分组件Component（精度0.1）.md)
+[小程序自定义评分组件Component（精度0.1）](https://github.com/Hongye567/notes/blob/master/Wechat/component-rating.md)
 
 ## 项目结构
+
 ```
 ├── assets 静态资源
 │    ├── libs 三方支持库
@@ -68,6 +88,7 @@
 ├── components  组件化 Component，小程序基础版本库 1.6.3 以上
 │    ├── pre-image 图片预加载
 │    └── rating 评分
+├── cloudfunctions  云函数
 ├── pages  页面
 │    └── common  模板 template
 │        ├── rating  评分
@@ -91,13 +112,11 @@
 - [ ] 数据本地存储工具
 - [ ] 绘制卡片且保存
 - [ ] 分组列表
-- [x]  ~~后台开发（目前使用 LeanCloud）~~
 
 ## 资源
 1. 微信官方UI样式 [weui-wxss](https://github.com/Tencent/weui-wxss/)
 2. 富文本、HTML 和 Markdown 解析 [wxParse](https://github.com/icindy/wxParse)
-3. [小程序使用外部字体](./doc/小程序使用外部字体.md)，本人使用的是 [Font Awesome](http://fontawesome.io/)
-4. 针对 template 的自定义组件 [wux](https://github.com/skyvow/wux)
-5. [LeanCloud 云服务](https://leancloud.cn/)提供后台支撑
-6. [云服务开发环境（官方）](https://cloud.tencent.com/document/product/619/11447)
-7. [小程序解决方案（官方）](https://cloud.tencent.com/solution/la)
+3. 针对 template 的自定义组件 [wux](https://github.com/skyvow/wux)
+4. [LeanCloud 云服务](https://leancloud.cn/)提供后台支撑
+5. [云服务开发环境（官方）](https://cloud.tencent.com/document/product/619/11447)
+6. [小程序解决方案（官方）](https://cloud.tencent.com/solution/la)

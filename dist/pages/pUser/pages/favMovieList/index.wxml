@@ -1,8 +1,14 @@
 <!-- 喜欢的影单 -->
+<import src='/pages/common/loading/loading' />
+
 <view class='container page-favlist'>
-  <block wx:for='{{list}}' wx:key='id'>
-    <navigator url='/pages/pArticle/pages/details/detail?id={{1074}}' hover-class='none'>
-      <com-article checked aid='{{item.id}}' image='{{item.image}}' title='{{item.title}}' like-count='{{item.likeCount}}' bindchange='onFavChange' data-index='{{index}}' />
-    </navigator>
-  </block>
+    <block wx:for='{{list}}' wx:key='id'>
+        <navigator url='/pages/pArticle/pages/details/detail?id={{item.id}}' hover-class='none'>
+            <com-article checked aid='{{item.id}}' image='{{item.image}}' title='{{item.title}}'
+                like-count='{{item.likeCount}}' bindchange='onFavChange' data-index='{{index}}'
+                data-id='{{item.id}}'
+            />
+        </navigator>
+    </block>
+    <template is='loading-none' wx:if='{{list && !list.length}}' />
 </view>

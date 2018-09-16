@@ -1,4 +1,6 @@
-<!--pages/favCards/index.wxml 我喜欢的卡片-->
+<!-- the cards I liked -->
+<import src='/pages/common/loading/loading' />
+
 <view class='container page-favcards'>
   <block wx:for='{{cards}}' wx:key='id'>
     <view class='item-favcard'>
@@ -7,4 +9,5 @@
       <text class='favcard-source'>--{{item.source}}</text>
     </view>
   </block>
+  <template is='loading-none' wx:if='{{cards && !cards.length}}' />
 </view>

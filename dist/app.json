@@ -8,7 +8,8 @@
     "pages/marked/marked",
     "pages/search/search",
     "pages/about/index",
-    "pages/first/first"
+    "pages/first/first",
+    "pages/webview/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",

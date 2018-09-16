@@ -1,17 +1,16 @@
-// pages/discovery/discovery.js
-import { Honye } from '../../../utils/apis.js';
-import Bing from '../../common/bing/bing.js';
+// discovery
+import { Honye } from '../../../utils/apis.js'
+import Bing from '../../common/bing/bing.js'
 
-var app = getApp();
+var app = getApp()
+const db = wx.cloud.database()
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     published: false,
     remoted: false,
-    banner: [],
+    banners: [],
     articles: [],
     nowDay: new Date().getDate(),
     bings: []
@@ -20,61 +19,55 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    const that = this;
+  onLoad(options) {
+    const that = this
     wx.getSystemInfo({
-      success: function(res) {
+      success(res) {
         that.setData({
           swiperHeight: res.windowWidth*3/5
         })
       },
     })
-    this.getData();
-    this.getRemoteConfig();
+    this.getData()
+    this.getRemoteConfig()
   },
 
   /**
    * 获取数据
    */
-  getData: function() {
+  getData() {
     this.getBanners();
     this.getArticles();
   },
 
-  /**
-   * 获取轮播数据
-   */
-  getBanners: function() {
-    let that = this;
-    Honye.get(Honye.BANNERS).then( res => {
-      that.setData({
-        banner: res
-      })
+  /** 获取轮播数据 */
+  getBanners() {
+    db.collection('banners').get().then( ({ data }) => {
+        this.setData({
+            banners: data,
+        })
     })
   },
 
-  /**
-   * 文章数据
-   */
-  getArticles: function() {
-    let that = this;
-    Honye.get(Honye.ARTICLES).then( res => {
-      that.setData({
-        articles: res
-      })
+  /** 文章数据 */
+  getArticles() {
+    db.collection('articles').get().then(({ data }) => {
+        this.setData({
+            articles: data
+        })
     })
   },
 
-  onBannerTap: function(event) {
-    const {banner} = this.data;
-    const {index}=event.currentTarget.dataset;
+  onBannerTap(event) {
+    const { banners } = this.data
+    const { index }=event.currentTarget.dataset
     const urls = [];
-    for(let item of banner) {
+    for(let item of banners) {
       urls.push(item.image)
     }
     wx.previewImage({
       current: urls[index],
-      urls
+      urls,
     })
   },
 
@@ -87,8 +80,7 @@ Page({
   /**
    * 转发
    */
-  onShareAppMessage: function (opt) {
-    console.log("转发", opt);
+  onShareAppMessage(opt) {
     return {
       title: "好用得不得了",
       path: "/pages/discovery/discovery",
@@ -97,13 +89,13 @@ Page({
       },
       complete: res => {
       }
-    };
+    }
   },
 
   /**
    * 获取在线配置
    */
-  getRemoteConfig: function() {
+  getRemoteConfig() {
     const that = this;
     wx.showLoading({
       title: 'loading...',
@@ -115,7 +107,6 @@ Page({
       })
       if(!res) new Bing()
       wx.hideLoading()
-    });
+    })
   }
-
 })

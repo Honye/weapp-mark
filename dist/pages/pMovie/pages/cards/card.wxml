@@ -33,8 +33,8 @@
   </navigator>
   <view class='action-right'>
     <view class='count'>
-      <comp-btnFav checked='{{!!(cards[current].checked)}}' bindchange='onFavChange' />
-      <text>{{cards[current].likeCount||0}}</text>
+      <comp-btnFav checked='{{!!(cards[current].liked)}}' bindchange='onFavChange' />
+      <text>{{cards[current].likeCount || 0}}</text>
     </view>
     <view class='count' bindtap='showShareMenu'>
       <image class='icon-big' 
