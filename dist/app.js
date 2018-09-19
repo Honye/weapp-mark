@@ -1,21 +1,19 @@
 //app.js
-import {
-    Honye
-} from './utils/apis.js';
-import Util from './utils/util.js';
+import { Honye } from './utils/apis'
+import Util from './utils/util'
 /**
  * 主要用来提供两版显示
  * 本地版本号大于服务端版本号代表未发布，简版显示应对审核
  * 本地版本号小余等于服务端版本号代表已发布
  */
 const version = {
-    versionCode: 9,
-    versionName: '1.0.5(9)'
-};
+    versionCode: 10,
+    versionName: '1.0.6(10)',
+}
 
 wx.cloud.init({
     traceUser: true,
-    env: 'dv-963c46'
+    env: 'dv-963c46',
 })
 
 App({
@@ -28,9 +26,9 @@ App({
         published: false, // 是否为发布版
     },
 
-    onLaunch: function() {
+    onLaunch() {
         this.getSetting()
-        this.getDefaultConfig();
+        this.getDefaultConfig()
     },
 
     /**
@@ -39,19 +37,18 @@ App({
      * @param {function} cb (object:userInfo) => void
      */
     getUserInfo(cb) {
-        const _this = this
         return new Promise((resolve, reject) => {
-            if (_this.globalData.userInfo) {
-                typeof cb === 'function' && cb(_this.globalData.userInfo)
-                resolve(_this.globalData.userInfo)
+            if (this.globalData.userInfo) {
+                typeof cb === 'function' && cb(this.globalData.userInfo)
+                resolve(this.globalData.userInfo)
             } else {
                 wx.login({
-                    success: function() {
+                    success: () => {
                         wx.getUserInfo({
-                            success: function(res) {
-                                _this.globalData.userInfo = res.userInfo
-                                typeof cb === 'function' && cb(_this.globalData.userInfo)
-                                resolve(_this.globalData.userInfo)
+                            success: res => {
+                                this.globalData.userInfo = res.userInfo
+                                typeof cb === 'function' && cb(this.globalData.userInfo)
+                                resolve(this.globalData.userInfo)
                             }
                         })
                     }
@@ -60,9 +57,7 @@ App({
         })
     },
 
-    /**
-     * 从服务器获取默认配置
-     */
+    /** 从服务器获取默认配置 */
     getDefaultConfig(callback) {
         return new Promise((resolve, reject) => {
             if (this.globalData.config) {
@@ -97,33 +92,25 @@ App({
         }
     },
 
-    /**
-     * 退出登录
-     */
+    /** 退出登录 */
     logout(callback) {
         this.globalData.userInfo = null
         callback && callback(this.globalData)
     },
 
-    /**
-     * 获取本地设置
-     */
+    /** 获取本地设置 */
     getSetting(callback) {
-        const that = this;
-        const {
-            setting
-        } = this.globalData
+        const { setting } = this.globalData
         if (setting && (!Util.isEmpty(setting))) {
             typeof callback == "function" && callback(setting)
         } else {
             wx.getStorage({
                 key: 'setting',
-                success: function(res) {
-                    that.globalData.setting = res.data
+                success: res => {
+                    this.globalData.setting = res.data
                     typeof callback == "function" && callback(res.data)
                 }
             })
         }
-    }
-
+    },
 })

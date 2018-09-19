@@ -1,8 +1,5 @@
-
-### 注意事项
-此小程序因没有后台服务，大多数据都采用本地存储，所以使用过程中若是删除了微信缓存可能导致数据丢失，请谨慎使用。在后续开发中会添加数据备份功能。
-
 ### 主题
+
 ```js
     colors: {
         mainColor: '#496069',
@@ -12,6 +9,7 @@
 ```
 
 ### 持久化存储
+
 1. 设置
  ```js
     setting: {
@@ -105,7 +103,7 @@
 | likeCount | int | 喜欢数 |
 | commentCount | int | 评论数 |
 | shareCount | int | 分享数 |
-| authorId | int | 撰稿人 ID | 
+| authorId | int | 撰稿人 ID |
 
 3. 分类标签 tags
 

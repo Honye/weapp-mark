@@ -1,31 +1,24 @@
 # Mark
+
 [![Honye](https://img.shields.io/badge/Honye-%E7%BA%A2%E5%8F%B6-000000.svg)](https://hongye567.github.io/)  [![license](https://img.shields.io/badge/license-Apache%202.0-000000.svg)](https://github.com/Hongye567/weapp-mark/blob/master/LICENSE)
 
 仿 Mark 应用页面的微信小程序。
 
-![小程序体验](http://oz126ti4w.bkt.clouddn.com/image/mark.jpg)
+<p align="center">
+    <img src="./doc/_images/app-code.jpg" >
+</p>
 
 作为学习项目一步一步走来，我会记录下我是如何从零完成此小程序的，以及途中遇到的所有问题，以后不定期更新，尽量做到更好，如果你有什么建议也请告诉我（issues）。项目中自己有封装一些组件，可在项目结构查看。
 
 影视数据全部由[豆瓣](https://developers.douban.com/) API 提供。小程序个人开发功能限制太多，无法完全上线。如若喜欢可以下载原生应用 [Mark](http://a.app.qq.com/o/simple.jsp?pkgname=com.intlime.mark&fromcase=40002) 体验全部功能。
 
-## Branch
+## Branches
 
 1. [master](https://github.com/Hongye567/weapp-mark/tree/master) - 后台服务由 [LeanCloud 云服务](https://leancloud.cn/)支撑。
-
 2. [cdn-ui](https://github.com/Hongye567/weapp-mark/tree/cdn-ui) - 没有后台服务支撑，全部采用 HTTP 请求的个人博客的静态 JSON 文件。
-
 3. [cloud](https://github.com/Hongye567/weapp-mark/tree/cloud) - 采用[微信小程序云开发](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)，无需后台也能开发一款完整的小程序。
 
-![思维导图](http://oz126ti4w.bkt.clouddn.com/image/MarkMind.png)
-
 [在线思维导图](https://www.processon.com/view/5a5c45d7e4b0abe85d562bda)
-
-为了节省篇幅，效果图就不一一展示了，扫小程序码基本能体验全部了
-
-[效果图1](http://opz28dn03.bkt.clouddn.com/images/IMG_1558.JPG?imageslim&imageView2/2/h/300)
-[效果图2](http://opz28dn03.bkt.clouddn.com/images/IMG_1559.JPG?imageslim&imageView2/2/h/300)
-[效果图3](http://opz28dn03.bkt.clouddn.com/images/CTJB2779.GIF?imageslim&imageView2/2/h/300)
 
 **注意事项：**
 
@@ -33,7 +26,8 @@
 
 使用 [wxParse](https://github.com/icindy/wxParse)，小程序基础版本库要在 1.6.6 及以上。
 
-## 日志
+## Logs
+
 2018-09-16
 
 - [微信小程序云开发](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)初体验
@@ -43,34 +37,36 @@
 - 新增 [LeanCloud 云服务](https://leancloud.cn/)
 - 修复没有预告时显示空白视图问题
 
-## 技术
+## Skills
 
-- API 的灵活使用
 - 图片显示预览、视频加载播放、背景音乐播放
 - 本地数据存储
-- 列表加载显示
 - CSS3 属性动画
 - template、Component 分别实现自定义组件
-- ES6、Promise 的灵活使用
-- LeanCloud 云服务的使用
+- ES6、Promise
+- LeanCloud
 
-## 运行
+## Run
+
 没有使用其它打包工具，无需额外的环境配置，直接 clone 本项目，使用微信 Web 开发工具打开 `dist` 文件夹即可看见效果。
 
 **注意：** 如果你没有 AppID 可能看不到数据，手机无法预览。开发工具需要关闭安全域名的校验，**工具栏 --> 详情 --> 项目设置 --> 勾选不校验安全域名...以及 HTTPS 证书**。
 
-## 文档（持续更新）
+## Docs
+
+[云开发关联表（集合）案例](./doc/关联表学习.md)
+
 [写项目时的想法](./doc/thought.md)
 
 [边写边记](https://github.com/Hongye567/notes/blob/master/Wechat/weapp-notes.md)
 
 [小程序使用外部字体](https://github.com/Hongye567/notes/blob/master/Wechat/use-other-font.md)
 
-[小程序自定义评分组件template（精度0.1）](https://github.com/Hongye567/notes/blob/master/Wechat/template-rating.md)
+[小程序自定义评分组件 - tempalte 实现（精度 0.1）](https://github.com/Hongye567/notes/blob/master/Wechat/template-rating.md)
 
-[小程序自定义评分组件Component（精度0.1）](https://github.com/Hongye567/notes/blob/master/Wechat/component-rating.md)
+[小程序自定义评分组件 - Component 实现（精度0.1）](https://github.com/Hongye567/notes/blob/master/Wechat/component-rating.md)
 
-## 项目结构
+## Contents
 
 ```
 ├── assets 静态资源
@@ -97,7 +93,7 @@
 └── app.wxss  应用共用样式
 ```
 
-## 待办
+## TODO
 
 - [ ] 自定义轮播
 - [ ] ScrollView 下拉刷新
@@ -105,10 +101,12 @@
 - [ ] 绘制卡片且保存
 - [ ] 分组列表
 
-## 资源
+## Sources
+
 1. 微信官方UI样式 [weui-wxss](https://github.com/Tencent/weui-wxss/)
 2. 富文本、HTML 和 Markdown 解析 [wxParse](https://github.com/icindy/wxParse)
 3. 针对 template 的自定义组件 [wux](https://github.com/skyvow/wux)
 4. [LeanCloud 云服务](https://leancloud.cn/)提供后台支撑
 5. [云服务开发环境（官方）](https://cloud.tencent.com/document/product/619/11447)
 6. [小程序解决方案（官方）](https://cloud.tencent.com/solution/la)
+
