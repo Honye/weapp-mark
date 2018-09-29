@@ -1,12 +1,13 @@
 # Mark
 
-[![Honye](https://img.shields.io/badge/Honye-%E7%BA%A2%E5%8F%B6-000000.svg)](https://hongye567.github.io/)  [![license](https://img.shields.io/badge/license-Apache%202.0-000000.svg)](https://github.com/Hongye567/weapp-mark/blob/master/LICENSE)
+[![Honye](https://img.shields.io/badge/Honye-红叶-red.svg)](https://hongye567.github.io/)  [![license](https://img.shields.io/github/license/hongye567/weapp-mark.svg)](https://github.com/Hongye567/weapp-mark/blob/master/LICENSE)
 
 仿 Mark 应用页面的微信小程序。
 
 <p align="center">
-    <img src="./doc/_images/app-code.jpg" >
+    <img src="http://oz126ti4w.bkt.clouddn.com/image/mark.jpg" height="258px" >
 </p>
+
 
 作为学习项目一步一步走来，我会记录下我是如何从零完成此小程序的，以及途中遇到的所有问题，以后不定期更新，尽量做到更好，如果你有什么建议也请告诉我（issues）。项目中自己有封装一些组件，可在项目结构查看。
 
@@ -48,23 +49,23 @@
 
 ## Run
 
-没有使用其它打包工具，无需额外的环境配置，直接 clone 本项目，使用微信 Web 开发工具打开 `dist` 文件夹即可看见效果。
+没有使用其它打包工具，无需额外的环境配置，直接 clone 本项目，使用微信 Web 开发工具打开即可看见效果。
 
 **注意：** 如果你没有 AppID 可能看不到数据，手机无法预览。开发工具需要关闭安全域名的校验，**工具栏 --> 详情 --> 项目设置 --> 勾选不校验安全域名...以及 HTTPS 证书**。
 
 ## Docs
 
-[云开发关联表（集合）案例](./doc/关联表学习.md)
+[云开发关联表（集合）案例](https://github.com/Hongye567/weapp-mark/wiki/小程序关联表学习)
 
-[写项目时的想法](./doc/thought.md)
+[写项目时的想法](https://github.com/Hongye567/weapp-mark/wiki/thought)
 
-[边写边记](https://github.com/Hongye567/notes/blob/master/Wechat/weapp-notes.md)
+[边写边记](https://github.com/Hongye567/weapp-mark/wiki/小程序笔记)
 
-[小程序使用外部字体](https://github.com/Hongye567/notes/blob/master/Wechat/use-other-font.md)
+[小程序使用外部字体](https://github.com/Hongye567/weapp-mark/wiki/小程序使用外部字体)
 
-[小程序自定义评分组件 - tempalte 实现（精度 0.1）](https://github.com/Hongye567/notes/blob/master/Wechat/template-rating.md)
+[小程序自定义评分组件 - tempalte 实现（精度 0.1）](https://github.com/Hongye567/weapp-mark/wiki/小程序自定义评分组件-template（精度0.1）)
 
-[小程序自定义评分组件 - Component 实现（精度0.1）](https://github.com/Hongye567/notes/blob/master/Wechat/component-rating.md)
+[小程序自定义评分组件 - Component 实现（精度0.1）](https://github.com/Hongye567/weapp-mark/wiki/小程序自定义评分组件-Component（精度0.1）)
 
 ## Contents
 
