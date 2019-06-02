@@ -5,7 +5,7 @@
         wx:if="{{imgUrl}}" 
         class="icon-img" 
         src="{{imgUrl}}"
-        mode="aspectFit" />
+        mode="widthFix" />
       <text class="circle-date">{{date}}</text>
     </view>
     <text class="title">{{title}}</text>
@@ -14,7 +14,7 @@
 
 <template name="commingItem">
   <view class='item-article'>
-    <comp-preImg src='{{image}}' mode='widthFix' height='450rpx' />
+    <comp-preImg extra-class='img-big' src='{{image}}' mode='widthFix' height='450rpx' />
     <view class='com-desc'>
       <text class='com-title'>{{title}}</text>
       <view class='count-like'>

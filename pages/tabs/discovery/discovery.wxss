@@ -4,41 +4,116 @@
 
 page {
   height: 100%;
+  background-color: #fff;
 }
 .page-discovery .search-bar {
-  padding: 10rpx 20rpx;
-  background-color: #496069;
+  padding: 24rpx 48rpx;
+  background: #fff;
 }
 .search-bar .search-radius {
-  background-color: #fff;
-  border-radius: 1em;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: .8em;
-  color: #888;
-  padding: .3em 0;
+  font-size: 22rpx;
+  color: #999;
+  padding: 0 28rpx;
+  height: 72rpx;
+  border-radius: 72rpx;
+  box-shadow:2px 2px 10px 0px rgba(0,0,0,0.15);
+}
+.search-bar .search-radius .icon {
+  width: 48rpx;
+  height: 48rpx;
 }
 .search-bar .search-radius text {
-  margin-left: .5em;
+  margin-left: 15rpx;
 }
 
 .page-discovery .content {
   display: flex;
   flex: 1;
 }
-.banner {
-  height: 450rpx;
-  background-color: #eee;
+
+/*================== swiper ================*/
+.banner-wrap {
+  position: relative;
+  background-color: #fff;
+  overflow: visible;
 }
+.banner {
+  height: 300rpx;
+  padding: 10rpx 0 15rpx;
+  position: relative;
+  z-index: 1;
+}
+
+/* .banner::after {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  width: 500rpx;
+  height: 300rpx;
+  bottom: -2rpx;
+  margin: 0 auto;
+  background: #ffe200;
+  border-radius: 10rpx;
+  filter: blur(5rpx);
+} */
+.swiper-bg {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  width: 595rpx;
+  height: 270rpx;
+  bottom: 0rpx;
+  margin: 0 auto;
+  background: #ffe200;
+  border-radius: 10rpx;
+  filter: blur(6rpx);
+  transition: background .3s ease-in-out, opacity .3s ease-in-out
+}
+.swiper-bg.transparent {
+  opacity: 0;
+  filter: none;
+}
+
 .slide-image {
   display: block;
   width: 100%;
+  height: 100%;
 }
+
+.card-swiper swiper-item {
+  width: 654rpx !important;
+  left: 48rpx;
+  box-sizing: border-box;
+  /* padding: 30rpx 0rpx 10rpx; */
+}
+
+.card-swiper swiper-item .swiper-item {
+  width: 100%;
+  display: block;
+  height: 100%;
+  border-radius: 10rpx;
+  transform: scaleX(0.95) scaleY(0.9);
+  transition: all 0.2s ease-in 0s;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-swiper swiper-item.cur .swiper-item {
+  transform: none;
+  transition: all 0.2s ease-in 0s;
+}
+/*================== swiper end ================*/
+
 .kind-container {
   display: flex;
   flex-direction: row;
-  border-bottom: .5px solid #ddd;
+  margin-top: 20rpx;
 }
 .item-container {
   flex: 1;

@@ -4,36 +4,39 @@
 <wxs src='../../../../utils/WxUtil.wxs' module='WxUtil' />
 
 <view wx:if='{{loaded}}' class='container page-detail'>
-  <!-- 背景图 -->
-  <view class='big-bg' style='background-image:url({{details.images.large}});'>
-    <view></view>
-  </view>
-
-  <scroll-view class='scroll' scroll-y enable-back-to-top>
-    <view class='bg-img' wx:if='{{details.images}}' style='height:{{bgImgHeight}}px;'>
+    <view class='block'>
+      <view class='clip-img'>
+        <image src='{{details.images.large || details.image}}' mode='widthFix' />
+      </view>
       <view class='brief'>
-        <image class='img-mv' src='{{details.images.large}}' mode='widthFix' />
+        <image class='img-mv' src='{{details.images.large || details.image}}' mode='widthFix' />
         <view class='.brief-info'>
-          <text wx:if='{{details.title}}' class='title'>{{details.title}}</text>
-          <text class='title' wx:if='{{details.original_title && details.original_title !== details.title}}'>{{details.original_title}}</text>
+          <view wx:if='{{details.title || details.titleCn}}' class='title'>{{details.title || details.titleCn}}<text wx:if='{{details.original_title && details.original_title !== details.title}}'>（{{details.original_title}}）</text></view>
+          <!-- 概述 -->
+          <view class='brief-time'>
+            <text>{{details.pubdate || details.release.date}} / {{details.countries[0] || details.release.location}} / {{WxUtil.arr2str(details.genres," ") || WxUtil.arr2str(details.type," ")}} / {{details.directors[0].name || details.directors[0]}}(导演) / {{casts || WxUtil.arr2str(details.actors," ")}}</text>
+          </view>
           <view class='rating'>
-            <text wx:if='{{details.rating}}'>{{details.rating.average}}</text>
             <view>
-              <template is='rating' data='{{rating:details.rating.average,max:10}}' />
-              <text wx:if='{{details.ratings_count}}'>{{details.ratings_count}}人评价</text>
+              <template is='rating' data='{{rating:details.rating.average || details.rating,max:10}}' />
+              <text wx:if='{{details.rating}}'>{{details.rating.average || details.rating}}（{{origin.name}}评分）</text>
             </view>
+          </view>
+          <view class='flex-align-center'>
+            <button class='button-nostyle flex-align-center button'>
+              <image class='icon' src='/assets/images/icon-addtolist.png' />
+              <text>加入影单</text>
+            </button>
+            <button class='button-nostyle flex-align-center button' form-type='submit' open-type='share'>
+              <image class='icon' src='/assets/images/icon-share.png' />
+              <text>分享</text>
+            </button>
           </view>
         </view>
       </view>
     </view>
-    <!-- 概述 -->
-    <view class='brief-time'>
-      <text>{{details.durations[0]}} {{WxUtil.arr2str(details.genres," / ")}}
-      {{pubdates}} {{WxUtil.arr2str(details.countries, " / ")}}
-      {{details.directors[0].name}}(导演) / {{casts}}</text>
-    </view>
     <!-- 播放源 -->
-    <view class='play-source' wx:if='{{details.videos.length>0}}'>
+    <view class='block play-source' wx:if='{{details.videos.length>0}}'>
       <navigator url='/pages/pMovie/pages/sources/sources?id={{id}}'>
         <view class='source-container'>
           <view>
@@ -48,13 +51,13 @@
       </navigator>
     </view>
     <!-- 剧情简介 -->
-    <view class='brief-summary'>
-      <text class='subtitle'>{{details.title}}的剧情简介\n</text>
-      <text class='{{isFold && "summary"}}'>{{details.summary}}</text>
-      <view class='fold {{!isFold && "active"}}' bindtap='foldToggle'>{{isFold?"展开":"收起"}}</view>
+    <view class='block brief-summary'>
+      <text class='subtitle'>{{details.title || details.titleCn}}的剧情简介\n</text>
+      <text class='summary {{isFold && "isFold"}}'>{{details.summary || details.content}}</text>
+      <view wx:if='{{isFold}}' class='fold {{!isFold && "active"}}' bindtap='foldToggle'>展开</view>
     </view>
     <!-- 影人 -->
-    <view class='casts'>
+    <view class='block casts'>
       <text class='subtitle'>影人</text>
       <scroll-view scroll-x>
         <block wx:for='{{details.directors}}' wx:key='id'>
@@ -67,10 +70,10 @@
       </scroll-view>
     </view>
     <!-- 预告及剧照 -->
-    <view class='photos'>
+    <view class='block photos'>
       <text class='subtitle'>预告片 / 剧照</text>
       <scroll-view scroll-x>
-        <navigator wx:if='{{details.trailers&&details.trailers[0]}}' url='../trailers/trailers?id={{details.id}}&resource={{details.trailers[0].resource_url}}' class='trailer'>
+        <navigator class='trailer' wx:if='{{details.trailers&&details.trailers[0]}}' url='../trailers/trailers?id={{details.id}}&resource={{details.trailers[0].resource_url}}'>
           <image class='image' src='{{details.trailers[0].medium}}' />
           <view class='front'>
             <view class='icon'>
@@ -78,15 +81,13 @@
             </view>
           </view>
         </navigator>
-        <block wx:for='{{details.photos}}' wx:key='id'>
-          <view class='trailer' data-img='{{item.image}}' bindtap='onImagePre'>
-            <image class='image' src='{{item.image}}' />
-          </view>
-        </block>
+        <view class='trailer' wx:for='{{details.photos}}' wx:key='id' data-img='{{item.image}}' bindtap='onImagePre'>
+          <image class='image' src='{{item.image}}' />
+        </view>
       </scroll-view>
     </view>
     <!-- 短评 -->
-    <view class='comments'>
+    <view class='block comments'>
       <text class='subtitle'>短评({{comments_count}})</text>
       <block wx:for='{{comments}}' wx:key='id'>
         <view class='item-comment'>
@@ -97,11 +98,9 @@
               <template is='rating' data='{{rating:item.rating.value,max:5}}' />
             </view>
             <text class='date'>{{item.created_at}}</text>
-            <text>{{item.content}}</text>
+            <text class='comment-content'>{{item.content}}</text>
           </view>
         </view>
       </block>
     </view>
-  </scroll-view>
-
 </view>

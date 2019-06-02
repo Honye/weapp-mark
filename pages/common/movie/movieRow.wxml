@@ -3,15 +3,15 @@
 
 <template name="item-movie_row">
   <view class="item-movie_row padding-surround btn-bg">
-    <image class="item-img" src="{{images.large}}" mode='widthFix'></image>
+    <image class="item-img" src="{{images.large || img}}" mode='widthFix' lazy-load='{{true}}' />
     <view class="item-info">
-      <text>{{title}}</text>
-      <text class='subtext'>{{pubdates[0]}}</text>
-      <text class='subtext'>{{durations[0]}} - {{genres}}</text>
+      <text>{{title || name}}</text>
+      <text class='subtext'>{{pubdates[0] || realTime}}</text>
+      <text class='subtext'>{{durations[0]}} - {{genres || movieType}}</text>
       <view>
-        <view wx:if='{{rating.average>0}}'>
-          <template is='rating' data='{{rating:rating.average,max:10}}'></template>
-          <text class='subtext'>{{rating.average}}分(豆瓣)</text>
+        <view wx:if='{{rating.average>0 || rating>0}}'>
+          <template is='rating' data='{{rating:rating.average || rating,max:10}}'></template>
+          <text class='subtext'>{{rating.average || rating}}分(豆瓣)</text>
         </view>
         <text wx:else class='subtext'>暂无评分(豆瓣)</text>
       </view>
@@ -22,7 +22,7 @@
 <template name='item-movie_grid'>
   <view class='item-movie_grid btn-opacity'>
     <view class='item-img'>
-      <image src='{{images.large}}' />
+      <image src='{{images.large}}' lazy-load='{{true}}' />
     </view>
     <view class='item-title single-line'>{{title}}</view>
   </view>

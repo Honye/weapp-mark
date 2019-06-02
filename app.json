@@ -13,9 +13,9 @@
   ],
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#496069",
-    "navigationBarTitleText": "HONYE",
-    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "iMark",
+    "navigationBarTextStyle": "black",
     "backgroundColor": "#f7f7f7"
   },
   "tabBar": {
@@ -27,20 +27,20 @@
       {
         "pagePath": "pages/tabs/discovery/discovery",
         "text": "发现",
-        "iconPath": "assets/images/tab_discover_unchecked.png",
-        "selectedIconPath": "assets/images/tab_discover_checked.png"
+        "iconPath": "assets/images/tabbar/tabbar_discovery.png",
+        "selectedIconPath": "assets/images/tabbar/tabbar_discovery_selected.png"
       },
       {
         "pagePath": "pages/tabs/movies/movies",
-        "text": "我的电影",
-        "iconPath": "assets/images/tab_movies_unchecked.png",
-        "selectedIconPath": "assets/images/tab_movies_checked.png"
+        "text": "清单",
+        "iconPath": "assets/images/tabbar/tabbar_list.png",
+        "selectedIconPath": "assets/images/tabbar/tabbar_list_selected.png"
       },
       {
         "pagePath": "pages/tabs/index/index",
-        "text": "账号",
-        "iconPath": "assets/images/tab_usercenter_unchecked.png",
-        "selectedIconPath": "assets/images/tab_usercenter_checked.png"
+        "text": "我的",
+        "iconPath": "assets/images/tabbar/tabbar_mine.png",
+        "selectedIconPath": "assets/images/tabbar/tabbar_mine_selected.png"
       }
     ]
   },
@@ -73,5 +73,6 @@
         "pages/userinfo/userinfo"
       ]
     }
-  ]
+  ],
+  "sitemapLocation": "sitemap.json"
 }

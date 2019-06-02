@@ -4,14 +4,11 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 30rpx;
-  color: #496069;
-  border-bottom: 0.5px solid #ddd;
+  padding: 28rpx 30rpx;
+  color: #333;
+  font-size: 28rpx;
   background-color: #fff;
   box-sizing: border-box;
-}
-.row-cell:last-child {
-  border:none;
 }
 .row-cell .row-left,
 .row-cell .row-right {
@@ -20,11 +17,11 @@
   align-items: center;
 }
 .row-cell .row-icon {
-  width: 1.5em;
-  height: 1.5em;
-  margin-right: 1em;
+  width: 1.3em;
+  height: 1.3em;
+  margin-right: 0.5em;
 }
 .row-right .row-subtitle {
-  color: #aaa;
+  color: #999;
   margin-right: 0.5em;
 }

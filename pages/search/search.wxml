@@ -4,38 +4,46 @@
 <view class='container page-search'>
   <view>
     <view class="search-bar">
-      <view class="weui-search-bar__form">
-        <view class="weui-search-bar__box">
-          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-          <input type="text" class="weui-search-bar__input" 
-            placeholder="输入影名/演员" value="{{inputVal}}" 
-            focus bindinput="inputTyping" confirm-type='search'
-            bindconfirm='inputConfirm'
-          />
-          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-            <icon type="clear" size="14"></icon>
-          </view>
-        </view>
-      </view>
-      <view class='search-bar_cancle' bindtap='goBack'>取消</view>
+      <image class='icon' src='/assets/images/icon-search.png' mode='widthFix' />
+      <input type="text"
+        placeholder="输入影名/演员" value="{{inputVal}}" 
+        focus bindinput="inputTyping" confirm-type='search'
+        bindconfirm='inputConfirm'
+      />
+      <block wx:if="{{inputVal.length > 0}}">
+        <button class="button-nostyle" bindtap="clearInput">
+          <icon type="clear" size="14" />
+        </button>
+      </block>
     </view>
   </view>
   <view class='content'>
     <scroll-view scroll-y bindscrolltolower='loadMore'
       enable-back-to-top scroll-top='{{scrollTop}}' scroll-with-animation
     >
-      <view class='paragraph' wx:if='{{!result}}'>
-        <image src='/assets/images/movie_search_word_icon.png' mode='widthFix' />
-        <text space='nbsp' decode>&emsp;{{quote.content}}</text>
-        <text>---{{quote.source}}</text>
+      <view wx:if='{{!result}}' class='paragraph'>
+        <view wx:if="{{history && history.length}}" class='search-block'>
+          <view class='block-header'>
+            <text class='block-title'>最近搜索</text>
+            <image class='icon' src='/assets/images/icon-delete.png' bindtap="clearHistory" />
+          </view>
+          <view class='block-body'>
+            <button wx:for='{{history}}' wx:key='index' class='button--round' data-keywords='{{item}}' bindtap='quickSearch'>{{item}}</button>
+          </view>
+        </view>
+        <view class='search-block'>
+          <view class='block-header'>
+            <text class='block-title'>热门搜索</text>
+          </view>
+          <view class='block-body'>
+            <button wx:for='{{hot}}' wx:key='index' class='button--round' data-keywords='{{item}}' bindtap='quickSearch'>{{item}}</button>
+          </view>
+        </view>
       </view>
       <view wx:elif='{{result.length>0}}'>
         <block wx:for='{{result}}' wx:key='id'>
-          <navigator url='/pages/pMovie/pages/details/movieDetails?title={{item.title}}&id={{item.id}}'>
-            <template 
-              is="item-movie_row" 
-              data="{{...item}}">
-            </template>
+          <navigator url='/pages/pMovie/pages/details/movieDetails?title={{item.title}}&id={{item.id}}&origin=mtime'>
+            <template is="item-movie_row" data="{{...item}}" />
           </navigator>
         </block>
       </view>

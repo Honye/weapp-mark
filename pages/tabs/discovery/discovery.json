@@ -1,4 +1,5 @@
 {
+  "backgroundColor": "#ffffff",
   "usingComponents": {
     "comp-preImg": "/components/pre-image/PreImage"
   }

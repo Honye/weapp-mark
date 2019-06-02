@@ -3,11 +3,17 @@
 <import src='/pages/common/loading/loading' />
 
 <view class='container page-theatre'>
-  <view class='navbar'>
+  <view class='tabs'>
+    <view wx:for='{{tabs}}' wx:key='index' class='tabs-item{{currentNav==index?" is-active":""}}'
+      bindtap='changeSwiper' data-nav='{{index}}'>
+      <view class='tabs-item__content'>{{item}}</view>
+    </view>
+  </view>
+  <!-- <view class='navbar'>
     <view class='{{currentNav==0?"active":""}}' bindtap='changeSwiper' data-nav='{{0}}'>热映</view>
     <view class='divider'></view>
     <view class='{{currentNav==1?"active":""}}' bindtap='changeSwiper' data-nav='{{1}}'>待映</view>
-  </view>
+  </view> -->
   <swiper class='swiper' bindchange='onSwiperChange' current='{{currentNav}}'>
     <swiper-item>
       <scroll-view class='content-container' scroll-y bindscrolltolower='onScrolTolLower' data-nav='theater' enable-back-to-top>

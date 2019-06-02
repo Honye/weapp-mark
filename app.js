@@ -16,6 +16,13 @@ wx.cloud.init({
     env: 'dv-963c46',
 })
 
+wx.customModal = function(args) {
+  wx.showModal({
+    confirmColor: '#FFE200',
+    ...args,
+  })
+}
+
 App({
 
     globalData: {

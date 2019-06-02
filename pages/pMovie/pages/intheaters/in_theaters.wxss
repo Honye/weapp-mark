@@ -10,6 +10,7 @@ page {
   display: flex;
   flex-direction: column;
 }
+
 .page-theatre .navbar {
   position: absolute;
   width: 100%;
@@ -48,9 +49,9 @@ page {
   height: 100%;
 }
 .page-theatre .swiper .content-container .boss {
-  height: 3em;
+  height: 74rpx;
   text-align: center;
-  color: #225BDB;
+  color: #999;
   display: flex;
   justify-content: center;
   align-items: center;

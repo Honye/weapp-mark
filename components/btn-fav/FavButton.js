@@ -18,11 +18,13 @@ Component({
     },
     iconNormal: {
       type: String,
-      value: '/assets/images/daily_card_like_unchecked.png'
+      // value: '/assets/images/daily_card_like_unchecked.png'
+      value: '/assets/images/icon-unlike.png'
     },
     iconChecked: {
       type: String,
-      value: '/assets/images/daily_card_like_checked.png'
+      // value: '/assets/images/daily_card_like_checked.png'
+      value: '/assets/images/icon-liked.png'
     },
   },
 

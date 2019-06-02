@@ -1,6 +1,6 @@
 // 个人中心
 
-//获取应用实例
+// 获取应用实例
 var app = getApp()
 
 Page({
@@ -10,13 +10,21 @@ Page({
     userInfo: {}
   },
 
-  /**
-   * 进入个人资料
-   */
-  bindViewTap: function() {
+  onLoad() {
+    // 调用应用实例的方法获取全局数据
+    app.getUserInfo().then(userInfo => {
+      // 更新数据
+      this.setData({
+        userInfo
+      })
+    })
+  },
+
+  /** 进入个人资料 */
+  bindViewTap() {
     const that = this;
     const { version, config } = app.globalData;
-    if(app.globalData.userInfo) {
+    if(true || app.globalData.userInfo) {
       if (version.versionCode > config.newestVersion) return;
       wx.navigateTo({
         url: '/pages/pUser/pages/userinfo/userinfo'
@@ -44,45 +52,15 @@ Page({
     }
   },
 
-  onLoad: function () {
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo().then(userInfo => {
-      //更新数据
-      this.setData({
-        userInfo
-      })
-    })
-  },
-
-  /**
-   * 去设置
-   */
-  toSetting: function() {
+  /** 去设置 */
+  toSetting() {
     wx.navigateTo({
       url: '/pages/setting/setting',
     })
   },
 
-  /**
-   * 退出登录
-   */
-  logout: function() {
-    wx.showModal({
-      content: '确定要退出？',
-      success: (res) => {
-        res.confirm && app.logout(() => {
-          this.setData({
-            userInfo: {}
-          })
-        })
-      }
-    })
-  },
-
-  /**
-   * 关于
-   */
-  toAbout: function() {
+  /** 关于 */
+  toAbout() {
     const { version, config } = app.globalData;
     if (version.versionCode <= config.newestVersion)
     wx.navigateTo({
@@ -90,13 +68,11 @@ Page({
     })
   },
 
-  /**
-   * 转发
-   */
-  onShareAppMessage: function(opt) {
+  /** 转发 */
+  onShareAppMessage(opt) {
     return {
       title: "好用得不得了",
-      path: "/pages/discovery/discovery",
+      path: "/pages/tabs/discovery/discovery",
       imageUrl: "http://xpic.588ku.com/figure/00/00/00/08/56/5355a15b1f68dfd.jpg!/fw/800",
       success: res => {
         console.log("成功", res);
@@ -107,44 +83,25 @@ Page({
     };
   },
 
-  /**
-   * 我喜欢的影单
-   */
-  toFavMovieList: function() {
-    const { version, config } = app.globalData;
-    if(version.versionCode <= config.newestVersion)
+  /** 我喜欢的影单 */
+  toFavMovieList() {
     wx.navigateTo({
       url: '/pages/pUser/pages/favMovieList/index',
     })
   },
 
-  /**
-   * 我喜欢的卡片
-   */
-  toFavCards: function() {
-    const { version, config } = app.globalData;
-    if (version.versionCode <= config.newestVersion)
+  /** 我喜欢的卡片 */
+  toFavCards() {
     wx.navigateTo({
       url: '/pages/pUser/pages/favCards/index',
     })
   },
 
-  /**
-   * 作出评价
-   */
+  /** 作出评价 */
   toEvalute() {
     wx.navigateTo({
       url: '/pages/pUser/pages/evaluate/evaluate',
     })
   },
-
-  /**
-   * 客服按钮监听
-   */
-  onContactTap() {
-    wx.setClipboardData({
-      data: '浪里个儿浪 浪里个儿浪 我要调戏你了',
-    })
-  }
 
 })

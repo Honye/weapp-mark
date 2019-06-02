@@ -1,0 +1,13 @@
+{
+  "desc": "发现好电影，Mark 电影，by Honye",
+  "rules": [
+    {
+      "action": "disallow",
+      "page": "pages/splash/splash"
+    },
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
+}

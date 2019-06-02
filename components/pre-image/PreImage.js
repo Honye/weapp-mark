@@ -1,5 +1,6 @@
 // components/pre-image/PreImage.js
 Component({
+  externalClasses: 'extra-class',
   /**
    * 组件的属性列表
    */

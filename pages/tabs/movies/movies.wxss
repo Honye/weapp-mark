@@ -3,23 +3,41 @@
 @import '/pages/common/dropmenu/dropmenu';
 
 .page-movie {
-  padding-top: 3em;
+  padding-top: 74rpx;
   height: 100%;
+}
+.page-movie .tabs {
+  /* border-bottom: 0.5px solid #eee; */
+}
+.page-movie .tabs::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: #eee;
+  transform: scaleY(0.5);
 }
 
 .page-movie .topbar {
-  position: fixed;
+  /* position: fixed; */
+  position: sticky;
   width: 100%;
   height: 3em;
-  top: 0;
+  top: calc(74rpx - 3em);
   z-index: 12;
   background-color: #fff;
-  border-bottom: 0.5px solid #ccc;
   display: flex;
   align-items: center;
   padding: 0 30rpx;
   box-sizing: border-box;
   justify-content: space-between;
+  transition: top .3s;
+}
+.page-movie .topbar.sticky {
+  top: 74rpx;
 }
 .page-movie .topbar .layout > image {
   width: 1.5em;
@@ -27,8 +45,26 @@
 }
 .layout,
 .sort {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  font-size: 22rpx;
+  color: #ccc;
+}
+.sort {
+  line-height: 32rpx;
+  box-sizing: content-box;
+  border: 2rpx solid #ccc;
+  border-radius: 18rpx;
+  padding: 0 10rpx;
+}
+.sort + .sort {
+  margin-left: 20rpx;
+}
+.sort .arrow-down {
+  margin-left: 8rpx;
+  width: 11rpx;
+  height: 11rpx;
+  border-color: #ccc;
 }
 .sort>image {
   width: .8em;

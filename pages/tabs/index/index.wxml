@@ -2,39 +2,48 @@
 <import src='/pages/common/cell/cell' />
 
 <view class="container page-user">
-  <view  bindtap="bindViewTap" class="userinfo btn-bg">
-    <view class="cell-left">
-      <view class="userinfo-avatar">
-        <image
-          wx:if='{{userInfo.avatarUrl}}'
-          src="{{userInfo.avatarUrl}}" />
+  <view class='page-header'>
+    <view class='bg'></view>
+    <view class="userinfo">
+      <view class="cell-left">
+        <view class="userinfo-avatar btn-opacity" bindtap="bindViewTap">
+          <open-data type='userAvatarUrl' />
+        </view>
+        <view class='userinfo__right'>
+          <open-data class="userinfo-nickname" type="userNickName" lang="zh_CN"></open-data>
+          <view class='userinfo__extra'>这里什么都没有，快去标记啦</view>
+        </view>
       </view>
-      <open-data class="userinfo-nickname" type="userNickName" lang="zh_CN"></open-data>
+      <view class='actions'>
+        <view class='actions-item btn-opacity' bindtap='toFavMovieList'>
+          <image class='actions-item__icon' src='/assets/images/mine/icon-movielist.png' mode='aspectFit'></image>
+          <view class='actions-item__name'>影单</view>
+        </view>
+        <view class='actions-item btn-opacity' bindtap='toFavCards'>
+          <image class='actions-item__icon' src='/assets/images/mine/icon-card.png' mode='aspectFit'></image>
+          <view class='actions-item__name'>卡片</view>
+        </view>
+        <view class='actions-item btn-opacity'>
+          <image class='actions-item__icon' src='/assets/images/mine/icon-achievement.png' mode='aspectFit'></image>
+          <view class='actions-item__name'>成就</view>
+        </view>
+      </view>
     </view>
-    <view class="arrow-right"> </view>
-  </view>
-
-  <view class='row-list'>
-    <template is='row-cell' data='{{iconPath:"/assets/images/user_favorite_singles_icon.png",title:"我喜欢的影单",bindTap:"toFavMovieList"}}' />
-    <template is='row-cell' data='{{iconPath:"/assets/images/user_favorite_cards_icon.png",title:"我喜欢的卡片",bindTap:"toFavCards"}}' />
   </view>
 
   <view class='row-list'>
     <button class='contactBtn' open-type='share' hover-class='none'>
-      <template is='row-cell' data='{{iconPath:"/assets/images/user_share_icon.png",title:"分享给朋友"}}' />
+      <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-message.png",title:"消息"}}' />
     </button>
-    <template is='row-cell' data='{{iconPath:"/assets/images/evaluate_icon.png",title:"给我评分吧",bindTap:"toEvalute"}}' />
-    <button class='contactBtn' open-type='contact' hover-class='none'
-      show-message-card bindtap='onContactTap'
-    >
-      <template is='row-cell' data='{{iconPath:"/assets/images/feedback_icon.png",title:"客服反馈"}}' />
+    <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-record.png",title:"影视档案",bindTap:"toEvalute"}}' />
+    <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-setting.png",title:"设置",bindTap:"toSetting"}}' />
+    <button class='contactBtn' open-type='contact' hover-class='none'>
+      <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-contact.png",title:"在线客服"}}' />
     </button>
-    <template is='row-cell' data='{{iconPath:"/assets/images/setting_icon.png",title:"设置",bindTap:"toSetting"}}' />
-    <template is='row-cell' data='{{iconPath:"/assets/images/about_icon.png",title:"关于",subtitle:"v"+version.versionName,bindTap:"toAbout"}}' />
-  </view>
-  
-  <view class='btn-bg log-out' bindtap='logout'>
-    <text>退出登录</text>
+    <button class='contactBtn' open-type='feedback' hover-class='none'>
+      <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-feedback.png",title:"意见反馈"}}' />
+    </button>
+    <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-about.png",title:"关于",subtitle:"v"+version.versionName,bindTap:"toAbout"}}' />
   </view>
 
 </view>

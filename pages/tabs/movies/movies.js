@@ -7,21 +7,22 @@ let pageNo = 0;
 const pageSize = 18;
 Page({
 
-  /**
-   * 页面的初始数据
-   */
+  scrollTop: 0,
+
+  /** 页面的初始数据 */
   data: {
+    tabs: ['想看', '已看', '在看'],
+    currentNav: 0,
     loading: true,
     loadmore: true,
     movies: [],
     isGrid: app.globalData.setting.wantSee?app.globalData.setting.wantSee.layout === 'grid':false,
-    sortId: app.globalData.setting.wantSee ? app.globalData.setting.wantSee.sort : 'addTime'
+    sortId: app.globalData.setting.wantSee ? app.globalData.setting.wantSee.sort : 'addTime',
+    sticky: true,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  /** 生命周期函数--监听页面加载 */
+  onLoad(options) {
     this.getMovies()
     this.setData({
       isGrid: app.globalData.setting.wantSee ? app.globalData.setting.wantSee.layout === 'grid' : false,
@@ -29,25 +30,19 @@ Page({
     })
   },
 
-  /**
-   * 页面隐藏
-   */
-  onHide: function(options) {
+  /** 页面隐藏 */
+  onHide(options) {
     this.dropMenu && this.dropMenu();
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+  /** 页面相关事件处理函数--监听用户下拉动作 */
+  onPullDownRefresh() {
     pageNo = 0;
     this.getMovies()
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+  /** 页面上拉触底事件的处理函数 */
+  onReachBottom() {
     if(this.data.loadmore) {
       pageNo++;
       this.setData({
@@ -57,9 +52,7 @@ Page({
     }
   },
 
-  /**
-   * 正在上映的电影
-   */
+  /** 正在上映的电影 */
   getMovies: function() {
     let that = this;
     Douban.get(
@@ -82,7 +75,18 @@ Page({
     })
   },
 
-  bindViewTap: function(event) {
+  /** 改变 Tab */
+  changeTab(e) {
+    const { nav } = e.currentTarget.dataset;
+    const { currentNav } = this.data;
+    if (currentNav != nav) {
+      this.setData({
+        currentNav: nav
+      });
+    }
+  },
+
+  bindViewTap(event) {
     const { version, config } = app.globalData;
     if(version.versionCode <= config.newestVersion) {
       const { id, title } = event.currentTarget.dataset;
@@ -92,10 +96,8 @@ Page({
     }
   },
 
-  /**
-   * 改变布局方式
-   */
-  changeLayout: function() {
+  /** 改变布局方式 */
+  changeLayout() {
     const { isGrid } = this.data;
     let { wantSee } = app.globalData.setting;
     wantSee = { ...wantSee, layout: isGrid ? 'linear' : 'grid'}
@@ -111,9 +113,7 @@ Page({
     });
   },
 
-  /**
-   * 改变排序方式
-   */
+  /** 改变排序方式 */
   changeSort() {
     const that = this;
     that.dropMenu = that.dropMenu ? that.dropMenu() : $markDropmenu.show({
@@ -143,5 +143,19 @@ Page({
         that.dropMenu = null;
       }
     })
-  }
+  },
+
+  onPageScroll(e) {
+    const { scrollTop } = e
+    if (scrollTop < this.scrollTop && !this.data.sticky) {
+      this.setData({
+        sticky: true,
+      })
+    } else if (scrollTop > this.scrollTop && this.data.sticky) {
+      this.setData({
+        sticky: false,
+      })
+    }
+    this.scrollTop = scrollTop
+  },
 })

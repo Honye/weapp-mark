@@ -5,51 +5,40 @@ let pageNo1 = 0;
 let pageNo2 = 0;
 Page({
 
-  /**
-   * 页面的初始数据
-   */
+  /** 页面的初始数据 */
   data: {
+    tabs: ['热映', '待映'],
+    currentNav: 0,
     loading: true,
     loadmore1: true,
     loadmore2: true,
     movies: [],
     commingMovies: [],
-    currentNav: 0
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  /** 生命周期函数--监听页面加载 */
+  onLoad(options) {
     this.getInTheater();
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+  /** 生命周期函数--监听页面卸载 */
+  onUnload() {
     pageNo1 = 0;
     pageNo2 = 0;
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+  /** 页面相关事件处理函数--监听用户下拉动作 */
+  onPullDownRefresh () {
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+  /** 页面上拉触底事件的处理函数 */
+  onReachBottom() {
 
   },
 
-  /**
-   * 影院热映
-   */
-  getInTheater: function () {
+  /** 影院热映 */
+  getInTheater() {
     const that = this;
     Douban.get(
         Douban.IN_THEATERS,
@@ -77,10 +66,9 @@ Page({
       }
     )
   },
-  /**
-   * Swiper页发生变化
-   */
-  onSwiperChange: function (e) {
+
+  /** Swiper页发生变化 */
+  onSwiperChange(e) {
     const { current } = e.detail;
     this.setData({
       currentNav: current
@@ -89,10 +77,9 @@ Page({
       this.getComming();
     }
   },
-  /**
-   * 点击改变Swiper
-   */
-  changeSwiper: function (e) {
+
+  /** 点击改变Swiper */
+  changeSwiper(e) {
     const { nav } = e.currentTarget.dataset;
     const { currentNav } = this.data;
     if (currentNav != nav) {
@@ -101,19 +88,17 @@ Page({
       });
     }
   },
-  /**
-   * 进入详情
-   */
-  toDetail: function (event) {
+
+  /** 进入详情 */
+  toDetail(event) {
     const { id, title } = event.currentTarget.dataset;
     wx.navigateTo({
       url: `/pages/pMovie/pages/details/movieDetails?title=${title}&id=${id}`,
     })
   },
-  /**
-   * 即将上映
-   */
-  getComming: function () {
+
+  /** 即将上映 */
+  getComming() {
     const that = this;
     Douban.get(
         Douban.COMMING,
@@ -154,5 +139,6 @@ Page({
       pageNo1++;
       that.getInTheater();
     }
-  }
+  },
+
 })

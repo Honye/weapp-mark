@@ -1,1 +1,5 @@
-{}
+{
+  "navigationBarBackgroundColor": "#ffe200",
+  "backgroundColorTop": "#ffe200",
+  "backgroundColorBottom": "#ffffff"
+}

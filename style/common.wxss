@@ -3,10 +3,15 @@
 page {
   background-color: #f7f7f7;
   min-height: 100%;
+  /* font-size: 28rpx; */
 }
 
 view[hidden] {
   display: none !important;
+}
+
+image {
+  height: auto;
 }
 
 .container {
@@ -17,13 +22,46 @@ view[hidden] {
   color: #3f3f3f;
 }
 
-.arrow-right {
-  width: 20rpx;
-  height: 20rpx;
-  border-right: 1px solid #aaa;
-  border-top: 1px solid #aaa;
-  transform: rotate(45deg);
+.arrow-right,
+.arrow-down {
+  display: inline-block;
+  width: 18rpx;
+  height: 18rpx;
+  border-right: 1rpx solid #c7c7c7;
+  border-top: 1rpx solid #c7c7c7;
   text-align: end;
+}
+.arrow-right {
+  transform: rotate(45deg);
+}
+.arrow-down {
+  transform: rotate(135deg);
+  /* margin-top: -35%; */
+  margin-top: -6rpx;
+}
+.flex-center-v {
+  display: flex;
+  align-items: center;
+}
+
+/*============ 按钮 ===========*/
+/* 无默认样式按钮 */
+.button-nostyle {
+  margin: initial;
+  padding: initial;
+  font-size: initial;
+  line-height: initial;
+  color: initial;
+  background: initial;
+  overflow: initial;
+  text-align: initial;
+  text-decoration: initial;
+  border-radius: initial;
+  box-sizing: initial;
+  -webkit-tap-highlight-color: initial;
+}
+.button-nostyle::after {
+    content: initial;
 }
 
 .hover-opacity,
@@ -45,4 +83,47 @@ view[hidden] {
   width: 0;
   height: 0;
   color: transparent;
+}
+
+/********** Tabs **************/
+.tabs {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  white-space: nowrap;
+  padding: 16rpx 0;
+  background: #fff;
+}
+.tabs .tabs-item {
+  display: inline-block;
+  flex: 1;
+  text-align: center;
+}
+.tabs-item .tabs-item__content {
+  display: inline-block;
+  font-size: 36rpx;
+  line-height: 1;
+  color: #999;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+  transition: all .3s;
+}
+.tabs-item.is-active .tabs-item__content {
+  color: #333;
+  font-size: 42rpx;
+}
+.tabs-item.is-active .tabs-item__content::before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -1;
+  height: 8rpx;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #FFE200;
 }

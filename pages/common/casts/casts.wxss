@@ -6,20 +6,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 156rpx;
+  width: 210rpx;
   overflow: hidden;
 }
 .casts-item .item-container>.avatar,
 .casts-item .item-container .item-all {
   width: 100%;
-  height: 218.4rpx;
+  height: 280rpx;
+  border-radius: 8rpx;
 }
 .casts-item .item-container>view.item-casts-name {
   display: flex;
   flex-direction: column;
   width: 100%;
   overflow: hidden;
-  font-size: .8em;
+  font-size: 22rpx;
+  color: #999;
 }
 .casts-item .item-container>view.item-casts-name text {
   width: 100%;
@@ -27,20 +29,21 @@
 }
 .casts-item .item-container>view.item-casts-name text:last-child {
   color: #7C858A;
-  font-size: .9em;
+  font-size: 18rpx;
 }
 
 .item-all {
-  background-color: #F2F1F7;
-  width: 156rpx;
-  height: 218.4rpx;
+  background: #F2F1F7;
+  width: 210rpx;
+  height: 280rpx;
+  border-radius: 8rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: .8em;
   line-height: 1.8em;
-  color: #7C858A;
+  color: #999;
 }
 .item-all> text:last-child {
   border-top: .5px solid #ccc;

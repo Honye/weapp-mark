@@ -33,7 +33,7 @@
     <block wx:for='{{thirdAuthor}}' wx:key='id'>
       <view class='row-cell'>
         <text>{{item.title}}</text>
-        <switch color='#4CD864' checked='{{item.isAuthor}}' />
+        <switch color='#ffe200' checked='{{item.isAuthor}}' />
       </view>
     </block>
   </view>

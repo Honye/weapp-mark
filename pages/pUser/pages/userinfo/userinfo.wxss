@@ -1,4 +1,3 @@
-/* pages/userinfo/userinfo.wxss */
 @import '/pages/common/actionsheet/actionsheet';
 
 .page-userinfo .top {
@@ -14,7 +13,7 @@
   align-items: center;
   padding: 20rpx 25rpx;
   background-color: #fff;
-  color: #496069;
+  color: #333;
 }
 .row-cell:not(:last-child) {
   border-bottom: .5px solid #ddd;

@@ -9,14 +9,14 @@
   display: inline-block;
 }
 .com-rating .rating-on {
-  color: black;
+  color: #ffe200;
   position: absolute;
   overflow: hidden;
   padding: 0;
   margin: 0;
 }
 .com-rating .rating-off {
-  color: #DBDBDB;
+  color: #ccc;
   padding: 0;
   margin: 0;
 }

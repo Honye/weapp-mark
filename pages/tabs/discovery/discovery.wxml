@@ -6,7 +6,7 @@
   <navigator url='/pages/search/search' hover-class='none'>
     <view class='search-bar'>
       <view class='search-radius btn-opacity'>
-        <icon type='search' size='14'></icon>
+        <image class='icon' src='/assets/images/icon-search.png' mode='aspectFit' />
         <text>搜索</text>
       </view>
     </view>
@@ -14,38 +14,30 @@
   
   <view class='content'>
     <scroll-view scroll-y enable-back-to-top>
-      <swiper class='banner'
+      <view class='banner-wrap'>
+      <view class='swiper-bg {{swiperHide && "transparent"}}' style='background:url({{banners[cardCur].image}})' />
+      <swiper class='banner card-swiper'
         indicator-dots
         autoplay
         indicator-active-color="#fff"
-        circular>
-        <block wx:for="{{banners}}" wx:key="id">
-          <swiper-item>
+        circular
+        bindtransition="hideSwiperBg"
+        bindanimationfinish="showSwiperBg"
+        bindchange="cardSwiper">
+        <swiper-item wx:for="{{banners}}" wx:key="id" class="{{cardCur==index?'cur':''}}">
+          <view class='swiper-item'>
             <image data-index='{{index}}' src="{{item.image}}" class="slide-image"  bindtap='onBannerTap'/>
-          </swiper-item>
-        </block>
+          </view>
+        </swiper-item>
       </swiper>
+      </view>
 
       <view class="kind-container">
-        <navigator class='item-container' hover-class='hover-bg'
-          url='/pages/pArticle/pages/classification/index'
+        <navigator wx:for='{{circles}}' wx:key='index' class='item-container' hover-class='hover-bg'
+          url='{{item.url}}'
         >
           <template is="circle" 
-            data="{{imgUrl:'/assets/images/discover_classify_group_icon.png',title:'分类查找'}}"
-          />
-        </navigator>
-        <navigator class='item-container' hover-class='hover-bg'
-          url='/pages/pMovie/pages/cards/card'
-        >
-          <template is="circle" 
-            data="{{date:nowDay,title:'每日电影卡片'}}"
-          />
-        </navigator>
-        <navigator class='item-container' hover-class='hover-bg'
-          url='/pages/pMovie/pages/intheaters/in_theaters'
-        >
-          <template is="circle" 
-            data="{{imgUrl:'/assets/images/discover_classify_cinema_icon.png',title:'影院热映'}}"
+            data="{{ imgUrl: item.image, title: item.title }}"
           />
         </navigator>
       </view>

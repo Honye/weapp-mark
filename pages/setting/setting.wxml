@@ -11,7 +11,7 @@
       <text>接受消息提醒</text>
     </view>
     <view class='row-right'>
-      <switch color='#69C942' bindchange='switchNotice' checked='{{notice}}'></switch>
+      <switch color='#ffe200' bindchange='switchNotice' checked='{{notice}}'></switch>
     </view>
   </view>
   <view class='tips'>

@@ -5,13 +5,29 @@
 
 <template is='temp-dropmenu' data='{{...$mark.dropMenu}}' />
 <view class='container page-movie'>
-  <view class='topbar'>
-    <view class='layout btn-opacity' bindtap='changeLayout'>
-      <image src='{{isGrid?"/assets/images/list_mode_icon.png":"/assets/images/gird_mode_icon.png"}}' mode='widthFix' />
+  <!-- Tabs -->
+  <view class='tabs'>
+    <view wx:for='{{tabs}}' wx:key='index' class='tabs-item{{currentNav==index?" is-active":""}}'
+      bindtap='changeTab' data-nav='{{index}}'>
+      <view class='tabs-item__content'>{{item}}</view>
     </view>
-    <view class='sort btn-opacity' bindtap='changeSort'>
-      <text>排序</text>
-      <image src='/assets/images/movie_sort_icon.png' mode='widthFix' />
+  </view>
+  <view class='topbar {{sticky && "sticky"}}'>
+    <view class='layout btn-opacity' bindtap='changeLayout'>
+      <!-- <image src='{{isGrid?"/assets/images/list_mode_icon.png":"/assets/images/gird_mode_icon.png"}}' mode='widthFix' /> -->
+      <text>共6部，4部可播放</text>
+    </view>
+    <view>
+      <view class='sort btn-opacity' bindtap='changeSort'>
+        <text>排序</text>
+        <!-- <image src='/assets/images/movie_sort_icon.png' mode='widthFix' /> -->
+        <view class='arrow-down' />
+      </view>
+      <view class='sort btn-opacity' bindtap='changeSort'>
+        <text>排序</text>
+        <!-- <image src='/assets/images/movie_sort_icon.png' mode='widthFix' /> -->
+        <view class='arrow-down' />
+      </view>
     </view>
   </view>
 

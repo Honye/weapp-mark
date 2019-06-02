@@ -1,7 +1,7 @@
 
 .dropdown-menu-backdrop {
     position: fixed;
-    top: 3em;
+    top: calc(74rpx + 3em);
     left: 0;
     z-index: 11;
     width: 100%;
