@@ -1,6 +1,6 @@
 # Mark
 
-[![Honye](https://img.shields.io/badge/Honye-红叶-red.svg)](https://hongye567.github.io/)  [![license](https://img.shields.io/github/license/hongye567/weapp-mark.svg)](https://github.com/Hongye567/weapp-mark/blob/master/LICENSE)
+[![Honye](https://img.shields.io/badge/Honye-红叶-red.svg)](https://honye.github.io/)  [![license](https://img.shields.io/github/license/hongye567/weapp-mark.svg)](https://github.com/Honye/weapp-mark/blob/master/LICENSE)
 
 仿 Mark 应用页面的微信小程序。
 
@@ -9,9 +9,9 @@
 </p>
 
 
-作为学习项目一步一步走来，我会记录下我是如何从零完成此小程序的，以及途中遇到的所有问题，以后不定期更新，尽量做到更好，如果你有什么建议也请告诉我（issues）。项目中自己有封装一些组件，可在项目结构查看。
+作为学习项目一步一步走来，我会记录下我是如何从零完成此小程序的，以及途中遇到的所有问题，以后不定期更新，尽量做到更好，如果你有什么建议也请告诉我（[issues](https://github.com/Honye/weapp-mark/issues)）。项目中自己有封装一些组件，可在项目结构查看。
 
-影视数据全部由[豆瓣](https://developers.douban.com/) API 提供。小程序个人开发功能限制太多，无法完全上线。如若喜欢可以下载原生应用 [Mark](http://a.app.qq.com/o/simple.jsp?pkgname=com.intlime.mark&fromcase=40002) 体验全部功能。
+~~影视数据全部由[豆瓣](https://developers.douban.com/) API 提供。~~目前豆瓣搜索接口已经没有免费的可以使用了，我改用了时光网的接口。小程序个人开发功能限制太多，无法完全上线。如若喜欢可以下载原生应用 [Mark](http://a.app.qq.com/o/simple.jsp?pkgname=com.intlime.mark&fromcase=40002) 体验全部功能。
 
 ## Branches
 

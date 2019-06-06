@@ -28,7 +28,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options)
     wx.getSystemInfo({
       success: (res) => {
         this.setData({
@@ -36,8 +35,9 @@ Page({
         })
       },
     })
+    const title = decodeURIComponent(options.title)
     wx.setNavigationBarTitle({
-      title: options.title || '详情',
+      title: title || '详情',
     })
     const newData = {
       id: options.id,
@@ -148,6 +148,9 @@ Page({
   },
 
   onShareAppMessage() {
-    
+    const { details } = this.data
+    return {
+      title: details.title || details.titleCn,
+    }
   },
 })

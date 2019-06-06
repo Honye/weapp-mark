@@ -18,8 +18,8 @@
           </view>
           <view class='rating'>
             <view>
-              <template is='rating' data='{{rating:details.rating.average || details.rating,max:10}}' />
-              <text wx:if='{{details.rating}}'>{{details.rating.average || details.rating}}（{{origin.name}}评分）</text>
+              <template is='rating' data='{{rating: origin.key === "douban" ? details.rating.average : details.rating,max:10}}' />
+              <text wx:if='{{details.rating}}'>{{origin.key === 'douban' ? details.rating.average : details.rating}}（{{origin.name}}评分）</text>
             </view>
           </view>
           <view class='flex-align-center'>

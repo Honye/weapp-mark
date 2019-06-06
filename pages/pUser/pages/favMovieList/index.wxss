@@ -1,5 +1,0 @@
-/* pages/favMovieList/index.wxss */
-
-.page-favlist {
-  padding: 10rpx;
-}
