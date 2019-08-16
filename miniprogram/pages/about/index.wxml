@@ -9,14 +9,14 @@
     />
   </view>
 
-  <view class='blogger'>
+  <!-- <view class='blogger'>
     <block wx:for='{{datas.labels}}' wx:key='index'>
       <view class='row-cell'>
         <text>{{item.label}}：</text>
         <text>{{item.value}}</text>
       </view>
     </block>
-  </view>
+  </view> -->
 
   <view class='advert'>
     <view>此小程序模仿于原生应用“Mark”，仅用于学习，更多功能请下载原生应用体验。</view>

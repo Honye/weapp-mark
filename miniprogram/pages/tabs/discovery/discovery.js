@@ -1,5 +1,4 @@
 // discovery
-import { Honye } from '../../../utils/apis.js'
 import Bing from '../../common/bing/bing.js'
 
 var app = getApp()
@@ -15,7 +14,7 @@ Page({
     ],
     cardCur: 0,
     swiperHide: false,
-    published: false,
+    published: true,
     remoted: false,
     banners: [],
     articles: [],
@@ -36,7 +35,7 @@ Page({
       },
     })
     this.getData()
-    this.getRemoteConfig()
+    // this.getRemoteConfig()
   },
 
   /**
@@ -50,13 +49,8 @@ Page({
   /** 获取轮播数据 */
   getBanners() {
     db.collection('banners').orderBy('id', 'desc').limit(4).get().then( ({ data }) => {
-      const banners = [
-        {image:'https://image.freepik.com/free-photo/birthday-confetti-with-frame_23-2148124415.jpg'},
-        {image:'https://image.freepik.com/free-photo/easter-egg-festival_1150-8073.jpg'},
-        {image:'https://image.freepik.com/free-photo/stroke-background-bright-blue-paint_64049-134.jpg'},
-      ]
       this.setData({
-        banners: banners || data,
+        banners: data,
       })
     })
   },

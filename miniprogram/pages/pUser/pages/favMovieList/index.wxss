@@ -2,6 +2,7 @@
 
 .list-container {
   padding: 10rpx;
+  padding-top: 84rpx;
 }
 .empty-view {
   min-height: 100vh;

@@ -179,6 +179,23 @@ export const mtime = {
   getMovieDetail(params) {
     return mRequest('get', '/movie/detail.api', params)
   },
+  /**
+   * 影片演职员表
+   * @param {Object} params 
+   * @param {Number} params.movieId 影片ID
+   */
+  getMovieCredits(params) {
+    return mRequest('get', '/Movie/MovieCreditsWithTypes.api', params)
+  },
+  /**
+   * 短评
+   * @param {Object} params 
+   * @param {Number} params.movieId 影片ID
+   * @param {Number} params.pageIndex 页码，从1起步
+   */
+  getMovieComments(params) {
+    return mRequest('get', '/Showtime/MovieComments.api', params)
+  },
 }
 
 export default {

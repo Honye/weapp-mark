@@ -4,6 +4,8 @@ import wxCloud from '../../../../utils/wxCloud'
 Page({
 
     data: {
+        tabs: ['我的', '喜欢'],
+        currentNav: 0,
         list: null,
     },
 
@@ -34,5 +36,16 @@ Page({
                 })
             })
         }
-    }
+    },
+
+    /** 改变 Tab */
+    changeTab(e) {
+        const { nav } = e.currentTarget.dataset;
+        const { currentNav } = this.data;
+        if (currentNav != nav) {
+            this.setData({
+                currentNav: nav
+            });
+        }
+    },
 })

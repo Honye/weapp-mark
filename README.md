@@ -11,13 +11,13 @@
 
 作为学习项目一步一步走来，我会记录下我是如何从零完成此小程序的，以及途中遇到的所有问题，以后不定期更新，尽量做到更好，如果你有什么建议也请告诉我（[issues](https://github.com/Honye/weapp-mark/issues)）。项目中自己有封装一些组件，可在项目结构查看。
 
-~~影视数据全部由[豆瓣](https://developers.douban.com/) API 提供。~~目前豆瓣搜索接口已经没有免费的可以使用了，我改用了时光网的接口。小程序个人开发功能限制太多，无法完全上线。如若喜欢可以下载原生应用 [Mark](http://a.app.qq.com/o/simple.jsp?pkgname=com.intlime.mark&fromcase=40002) 体验全部功能。
+~~影视数据全部由[豆瓣](https://developers.douban.com/) API 提供。~~ 目前豆瓣搜索接口已经没有免费的可以使用了，我改用了时光网的接口。小程序个人开发功能限制太多，无法完全上线。如若喜欢可以下载原生应用 [Mark](http://a.app.qq.com/o/simple.jsp?pkgname=com.intlime.mark&fromcase=40002) 体验全部功能。
 
 ## Branches
 
-1. [master](https://github.com/Hongye567/weapp-mark/tree/master) - 后台服务由 [LeanCloud 云服务](https://leancloud.cn/)支撑。
-2. [cdn-ui](https://github.com/Hongye567/weapp-mark/tree/cdn-ui) - 没有后台服务支撑，全部采用 HTTP 请求的个人博客的静态 JSON 文件。
-3. [cloud](https://github.com/Hongye567/weapp-mark/tree/cloud) - 采用[微信小程序云开发](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)，无需后台也能开发一款完整的小程序。
+1. [cloud](https://github.com/Honye/weapp-mark/tree/cloud) - 采用[微信小程序云开发](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)，无需后台也能开发一款完整的小程序。
+2. [master](https://github.com/Honye/weapp-mark/tree/master) - 后台服务由 [LeanCloud 云服务](https://leancloud.cn/)支撑。
+3. [cdn-ui](https://github.com/Honye/weapp-mark/tree/cdn-ui) - 没有后台服务支撑，全部采用 HTTP 请求的个人博客的静态 JSON 文件。
 
 [在线思维导图](https://www.processon.com/view/5a5c45d7e4b0abe85d562bda)
 

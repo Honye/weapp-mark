@@ -13,7 +13,7 @@ const version = {
 
 wx.cloud.init({
     traceUser: true,
-    env: 'dv-963c46',
+    env: 'env-s5pkp',
 })
 
 wx.customModal = function(args) {

@@ -27,7 +27,7 @@
   color: #21BF8F;
 }
 .self-honye .advert {
-  color: #46BAC5;
+  color: #333;
 }
 .fa-music {
   height: 1.8em;
@@ -65,5 +65,5 @@
   }
 }
 .link {
-    color: #00f;
+    color: #0366d6;
 }

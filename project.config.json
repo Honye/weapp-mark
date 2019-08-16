@@ -10,11 +10,18 @@
 		"minified": true,
 		"newFeature": true,
 		"autoAudits": false,
-		"checkInvalidKey": true
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.2",
-	"appid": "wx751f68630054a222",
+	"appid": "wx5363d9bd45509430",
 	"projectname": "iMark",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -42,7 +49,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -67,9 +74,9 @@
 				},
 				{
 					"id": 3,
-					"name": "影视详情",
+					"name": "豆瓣详情",
 					"pathName": "pages/pMovie/pages/details/movieDetails",
-					"query": "title=&id=218090&origin=mtime",
+					"query": "title=X战警：黑凤凰&id=26667010",
 					"scene": null
 				},
 				{
@@ -83,6 +90,14 @@
 					"id": -1,
 					"name": "卡片",
 					"pathName": "pages/pMovie/pages/cards/card",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "时光详情",
+					"pathName": "pages/pMovie/pages/details/movieDetails",
+					"query": "title=&id=218090&origin=mtime",
 					"scene": null
 				}
 			]

@@ -87,13 +87,17 @@ Page({
   },
 
   bindViewTap(event) {
-    const { version, config } = app.globalData;
-    if(version.versionCode <= config.newestVersion) {
-      const { id, title } = event.currentTarget.dataset;
-      wx.navigateTo({
-        url: `/pages/pMovie/pages/details/movieDetails?title=${title}&id=${id}`,
-      })
-    }
+    // const { version, config } = app.globalData;
+    // if(version.versionCode <= config.newestVersion) {
+    //   const { id, title } = event.currentTarget.dataset;
+    //   wx.navigateTo({
+    //     url: `/pages/pMovie/pages/details/movieDetails?title=${title}&id=${id}`,
+    //   })
+    // }
+    const { id, title } = event.currentTarget.dataset
+    wx.navigateTo({
+      url: `/pages/pMovie/pages/details/movieDetails?title=${title}&id=${id}`,
+    })
   },
 
   /** 改变布局方式 */

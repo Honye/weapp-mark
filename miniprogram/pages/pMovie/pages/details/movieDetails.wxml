@@ -60,11 +60,17 @@
     <view class='block casts'>
       <text class='subtitle'>影人</text>
       <scroll-view scroll-x>
-        <block wx:for='{{details.directors}}' wx:key='id'>
+        <!-- <block wx:for='{{details.directors}}' wx:key='id'>
           <template is='item-casts' data='{{item,isDirec:true}}' />
         </block>
         <block wx:for='{{details.casts}}' wx:key='id'>
           <template is='item-casts' data='{{item,isDirec:false}}' />
+        </block> -->
+        <block wx:for='{{directorList}}' wx:key='id'>
+          <template is='item-cast' data='{{item}}' />
+        </block>
+        <block wx:for="{{actorList}}" wx:key="id">
+          <template is='item-cast' data='{{item}}' />
         </block>
         <template is='item-casts-all' />
       </scroll-view>
@@ -91,13 +97,13 @@
       <text class='subtitle'>短评({{comments_count}})</text>
       <block wx:for='{{comments}}' wx:key='id'>
         <view class='item-comment'>
-          <image class='user-header' src='{{item.author.avatar}}'></image>
+          <image class='user-header' src='{{item.avatar}}'></image>
           <view class='comment-right'>
             <view class='name-rating'>
-              <text class='username'>{{item.author.name}}</text>
-              <template is='rating' data='{{rating:item.rating.value,max:5}}' />
+              <text class='username'>{{item.nickname}}</text>
+              <template is='rating' data='{{rating:item.rating, max:10}}' />
             </view>
-            <text class='date'>{{item.created_at}}</text>
+            <text class='date'>{{item.time}}</text>
             <text class='comment-content'>{{item.content}}</text>
           </view>
         </view>

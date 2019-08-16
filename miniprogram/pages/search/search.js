@@ -1,7 +1,6 @@
 // pages/search/search.js
 import { Douban, mtime } from './../../utils/apis.js'
 
-const app = getApp();
 const count = 20;  // 每页加载数据数目
 Page({
 
@@ -22,7 +21,6 @@ Page({
     const history = wx.getStorageSync('search_history') || []
     this.setData({
       history,
-      quote: app.globalData.config.quote
     })
   },
 

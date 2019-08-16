@@ -1,7 +1,8 @@
 // pages/movies/movieDetails.js
 import { Douban, mtime } from '../../../../utils/apis.js';
+import Cast from '../../../../models/Cast'
+import Comment from '../../../../models/Comment'
 
-var app = getApp();
 const origins = {
   douban: '豆瓣',
   mtime: '时光',
@@ -17,6 +18,8 @@ Page({
       name: '豆瓣',
     },
     details: {},
+    directorList: [],
+    actorList: [],
     pubdates: '',
     comments_count: 0,
     comments: [],
@@ -51,14 +54,16 @@ Page({
     this.setData(newData)
     if (options.origin === 'mtime') {
       this.getMtimeDetail(options.id)
+      this.getCredits(options.id)
+      this.getMtimeComments(options.id)
     } else {
       this.getDetails(options.id);
+      this.getComments(options.id);
     }
-    this.getComments(options.id);
   },
   
   /**
-   * 获取影视详情
+   * 获取影视详情（豆瓣）
    */
   getDetails(id) {
     wx.showLoading({
@@ -77,12 +82,31 @@ Page({
         casts.push(item.name);
       }
       wx.hideLoading();
+      let directorList = res.directors || []
+      directorList = directorList.map(item => {
+        const cast = Cast.fromDouban(JSON.stringify({
+          ...item,
+          type: 'Director',
+        }))
+        return cast
+      })
+      let actorList = res.casts || []
+      actorList = actorList.map(item => {
+        const cast = Cast.fromDouban(JSON.stringify({
+          ...item,
+          type: 'Actor',
+        }))
+        return cast
+      })
+
       this.setData({
         details: res,
         pubdates,
         casts: casts.join(' / '),
         loaded: true,
-        comments_count: data.comments_count
+        comments_count: data.comments_count,
+        directorList,
+        actorList,
       });
       wx.setNavigationBarTitle({
         title: res.title,
@@ -115,10 +139,52 @@ Page({
         { start: 0, count: 6 }
       ).then(res => {
         this.setData({
-          comments: res.comments
+          comments: res.comments.map(item => Comment.fromDouban(item)),
         })
       }
     )
+  },
+
+  /** 影视短评（时光网） */
+  getMtimeComments(movieId) {
+    mtime.getMovieComments({
+      movieId,
+    }).then(res => {
+      this.setData({
+        comments_count: res.totalCommentCount || 0,
+        comments: res.cts.slice(0, 6).map(item => Comment.fromMtime(item)),
+      })
+    })
+  },
+
+  /**
+   * 演职员（时光网）
+   */
+  getCredits(movieId) {
+    mtime.getMovieCredits({
+      movieId,
+    }).then(({ types=[] }) => {
+      const directorObj = types[0] ? types[0] : []
+      const directorList = directorObj.persons.map(item => {
+        const cast = Cast.fromMtime(JSON.stringify({
+          ...item,
+          type: directorObj.typeNameEn,
+        }))
+        return cast
+      })
+      const actorObj = types[1] ? types[1] : []
+      const actorList = actorObj.persons.slice(0, 20).map(item => {
+        const cast = Cast.fromMtime(JSON.stringify({
+          ...item,
+          type: actorObj.typeNameEn,
+        }))
+        return cast
+      })
+      this.setData({
+        directorList,
+        actorList,
+      })
+    })
   },
 
   /**

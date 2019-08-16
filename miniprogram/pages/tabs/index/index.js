@@ -62,7 +62,7 @@ Page({
   /** 关于 */
   toAbout() {
     const { version, config } = app.globalData;
-    if (version.versionCode <= config.newestVersion)
+    // if (version.versionCode <= config.newestVersion)
     wx.navigateTo({
       url: '/pages/about/index',
     })
