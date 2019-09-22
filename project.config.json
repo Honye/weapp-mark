@@ -75,7 +75,7 @@
 				{
 					"id": 3,
 					"name": "豆瓣详情",
-					"pathName": "pages/pMovie/pages/details/movieDetails",
+					"pathName": "pages/pMovie/pages/details/details",
 					"query": "title=罗小黑战记&id=26709258",
 					"scene": null
 				},
@@ -96,7 +96,7 @@
 				{
 					"id": 6,
 					"name": "时光详情",
-					"pathName": "pages/pMovie/pages/details/movieDetails",
+					"pathName": "pages/pMovie/pages/details/details",
 					"query": "title=&id=259358&origin=mtime",
 					"scene": null
 				},

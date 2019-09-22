@@ -9,7 +9,7 @@
     <swiper-item>
       <navigator class='card {{current === index && "current"}}'
         hover-class='none'
-        url='/pages/pMovie/pages/details/movieDetails?id={{cards[current].movieId}}'>
+        url='/pages/pMovie/pages/details/details?id={{cards[current].movieId}}'>
         <view class='card-body'>
           <image class='card-img'
           src='{{item.image}}'

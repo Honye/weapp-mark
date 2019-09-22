@@ -57,7 +57,7 @@
       "root": "pages/pMovie/",
       "pages": [
         "pages/cards/card",
-        "pages/details/movieDetails",
+        "pages/details/details",
         "pages/intheaters/in_theaters",
         "pages/sources/sources",
         "pages/trailers/trailers"

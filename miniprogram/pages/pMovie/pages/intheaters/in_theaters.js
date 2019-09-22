@@ -93,7 +93,7 @@ Page({
   toDetail(event) {
     const { id, title } = event.currentTarget.dataset;
     wx.navigateTo({
-      url: `/pages/pMovie/pages/details/movieDetails?title=${title}&id=${id}`,
+      url: `/pages/pMovie/pages/details/details?title=${title}&id=${id}`,
     })
   },
 
