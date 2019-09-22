@@ -49,7 +49,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -76,7 +76,7 @@
 					"id": 3,
 					"name": "豆瓣详情",
 					"pathName": "pages/pMovie/pages/details/movieDetails",
-					"query": "title=X战警：黑凤凰&id=26667010",
+					"query": "title=罗小黑战记&id=26709258",
 					"scene": null
 				},
 				{

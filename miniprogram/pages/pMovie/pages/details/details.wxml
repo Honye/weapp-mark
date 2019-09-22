@@ -79,12 +79,12 @@
     <view class='block photos'>
       <text class='subtitle'>预告片 / 剧照</text>
       <scroll-view scroll-x>
-        <navigator class='trailer' wx:if='{{details.trailers&&details.trailers[0]}}' url='../trailers/trailers?id={{details.id}}&resource={{details.trailers[0].resource_url}}'>
-          <image class='image' src='{{details.trailers[0].medium}}' />
-          <view class='front'>
-            <view class='icon'>
-              <image src='/assets/images/white_play_icon.png' mode='widthFix' />
-            </view>
+        <navigator class="trailer" wx:if="{{trailers && trailers.length}}"
+          url="../trailers/trailers?id={{id}}&resource={{trailers[0].url}}"
+        >
+          <image class="image" src="{{trailers[0].image}}" />
+          <view class="front">
+            <view class="icon"><image src="/assets/images/white_play_icon.png" mode="widthFix" /></view>
           </view>
         </navigator>
         <view class='trailer' wx:for='{{details.photos}}' wx:key='id' data-img='{{item.image}}' bindtap='onImagePre'>

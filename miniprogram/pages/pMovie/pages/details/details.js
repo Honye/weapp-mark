@@ -1,5 +1,4 @@
-// pages/movies/movieDetails.js
-import { Douban, mtime } from '../../../../utils/apis.js';
+import { Douban, mtime } from '../../../../utils/apis.js'
 import Cast from '../../../../models/Cast'
 import Comment from '../../../../models/Comment'
 
@@ -20,6 +19,7 @@ Page({
     details: {},
     directorList: [],
     actorList: [],
+    trailers: [],  // 预告片 { url: string, image: string }
     pubdates: '',
     comments_count: 0,
     comments: [],
@@ -31,13 +31,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    wx.getSystemInfo({
-      success: (res) => {
-        this.setData({
-          bgImgHeight: res.windowWidth/2
-        })
-      },
-    })
     const title = decodeURIComponent(options.title)
     wx.setNavigationBarTitle({
       title: title || '详情',
@@ -70,47 +63,44 @@ Page({
       title: 'loading...',
     });
     Douban.get(`${Douban.DETAILS}/${id}`).then(res => {
-      const data = res;
-      let pubdates = '';
-      for (let item of res.pubdates) {
-        if (item.indexOf("中国") > 0) {
-          pubdates = item + "上映";
-        }
-      }
-      let casts = [];
-      for (let item of data.casts) {
-        casts.push(item.name);
-      }
-      wx.hideLoading();
-      let directorList = res.directors || []
-      directorList = directorList.map(item => {
+      const {
+        directors = [],
+        casts = [],
+        trailers = [],
+        ...details,
+      } = res
+      const _casts = casts.map(item => item.name)
+      const directorList = directors.map(item => {
         const cast = Cast.fromDouban(JSON.stringify({
           ...item,
           type: 'Director',
         }))
         return cast
       })
-      let actorList = res.casts || []
-      actorList = actorList.map(item => {
+      const actorList = casts.map(item => {
         const cast = Cast.fromDouban(JSON.stringify({
           ...item,
           type: 'Actor',
         }))
         return cast
       })
-
+      const _trailers = trailers.map(item => ({
+        image: item.medium,
+        url: item.resource_url,
+      }))
       this.setData({
-        details: res,
-        pubdates,
-        casts: casts.join(' / '),
-        loaded: true,
-        comments_count: data.comments_count,
+        details,
         directorList,
         actorList,
-      });
+        casts: _casts.join(' / '),
+        loaded: true,
+        comments_count: details.comments_count,
+        trailers: _trailers,
+      })
       wx.setNavigationBarTitle({
         title: res.title,
       })
+      wx.hideLoading()
     })
   },
 
@@ -123,8 +113,10 @@ Page({
       movieId,
       locationId: 290,
     }).then(res => {
+      const { videos, ...details } = res
       this.setData({
-        details: res,
+        details,
+        trailers: videos,
         loaded: true,
       })
     })
