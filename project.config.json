@@ -49,7 +49,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -94,10 +94,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "时光详情",
 					"pathName": "pages/pMovie/pages/details/movieDetails",
-					"query": "title=&id=218090&origin=mtime",
+					"query": "title=&id=259358&origin=mtime",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "喜欢的影单",
+					"pathName": "pages/pUser/pages/favMovieList/index",
+					"query": "",
 					"scene": null
 				}
 			]

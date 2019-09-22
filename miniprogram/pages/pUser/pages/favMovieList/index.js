@@ -38,6 +38,16 @@ Page({
         }
     },
 
+    handleTabChange(e) {
+        const { value } = e.detail
+        console.log('tab change', value)
+    },
+
+    handleTabItemTap(e) {
+        const { value } = e.detail
+        console.log('tab item tap', value)
+    },
+
     /** 改变 Tab */
     changeTab(e) {
         const { nav } = e.currentTarget.dataset;
@@ -47,5 +57,14 @@ Page({
                 currentNav: nav
             });
         }
+    },
+
+    showMoreAction() {
+        wx.showActionSheet({
+            itemList: ["编辑", "分享", "删除"],
+            success(res) {
+                console.log("操作", res.tapIndex)
+            },
+        })
     },
 })

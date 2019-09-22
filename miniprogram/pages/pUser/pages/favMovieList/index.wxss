@@ -1,9 +1,74 @@
 /* pages/favMovieList/index.wxss */
+.container {
+  padding-top: 84rpx;
+}
 
 .list-container {
   padding: 10rpx;
-  padding-top: 84rpx;
 }
+
+.list-item {
+  background-color: #fff;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: row;
+}
+.list-item__img {
+  width: 132rpx;
+  height: 178rpx;
+  border-radius: 5rpx;
+  background-color: #ededed;
+}
+.list-item__content {
+  flex: 1;
+  margin-left: 16rpx;
+  padding: 16rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.list-item__name {
+  font-size: 28rpx;
+  color: #333333;
+}
+.list-item__count {
+  font-size: 22rpx;
+  color: #999999;
+}
+.list-item__more {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.list-item__date {
+  color: #999999;
+  font-size: 22rpx;
+  margin-left: 32rpx;
+}
+.list-item__action {
+  width: 36rpx;
+  height: 36rpx;
+  align-self: center;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.userinfo__avatar {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 32rpx;
+  background-color: #ededed;
+  margin-right: 12rpx;
+}
+.userinfo__name {
+  color: #999999;
+  font-size: 22rpx;
+}
+
+
 .empty-view {
   min-height: 100vh;
   background-color: #fff;

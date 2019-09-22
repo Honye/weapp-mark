@@ -1,0 +1,8 @@
+<!-- Tabs -->
+<view class="tabs">
+    <view class="tabs-item {{currentIndex === index && 'is-active'}}" wx:for="{{tabs}}" wx:key="index"
+        data-index="{{index}}" bind:tap="_handleTabTap"
+    >
+        <view class="tabs-item__content">{{item}}</view>
+    </view>
+</view>
