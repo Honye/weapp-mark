@@ -1,0 +1,42 @@
+<import src="/pages/common/movie/movieRow" />
+<view class="container">
+  <image class="bg-blur" src="{{info.cover}}" mode="top" />
+  <view class="info">
+    <view class="info__top">
+      <image class="info__img" src="{{info.cover}}" mode="aspectFit" />
+      <view class="info__top-right">
+        <view class="info__name">{{info.title}}</view>
+        <view class="info__top-right-middle">
+          <view class="author">
+            <image class="author__avatar" src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570039912.jpg" mode="aspectFill" />
+            <view class="author__name">{{info.author}}</view>
+          </view>
+          <view class="info__date">{{info.updateAt}}更新</view>
+        </view>
+        <view class="info__btns">
+          <view class="icon-button" bindtap="handleLikeTap">
+            <image class="icon-button__icon" mode="aspectFit"
+              src="{{info.isLiked ? '/assets/images/icon-liked.png' : '/assets/images/movielist/icon-unlike.png'}}"
+            />
+            <text>喜欢</text>
+          </view>
+          <button class="icon-button" open-type="share">
+            <image class="icon-button__icon" src="/assets/images/movielist/icon-share.png" mode="aspectFit" />
+            <text>分享</text>
+          </button>
+        </view>
+      </view>
+    </view>
+    <view class="info__intro">{{info.intro}}</view>
+  </view>
+  <view class="movie-list">
+    <view class="movie-list__wrap" scroll-y>
+      <view wx:for="{{movieList}}" wx:key="id"
+        data-id="{{item.id}}" data-title="{{item.title}}"
+        bindtap="toMovieDetail"
+      >
+        <template is="item-movie_row" data="{{...item}}"></template>
+      </view>
+    </view>
+  </view>
+</view>

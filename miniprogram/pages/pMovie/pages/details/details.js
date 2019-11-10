@@ -24,17 +24,18 @@ Page({
     comments_count: 0,
     comments: [],
     loaded: false,
-    isFold: true
+    isFold: true,
+    showMovieListPopup: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    const title = decodeURIComponent(options.title)
-    wx.setNavigationBarTitle({
-      title: title || '详情',
-    })
+    if (options.title) {
+      const title = decodeURIComponent(options.title)
+      wx.setNavigationBarTitle({ title })
+    }
     const newData = {
       id: options.id,
     }
@@ -202,6 +203,30 @@ Page({
     wx.previewImage({
       current: img,
       urls
+    })
+  },
+
+  /** 显示影单弹窗 */
+  showMovieListPopup() {
+    this.setData({
+      popupMovieListVisible: true,
+    })
+  },
+
+  hideMovieListPopup() {
+    this.setData({
+      popupMovieListVisible: false,
+    })
+  },
+
+  /** 加入影单 */
+  addToMovieList(e) {
+    wx.showToast({
+      icon: 'none',
+      title: '成功加入影单',
+    })
+    this.setData({
+      popupMovieListVisible: false,
     })
   },
 

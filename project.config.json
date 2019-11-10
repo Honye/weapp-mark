@@ -49,7 +49,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -105,6 +105,12 @@
 					"name": "喜欢的影单",
 					"pathName": "pages/pUser/pages/favMovieList/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "影单详情",
+					"pathName": "pages/pArticle/pages/movie-list-detail/movie-list-detail",
 					"scene": null
 				}
 			]

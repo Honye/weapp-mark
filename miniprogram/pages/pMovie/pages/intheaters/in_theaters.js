@@ -141,4 +141,6 @@ Page({
     }
   },
 
+  onShareAppMessage() {},
+
 })

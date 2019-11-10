@@ -50,7 +50,8 @@
       "pages": [
         "pages/classification/index",
         "pages/list/list",
-        "pages/details/detail"
+        "pages/details/detail",
+        "pages/movie-list-detail/movie-list-detail"
       ]
     },
     {

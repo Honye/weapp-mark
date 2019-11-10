@@ -1,0 +1,124 @@
+@import '../../../common/movie/movieRow';
+
+page {
+  background-color: #fff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.bg-blur {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 60vh;
+  filter: blur(12rpx);
+}
+.bg-blur::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(71, 71, 71, 0.65);
+  opacity: 0.8;
+}
+
+.info {
+  color: #fff;
+  padding: 48rpx 24rpx;
+  font-weight: 400;
+}
+.info__top {
+  display: flex;
+  flex-direction: row;
+}
+.info__img {
+  width: 150rpx;
+  height: 200rpx;
+}
+.info__top-right {
+  flex: 1;
+  margin-left: 20rpx;
+}
+.info__name {
+  font-size: 32rpx;
+  font-weight: 400;
+}
+.info__top-right-middle {
+  margin-top: 23rpx;
+  display: flex;
+  align-items: center;
+}
+.info__date {
+  font-size: 22rpx;
+  font-weight: 400;
+  margin-left: 32rpx;
+}
+.info__btns {
+  margin-top: 50rpx;
+  display: flex;
+  align-items: center;
+}
+.info__intro {
+  font-size: 26rpx;
+  margin-top: 18rpx;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+}
+.author__avatar {
+  background-color: #ddd;
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 16rpx;
+}
+.author__name {
+  font-size: 22rpx;
+  margin-left: 12rpx;
+  font-weight: 400;
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  font-weight: 400;
+  color: #fff;
+  background-color: transparent;
+  line-height: normal;
+  padding: 0;
+}
+.icon-button::after {
+  content: none;
+}
+.icon-button__icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 8rpx;
+}
+.icon-button + .icon-button {
+  margin-left: 40rpx;
+}
+
+.movie-list {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 40rpx 40rpx 0 0;
+  overflow: hidden;
+}
+.movie-list__wrap {
+  height: 100%;
+  border-radius: 40rpx 40rpx 0 0;
+  overflow-y: scroll;
+}

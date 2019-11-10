@@ -60,10 +60,22 @@ Page({
     },
 
     showMoreAction() {
+        const buttons = ["编辑", "分享", "删除"]
         wx.showActionSheet({
-            itemList: ["编辑", "分享", "删除"],
+            itemList: buttons,
             success(res) {
-                console.log("操作", res.tapIndex)
+                switch(buttons[res.tapIndex]) {
+                    case '编辑':
+                        wx.navigateTo({
+                            url: '/pages/pArticle/pages/movie-list-detail/movie-list-detail',
+                        })
+                        break
+                    case '分享':
+                        break
+                    case '删除':
+                        break
+                    default:
+                }
             },
         })
     },
