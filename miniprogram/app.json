@@ -9,7 +9,8 @@
     "pages/search/search",
     "pages/about/index",
     "pages/first/first",
-    "pages/webview/index"
+    "pages/webview/index",
+    "pages/test/test"
   ],
   "window": {
     "backgroundTextStyle": "dark",

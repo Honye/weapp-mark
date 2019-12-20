@@ -1,0 +1,4 @@
+<view class="container">
+  <button bindtap="handleSubscribeTap">订阅</button>
+  <button bindtap="handleTempTap">发送模版消息</button>
+</view>
