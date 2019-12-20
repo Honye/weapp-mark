@@ -34,16 +34,9 @@ page {
 }
 
 /*================== swiper ================*/
-.banner-wrap {
-  position: relative;
-  background-color: #fff;
-  overflow: visible;
-}
 .banner {
   height: 300rpx;
-  padding: 10rpx 0 15rpx;
   position: relative;
-  z-index: 1;
 }
 
 /* .banner::after {
@@ -61,24 +54,6 @@ page {
   border-radius: 10rpx;
   filter: blur(5rpx);
 } */
-.swiper-bg {
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  right: 0;
-  width: 595rpx;
-  height: 270rpx;
-  bottom: 0rpx;
-  margin: 0 auto;
-  background: #ffe200;
-  border-radius: 10rpx;
-  filter: blur(6rpx);
-  transition: background .3s ease-in-out, opacity .3s ease-in-out
-}
-.swiper-bg.transparent {
-  opacity: 0;
-  filter: none;
-}
 
 .slide-image {
   display: block;
@@ -114,6 +89,7 @@ page {
   display: flex;
   flex-direction: row;
   margin-top: 20rpx;
+  padding: 0 30rpx;
 }
 .item-container {
   flex: 1;
@@ -121,4 +97,102 @@ page {
 .article-item-container {
   margin-top: 15rpx;
   border-bottom: .5px solid #ddd;
+}
+
+/*================== 影院热映 start =====================*/
+.intheaters__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+}
+
+.intheaters__header-title {
+  font-size: 32rpx;
+}
+
+.intheaters__header-arrow {
+  width: 18rpx;
+  height: 28rpx;
+}
+
+.intheaters__movies {
+  /* padding: 0 30rpx; */
+  white-space: nowrap;
+}
+
+.movie-item {
+  display: inline-block;
+  width: 210rpx;
+  background-color: #fff;
+  margin-right: 20rpx;
+}
+
+.movie-item:first-child {
+  margin-left: 30rpx;
+}
+
+.movie-item:last-child {
+  margin-right: 30rpx;
+}
+
+.movie-item__img {
+  display: block;
+  width: 210rpx;
+  height: 280rpx;
+  border-radius: 8rpx;
+  font-size: 0;
+}
+
+.movie-item__info {
+  padding-top: 20rpx;
+}
+
+.movie-item__name {
+  color: #999;
+  font-size: 22rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-item__rate {
+  color: #999;
+  font-size: 18rpx;
+}
+/*============= 影院热映 end ===============*/
+
+/*============ 影单 start ===============*/
+.movielist-item {
+  background-color: #fff;
+  padding: 10rpx 30rpx;
+  margin: 0 auto;
+  margin-bottom: 10rpx;
+}
+
+.movielist-item__img {
+  display: block;
+  width: 100%;
+  height: 500rpx;
+  border-radius: 12rpx;
+}
+
+.movielist-item__info {
+  padding-top: 20rpx;
+}
+
+.movielist-item__title {
+  color: #333;
+  font-size: 36rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movielist-item__intro {
+  color: #999;
+  font-size: 26rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

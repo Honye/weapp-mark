@@ -14,8 +14,6 @@
   
   <view class='content'>
     <scroll-view scroll-y enable-back-to-top>
-      <view class='banner-wrap'>
-      <view class='swiper-bg {{swiperHide && "transparent"}}' style='background:url({{banners[cardCur].image}})' />
       <swiper class='banner card-swiper'
         indicator-dots
         autoplay
@@ -30,7 +28,6 @@
           </view>
         </swiper-item>
       </swiper>
-      </view>
 
       <view class="kind-container">
         <navigator wx:for='{{circles}}' wx:key='index' class='item-container' hover-class='hover-bg'
@@ -42,11 +39,39 @@
         </navigator>
       </view>
 
-      <block wx:for="{{articles}}" wx:key='id'>
-        <navigator class='article-item-container' url='/pages/pArticle/pages/details/detail?id={{item.id}}'>
-          <template is="commingItem" data="{{...item}}" />
+      <view class="intheaters">
+        <navigator class="intheaters__header" hover-class="hover-opacity"
+          url="/pages/pMovie/pages/intheaters/in_theaters"
+        >
+          <view class="intheaters__header-title">影院热映</view>
+          <image class="intheaters__header-arrow" src="/assets/images/discovery/icon-arrow.png" mode="aspectFit" />
         </navigator>
-      </block>
+        <scroll-view class="intheaters__movies" scroll-x>
+          <view class="movie-item" wx:for="{{[1,2,3,4,5,6,7,8,9]}}">
+            <image class="movie-item__img" src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2573582192.jpg" mode="aspectFill" />
+            <view class="movie-item__info">
+              <view class="movie-item__name">复仇者联网4：终局之战</view>
+              <view class="movie-item__rate">9.0分（豆瓣）</view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+
+      <view class="movielist">
+        <view class="intheaters__header">
+          <view class="intheaters__header-title">热门影单</view>
+          <image class="intheaters__header-arrow" src="/assets/images/discovery/icon-arrow.png" mode="aspectFit" />
+        </view>
+        <navigator class="movielist-item" wx:for="{{articles}}" wx:key="id"
+          url="/pages/pArticle/pages/details/detail?id={{item.id}}"
+        >
+          <image class="movielist-item__img" src="{{item.image}}" mode="aspectFill" />
+          <view class="movielist-item__info">
+            <view class="movielist-item__title">{{item.title}}</view>
+            <view class="movielist-item__intro">{{item.title}}</view>
+          </view>
+        </navigator>
+      </view>
       
     </scroll-view>
   </view>

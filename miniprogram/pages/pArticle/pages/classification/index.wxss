@@ -3,8 +3,8 @@
   padding: 12.5rpx;
 }
 .classify {
-  border-left: 0.5rpx solid #ddd;
-  border-top: 0.5rpx solid #ddd;
+  border-left: 1rpx solid #ddd;
+  border-top: 1rpx solid #ddd;
   overflow: hidden;
   zoom: 1;
   margin: 12.5rpx;
@@ -13,8 +13,8 @@
 
 .classify .item {
   width: 25%;
-  border-right: 0.5rpx solid #ddd;
-  border-bottom: 0.5rpx solid #ddd;
+  border-right: 1rpx solid #ddd;
+  border-bottom: 1rpx solid #ddd;
   box-sizing: border-box;
   float: left;
   display: flex;
