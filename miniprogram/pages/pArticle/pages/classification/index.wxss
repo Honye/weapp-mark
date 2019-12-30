@@ -24,7 +24,7 @@
 }
 
 .classify .item.big {
-  height: 176rpx;
+  height: calc(88rpx * 2);
   color: #6f93a2;
 }
 .classify .item.big>text {
