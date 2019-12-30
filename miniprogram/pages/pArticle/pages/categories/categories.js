@@ -1,42 +1,32 @@
 // 分类查找
-import { Honye } from '../../../../utils/apis.js';
+import wxCloud from '../../../../utils/wxCloud'
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-    classify: [],
-    loaded: false
+    categories: [],
+    loaded: false,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.getData();
+  onLoad(options) {
+    this.getData()
   },
 
   /**
    * 获取数据
    */
-  getData: function () {
-    wx.showLoading({
-      title: 'loading...',
-    })
-    let that = this;
-    Honye.get(Honye.CLASSIFY).then(res => {
-      that.modifyData(res);
-      wx.hideLoading();
-    })
+  getData() {
+    wxCloud('getCategories')
+      .then(({ data = [] }) => {
+        this.modifyData(data)
+      })
   },
 
   /**
    * 调整数据
    */
-  modifyData: function (classify) {
-    for (let item of classify) {
+  modifyData(categories) {
+    for (let item of categories) {
       if (item.children.length < 6) {
         for (let i = 0, length = (6 - item.children.length); i < length; i++) {
           item.children.push(" ");
@@ -48,7 +38,7 @@ Page({
       }
     }
     this.setData({
-      classify,
+      categories,
       loaded: true
     });
   },
@@ -57,7 +47,7 @@ Page({
     const {item} = e.currentTarget.dataset;
     if(item!=" ") {
       wx.navigateTo({
-        url: `/pages/pArticle/pages/list/list?title=${item}`,
+        url: `/pages/pArticle/pages/list/list?title=${item.name}`,
       })
     }
   }

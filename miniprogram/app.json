@@ -49,7 +49,7 @@
     {
       "root": "pages/pArticle/",
       "pages": [
-        "pages/classification/index",
+        "pages/categories/categories",
         "pages/list/list",
         "pages/details/detail",
         "pages/movie-list-detail/movie-list-detail"
