@@ -65,7 +65,7 @@ Page({
                 if (res.status === 1)
                     wx.getBackgroundAudioManager().pause()
                 else if (res.status === 2)
-                    this.initAudio(that.data.datas.bgm)
+                    this.initAudio(this.data.datas.bgm)
                 else
                     wx.getBackgroundAudioManager().play()
             },

@@ -1,5 +1,5 @@
 // pages/search/search.js
-import { Douban, mtime } from './../../utils/apis.js'
+import { /*Douban,*/ mtime } from './../../utils/apis.js'
 
 const count = 20;  // 每页加载数据数目
 Page({
@@ -63,11 +63,11 @@ Page({
     wx.showLoading({
       title: 'loading...',
     })
-    const body = {
-      q: inputVal,
-      start: count * pageNo,
-      count
-    }
+    // const body = {
+    //   q: inputVal,
+    //   start: count * pageNo,
+    //   count
+    // }
     mtime.searchMovie({
       keyword: inputVal,
       pageIndex: pageNo + 1,

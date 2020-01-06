@@ -12,7 +12,7 @@ const db = cloud.database()
 /**
  * 获取卡片列表
  */
-getCards = async (event, context) => {
+const getCards = async (event, context) => {
     let cards = []
     let message = 'success'
     await db.collection('cards').get().then(({ data }) => {
@@ -21,7 +21,6 @@ getCards = async (event, context) => {
         message = err.errMsg || err
     })
     for(let i = 0, length = cards.length; i < length; ++i) {
-        let likeCount = 0
         await db.collection('cardRelations').where({
             id: cards[i].id,
         }).get().then(({ data }) => {

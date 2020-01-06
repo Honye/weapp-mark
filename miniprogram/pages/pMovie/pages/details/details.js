@@ -68,7 +68,7 @@ Page({
         directors = [],
         casts = [],
         trailers = [],
-        ...details,
+        ...details
       } = res
       const _casts = casts.map(item => item.name)
       const directorList = directors.map(item => {

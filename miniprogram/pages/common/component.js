@@ -28,7 +28,9 @@ class Component {
                 const res = wx.getSystemInfoSync()
                 const SDKVersion = res.SDKVersion.split('.')
                 has = Number(SDKVersion[0]) > 1 || Number(SDKVersion[1]) >= 5
-            } catch (e) {}
+            } catch (e) {
+                // getSystemInfoSync happened error
+            }
 
             return has
         }
@@ -72,7 +74,7 @@ class Component {
         // 筛选非函数类型，更改参数中函数的 this 指向
         if (!this.isEmptyObject(data)) {
             for (let key in data) {
-                if (data.hasOwnProperty(key)) {
+                if (Object.prototype.hasOwnProperty.call(data, key)) {
                     if (typeof data[key] === `function`) {
                         data[key] = data[key].bind(this)
                     } else {
@@ -98,7 +100,7 @@ class Component {
         // 筛选函数类型
         if (!this.isEmptyObject(methods)) {
             for (let key in methods) {
-                if (methods.hasOwnProperty(key) && typeof methods[key] === `function`) {
+                if (Object.prototype.hasOwnProperty.call(methods, key) && typeof methods[key] === `function`) {
                     this[key] = methods[key] = methods[key].bind(this)
 
                     // 将 methods 内的方法重命名并挂载到 page 上面，否则 template 内找不到事件

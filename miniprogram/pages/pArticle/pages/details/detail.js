@@ -4,8 +4,6 @@ import WxParse from '../../../common/wxParse/wxParse'
 import { $markShare } from '../../../common/index'
 import wxCloud from '../../../../utils/wxCloud'
 
-const db = wx.cloud.database()
-
 Page({
 
     data: {
