@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0"
+  },
+  "name": "weapp-mark",
+  "version": "1.0.0",
+  "description": "iMark mark anything!",
+  "main": "index.js",
+  "repository": "https://github.com/Honye/weapp-mark.git",
+  "author": "Honye <hongye.jun@qq.com>",
+  "license": "MIT"
+}
