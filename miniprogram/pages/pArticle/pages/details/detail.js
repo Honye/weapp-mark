@@ -78,10 +78,6 @@ Page({
                     title: '微信朋友圈'
                 },
                 {
-                    iconPath: '/assets/images/qq_icon.png',
-                    title: 'QQ好友'
-                },
-                {
                     iconPath: '/assets/images/qq_zone_icon.png',
                     title: 'QQ空间'
                 },
@@ -92,11 +88,7 @@ Page({
                 {
                     iconPath: '/assets/images/copy_link_icon.png',
                     title: '复制链接'
-                },
-                {
-                    iconPath: '/assets/images/share_more_icon.png',
-                    title: '更多'
-                },
+                }
             ],
             buttonClicked(index, item) {
                 if (!item.openType)

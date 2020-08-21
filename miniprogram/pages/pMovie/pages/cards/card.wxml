@@ -3,6 +3,7 @@
 
 <template is='com-share' data='{{...$mark.share}}'/>
 
+<view class="container">
 <swiper
   bindchange='onChange'>
   <block wx:for='{{cards}}' wx:key='id'>
@@ -32,13 +33,16 @@
             </view>
             <view class='flex-center-v actions'>
               <view class='flex-center-v actions-item'>
-                <!-- <image class='icon' src='/assets/images/icon-unlike.png' mode='aspectFit' /> -->
                 <view style="font-size:18rpx;"><comp-btnFav checked='{{!!(cards[current].liked)}}' bindchange='onFavChange' /></view>
                 <text class='text'>{{cards[current].likeCount || 0}}</text>
               </view>
-              <view class='flex-center-v actions-item'>
-                <image class='icon' src='/assets/images/icon-share.png' mode='aspectFit' catchtap='showShareMenu' />
-              </view>
+              <button class='button-nostyle flex-center-v actions-item'
+                open-type="getUserInfo"
+                bindgetuserinfo="onUserInfo"
+                catchtap="none"
+              >
+                <image class='icon' src='/assets/images/icon-share.png' mode='aspectFit' />
+              </button>
             </view>
           </view>
         </view>
@@ -46,3 +50,11 @@
     </swiper-item>
   </block>
 </swiper>
+  <view class="share-card">
+    <painter class="share-card__canvas"
+      id="shareCanvas"
+      palette="{{painterData}}"
+      bind:imgOK="onPaintSuccess"
+    />
+  </view>
+</view>

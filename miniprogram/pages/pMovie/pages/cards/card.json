@@ -3,6 +3,7 @@
   "navigationBarTitleText": "每日卡片",
   "disableScroll": true,
   "usingComponents": {
-    "comp-btnFav": "/components/btn-fav/FavButton"
+    "comp-btnFav": "/components/btn-fav/FavButton",
+    "painter": "/components/painter/painter"
   }
 }
