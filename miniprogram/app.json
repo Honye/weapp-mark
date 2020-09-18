@@ -7,7 +7,7 @@
     "pages/setting/setting",
     "pages/marked/marked",
     "pages/search/search",
-    "pages/about/index",
+    "pages/about/about",
     "pages/first/first",
     "pages/webview/index",
     "pages/test/test"
@@ -76,5 +76,6 @@
       ]
     }
   ],
+  "requiredBackgroundModes": ["audio"],
   "sitemapLocation": "sitemap.json"
 }

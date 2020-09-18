@@ -62,7 +62,7 @@ Page({
   /** 关于 */
   toAbout() {
     wx.navigateTo({
-      url: '/pages/about/index',
+      url: '/pages/about/about',
     })
   },
 

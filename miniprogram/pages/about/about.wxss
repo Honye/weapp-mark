@@ -1,4 +1,4 @@
-/* pages/about/index.wxss */
+/* pages/about/about.wxss */
 .self-honye .banner {
   margin: 20rpx;
   box-sizing: border-box;
@@ -7,7 +7,7 @@
   border-radius: 10rpx;
   overflow: hidden;
   height: 375rpx;
-  box-shadow: 2px 2px 2px 1px #ddd;
+  box-shadow: 4px 4px 20px 1px #ddd;
 }
 .self-honye .banner>image {
   width: 100%;
@@ -21,7 +21,10 @@
   padding: 20rpx;
   font-size: .9em;
   line-height: 1.8em;
-  box-shadow: 2px 2px 2px 1px #ddd;
+  box-shadow: 4rpx 4rpx 10rpx 1rpx #ddd;
+}
+.self-honye .advert view:not(:first-child) {
+  margin-top: 10rpx;
 }
 .self-honye .blogger {
   color: #21BF8F;

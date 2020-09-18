@@ -1,0 +1,22 @@
+<!--pages/about/about.wxml-->
+<view class='container self-honye'>
+  <view class='banner'>
+    <pre-image 
+      src='{{datas.image}}' 
+      mode='widthFix'
+      height='100%'
+      place-img='/assets/images/bg-default.jpg'
+    />
+  </view>
+
+
+  <view class='advert'>
+    <view>原本是出于对原生应用「Mark」的喜欢做的一个模仿秀，后来因为豆瓣停止对外提供免费接口等等原因变成了这幅模样。</view>
+    <view>小程序现包含女友大力支持的美丽的 UI、云函数爬取网页（豆瓣、GitHub）内容、GitHub REST API。</view>
+    <view>但小程序的初衷未曾改变，做一个完整的项目供学习，根据官方 API 的迭代持续更新。</view>
+    <view>已在 GitHub 上开源，源码可在<text class='link' bindtap='toWebview' data-url='https://mp.weixin.qq.com/s/wEkgBTlbBNDT9ALZmdijeA'>公众号文章</text>内找到。</view>
+  </view>
+</view>
+
+<i wx:if='{{playing}}' class="active fa fa-music" bindtap='audioToggle'></i>
+<i wx:else class="fa fa-music" bindtap='audioToggle'></i>
