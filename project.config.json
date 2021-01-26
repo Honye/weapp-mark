@@ -1,140 +1,100 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"enhance": false,
-		"postcss": true,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useIsolateContext": true,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.8.2",
-	"appid": "wx5363d9bd45509430",
-	"projectname": "iMark",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"miniprogramRoot": "miniprogram/",
-	"cloudfunctionRoot": "cloudfunctions/",
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": 8,
-			"list": [
-				{
-					"id": -1,
-					"name": "发现",
-					"pathName": "pages/tabs/discovery/discovery",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "热门电影",
-					"pathName": "pages/pMovie/pages/intheaters/in_theaters",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/tabs/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 3,
-					"name": "豆瓣详情",
-					"pathName": "pages/pMovie/pages/details/details",
-					"query": "title=罗小黑战记&id=26709258",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "搜索",
-					"pathName": "pages/search/search",
-					"query": "title=复仇者联盟4：终局之战&id=26100958",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "卡片",
-					"pathName": "pages/pMovie/pages/cards/card",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 6,
-					"name": "时光详情",
-					"pathName": "pages/pMovie/pages/details/details",
-					"query": "title=&id=259358&origin=mtime",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "喜欢的影单",
-					"pathName": "pages/pUser/pages/favMovieList/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "影单详情",
-					"pathName": "pages/pArticle/pages/movie-list-detail/movie-list-detail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "测试",
-					"pathName": "pages/test/test",
-					"query": "",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "bundle": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": true,
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "./miniprogram/"
+      }
+    ],
+    "minifyWXSS": true,
+    "nodeModules": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.10.4",
+  "appid": "wx5363d9bd45509430",
+  "projectname": "iMark",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 3,
+          "name": "豆瓣详情",
+          "pathName": "pages/pMovie/pages/details/details",
+          "query": "title=罗小黑战记&id=26709258",
+          "scene": null
+        },
+        {
+          "id": 6,
+          "name": "时光详情",
+          "pathName": "pages/pMovie/pages/details/details",
+          "query": "title=&id=259358&origin=mtime",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "影单详情",
+          "pathName": "pages/pArticle/pages/movie-list-detail/movie-list-detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "测试",
+          "pathName": "pages/test/test",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

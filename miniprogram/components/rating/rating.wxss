@@ -14,7 +14,7 @@
   margin-right: .2em;
 }
 .com-rating .rating-on {
-  color: black;
+  color: #FFE200;
   position: absolute;
   overflow: hidden;
   padding: 0;

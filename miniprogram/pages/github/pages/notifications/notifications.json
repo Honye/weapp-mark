@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "Notifications",
+  "usingComponents": {
+    "notification-item": "../../components/notification-item/notification-item",
+    "repo-item": "../../components/repo-item/repo-item"
+  }
+}

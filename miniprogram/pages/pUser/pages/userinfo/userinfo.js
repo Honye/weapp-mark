@@ -1,62 +1,61 @@
 // pages/userinfo/userinfo.js
-import { $wuxActionSheet } from '../../../common/index.js';
+import { $wuxActionSheet } from '../../../common/index';
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
+import { store } from '../../../../store/user';
+import wxCloud from '../../../../utils/wxCloud';
 
-const app = getApp();
 Page({
+  behaviors: [storeBindingsBehavior],
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     userInfo: {},
     phone: '13125368636',
-    thirdAuthor: []
+    modalGitHubVisible: false,
+    githubToken: ''
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    const that = this;
-    app.getUserInfo(function (userInfo) {
-      that.setData({
-        userInfo: userInfo
-      })
-    })
-    this.initData();
+  storeBindings: {
+    store,
+    fields: {
+      info: (store) => store.info,
+      thirdAuthor: (store) => {
+        return {
+          wechat: {
+            title: '微信',
+            authorized: true
+          },
+          qq: {
+            title: 'QQ',
+            authorized: false
+          },
+          github: {
+            title: 'GitHub',
+            authorized: !!(store.info && store.info.githubToken)
+          }
+        }
+      }
+    },
+    actions: ['updateUserInfo']
   },
 
-  bindPhone() {
-    wx.navigateTo({
-      url: '/pages/pUser/pages/bindphone/index',
-    })
+  onLoad (options) {
+    
   },
 
-  initData() {
-    this.setData({
-      thirdAuthor: [
-        {id:'wechat', title:'微信', isAuthor: true},
-        {id:'qq', title:'QQ', isAuthor: false},
-        {id:'sina', title:'微博', isAuthor: false}
-      ]
-    })
-  },
-
-  showActionSheet() {
-    const that = this;
+  showActionSheet () {
     $wuxActionSheet.show({
       theme: 'wx',
       buttons: [
-        {text:'拍照'},
-        {text:'从相册中选取'},
+        { text: '拍照' },
+        { text: '从相册中选取' },
       ],
-      buttonClicked(index, item) {
+      buttonClicked: (index, item) => {
         wx.chooseImage({
           count: 1,
           sourceType: index===0 ? ['camera'] : ['album'],
-          success: function(res) {
-            const { userInfo } = that.data;
-            that.setData({
+          success: (res) => {
+            const { userInfo } = this.data;
+            this.setData({
               userInfo: { ...userInfo, avatarUrl: res.tempFilePaths[0] }
             })
           },
@@ -64,5 +63,97 @@ Page({
         return true;
       }
     })
+  },
+
+  handleThirdSwitch (e) {
+    const { key } = e.currentTarget.dataset;
+    const { value } = e.detail;
+    switch (key) {
+      case 'github':
+        this.handleGitHubSwitch(value);
+        break;
+    }
+  },
+
+  handleGitHubSwitch (value) {
+    if (value) {
+      this.setData({
+        modalGitHubVisible: value
+      });
+      return;
+    }
+    wx.showModal({
+      title: '提示',
+      content: '确定要移除 GitHub 授权？（已经和微信关联的数据并不会丢失）',
+      cancelText: '再想想',
+      confirmText: '决定了',
+      confirmColor: '#ffe200',
+      success: async ({ confirm }) => {
+        if (confirm) {
+          const resp = await wxCloud('github', {
+            action: 'removeAccessToken',
+          });
+          if (resp.code === 0) {
+            wx.showToast({
+              icon: 'none',
+              title: '已成功移除 GitHub 授权'
+            });
+            this.setData({
+              'thirdAuthor.github.authorized': false
+            });
+            this.data.info.githubToken = null;
+            this.updateUserInfo(this.data.info);
+            return;
+          }
+          return;
+        }
+        // 再想想
+        this.setData({
+          'thirdAuthor.github.authorized': this.data.thirdAuthor.github.authorized
+        });
+      }
+    });
+  },
+
+  handleModalGitHubClose () {
+    this.setData({
+      modalGitHubVisible: false,
+      githubToken: '',
+      'thirdAuthor.github.authorized': this.data.thirdAuthor.github.authorized
+    });
+  },
+
+  async handleBindGitHub () {
+    const { githubToken } = this.data;
+    try {
+      const res = await wxCloud('github', {
+        action: 'setAccessToken',
+        data: {
+          token: githubToken
+        }
+      });
+      if (res.code !== 0) {
+        wx.showToast({
+          icon: 'none',
+          title: res.message
+        });
+        return;
+      }
+      wx.showToast({
+        icon: 'none',
+        title: '设置成功，可使用 GitHub 功能了'
+      });
+      this.setData({
+        modalGitHubVisible: false,
+        'thirdAuthor.github.authorized': true
+      });
+      this.data.info.githubToken = githubToken;
+      this.updateUserInfo(this.data.info);
+    } catch (err) {
+      this.setData({
+        modalGitHubVisible: false,
+        'thirdAuthor.github.authorized': false
+      });
+    }
   }
 })

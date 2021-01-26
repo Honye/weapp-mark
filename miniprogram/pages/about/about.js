@@ -1,4 +1,5 @@
 // about
+import { getRepoInfo, getRepoReadme } from '../../apis/github';
 
 const music = {
   src: 'http://music.163.com/song/media/outer/url?id=1404596131.mp3',
@@ -13,12 +14,25 @@ const audioManager = wx.getBackgroundAudioManager();
 Page({
 
   data: {
-    playing: false
+    playing: false,
+    repo: null,
+    readmeHTML: ''
   },
 
   onLoad (options) {
     this.initAudio();
     this.initAudioListener();
+    this.getRepoInfo();
+    getRepoReadme({
+      media: 'html',
+      owner: 'Honye',
+      repo: 'weapp-mark'
+    })
+      .then((res) => {
+        this.setData({
+          readmeHTML: res
+        });
+      });
   },
 
   onShow (options) {
@@ -71,6 +85,15 @@ Page({
     });
   },
 
+  getRepoInfo () {
+    getRepoInfo({
+      owner: 'honye',
+      repo: 'weapp-mark'
+    })
+      .then((res) => {
+        this.setData({ repo: res });
+      });
+  },
 
   toWebview (e) {
     const { url } = e.currentTarget.dataset

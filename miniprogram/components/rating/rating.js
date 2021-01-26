@@ -1,6 +1,9 @@
 // 组件-评分
 
 Component({
+  options: {
+    addGlobalClass: true
+  },
 
   properties: {
     rating: {

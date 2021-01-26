@@ -1,55 +1,56 @@
 // 设置
-import Storage from './../../utils/storage.js';
+import Storage from './../../utils/storage';
 
 const app = getApp();
+const templMsgId = 'sJz8Heo9GSqMwhnJFlpEHbm-rmIhUlhOkEOoSvY6BwE';
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     notice: true,
     storageSize: 0
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    let size = 0;
-    wx.getStorageInfo({
-      success: function (res) {
-        size = res.currentSize;
-      },
-    })
-    this.setData({
-      notice: app.globalData.setting.notice || false,
-      storageSize: size
-    })
+  onLoad (options) {
+    const storageInfo = wx.getStorageInfoSync();
+    wx.getSetting({
+      withSubscriptions: true,
+      success: ({ subscriptionsSetting = {} }) => {
+        const { mainSwitch, itemSettings } = subscriptionsSetting;
+        this.setData({
+          notice: Boolean(mainSwitch && itemSettings && itemSettings[templMsgId]),
+          storageSize: storageInfo.currentSize
+        });
+      }
+    });
   },
 
   /**
    * 通知开关
    */
-  switchNotice: function (event) {
-    const _this = this;
-    wx.setStorage({
-      key: 'setting',
-      data: { ...app.globalData.setting, notice: event.detail.value },
-      success: () => {
-        app.globalData.setting = { ...app.globalData.setting, notice: event.detail.value };
-        _this.setData({
-          notice: event.detail.value
-        })
-      }
-    })
+  async switchNotice (event) {
+    const { value } = event.detail;
+    let notice = false;
+    if (value) {
+      // case switch to subscribe message
+      const subscription = await new Promise((resolve, reject) => {
+        wx.requestSubscribeMessage({
+          tmplIds: [templMsgId],
+          success: (res) => resolve(res),
+          fail: (err) => reject(err)
+        });
+      });
+      notice = subscription[templMsgId] === 'accept';
+    }
+    
+    app.globalData.setting = { ...app.globalData.setting, notice };
+    this.setData({ notice });
   },
 
   /**
    * 清除缓存
    */
-  clearCache: function () {
+  clearCache () {
     Storage.clear()
     wx.showToast({
       title: '已清除',

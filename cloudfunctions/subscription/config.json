@@ -1,0 +1,14 @@
+{
+  "triggers": [
+    {
+      "name": "trending",
+      "type": "timer",
+      "config": "*/10 * * * * * *"
+    }
+  ],
+  "permissions": {
+    "openapi": [
+      "subscribeMessage.send"
+    ]
+  }
+}

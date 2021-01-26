@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "Starred",
+  "usingComponents": {
+    "repo-item": "../../components/repo-item/repo-item"
+  }
+}

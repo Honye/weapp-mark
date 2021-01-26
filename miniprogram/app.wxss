@@ -2,5 +2,6 @@
 @import './style/weui.wxss';
 @import '/style/animate.wxss';
 @import './style/font-awesome.min.wxss';
+@import './style/iconfont.wxss';
 @import "./pages/common/wxParse/wxParse.wxss";
 @import '/style/common.wxss';

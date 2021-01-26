@@ -1,5 +1,6 @@
 // pages/intheaters/in_theaters.js
 import { Douban } from '../../../../utils/apis.js';
+import wxCloud from '../../../../utils/wxCloud';
 
 let pageNo1 = 0;
 let pageNo2 = 0;
@@ -19,22 +20,20 @@ Page({
   /** 生命周期函数--监听页面加载 */
   onLoad(options) {
     this.getInTheater();
+
+    wxCloud('nowPlaying')
+      .then(res => {
+        console.log('正在热映', res);
+        this.setData({
+          movies: res
+        });
+      });
   },
 
   /** 生命周期函数--监听页面卸载 */
   onUnload() {
     pageNo1 = 0;
     pageNo2 = 0;
-  },
-
-  /** 页面相关事件处理函数--监听用户下拉动作 */
-  onPullDownRefresh () {
-
-  },
-
-  /** 页面上拉触底事件的处理函数 */
-  onReachBottom() {
-
   },
 
   /** 影院热映 */
@@ -99,6 +98,13 @@ Page({
 
   /** 即将上映 */
   getComming() {
+    wxCloud('showingSoon')
+      .then((res) => {
+        console.log('sssss===', res)
+        this.setData({
+          commingMovies: res
+        });
+      });
     const that = this;
     Douban.get(
         Douban.COMMING,

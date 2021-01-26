@@ -72,3 +72,5 @@ sync_hook.script
 
 # Mac file
 .DS_Store
+
+**/miniprogram_npm

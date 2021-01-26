@@ -7,12 +7,16 @@
     <view class="userinfo">
       <view class="cell-left">
         <view class="userinfo-avatar btn-opacity" bindtap="bindViewTap">
-          <open-data type='userAvatarUrl' />
+          <image class="img" wx:if="{{info && info.avatarUrl}}" src="{{info.avatarUrl}}" mode="aspectFill" />
+          <open-data wx:else type='userAvatarUrl' />
+          <!-- <avatar class="img" wx:if="{{info && info.avatarUrl}}" avatar="{{info.avatarUrl}}" /> -->
         </view>
-        <view class='userinfo__right'>
+        <button class='button-nostyle userinfo__right' open-type="getUserInfo"
+          bindgetuserinfo="handleUserInfo"
+        >
           <open-data class="userinfo-nickname" type="userNickName" lang="zh_CN"></open-data>
           <view class='userinfo__extra'>这里什么都没有，快去标记啦</view>
-        </view>
+        </button>
       </view>
       <view class='actions'>
         <view class='actions-item btn-opacity' bindtap='toFavMovieList'>
@@ -23,7 +27,10 @@
           <image class='actions-item__icon' src='/assets/images/mine/icon-card.png' mode='aspectFit'></image>
           <view class='actions-item__name'>卡片</view>
         </view>
-        <view class='actions-item btn-opacity'>
+        <view class='actions-item btn-opacity'
+          data-url="/pages/github/pages/starred/starred"
+          bindtap="navigate"
+        >
           <image class='actions-item__icon' src='/assets/images/mine/icon-achievement.png' mode='aspectFit'></image>
           <view class='actions-item__name'>成就</view>
         </view>
@@ -32,9 +39,7 @@
   </view>
 
   <view class='row-list'>
-    <button class='contactBtn' open-type='share' hover-class='none'>
-      <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-message.png",title:"消息"}}' />
-    </button>
+    <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-message.png",title:"消息",bindTap:"toNotifications"}}' />
     <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-record.png",title:"影视档案",bindTap:"toEvalute"}}' />
     <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-setting.png",title:"设置",bindTap:"toSetting"}}' />
     <button class='contactBtn' open-type='contact' hover-class='none'>

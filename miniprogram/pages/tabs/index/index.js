@@ -1,55 +1,62 @@
 // 个人中心
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
+import { store } from '../../../store/user';
+import wxCloud from '../../../utils/wxCloud';
 
 // 获取应用实例
-var app = getApp()
+const app = getApp();
 
 Page({
+  behaviors: [storeBindingsBehavior],
 
   data: {
     version: app.globalData.version,
-    userInfo: {}
+    userinfo: app.globalData.userInfo
   },
 
-  onLoad() {
-    // 调用应用实例的方法获取全局数据
-    app.getUserInfo().then(userInfo => {
-      // 更新数据
-      this.setData({
-        userInfo
-      })
-    })
+  storeBindings: {
+    store,
+    fields: ['info', 'avatar'],
+    actions: ['updateUserInfo']
+  },
+
+  observers: {
+    info (info) {
+      console.log('info----', info);
+    }
+  },
+
+  onLoad () {
+    
   },
 
   /** 进入个人资料 */
-  bindViewTap() {
-    const that = this;
-    const { version, config } = app.globalData;
-    if(true || app.globalData.userInfo) {
-      if (version.versionCode > config.newestVersion) return;
-      wx.navigateTo({
-        url: '/pages/pUser/pages/userinfo/userinfo'
-      })
-    } else {
-      wx.getSetting({
-        success: res => {
-          if(!res.authSetting['scope.userInfo']) {
-            wx.openSetting({
-              success: res => {
-                if (res.authSetting['scope.userInfo']){
-                  app.getUserInfo(userInfo => {
-                    that.setData({ userInfo })
-                  })
-                }
-              }
-            })
-          } else {
-            app.getUserInfo(userInfo => {
-              that.setData({ userInfo })
-            })
-          }
-        }
-      })
-    }
+  bindViewTap () {
+    // const { version, config } = app.globalData;
+    // if (version.versionCode > config.newestVersion) return;
+    wx.navigateTo({
+      url: '/pages/pUser/pages/userinfo/userinfo'
+    })
+  },
+
+  handleUserInfo (e) {
+    const { cloudID } = e.detail;
+    wxCloud('login', {
+      wxUserInfo: wx.cloud.CloudID(cloudID)
+    })
+      .then(({ data }) => {
+        app.globalData.userInfo = data;
+        this.setData({
+          userInfo: data
+        });
+      });
+  },
+
+  /** 去消息 */
+  toNotifications () {
+    wx.navigateTo({
+      url: '/pages/github/pages/notifications/notifications'
+    });
   },
 
   /** 去设置 */
@@ -101,5 +108,10 @@ Page({
       url: '/pages/pUser/pages/evaluate/evaluate',
     })
   },
+
+  navigate (e) {
+    const { url } = e.currentTarget.dataset;
+    wx.navigateTo({ url });
+  }
 
 })

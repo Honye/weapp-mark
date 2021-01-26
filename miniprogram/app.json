@@ -69,10 +69,16 @@
       "root": "pages/pUser/",
       "pages": [
         "pages/favMovieList/index",
-        "pages/bindphone/index",
         "pages/evaluate/evaluate",
         "pages/favCards/index",
         "pages/userinfo/userinfo"
+      ]
+    },
+    {
+      "root": "pages/github/",
+      "pages": [
+        "pages/notifications/notifications",
+        "pages/starred/starred"
       ]
     }
   ],

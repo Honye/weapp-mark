@@ -1,0 +1,27 @@
+.notification-item {
+  display: flex;
+}
+
+.notification-item__icon {
+  color: #6f42c1;
+}
+
+.notification-item__repo {
+  display: flex;
+  align-items: center;
+  color: #6a737d;
+}
+
+.notification-item__note {
+  display: flex;
+  align-items: center;
+  color: #586069;
+}
+
+.avatar-group {
+  margin-right: 8rpx;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+  background-color: #eee;
+}

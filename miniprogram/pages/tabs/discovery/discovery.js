@@ -1,5 +1,7 @@
 // discovery
-import Bing from '../../common/bing/bing.js'
+import Bing from '../../common/bing/bing.js';
+import wxCloud from '../../../utils/wxCloud';
+import * as GitHubApis from '../../../apis/github';
 
 var app = getApp()
 const db = wx.cloud.database()
@@ -19,7 +21,8 @@ Page({
     banners: [],
     articles: [],
     nowDay: new Date().getDate(),
-    bings: []
+    bings: [],
+    intheaters: []
   },
 
   /**
@@ -36,6 +39,12 @@ Page({
     })
     this.getData()
     // this.getRemoteConfig()
+    // wxCloud('wxacode')
+    //   .then((res) => {
+    //     console.log('app code ===', res);
+    //   });
+    
+    this.getActivityEvents();
   },
 
   /**
@@ -43,6 +52,7 @@ Page({
    */
   getData() {
     this.getBanners();
+    this.getIntheaters();
     this.getArticles();
   },
 
@@ -62,6 +72,16 @@ Page({
             articles: data
         })
     })
+  },
+
+  /** 影院热映 */
+  getIntheaters () {
+    wxCloud('nowPlaying')
+      .then(res => {
+        this.setData({
+          intheaters: res
+        });
+      });
   },
 
   onBannerTap(event) {
@@ -133,4 +153,16 @@ Page({
       swiperHide: false,
     })
   },
+
+  getActivityEvents () {
+    GitHubApis.getEvents({
+      username: 'Honye'
+    })
+      .then((res) => {
+        console.log('GitHub ', res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 })

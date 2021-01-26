@@ -48,3 +48,93 @@
 .tips {
   padding: 25rpx;
 }
+
+.modal {
+  position: fixed;
+  z-index: 500;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+}
+.modal__mask {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+.modal__content {
+  position: fixed;
+  z-index: 1;
+  transform: translate3d(0,0,0);
+  transition: transform .3s ease-in-out;
+}
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .modal__content {
+      padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@supports (padding-bottom: constant(safe-area-inset-bottom)) {
+  .modal__content {
+      padding-bottom: constant(safe-area-inset-bottom);
+  }
+}
+.modal--bottom .modal__content{
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translate3d(0, 100%, 0);
+}
+.modal.visible {
+  opacity: 1;
+}
+.modal.visible .modal__mask {
+  pointer-events: all;
+}
+.modal.visible .modal__content {
+  transform: translate3d(0, 0, 0);
+}
+
+.modal-github {
+  background-color: #fff;
+  border-radius: 24rpx 24rpx 0 0;
+}
+.modal-github__title {
+  font-weight: 600;
+  text-align: center;
+  font-size: 32rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.modal-github__content {
+  box-sizing: border-box;
+  min-height: 240rpx;
+  padding: 20rpx 30rpx;
+  position: relative;
+}
+.modal-github__input {
+  background-color: #eee;
+  border-radius: 99rpx;
+  padding: 0.5em 1em;
+}
+.modal-github__btn {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 30rpx;
+  border: none;
+  background-color: #ffe200;
+  font-size: 32rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 12rpx;
+  width: 240rpx;
+  margin: 30rpx auto 0;
+}
+.modal-github__btn::after {
+  content: none;
+}

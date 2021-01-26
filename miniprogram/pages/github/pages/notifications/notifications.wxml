@@ -1,0 +1,8 @@
+<view class="container">
+  <block wx:for="{{[1,2,3]}}" wx:key="index">
+    <notification-item />
+  </block>
+  <block wx:for="{{list}}" wx:key="index">
+    <repo-item repo="{{item}}" />
+  </block>
+</view>

@@ -9,18 +9,18 @@
     <view class='row-cell btn-bg' bindtap='showActionSheet'>
       <text>头像</text>
       <view class='avatar'>
-        <image src='{{userInfo.avatarUrl}}' />
+        <image src='{{info.avatarUrl}}' />
         <image class='icon' src='/assets/images/change_head_img_icon.png' mode='widthFix' />
       </view>
     </view>
     <view class='row-cell btn-bg'>
       <text>昵称</text>
       <view>
-        <text>{{userInfo.nickName}}</text>
+        <text>{{info.nickName}}</text>
         <image class='icon' src='/assets/images/right_arrow.png' mode='widthFix' />
       </view>
     </view>
-    <view class='row-cell btn-bg' bindtap='bindPhone'>
+    <view class='row-cell btn-bg'>
       <text>手机号</text>
       <view>
         <text>{{wxUtil.cutPhone(phone)}}</text>
@@ -30,11 +30,27 @@
   </view>
   <view class='tips'>绑定第三方账号后可以直接登录</view>
   <view class='bottom'>
-    <block wx:for='{{thirdAuthor}}' wx:key='id'>
+    <block wx:for='{{thirdAuthor}}' wx:key='index'>
       <view class='row-cell'>
         <text>{{item.title}}</text>
-        <switch color='#ffe200' checked='{{item.isAuthor}}' />
+        <switch
+          color='#ffe200'
+          checked='{{item.authorized}}'
+          data-key="{{index}}"
+          bindchange="handleThirdSwitch"
+        />
       </view>
     </block>
+  </view>
+
+  <view class="modal modal--bottom {{modalGitHubVisible && 'visible'}}">
+    <view class="modal__mask" bindtap="handleModalGitHubClose"></view>
+    <view class="modal__content modal-github">
+      <view class="modal-github__title">GitHub Token</view>
+      <view class="modal-github__content">
+        <input class="modal-github__input" placeholder="GitHub Token" model:value="{{githubToken}}" />
+        <button class="modal-github__btn" disabled="{{!githubToken}}" bindtap="handleBindGitHub">绑定</button>
+      </view>
+    </view>
   </view>
 </view>

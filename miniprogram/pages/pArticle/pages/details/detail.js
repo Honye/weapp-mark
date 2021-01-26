@@ -68,7 +68,8 @@ Page({
     handleShare(e) {
         $markShare.show({
             titleText: '',
-            buttons: [{
+            buttons: [
+                {
                     iconPath: '/assets/images/weixin_icon.png',
                     title: '微信好友',
                     openType: 'share'
@@ -80,10 +81,6 @@ Page({
                 {
                     iconPath: '/assets/images/qq_zone_icon.png',
                     title: 'QQ空间'
-                },
-                {
-                    iconPath: '/assets/images/weibo_icon.png',
-                    title: '微博'
                 },
                 {
                     iconPath: '/assets/images/copy_link_icon.png',

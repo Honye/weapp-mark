@@ -1,0 +1,68 @@
+.component {
+  background-color: #fff;
+  padding: 30rpx 60rpx 30rpx 35rpx;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  margin-right: 18rpx;
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 46rpx;
+  background-color: #eee;
+}
+
+.nickname {
+  font-size: 20rpx;
+  color: #222;
+}
+
+.repo-name {
+  margin-top: 16rpx;
+  font-size: 30rpx;
+  line-height: 1;
+  font-weight: bold;
+  color: #050505;
+}
+
+.desc {
+  margin-top: 18rpx;
+  font-size: 28rpx;
+  line-height: 38rpx;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+  color: #070707;
+}
+
+.stars {
+  display: inline-flex;
+  align-items: center;
+  font-size: 28rpx;
+  line-height: 1;
+  vertical-align: middle;
+  color: #4B4D58;
+}
+
+.stars .icon-star {
+  margin-right: 10rpx;
+  color: #C79D0F;
+}
+
+.language {
+  margin-left: 30rpx;
+  display: inline-flex;
+  align-items: center;
+  font-size: 28rpx;
+  line-height: 1;
+  vertical-align: middle;
+  color: #4B4D58;
+}
+
+.language .icon-dot {
+  margin-right: 10rpx;
+  font-size: 20rpx;
+}

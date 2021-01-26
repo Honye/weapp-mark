@@ -11,7 +11,6 @@
       </view>
     </view>
   </navigator>
-  
   <view class='content'>
     <scroll-view scroll-y enable-back-to-top>
       <swiper class='banner card-swiper'
@@ -47,11 +46,11 @@
           <image class="intheaters__header-arrow" src="/assets/images/discovery/icon-arrow.png" mode="aspectFit" />
         </navigator>
         <scroll-view class="intheaters__movies" scroll-x>
-          <view class="movie-item" wx:for="{{[1,2,3,4,5,6,7,8,9]}}">
-            <image class="movie-item__img" src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2573582192.jpg" mode="aspectFill" />
+          <view class="movie-item" wx:for="{{intheaters}}" wx:key="id">
+            <image class="movie-item__img" src="{{item.img}}" mode="aspectFill" />
             <view class="movie-item__info">
-              <view class="movie-item__name">复仇者联网4：终局之战</view>
-              <view class="movie-item__rate">9.0分（豆瓣）</view>
+              <view class="movie-item__name">{{item.title}}</view>
+              <view class="movie-item__rate">{{item.rating > 0 ? item.rating + '分（豆瓣）' : '暂无评分'}}</view>
             </view>
           </view>
         </scroll-view>

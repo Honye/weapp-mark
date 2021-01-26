@@ -9,6 +9,20 @@
     />
   </view>
 
+  <view class="blogger" wx:if="{{repo}}">
+    <view class="row-cell">
+      <text class="iconfont icon-github"></text>
+      <text>{{repo.name}}</text>
+    </view>
+    <view class="row-cell">
+      <text class="iconfont icon-star"></text>
+      <text>{{repo.stargazers_count}}</text>
+    </view>
+    <view class="row-cell">
+      <text class="iconfont icon-license"></text>
+      <text>{{repo.license.name}}</text>
+    </view>
+  </view>
 
   <view class='advert'>
     <view>原本是出于对原生应用「Mark」的喜欢做的一个模仿秀，后来因为豆瓣停止对外提供免费接口等等原因变成了这幅模样。</view>
@@ -16,6 +30,7 @@
     <view>但小程序的初衷未曾改变，做一个完整的项目供学习，根据官方 API 的迭代持续更新。</view>
     <view>已在 GitHub 上开源，源码可在<text class='link' bindtap='toWebview' data-url='https://mp.weixin.qq.com/s/wEkgBTlbBNDT9ALZmdijeA'>公众号文章</text>内找到。</view>
   </view>
+  <rich-text nodes="{{readmeHTML}}" />
 </view>
 
 <i wx:if='{{playing}}' class="active fa fa-music" bindtap='audioToggle'></i>

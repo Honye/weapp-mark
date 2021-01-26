@@ -146,27 +146,28 @@ Page({
     });
     $markShare.show({
       titleText: '',
-      buttons: [{
-        key: 'forward',
-        iconPath: '/assets/images/weixin_icon.png',
-        title: '微信好友',
-        openType: 'share'
-      },
-      {
-        key: 'moment',
-        iconPath: '/assets/images/weixin_circle_icon.png',
-        title: '微信朋友圈'
-      },
-      {
-        key: 'weibo',
-        iconPath: '/assets/images/weibo_icon.png',
-        title: '微博'
-      },
-      {
-        key: 'save',
-        iconPath: '/assets/images/save_pic_icon.png',
-        title: '保存图片'
-      }
+      buttons: [
+        {
+          key: 'forward',
+          iconPath: '/assets/images/weixin_icon.png',
+          title: '微信好友',
+          openType: 'share'
+        },
+        {
+          key: 'moment',
+          iconPath: '/assets/images/weixin_circle_icon.png',
+          title: '微信朋友圈'
+        },
+        {
+          key: 'save',
+          iconPath: '/assets/images/save_pic_icon.png',
+          title: '保存图片'
+        },
+        {
+          key: 'make',
+          iconPath: '/assets/images/card_icon_made.svg',
+          title: '制作卡片'
+        }
       ],
       buttonClicked: (index, item) => {
         switch (item.key) {

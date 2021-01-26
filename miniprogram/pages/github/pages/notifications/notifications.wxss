@@ -1,0 +1,15 @@
+.repo-item {
+  position: relative;
+}
+
+.repo-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 20rpx;
+  right: 0;
+  height: 1px;
+  background-color: #B7B7B9;
+  transform: scaleY(0.5) translateY(50%);
+  transform-origin: 0 50%;
+}

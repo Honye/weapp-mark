@@ -1,0 +1,16 @@
+<view class="notification-item">
+  <view class="notification-item__icon">
+    <text class="iconfont icon-ios-git-merge"></text>
+  </view>
+  <view class="notification-item__content">
+    <view class="notification-item__repo">
+      <view class="repo-name">Honye/weapp-mark</view>
+      <view class="issue">#8</view>
+    </view>
+    <view class="notification-item__msg">saddasdasdsadasdsadasd</view>
+    <view class="notification-item__note">
+      <view class="avatar-group"></view>
+      <view class="notification-item__reason">mention</view>
+    </view>
+  </view>
+</view>

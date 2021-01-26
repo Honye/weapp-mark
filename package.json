@@ -1,7 +1,8 @@
 {
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.8.0"
+    "@types/wechat-miniprogram": "^3.2.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.12.1"
   },
   "name": "weapp-mark",
   "version": "1.0.0",
@@ -9,5 +10,9 @@
   "main": "index.js",
   "repository": "https://github.com/Honye/weapp-mark.git",
   "author": "Honye <hongye.jun@qq.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "mobx-miniprogram": "^4.13.2",
+    "mobx-miniprogram-bindings": "^1.2.1"
+  }
 }

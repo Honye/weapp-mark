@@ -77,5 +77,16 @@
 }
 .action-sheet .cancel {
   border-top: .5px solid #e3e3e3;
-  color: #3f3f3f;
+  font-size: 30rpx;
+  color: #333;
+}
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .action-sheet .cancel{
+    padding-bottom: calc(0.8em + env(safe-area-inset-bottom));
+  }
+}
+@supports (padding-bottom: constant(safe-area-inset-bottom)) {
+  .action-sheet .cancel{
+    padding-bottom: calc(0.8em + constant(safe-area-inset-bottom));
+  }
 }
