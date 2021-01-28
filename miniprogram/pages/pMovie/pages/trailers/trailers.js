@@ -1,20 +1,14 @@
 // pages/trailers/trailers.js
-import { Douban } from '../../../../utils/apis.js';
+import { getTrailers } from '../../../../apis/douban.js';
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     currUrl: '',
     trailers: []
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  onLoad (options) {
     wx.setNavigationBarTitle({
       title: '中国预告片（中文字幕）',
     })
@@ -23,34 +17,29 @@ Page({
     this.getDetails(id);
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage () {
+    // nothing
   },
 
   /**
    * 获取影视详情
    */
-  getDetails: function (id) {
+  async getDetails (id) {
     wx.showLoading({
       title: 'loading...',
     });
-    let _this = this;
-    Douban.get(`${Douban.DETAILS}/${id}`)
-      .then(res => {
-        _this.setData({
-          trailers: res.trailers,
-          loaded: true,
-        });
-      })
+    const res = await getTrailers({ id });
+    wx.hideLoading();
+    this.setData({
+      trailers: res.trailers,
+      loaded: true
+    });
   },
 
   /**
    * 改变当前预告
    */
-  changeTrailer(e) {
+  changeTrailer (e) {
     const { trailers } = this.data;
     const {index, url} = e.currentTarget.dataset;
     this.setData({ currUrl: url })
@@ -62,12 +51,11 @@ Page({
   /**
    * 视频播放结束
    */
-  videoEnded() {
+  videoEnded () {
     const {trailers, currUrl} = this.data;
-    const that = this;
     for(let i=0; i<trailers.length; i++) {
-      if (currUrl == trailers[i].resource_url && i<trailers.length-1) {
-        that.setData({ currUrl: trailers[i + 1].resource_url})
+      if (currUrl == trailers[i].video_url && i<trailers.length-1) {
+        this.setData({ currUrl: trailers[i + 1].video_url})
       }
     }
   }

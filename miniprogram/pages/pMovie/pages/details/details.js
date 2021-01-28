@@ -1,4 +1,5 @@
-import { Douban, mtime } from '../../../../utils/apis.js'
+import { getDetail, getInterests, getPhotos } from '../../../../apis/douban.js';
+import { mtime } from '../../../../utils/apis.js'
 import Cast from '../../../../models/Cast'
 import Comment from '../../../../models/Comment'
 
@@ -8,9 +9,6 @@ const origins = {
 }
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     origin: {
       key: 'douban',
@@ -23,14 +21,13 @@ Page({
     pubdates: '',
     comments_count: 0,
     comments: [],
+    /** @type {import('../../../../apis/douban.js').DouBan.Photo[]} */
+    photos: [],
     loaded: false,
     isFold: true,
     showMovieListPopup: false,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     if (options.title) {
       const title = decodeURIComponent(options.title)
@@ -53,56 +50,39 @@ Page({
     } else {
       this.getDetails(options.id);
       this.getComments(options.id);
+      this.getPhotos(options.id);
     }
   },
   
   /**
    * 获取影视详情（豆瓣）
    */
-  getDetails(id) {
+  async getDetails (id) {
     wx.showLoading({
       title: 'loading...',
     });
-    Douban.get(`${Douban.DETAILS}/${id}`).then(res => {
-      const {
-        directors = [],
-        casts = [],
-        trailers = [],
-        ...details
-      } = res
-      const _casts = casts.map(item => item.name)
-      const directorList = directors.map(item => {
-        const cast = Cast.fromDouban(JSON.stringify({
-          ...item,
-          type: 'Director',
-        }))
-        return cast
-      })
-      const actorList = casts.map(item => {
-        const cast = Cast.fromDouban(JSON.stringify({
-          ...item,
-          type: 'Actor',
-        }))
-        return cast
-      })
-      const _trailers = trailers.map(item => ({
-        image: item.medium,
-        url: item.resource_url,
-      }))
-      this.setData({
-        details,
-        directorList,
-        actorList,
-        casts: _casts.join(' / '),
-        loaded: true,
-        comments_count: details.comments_count,
-        trailers: _trailers,
-      })
-      wx.setNavigationBarTitle({
-        title: res.title,
-      })
-      wx.hideLoading()
-    })
+
+    const res = await getDetail({ id });
+    const casts = res.actors.map(item => item.name);
+    const directors = res.directors.map(item => Cast.fromDouban(JSON.stringify({ ...item, type: 'Director' })));
+    const actors = res.actors.map(item => Cast.fromDouban(JSON.stringify({ ...item, type: 'Actor' })));
+    const trailers = [{
+      image: res.trailer.cover_url,
+      url: res.trailer.video_url
+    }];
+    wx.hideLoading();
+    wx.setNavigationBarTitle({
+      title: res.title
+    });
+    this.setData({
+      details: res,
+      directorList: directors,
+      actorList: actors,
+      casts: casts.join('/'),
+      loaded: true,
+      comments_count: res.comment_count,
+      trailers
+    });
   },
 
   /**
@@ -126,16 +106,28 @@ Page({
   /**
    * 获取影视短评
    */
-  getComments(id) {
-    Douban.get(
-        `${Douban.DETAILS}/${id}/comments`,
-        { start: 0, count: 6 }
-      ).then(res => {
-        this.setData({
-          comments: res.comments.map(item => Comment.fromDouban(item)),
-        })
-      }
-    )
+  async getComments (id) {
+    const res = await getInterests({
+      id,
+      start: 0,
+      count: 10
+    });
+    const comments = res.interests.map(item => Comment.fromDouban(item));
+    this.setData({
+      comments
+    });
+  },
+
+  /** 剧照 */
+  async getPhotos (id) {
+    const res = await getPhotos({
+      id,
+      start: 0,
+      count: 12
+    });
+    this.setData({
+      photos: res.photos
+    });
   },
 
   /** 影视短评（时光网） */
@@ -195,13 +187,10 @@ Page({
    */
   onImagePre(e) {
     const { img } = e.currentTarget.dataset;
-    const { details } = this.data;
-    let urls = [];
-    for(let item of details.photos) {
-      urls.push(item.image)
-    }
+    const { photos } = this.data;
+    const urls = photos.map(item => item.image.large.url)
     wx.previewImage({
-      current: img,
+      current: img.large.url,
       urls
     })
   },

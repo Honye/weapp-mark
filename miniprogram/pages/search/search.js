@@ -1,5 +1,5 @@
 // pages/search/search.js
-import { /*Douban,*/ mtime } from './../../utils/apis.js'
+import { search } from '../../apis/douban.js';
 
 const count = 20;  // 每页加载数据数目
 Page({
@@ -39,7 +39,6 @@ Page({
 
   /** 用户确认搜索 */
   inputConfirm() {
-    const that = this;
     const { inputVal } = this.data;
     if(inputVal.indexOf('hy:')===0) {
       this.hiddenCommand()
@@ -49,13 +48,13 @@ Page({
         pageNo: 0,
         hasMore: true
       }, () => {
-        that.searchMovie()
+        this.searchMovie()
       })
     }
   },
 
   /** 搜索 */
-  searchMovie(e) {
+  async searchMovie (e) {
     const { inputVal, pageNo, result } = this.data
     this.setData({
       loading: true
@@ -63,23 +62,31 @@ Page({
     wx.showLoading({
       title: 'loading...',
     })
-    // const body = {
-    //   q: inputVal,
-    //   start: count * pageNo,
-    //   count
-    // }
-    mtime.searchMovie({
-      keyword: inputVal,
-      pageIndex: pageNo + 1,
-    }).then(res => {
-      this.setData({
-        result: pageNo ? [...result, ...res.movies] : [...res.movies],
-        loading: false,
-        pageNo: pageNo + 1,
-        hasMore: res.moviesCount > count * pageNo
-      })
-      this.setHistory()
-    })
+    const res = await search({
+      q: inputVal,
+      start: count * pageNo,
+      count
+    });
+    wx.hideLoading();
+    this.setData({
+      result: pageNo ? [...result, ...res.items] : res.items,
+      loading: false,
+      pageNo: pageNo + 1,
+      hasMore: res.total > count * (pageNo + 1)
+    });
+
+    // mtime.searchMovie({
+    //   keyword: inputVal,
+    //   pageIndex: pageNo + 1,
+    // }).then(res => {
+    //   this.setData({
+    //     result: pageNo ? [...result, ...res.movies] : [...res.movies],
+    //     loading: false,
+    //     pageNo: pageNo + 1,
+    //     hasMore: res.moviesCount > count * pageNo
+    //   })
+    //   this.setHistory()
+    // })
     // Douban.get(Douban.SEARCH, body)
     //   .then(res => {
     //     this.setData({

@@ -42,8 +42,8 @@
       </view>
       <view wx:elif='{{result.length>0}}'>
         <block wx:for='{{result}}' wx:key='id'>
-          <navigator url='/pages/pMovie/pages/details/details?title={{item.title}}&id={{item.id}}&origin=mtime'>
-            <template is="item-movie_row" data="{{...item}}" />
+          <navigator url='/pages/pMovie/pages/details/details?title={{item.target.title}}&id={{item.target.id}}'>
+            <template is="item-movie_row" data="{{...item.target}}" />
           </navigator>
         </block>
       </view>

@@ -4,7 +4,10 @@ module.exports = {
         "es6": true,
         "node": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
@@ -15,13 +18,16 @@ module.exports = {
         "getApp": "readonly",
         "getCurrentPages": "readonly"
     },
-    "parser": "babel-eslint",
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
+    "plugins": [
+        "@typescript-eslint"
+    ],
     "rules": {
-        "no-unused-vars": ["error", { "args": "none" }],
+        "@typescript-eslint/no-unused-vars": ["error", { "args": "none" }],
         "comma-dangle": ["error", "only-multiline"]
     }
 };

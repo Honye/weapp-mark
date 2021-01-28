@@ -9,9 +9,9 @@
 </p>
 
 
-作为学习项目一步一步走来，我会记录下我是如何从零完成此小程序的，以及途中遇到的所有问题，以后不定期更新，尽量做到更好，如果你有什么建议也请告诉我（[issues](https://github.com/Honye/weapp-mark/issues)）。项目中自己有封装一些组件，可在项目结构查看。
+纯属娱乐学习项目，偶尔记录下开发中遇到的问题和想法，不定期更新，如果你有什么建议也请告诉我（[issues](https://github.com/Honye/weapp-mark/issues)）。项目中自己有封装一些组件，可在项目结构查看。
 
-~~影视数据全部由[豆瓣](https://developers.douban.com/) API 提供。~~ 目前豆瓣搜索接口已经没有免费的可以使用了，我改用了时光网的接口。小程序个人开发功能限制太多，无法完全上线。如若喜欢可以下载原生应用 [Mark](http://a.app.qq.com/o/simple.jsp?pkgname=com.intlime.mark&fromcase=40002) 体验全部功能。
+~~影视数据全部由[豆瓣](https://developers.douban.com/) API 提供。~~ 目前豆瓣搜索接口已经没有免费的可以使用了，抓取的豆瓣评分小程序的 API。小程序个人开发功能限制太多，无法完全上线。如若喜欢可以下载原生应用 [Mark](http://a.app.qq.com/o/simple.jsp?pkgname=com.intlime.mark&fromcase=40002) 体验全部功能。
 
 ## Branches
 
@@ -27,7 +27,14 @@
 
 使用 [wxParse](https://github.com/icindy/wxParse)，小程序基础版本库要在 1.6.6 及以上。
 
+小程序[简易双向绑定](https://developers.weixin.qq.com/miniprogram/dev/framework/view/two-way-bindings.html)，小程序基础版本库 2.9.3 及以上
+
 ## Logs
+
+2021-01-28
+
+- 云函数实现 GitHub 绑定
+- 恢复豆瓣搜索和详情
 
 2018-09-16
 
@@ -110,4 +117,6 @@
 4. [LeanCloud 云服务](https://leancloud.cn/)提供后台支撑
 5. [云服务开发环境（官方）](https://cloud.tencent.com/document/product/619/11447)
 6. [小程序解决方案（官方）](https://cloud.tencent.com/solution/la)
+
+
 

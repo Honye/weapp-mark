@@ -6,10 +6,10 @@
 <view wx:if='{{loaded}}' class='container page-detail'>
     <view class='block'>
       <view class='clip-img'>
-        <image src='{{details.images.large || details.image}}' mode='widthFix' />
+        <image src='{{details.cover_url}}' mode='widthFix' />
       </view>
       <view class='brief'>
-        <image class='img-mv' src='{{details.images.large || details.image}}' mode='widthFix' />
+        <image class='img-mv' src='{{details.cover_url}}' mode='widthFix' />
         <view class='.brief-info'>
           <view wx:if='{{details.title || details.titleCn}}' class='title'>{{details.title || details.titleCn}}<text wx:if='{{details.original_title && details.original_title !== details.title}}'>（{{details.original_title}}）</text></view>
           <!-- 概述 -->
@@ -53,7 +53,7 @@
     <!-- 剧情简介 -->
     <view class='block brief-summary'>
       <text class='subtitle'>{{details.title || details.titleCn}}的剧情简介\n</text>
-      <text class='summary {{isFold && "isFold"}}'>{{details.summary || details.content}}</text>
+      <text class='summary {{isFold && "isFold"}}'>{{details.intro}}</text>
       <view wx:if='{{isFold}}' class='fold {{!isFold && "active"}}' bindtap='foldToggle'>展开</view>
     </view>
     <!-- 影人 -->
@@ -87,8 +87,8 @@
             <view class="icon"><image src="/assets/images/white_play_icon.png" mode="widthFix" /></view>
           </view>
         </navigator>
-        <view class='trailer' wx:for='{{details.photos}}' wx:key='id' data-img='{{item.image}}' bindtap='onImagePre'>
-          <image class='image' src='{{item.image}}' />
+        <view class='trailer' wx:for='{{photos}}' wx:key='id' data-img='{{item.image}}' bindtap='onImagePre'>
+          <image class='image' src='{{item.image.normal.url}}' />
         </view>
       </scroll-view>
     </view>
@@ -101,7 +101,7 @@
           <view class='comment-right'>
             <view class='name-rating'>
               <text class='username'>{{item.nickname}}</text>
-              <template is='rating' data='{{rating:item.rating, max:10}}' />
+              <template wx:if="{{item.rating}}" is='rating' data='{{rating:item.rating, max:10}}' />
             </view>
             <text class='date'>{{item.time}}</text>
             <text class='comment-content'>{{item.content}}</text>

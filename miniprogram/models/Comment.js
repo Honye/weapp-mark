@@ -34,11 +34,11 @@ export default class Comment {
     static fromDouban(obj) {
         return new Comment({
             id: obj.id,
-            nickname: obj.author.name,
-            avatar: obj.author.avatar,
-            rating: obj.rating.value * 2,
-            time: obj.created_at,
-            content: obj.content,
+            nickname: obj.user.name,
+            avatar: obj.user.avatar,
+            rating: obj.rating && obj.rating.value * 2,
+            time: obj.create_time,
+            content: obj.comment,
         })
     }
 }

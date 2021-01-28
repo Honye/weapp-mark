@@ -50,7 +50,7 @@ export default class Cast {
         return new Cast({
             id: item.id,
             type: item.type || 'Actor',
-            avatar: item.avatars.medium,
+            avatar: item.avatar.large,
             name: item.name,
             role: '',
         })
