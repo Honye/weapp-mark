@@ -1,3 +1,5 @@
+import colors from '../../../../utils/github-colors';
+
 Component({
   options: {
     addGlobalClass: true
@@ -7,5 +9,8 @@ Component({
       type: Object,
       value: {}
     }
+  },
+  data: {
+    colors
   }
 });

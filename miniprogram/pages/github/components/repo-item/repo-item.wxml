@@ -4,14 +4,14 @@
     <view class="nickname">{{repo.owner.login}}</view>
   </view>
   <view class="repo-name">{{repo.name}}</view>
-  <view class="desc">{{repo.description}}</view>
+  <view class="desc" wx:if="{{repo.description}}">{{repo.description}}</view>
   <view class="info">
     <view class="stars">
       <text class="iconfont icon-star"></text>
       <view class="stars__value">{{repo.stargazers_count}}</view>
     </view>
     <view class="language" wx:if="{{repo.language}}">
-      <text class="iconfont icon-dot"></text>
+      <text class="iconfont icon-dot" style="color:{{colors[repo.language].color}}"></text>
       <view class="language__value">{{repo.language}}</view>
     </view>
   </view>

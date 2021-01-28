@@ -38,6 +38,10 @@
   color: #070707;
 }
 
+.info {
+  margin-top: 18rpx;
+}
+
 .stars {
   display: inline-flex;
   align-items: center;

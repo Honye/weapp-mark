@@ -10,7 +10,7 @@ import { store } from '../store/user';
  */
 const request = (options) => {
   const { header, method, url, ...restOpt } = options;
-  const token = store.info.githubToken;
+  const token = store.info?.githubToken;
   return new Promise((resolve, reject) => {
     wx.request({
       header: {
