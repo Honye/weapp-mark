@@ -232,3 +232,31 @@ export const getPhotos: (params: {
 export const getTrailers: (params: {
   id: string;
 }) => Promise<DouBan.TrailersResult>
+
+/** 影院热映 */
+export const getShowingMovies: (params: {
+  start?: number
+  count?: number
+}) => Promise<{
+  count: number
+  subject_collection_items: Array<{
+    rating: {
+      max: number
+      value: number
+    }
+    cover: {
+      url: string
+    }
+    year: string
+    id: string
+    title: string
+    type: 'movie'
+    info: string
+    url: string
+    release_date: string
+    original_title: string
+    uri: string
+  }>
+  total: number
+  start: number
+}>

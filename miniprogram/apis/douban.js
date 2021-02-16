@@ -97,3 +97,16 @@ export const getTrailers = (params) => {
     url: `/movie/${params.id}/trailers`
   });
 };
+
+/**
+ * 影院热映
+ * @param {object} params 
+ * @param {number} [params.start]
+ * @param {number} [params.count]
+ */
+export const getShowingMovies = (params) => {
+  return request({
+    url: '/subject_collection/movie_showing/items',
+    data: params
+  });
+}

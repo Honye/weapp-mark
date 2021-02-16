@@ -1,7 +1,8 @@
 // discovery
 import Bing from '../../common/bing/bing.js';
-import wxCloud from '../../../utils/wxCloud';
+// import wxCloud from '../../../utils/wxCloud';
 import * as GitHubApis from '../../../apis/github';
+import { getShowingMovies } from '../../../apis/douban.js';
 
 var app = getApp()
 const db = wx.cloud.database()
@@ -25,14 +26,10 @@ Page({
     intheaters: []
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-    const that = this
+  onLoad (options) {
     wx.getSystemInfo({
-      success(res) {
-        that.setData({
+      success: (res) => {
+        this.setData({
           swiperHeight: res.windowWidth*3/5
         })
       },
@@ -75,13 +72,11 @@ Page({
   },
 
   /** 影院热映 */
-  getIntheaters () {
-    wxCloud('nowPlaying')
-      .then(res => {
-        this.setData({
-          intheaters: res
-        });
-      });
+  async getIntheaters () {
+    const res = await getShowingMovies();
+    this.setData({
+      intheaters: res.subject_collection_items || []
+    });
   },
 
   onBannerTap(event) {
@@ -103,30 +98,22 @@ Page({
     })
   },
 
-  /**
-   * 转发
-   */
-  onShareAppMessage(opt) {
+  onShareAppMessage (opt) {
     return {
       title: "好用得不得了",
-      imageUrl: "http://xpic.588ku.com/figure/00/00/00/08/56/5355a15b1f68dfd.jpg!/fw/800",
-      success: res => {
-      },
-      complete: res => {
-      }
+      imageUrl: "http://xpic.588ku.com/figure/00/00/00/08/56/5355a15b1f68dfd.jpg!/fw/800"
     }
   },
 
   /**
    * 获取在线配置
    */
-  getRemoteConfig() {
-    const that = this;
+  getRemoteConfig () {
     wx.showLoading({
       title: 'loading...',
     })
     app.hasPublished(res => {
-      that.setData({
+      this.setData({
         published: res,
         remoted: true
       })

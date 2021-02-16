@@ -1,20 +1,18 @@
 /* pages/trailers/trailers.wxss */
-page {
-  height: 100%;
+.page-trailers {
+  height: 100vh;
 }
-video {
-  display: flex;
+
+.video {
   width: 100%;
   height: 450rpx;
 }
-image {
+
+.trailer-list {
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 450rpx);
 }
-.page-trailers>scroll-view {
-  flex: 1;
-  display: flex;
-}
+
 .trailer {
   display: flex;
   padding: 15rpx 25rpx;
@@ -23,14 +21,22 @@ image {
 .trailer .image {
   width: 250rpx;
   height: 178rpx;
+  box-sizing: border-box;
+  position: relative;
 }
 .trailer .title {
   flex: 1;
   margin-left: 25rpx;
 }
-.trailer.active .image {
-  border: 1px solid #F59624;
+.trailer.active .image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   box-sizing: border-box;
+  border: 1px solid #F59624;
 }
 .trailer.active .title {
   color: #F59624;

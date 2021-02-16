@@ -1,13 +1,11 @@
 <!--pages/trailers/trailers.wxml-->
 <view class='container page-trailers'>
-  <video autoplay src="{{currUrl}}" bindended='videoEnded' />
-  <scroll-view scroll-y>
+  <video class="video" autoplay src="{{currUrl}}" bindended='videoEnded' />
+  <scroll-view class="trailer-list" scroll-y>
     <block wx:for='{{trailers}}' wx:key='id'>
       <view class='trailer button {{currUrl===item.video_url ? "active" : ""}}' bindtap='changeTrailer'
         data-index='{{index}}' data-url='{{item.video_url}}'>
-        <view class='image'>
-          <image src='{{item.cover_url}}' />
-        </view>
+        <image class="image" src='{{item.cover_url}}' mode="aspectFill" />
         <view class='title'>{{item.title}}</view>
       </view>
     </block>
