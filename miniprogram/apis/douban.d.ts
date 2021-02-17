@@ -191,6 +191,17 @@ declare namespace DouBan {
   interface TrailersResult {
     trailers: Trailer[];
   }
+
+  interface ListParams {
+    start?: number;
+    count?: number;
+  }
+
+  interface ListResult {
+    count: number;
+    start: number;
+    total: number;
+  }
 }
 
 declare const BASE_URL: string
@@ -259,4 +270,27 @@ export const getShowingMovies: (params: {
   }>
   total: number
   start: number
+}>
+
+/** 即将上映 */
+export const getSoonMovies: (params: DouBan.ListParams) => Promise<DouBan.ListResult & {
+  subject_collection_items: Array<{
+    rating: {
+      max: number
+      value: number
+    }
+    cover: {
+      url: string
+    }
+    year: string
+    id: string
+    title: string
+    type: 'movie'
+    most_recent_release_date: string
+    info: string
+    url: string
+    release_date: string
+    original_title: string
+    uri: string
+  }>
 }>

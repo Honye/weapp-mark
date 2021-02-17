@@ -1,12 +1,11 @@
 // pages/intheaters/in_theaters.js
-import { Douban } from '../../../../utils/apis.js';
-import wxCloud from '../../../../utils/wxCloud';
+import { getShowingMovies, getSoonMovies } from '../../../../apis/douban.js';
 
 let pageNo1 = 0;
 let pageNo2 = 0;
+
 Page({
 
-  /** 页面的初始数据 */
   data: {
     tabs: ['热映', '待映'],
     currentNav: 0,
@@ -17,57 +16,34 @@ Page({
     commingMovies: [],
   },
 
-  /** 生命周期函数--监听页面加载 */
-  onLoad(options) {
+  onLoad (options) {
     this.getInTheater();
-
-    wxCloud('nowPlaying')
-      .then(res => {
-        console.log('正在热映', res);
-        this.setData({
-          movies: res
-        });
-      });
   },
 
-  /** 生命周期函数--监听页面卸载 */
-  onUnload() {
+  onUnload () {
     pageNo1 = 0;
     pageNo2 = 0;
   },
 
   /** 影院热映 */
-  getInTheater() {
-    const that = this;
-    Douban.get(
-        Douban.IN_THEATERS,
-        {
-          start: pageNo1 * 20
-        }
-      ).then(res => {
-        let subjects = res.subjects;
-        for (let item of subjects) {
-          item.genres = item.genres.join('/')
-        }
-        if (pageNo1 == 0) {
-          that.setData({
-            movies: subjects,
-            loadmore1: subjects.length >= 20,
-            loading1: false
-          });
-        } else {
-          that.setData({
-            movies: that.data.movies.concat(subjects),
-            loadmore1: subjects.length >= 20,
-            loading1: false
-          });
-        }
-      }
-    )
+  async getInTheater () {
+    const res = await getShowingMovies({
+      start: pageNo1 * 20,
+      count: 20
+    });
+    const items = (res.subject_collection_items || []).map((subject) => ({
+      cover_url: subject.cover.url,
+      ...subject
+    }));
+    this.setData({
+      movies: pageNo1 === 0 ? items : [...this.data.movies, ...items],
+      loadmore1: items.length >= 20,
+      loading1: false
+    });
   },
 
   /** Swiper页发生变化 */
-  onSwiperChange(e) {
+  onSwiperChange (e) {
     const { current } = e.detail;
     this.setData({
       currentNav: current
@@ -78,7 +54,7 @@ Page({
   },
 
   /** 点击改变Swiper */
-  changeSwiper(e) {
+  changeSwiper (e) {
     const { nav } = e.currentTarget.dataset;
     const { currentNav } = this.data;
     if (currentNav != nav) {
@@ -89,7 +65,7 @@ Page({
   },
 
   /** 进入详情 */
-  toDetail(event) {
+  toDetail (event) {
     const { id, title } = event.currentTarget.dataset;
     wx.navigateTo({
       url: `/pages/pMovie/pages/details/details?title=${title}&id=${id}`,
@@ -97,56 +73,39 @@ Page({
   },
 
   /** 即将上映 */
-  getComming() {
-    wxCloud('showingSoon')
-      .then((res) => {
-        console.log('sssss===', res)
-        this.setData({
-          commingMovies: res
-        });
-      });
-    const that = this;
-    Douban.get(
-        Douban.COMMING,
-        { start: pageNo2 * 20 }
-      ).then(res => {
-        let subjects = res.subjects;
-        for (let item of subjects) {
-          item.genres = item.genres.join('/')
-        }
-        if (pageNo2 == 0) {
-          that.setData({
-            commingMovies: subjects,
-            loadmore2: subjects.length >= 20,
-            loading2: false
-          });
-        } else {
-          that.setData({
-            commingMovies: that.data.commingMovies.concat(subjects),
-            loadmore2: subjects.length >= 20,
-            loading2: false
-          });
-        }
-      }
-    )
+  async getComming () {
+    const res = await getSoonMovies({
+      start: pageNo2 * 20,
+      count: 20
+    });
+    const items = (res.subject_collection_items || []).map((subject) => ({
+      cover_url: subject.cover.url,
+      ...subject
+    }));
+    this.setData({
+      commingMovies: pageNo2 === 0 ? items : [...this.data.commingMovies, ...items],
+      loadmore2: items.length >= 20,
+      loading2: false
+    });
   },
+
   /**
    * Scroll触底事件
    */
-  onScrolTolLower: function (e) {
+  onScrolTolLower (e) {
     const { nav } = e.currentTarget.dataset;
-    const that = this;
-    if (nav == 'comming' && that.data.loadmore2 && !that.data.loading2) {
-      that.setData({ loading2: true });
+    if (nav == 'comming' && this.data.loadmore2 && !this.data.loading2) {
+      this.setData({ loading2: true });
       pageNo2++;
-      that.getComming();
-    } else if (nav == 'theater' && that.data.loadmore1 && !that.data.loading1) {
-      that.setData({ loading1: true });
+      this.getComming();
+    } else if (nav == 'theater' && this.data.loadmore1 && !this.data.loading1) {
+      this.setData({ loading1: true });
       pageNo1++;
-      that.getInTheater();
+      this.getInTheater();
     }
   },
 
-  onShareAppMessage() {},
-
+  onShareAppMessage () {
+    // enable share
+  }
 })

@@ -110,3 +110,16 @@ export const getShowingMovies = (params) => {
     data: params
   });
 }
+
+/**
+ * 即将上映
+ * @param {object} params
+ * @param {number} [params.start]
+ * @param {number} [params.count]
+ */
+export const getSoonMovies = (params) => {
+  return request({
+    url: '/subject_collection/movie_soon/items',
+    data: params
+  });
+}
