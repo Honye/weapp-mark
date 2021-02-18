@@ -13,26 +13,30 @@ const db = cloud.database()
  * 获取卡片列表
  */
 const getCards = async (event, context) => {
+    const wxContext = cloud.getWXContext();
     let cards = []
     let message = 'success'
-    await db.collection('cards').get().then(({ data }) => {
-        cards = data
-    }).catch( err => {
-        message = err.errMsg || err
-    })
+    await db.collection('cards')
+        .orderBy('createTime', 'desc')
+        .get()
+        .then(({ data }) => {
+            cards = data
+        })
+        .catch( err => {
+            message = err.errMsg || err
+        })
     for(let i = 0, length = cards.length; i < length; ++i) {
         await db.collection('cardRelations').where({
-            id: cards[i].id,
+            id: cards[i]._id,
         }).get().then(({ data }) => {
             cards[i].likeCount = data.length && data[0].favUsers ? data[0].favUsers.length : 0
         }).catch(err => {
             message = err.errMsg || err
         })
-        const { userInfo: { openId } } = event
         await db.collection('userRelations').where({
-            _openid: openId,
+            _openid: wxContext.OPENID,
         }).get().then(({ data }) => {
-            cards[i].liked = data.length && data[0].favCards.includes(cards[i].id)
+            cards[i].liked = data.length && data[0].favCards.includes(cards[i]._id)
         }).catch( err => {
             message = err.errMsg || JSON.stringify(err)
         })

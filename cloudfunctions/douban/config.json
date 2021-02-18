@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "openapi": [
+    ]
+  },
+  "triggers": [
+    {
+      "name": "CronDouban",
+      "typer": "timer",
+      "config": "0 10 0 * * * *"
+    }
+  ]
+}
