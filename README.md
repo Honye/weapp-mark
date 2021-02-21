@@ -2,16 +2,18 @@
 
 [![Honye](https://img.shields.io/badge/Honye-红叶-red.svg)](https://honye.github.io/)  [![license](https://img.shields.io/github/license/hongye567/weapp-mark.svg)](https://github.com/Honye/weapp-mark/blob/master/LICENSE)
 
-仿 Mark 应用页面的微信小程序。
-
 <p align="center">
-    <img src="http://oz126ti4w.bkt.clouddn.com/image/mark.jpg" height="258px" >
+    <img src="./docs/screenshots/IMG_5435.JPG" height="258px" >
 </p>
 
 
 纯属娱乐学习项目，偶尔记录下开发中遇到的问题和想法，不定期更新，如果你有什么建议也请告诉我（[issues](https://github.com/Honye/weapp-mark/issues)）。项目中自己有封装一些组件，可在项目结构查看。
 
-~~影视数据全部由[豆瓣](https://developers.douban.com/) API 提供。~~ 目前豆瓣搜索接口已经没有免费的可以使用了，抓取的豆瓣评分小程序的 API。小程序个人开发功能限制太多，无法完全上线。如若喜欢可以下载原生应用 [Mark](http://a.app.qq.com/o/simple.jsp?pkgname=com.intlime.mark&fromcase=40002) 体验全部功能。
+~~影视数据全部由[豆瓣](https://developers.douban.com/) API 提供。~~ 目前豆瓣搜索接口已经没有免费的可以使用了，抓取的豆瓣评分小程序的 API。小程序个人开发功能限制太多，无法完全上线。如若喜欢可以克隆项目自己运行看看。
+
+## 扫码体验
+
+![小程序码](./docs/screenshots/IMG_5437.JPG)
 
 ## Branches
 
@@ -47,6 +49,7 @@
 
 ## Skills
 
+- 云函数实现数据存取、网页爬虫和定时任务
 - 图片显示预览、视频加载播放、背景音乐播放
 - 本地数据存储
 - CSS3 属性动画
@@ -104,7 +107,6 @@
 ## TODO
 
 - [ ] 自定义轮播
-- [ ] ScrollView 下拉刷新
 - [ ] 数据本地存储工具
 - [ ] 绘制卡片且保存
 - [ ] 分组列表
