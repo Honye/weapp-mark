@@ -103,10 +103,13 @@ Page({
   },
 
   /** 作出评价 */
-  toEvalute() {
+  toEvalute () {
     wx.navigateTo({
-      url: '/pages/pUser/pages/evaluate/evaluate',
-    })
+      url: '/pages/github/pages/trending/trending'
+    });
+    // wx.navigateTo({
+    //   url: '/pages/pUser/pages/evaluate/evaluate',
+    // })
   },
 
   navigate (e) {

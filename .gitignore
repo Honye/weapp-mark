@@ -74,3 +74,4 @@ sync_hook.script
 .DS_Store
 
 **/miniprogram_npm
+project.private.config.json

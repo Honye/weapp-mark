@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "Trending",
+  "usingComponents": {
+    "repo": "../../components/repo-item/repo-item"
+  }
+}

@@ -1,0 +1,5 @@
+<view class="container">
+  <block wx:for="{{list}}" wx:key="index">
+    <repo repo="{{item}}" />
+  </block>
+</view>
