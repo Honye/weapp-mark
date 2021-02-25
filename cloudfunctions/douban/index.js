@@ -45,7 +45,7 @@ const storeTodayItem = async () => {
     },
     path: '/calendar/today',
     data: {
-      date: (new Intl.DateTimeFormat('zh-Hans-CN').format(new Date())).replace(/\//g, '-'),
+      date: (new Date()).toISOString().substring(0, 10),
       alt: 'json',
       _sig: 'tuOyn+2uZDBFGAFBLklc2GkuQk4=',
       _ts: 1610703479
