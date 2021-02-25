@@ -1,54 +1,54 @@
 // 云函数入口文件
-const cloud = require('wx-server-sdk')
+const cloud = require('wx-server-sdk');
 
-cloud.init(
-  // {
-  //   env: 'dv-963c46'
-  // }
-)
+cloud.init({
+  env: cloud.DYNAMIC_CURRENT_ENV
+});
 
-const db = cloud.database()
-
-/**
- * 获取卡片列表
- */
-const getCards = async (event, context) => {
-    const wxContext = cloud.getWXContext();
-    let cards = []
-    let message = 'success'
-    await db.collection('cards')
-        .orderBy('createTime', 'desc')
-        .get()
-        .then(({ data }) => {
-            cards = data
-        })
-        .catch( err => {
-            message = err.errMsg || err
-        })
-    for(let i = 0, length = cards.length; i < length; ++i) {
-        await db.collection('cardRelations').where({
-            id: cards[i]._id,
-        }).get().then(({ data }) => {
-            cards[i].likeCount = data.length && data[0].favUsers ? data[0].favUsers.length : 0
-        }).catch(err => {
-            message = err.errMsg || err
-        })
-        await db.collection('userRelations').where({
-            _openid: wxContext.OPENID,
-        }).get().then(({ data }) => {
-            cards[i].liked = data.length && data[0].favCards.includes(cards[i]._id)
-        }).catch( err => {
-            message = err.errMsg || JSON.stringify(err)
-        })
-    }
-
-    return {
-        data: cards,
-        message,
-    }
-}
+const db = cloud.database();
+const _ = db.command;
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-    return await getCards(event, context)
+  const $ = db.command.aggregate;
+  const { OPENID } = cloud.getWXContext();
+  const res = await db.collection('cards').aggregate()
+    .sort({
+      createTime: -1
+    })
+    .limit(6)
+    .lookup({
+      from: 'card_like',
+      let: {
+        card_id: '$_id'
+      },
+      pipeline: $.pipeline()
+        .match(_.expr($.and([
+          $.eq(['$card_id', '$$card_id']),
+          $.eq(['$state', 1])
+        ])))
+        .done(),
+      as: 'like_list'
+    })
+    .addFields({
+      like_count: $.size('$like_list')
+    })
+    .addFields({
+      like_state: $.let({
+        vars: {
+          filtered: $.filter({
+            input: '$like_list',
+            as: 'item',
+            cond: $.and($.eq(['$$item.openid', OPENID]), $.eq(['$$item.state', 1]))
+          })
+        },
+        in: $.reduce({
+          input: '$$filtered',
+          initialValue: 0,
+          in: '$$this.state'
+        })
+      })
+    })
+    .end();
+  return res;
 }

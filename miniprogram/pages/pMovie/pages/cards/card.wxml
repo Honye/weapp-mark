@@ -33,8 +33,8 @@
             </view>
             <view class='flex-center-v actions'>
               <view class='flex-center-v actions-item'>
-                <view style="font-size:18rpx;"><comp-btnFav checked='{{!!(cards[current].liked)}}' bindchange='onFavChange' /></view>
-                <text class='text'>{{cards[current].likeCount || 0}}</text>
+                <view style="font-size:18rpx;"><comp-btnFav checked='{{!!(cards[current].like_state)}}' bindchange='onFavChange' /></view>
+                <text class='text'>{{cards[current].like_count || 0}}</text>
               </view>
               <button class='button-nostyle flex-center-v actions-item'
                 open-type="getUserInfo"

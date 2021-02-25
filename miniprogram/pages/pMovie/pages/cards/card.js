@@ -33,12 +33,11 @@ Page({
   },
 
   /** 获取卡片 */
-  getCards () {
-    wxCloud('getCards').then(res => {
-      this.setData({
-        cards: res.data,
-      })
-    })
+  async getCards () {
+    const res = await wxCloud('getCards');
+    this.setData({
+      cards: res.list || []
+    });
   },
 
   /** 用户点击右上角分享 */
@@ -46,7 +45,7 @@ Page({
     const { cards, current } = this.data
     return {
       title: cards[current].quote,
-      path: `/pages/card/card?current=${current}`,
+      path: `/pages/pMovie/pages/cards/card?current=${current}`,
       imageUrl: cards[current].image,
     }
   },
@@ -172,13 +171,15 @@ Page({
       buttonClicked: (index, item) => {
         switch (item.key) {
           case 'forward': break;
+          case 'moment':
           case 'save':
             this.saveCardImg();
             break;
           default:
             wx.showModal({
-              content: item.title,
-            })
+              content: '正在开发中...',
+              showCancel: false
+            });
         }
         return true
       },
@@ -192,19 +193,15 @@ Page({
   },
 
   /** 喜欢/取消喜欢 */
-  onFavChange (e) {
-    const { checked } = e.detail
-    let { cards, current } = this.data
-    wxCloud('favCard', {
-      id: cards[current].id,
-    }).then(res => {
-      wx.showToast({
-        title: res.message,
-      })
-      cards[current].liked = !checked
-      cards[current].likeCount = checked ? --cards[current].likeCount : ++cards[current].likeCount
-      this.setData({ cards })
-    })
+  async onFavChange (e) {
+    const { checked } = e.detail;
+    let { cards, current } = this.data;
+    await wxCloud('favCard', {
+      id: cards[current]._id
+    });
+    cards[current].like_state = Number(!checked);
+    cards[current].like_count = checked ? --cards[current].like_count : ++cards[current].like_count;
+    this.setData({ cards });
   },
 
   onPaintSuccess (e) {
@@ -256,5 +253,7 @@ Page({
     })
   },
 
-  none () {}
+  none () {
+    // avoid warning
+  }
 })
