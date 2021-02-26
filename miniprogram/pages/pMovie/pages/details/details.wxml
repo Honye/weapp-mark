@@ -11,15 +11,15 @@
       <view class='brief'>
         <image class='img-mv' src='{{details.cover_url}}' mode='widthFix' />
         <view class='.brief-info'>
-          <view wx:if='{{details.title || details.titleCn}}' class='title'>{{details.title || details.titleCn}}<text wx:if='{{details.original_title && details.original_title !== details.title}}'>（{{details.original_title}}）</text></view>
+          <view wx:if='{{details.title}}' class='title'>{{details.title}}<text wx:if='{{details.original_title && details.original_title !== details.title}}'>（{{details.original_title}}）</text></view>
           <!-- 概述 -->
           <view class='brief-time'>
-            <text>{{details.pubdate || details.release.date}} / {{details.countries[0] || details.release.location}} / {{WxUtil.arr2str(details.genres," ") || WxUtil.arr2str(details.type," ")}} / {{details.directors[0].name || details.directors[0]}}(导演) / {{casts || WxUtil.arr2str(details.actors," ")}}</text>
+            <text>{{details.pubdate}} / {{details.countries[0]}} / {{WxUtil.arr2str(details.genres," ")}} / {{details.directors[0].name}}(导演) / {{casts}}</text>
           </view>
           <view class='rating'>
             <view>
-              <template is='rating' data='{{rating: origin.key === "douban" ? details.rating.average : details.rating,max:10}}' />
-              <text wx:if='{{details.rating}}'>{{origin.key === 'douban' ? details.rating.average : details.rating}}（{{origin.name}}评分）</text>
+              <template is="rating" data="{{rating: details.rating.value ,max: details.rating.max}}" />
+              <text wx:if="{{details.rating}}">{{details.rating.value}}（豆瓣评分）</text>
             </view>
           </view>
           <view class='flex-align-center'>
@@ -52,7 +52,7 @@
     </view>
     <!-- 剧情简介 -->
     <view class='block brief-summary'>
-      <text class='subtitle'>{{details.title || details.titleCn}}的剧情简介\n</text>
+      <text class='subtitle'>{{details.title}}的剧情简介\n</text>
       <text class='summary {{isFold && "isFold"}}'>{{details.intro}}</text>
       <view wx:if='{{isFold}}' class='fold {{!isFold && "active"}}' bindtap='foldToggle'>展开</view>
     </view>
@@ -87,9 +87,11 @@
             <view class="icon"><image src="/assets/images/white_play_icon.png" mode="widthFix" /></view>
           </view>
         </navigator>
-        <view class='trailer' wx:for='{{photos}}' wx:key='id' data-img='{{item.image}}' bindtap='onImagePre'>
-          <image class='image' src='{{item.image.normal.url}}' />
-        </view>
+        <block wx:for='{{photos}}' wx:key='id'>
+          <view class='trailer' style="width:auto" data-img='{{item.image}}' bindtap='onImagePre'>
+            <image class='image' style="height:240rpx;width:{{240 * (item.image.normal.width / item.image.normal.height)}}rpx" src='{{item.image.normal.url}}' />
+          </view>
+        </block>
       </scroll-view>
     </view>
     <!-- 短评 -->

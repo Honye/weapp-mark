@@ -1,19 +1,10 @@
 import { getDetail, getInterests, getPhotos } from '../../../../apis/douban.js';
-import { mtime } from '../../../../utils/apis.js'
 import Cast from '../../../../models/Cast'
 import Comment from '../../../../models/Comment'
 
-const origins = {
-  douban: '豆瓣',
-  mtime: '时光',
-}
 Page({
 
   data: {
-    origin: {
-      key: 'douban',
-      name: '豆瓣',
-    },
     details: {},
     directorList: [],
     actorList: [],
@@ -36,22 +27,11 @@ Page({
     const newData = {
       id: options.id,
     }
-    if (options.origin) {
-      newData.origin = {
-        key: options.origin,
-        name: origins[options.origin],
-      }
-    }
     this.setData(newData)
-    if (options.origin === 'mtime') {
-      this.getMtimeDetail(options.id)
-      this.getCredits(options.id)
-      this.getMtimeComments(options.id)
-    } else {
-      this.getDetails(options.id);
-      this.getComments(options.id);
-      this.getPhotos(options.id);
-    }
+
+    this.getDetails(options.id);
+    this.getComments(options.id);
+    this.getPhotos(options.id);
   },
   
   /**
@@ -86,24 +66,6 @@ Page({
   },
 
   /**
-   * 影片详情（时光网）
-   * @param {Number} movieId
-   */
-  getMtimeDetail(movieId) {
-    mtime.getMovieDetail({
-      movieId,
-      locationId: 290,
-    }).then(res => {
-      const { videos, ...details } = res
-      this.setData({
-        details,
-        trailers: videos,
-        loaded: true,
-      })
-    })
-  },
-
-  /**
    * 获取影视短评
    */
   async getComments (id) {
@@ -128,48 +90,6 @@ Page({
     this.setData({
       photos: res.photos
     });
-  },
-
-  /** 影视短评（时光网） */
-  getMtimeComments(movieId) {
-    mtime.getMovieComments({
-      movieId,
-    }).then(res => {
-      this.setData({
-        comments_count: res.totalCommentCount || 0,
-        comments: res.cts.slice(0, 6).map(item => Comment.fromMtime(item)),
-      })
-    })
-  },
-
-  /**
-   * 演职员（时光网）
-   */
-  getCredits(movieId) {
-    mtime.getMovieCredits({
-      movieId,
-    }).then(({ types=[] }) => {
-      const directorObj = types[0] ? types[0] : []
-      const directorList = directorObj.persons.map(item => {
-        const cast = Cast.fromMtime(JSON.stringify({
-          ...item,
-          type: directorObj.typeNameEn,
-        }))
-        return cast
-      })
-      const actorObj = types[1] ? types[1] : []
-      const actorList = actorObj.persons.slice(0, 20).map(item => {
-        const cast = Cast.fromMtime(JSON.stringify({
-          ...item,
-          type: actorObj.typeNameEn,
-        }))
-        return cast
-      })
-      this.setData({
-        directorList,
-        actorList,
-      })
-    })
   },
 
   /**
