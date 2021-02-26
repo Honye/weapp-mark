@@ -1,8 +1,11 @@
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
+import { store } from '../../../../store/index';
 import { getDetail, getInterests, getPhotos } from '../../../../apis/douban.js';
 import Cast from '../../../../models/Cast'
 import Comment from '../../../../models/Comment'
 
 Page({
+  behaviors: [storeBindingsBehavior],
 
   data: {
     details: {},
@@ -19,7 +22,12 @@ Page({
     showMovieListPopup: false,
   },
 
-  onLoad(options) {
+  storeBindings: {
+    store,
+    fields: ['app']
+  },
+
+  onLoad (options) {
     if (options.title) {
       const title = decodeURIComponent(options.title)
       wx.setNavigationBarTitle({ title })

@@ -1,7 +1,7 @@
 //app.js
 import { store } from './store/index';
 import { Honye } from './utils/apis'
-import { isEmpty } from './utils/util'
+import { compareVersions, isEmpty } from './utils/util'
 import wxCloud from './utils/wxCloud';
 
 /**
@@ -76,7 +76,12 @@ App({
     },
 
     /** 从服务器获取默认配置 */
-    getDefaultConfig(callback) {
+    async getDefaultConfig (callback) {
+        const appDesc = await wxCloud('app');
+        store.app.update({
+            hasPublished: compareVersions(store.app.version, appDesc.version) <= 0
+        });
+
         return new Promise((resolve, reject) => {
             if (this.globalData.config) {
                 typeof callback === 'function' && callback(this.globalData.config)

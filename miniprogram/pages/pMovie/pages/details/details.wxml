@@ -79,7 +79,7 @@
     <view class='block photos'>
       <text class='subtitle'>预告片 / 剧照</text>
       <scroll-view scroll-x>
-        <navigator class="trailer" wx:if="{{trailers && trailers.length}}"
+        <navigator class="trailer" wx:if="{{app.hasPublished && trailers && trailers.length}}"
           url="../trailers/trailers?id={{id}}&resource={{trailers[0].url}}"
         >
           <image class="image" src="{{trailers[0].image}}" />

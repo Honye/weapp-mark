@@ -1,11 +1,19 @@
 // pages/trailers/trailers.js
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
+import { store } from '../../../../store/index';
 import { getTrailers } from '../../../../apis/douban.js';
 
 Page({
+  behaviors: [storeBindingsBehavior],
 
   data: {
     currUrl: '',
     trailers: []
+  },
+
+  storeBindings: {
+    store,
+    fields: ['app']
   },
 
   onLoad (options) {
