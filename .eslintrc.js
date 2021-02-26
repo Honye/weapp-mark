@@ -48,6 +48,12 @@ module.exports = {
         "quote-props": ["error", "as-needed", { "numbers": true }],
         "no-useless-escape": "off"
       }
+    },
+    {
+      "files": ["./cloudfunctions/**/*.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
     }
   ]
 };
