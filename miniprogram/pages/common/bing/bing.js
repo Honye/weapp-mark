@@ -1,6 +1,6 @@
 // 必应壁纸
 'use strict';
-import utils from './../../../utils/util.js';
+import { getPreDate } from './../../../utils/util.js';
 
 export default class Bing {
 
@@ -15,7 +15,7 @@ export default class Bing {
     let bings = [];
     for (let i = 0; i < 10; i++) {
       let bing = {};
-      bing.title = utils.getPreDate(i);
+      bing.title = getPreDate(i);
       bing.image = `https://bing.ioliu.cn/v1?d=${i}`;
       bings.push(bing);
     }

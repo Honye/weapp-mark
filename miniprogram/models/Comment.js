@@ -1,7 +1,7 @@
 /**
  * 影片短评
  */
-import utils from '../utils/util'
+import { formatTime } from '../utils/util';
 
 export default class Comment {
     id = 0         // ID
@@ -26,7 +26,7 @@ export default class Comment {
             nickname: obj.ca,
             avatar: obj.caimg,
             rating: obj.cr,
-            time: obj.cd ? utils.formatTime(new Date(obj.cd)) : '',
+            time: obj.cd ? formatTime(new Date(obj.cd)) : '',
             content: obj.ce,
         })
     }

@@ -1,7 +1,7 @@
 //app.js
 import { store } from './store/index';
 import { Honye } from './utils/apis'
-import Util from './utils/util'
+import { isEmpty } from './utils/util'
 import wxCloud from './utils/wxCloud';
 
 /**
@@ -119,7 +119,7 @@ App({
     /** 获取本地设置 */
     getSetting(callback) {
         const { setting } = this.globalData
-        if (setting && (!Util.isEmpty(setting))) {
+        if (setting && (!isEmpty(setting))) {
             typeof callback == "function" && callback(setting)
         } else {
             wx.getStorage({
