@@ -1,3 +1,4 @@
+<wxs module="wxs" src="../../../../utils/utils.wxs" />
 <view class="component repo-item">
   <view class="user">
     <image class="avatar" src="{{repo.owner.avatar_url}}" mode="aspectFit" />
@@ -8,7 +9,7 @@
   <view class="info">
     <view class="stars">
       <text class="iconfont icon-star"></text>
-      <view class="stars__value">{{repo.stargazers_count}}</view>
+      <view class="stars__value">{{wxs.milliFormat(repo.stargazers_count)}}</view>
     </view>
     <view class="language" wx:if="{{repo.language}}">
       <text class="iconfont icon-dot" style="color:{{colors[repo.language].color}}"></text>

@@ -1,0 +1,10 @@
+function milliFormat (num) {
+  return num && num.toString()
+    .replace(getRegExp('\d+'), function (s) {
+      return s.replace(getRegExp('(\d)(?=(\d{3})+$)', 'g'), '$1,');
+    });
+}
+
+module.exports = {
+  milliFormat: milliFormat
+}
