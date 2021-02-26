@@ -17,7 +17,7 @@
 
 ## Branches
 
-1. [cloud](https://github.com/Honye/weapp-mark/tree/cloud) - 采用[微信小程序云开发](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)，无需后台也能开发一款完整的小程序。
+1. [main](https://github.com/Honye/weapp-mark/tree/main) - 采用[微信小程序云开发](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)，无需后台也能开发一款完整的小程序。
 2. [master](https://github.com/Honye/weapp-mark/tree/master) - 后台服务由 [LeanCloud 云服务](https://leancloud.cn/)支撑。
 3. [cdn-ui](https://github.com/Honye/weapp-mark/tree/cdn-ui) - 没有后台服务支撑，全部采用 HTTP 请求的个人博客的静态 JSON 文件。
 
@@ -30,6 +30,12 @@
 使用 [wxParse](https://github.com/icindy/wxParse)，小程序基础版本库要在 1.6.6 及以上。
 
 小程序[简易双向绑定](https://developers.weixin.qq.com/miniprogram/dev/framework/view/two-way-bindings.html)，小程序基础版本库 2.9.3 及以上
+
+## 🐢 规范
+
+时间久了自己都忘记了以前给自己定的规范是啥，导致代码很不统一，给自己备份个项目规范🥱
+
+[CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
 
 ## Logs
 
@@ -103,13 +109,6 @@
 ├── app.json  页面路径及窗口配置
 └── app.wxss  应用共用样式
 ```
-
-## TODO
-
-- [ ] 自定义轮播
-- [ ] 数据本地存储工具
-- [ ] 绘制卡片且保存
-- [ ] 分组列表
 
 ## Sources
 
