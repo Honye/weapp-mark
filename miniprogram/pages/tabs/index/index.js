@@ -1,6 +1,6 @@
 // 个人中心
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
-import { store } from '../../../store/user';
+import { store } from '../../../store/index';
 import wxCloud from '../../../utils/wxCloud';
 
 // 获取应用实例
@@ -16,18 +16,10 @@ Page({
 
   storeBindings: {
     store,
-    fields: ['info', 'avatar'],
-    actions: ['updateUserInfo']
-  },
-
-  observers: {
-    info (info) {
-      console.log('info----', info);
+    fields: {
+      info: () => store.user.info,
+      app: () => store.app
     }
-  },
-
-  onLoad () {
-    
   },
 
   /** 进入个人资料 */
@@ -78,13 +70,7 @@ Page({
     return {
       title: "好用得不得了",
       path: "/pages/tabs/discovery/discovery",
-      imageUrl: "http://xpic.588ku.com/figure/00/00/00/08/56/5355a15b1f68dfd.jpg!/fw/800",
-      success: res => {
-        console.log("成功", res);
-      },
-      complete: res => {
-        console.log("完成", res);
-      }
+      imageUrl: "http://xpic.588ku.com/figure/00/00/00/08/56/5355a15b1f68dfd.jpg!/fw/800"
     };
   },
 

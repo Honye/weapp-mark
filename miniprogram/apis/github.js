@@ -1,7 +1,7 @@
 /**
  * [GitHub API v3](https://docs.github.com/en/rest)
  */
-import { store } from '../store/user';
+import { store } from '../store/index';
 
 /**
  * 
@@ -10,7 +10,7 @@ import { store } from '../store/user';
  */
 const request = (options) => {
   const { header, method, url, ...restOpt } = options;
-  const token = store.info?.githubToken;
+  const token = store.user.info?.githubToken;
   return new Promise((resolve, reject) => {
     wx.request({
       header: {

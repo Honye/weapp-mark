@@ -1,9 +1,9 @@
 //app.js
-import { createStoreBindings } from 'mobx-miniprogram-bindings';
-import { store } from './store/user';
+import { store } from './store/index';
 import { Honye } from './utils/apis'
 import Util from './utils/util'
 import wxCloud from './utils/wxCloud';
+
 /**
  * 主要用来提供两版显示
  * 本地版本号大于服务端版本号代表未发布，简版显示应对审核
@@ -36,23 +36,17 @@ App({
         published: false, // 是否为发布版
     },
 
-    onLaunch() {
-        this.storeBindings = createStoreBindings(this, {
-            store,
-            fields: [],
-            actions: ['updateUserInfo']
-        });
-        this.getSetting()
-        this.getDefaultConfig()
+    onLaunch () {
+        this.getSetting();
+        this.getDefaultConfig();
         this.login();
     },
 
     /** 通过云函数直接登录 */
     async login () {
         const { data } = await wxCloud('login');
-        console.log('登录==', data);
         this.globalData.userInfo = data;
-        this.updateUserInfo(data);
+        store.user.updateUserInfo(data);
     },
 
     /**

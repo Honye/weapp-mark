@@ -1,7 +1,7 @@
 // pages/userinfo/userinfo.js
 import { $wuxActionSheet } from '../../../common/index';
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
-import { store } from '../../../../store/user';
+import { store } from '../../../../store/index';
 import wxCloud from '../../../../utils/wxCloud';
 
 Page({
@@ -17,8 +17,8 @@ Page({
   storeBindings: {
     store,
     fields: {
-      info: (store) => store.info,
-      thirdAuthor: (store) => {
+      info: () => store.user.info,
+      thirdAuthor: () => {
         return {
           wechat: {
             title: '微信',
@@ -30,16 +30,14 @@ Page({
           },
           github: {
             title: 'GitHub',
-            authorized: !!(store.info && store.info.githubToken)
+            authorized: !!(store.user.info && store.user.info.githubToken)
           }
         }
       }
     },
-    actions: ['updateUserInfo']
-  },
-
-  onLoad (options) {
-    
+    actions: {
+      updateUserInfo: 'user/updateUserInfo'
+    }
   },
 
   showActionSheet () {
