@@ -42,7 +42,18 @@
       </view>
       <view wx:elif='{{result.length>0}}'>
         <block wx:for='{{result}}' wx:key='id'>
-          <navigator url='/pages/pMovie/pages/details/details?title={{item.target.title}}&id={{item.target.id}}'>
+          <view class="doulist" wx:if="{{item.target_type === 'doulist_cards'}}">
+            <block wx:for="{{item.target.doulists}}" wx:key="id" wx:for-item="doulist">
+              <view class="doulist-item">
+                <view class="doulist-item__img">
+                  <image class="img" src="{{doulist.cover_url}}" mode="aspectFill" />
+                  <view class="label">{{doulist.image_label}}</view>
+                </view>
+                <view class="doulist-item__title">{{doulist.title}}</view>
+              </view>
+            </block>
+          </view>
+          <navigator wx:elif="{{item.target_type === 'movie' || item.target_type === 'tv'}}" url='/pages/pMovie/pages/details/details?title={{item.target.title}}&id={{item.target.id}}'>
             <template is="item-movie_row" data="{{...item.target}}" />
           </navigator>
         </block>

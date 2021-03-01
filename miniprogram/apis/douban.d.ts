@@ -1,20 +1,46 @@
 declare namespace DouBan {
+  /** 搜索结果 */
   interface SearchResult {
     count: number;
-    items: Array<SearchMovieItem|SearchBookItem>;
+    items: Array<SearchMovieItem|SearchDoulistItem|SearchBookItem>;
     total: number;
     start: number;
   }
 
-  interface SearchMovieItem {
+  /** 搜索结果单项 */
+  interface SearchItem {
     type_name: string;
+    layout: string;
+    target: unknown;
+    /**
+     * - "tv": 电视剧
+     * - "movie": 电影
+     * - "doulist_cards": 豆列
+     * - "music": 音乐
+     * - "game": 游戏
+     * - "book": 书籍
+     */
+    target_type: string;
+  }
+ 
+  /** 搜索结果-影视单项 */
+  interface SearchMovieItem extends SearchItem {
     layout: 'subject';
     target: Movie;
     target_type: 'tv' | 'movie';
   }
 
-  interface SearchBookItem {
-    type_name: string;
+  /** 搜索结果-豆列单项 */
+  interface SearchDoulistItem extends SearchItem {
+    layout: 'doulist_cards';
+    target: {
+      doulists: Array<Doulists>
+    };
+    target_type: 'doulist_cards';
+  }
+
+  /** 搜索结果-书籍单项 */
+  interface SearchBookItem extends SearchItem {
     layout: 'subject';
     target: Book;
     target_type: 'book';
@@ -39,6 +65,14 @@ declare namespace DouBan {
 
   interface Book extends Subject {
     has_ebook: boolean;
+  }
+
+  /** 豆列 */
+  interface Doulists {
+    cover_url: string;
+    id: string;
+    image_label: string;
+    title: string;
   }
 
   interface Rating {

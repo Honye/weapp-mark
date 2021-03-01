@@ -16,7 +16,6 @@ Page({
     hot: ['复仇者联盟4', '我们与恶的距离', '黑豹'],
   },
 
-  /** 生命周期函数--监听页面加载 */
   onLoad(options) {
     const history = wx.getStorageSync('search_history') || []
     this.setData({
@@ -74,33 +73,7 @@ Page({
       pageNo: pageNo + 1,
       hasMore: res.total > count * (pageNo + 1)
     });
-
-    // mtime.searchMovie({
-    //   keyword: inputVal,
-    //   pageIndex: pageNo + 1,
-    // }).then(res => {
-    //   this.setData({
-    //     result: pageNo ? [...result, ...res.movies] : [...res.movies],
-    //     loading: false,
-    //     pageNo: pageNo + 1,
-    //     hasMore: res.moviesCount > count * pageNo
-    //   })
-    //   this.setHistory()
-    // })
-    // Douban.get(Douban.SEARCH, body)
-    //   .then(res => {
-    //     this.setData({
-    //       result: pageNo?[...result, ...res.subjects]:[...res.subjects],
-    //       loading: false,
-    //       pageNo: pageNo+1,
-    //       hasMore: res.total > count*(pageNo+1)
-    //     })
-    //   }).catch(err => {
-    //     wx.showToast({
-    //       icon: 'none',
-    //       title: err.message,
-    //     })
-    //   })
+    this.setHistory();
   },
 
   /** 快速搜索 */
