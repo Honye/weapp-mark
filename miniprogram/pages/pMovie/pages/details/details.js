@@ -54,7 +54,7 @@ Page({
     const casts = res.actors.map(item => item.name);
     const directors = res.directors.map(item => Cast.fromDouban(JSON.stringify({ ...item, type: 'Director' })));
     const actors = res.actors.map(item => Cast.fromDouban(JSON.stringify({ ...item, type: 'Actor' })));
-    const trailers = [{
+    const trailers = res.trailer && [{
       image: res.trailer.cover_url,
       url: res.trailer.video_url
     }];
