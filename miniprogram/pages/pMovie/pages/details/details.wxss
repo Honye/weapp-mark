@@ -67,7 +67,7 @@ image {
   color: #999;
 }
 .brief-info .button + .button {
-  margin-left: 66rpx;
+  margin-left: 44rpx;
 }
 .brief-info .rating {
   margin-top: 10rpx;

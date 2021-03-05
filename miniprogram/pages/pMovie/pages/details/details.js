@@ -123,6 +123,31 @@ Page({
     })
   },
 
+  handlePreviewImage (e) {
+    const { img } = e.currentTarget.dataset;
+    if (!img) return;
+    wx.previewImage({
+      current: img,
+      urls: [img]
+    });
+  },
+
+  /** 复制页面路径 */
+  handleCopyPath () {
+    const pages = getCurrentPages();
+    const { route, options } = pages[pages.length - 1];
+    const query = Object.keys(options).map((key) => `${key}=${options[key]}`).join('&');
+    wx.setClipboardData({
+      data: `${route}?${query}`,
+      success: () => {
+        wx.showToast({
+          icon: 'none',
+          title: '复制成功'
+        });
+      }
+    });
+  },
+
   /** 显示影单弹窗 */
   showMovieListPopup() {
     this.setData({

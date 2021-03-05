@@ -5,7 +5,10 @@
 
 <view wx:if='{{loaded}}' class='container page-detail'>
     <view class='block'>
-      <view class='clip-img'>
+      <view class='clip-img'
+        data-img="{{details.cover_url}}"
+        bindtap="handlePreviewImage"
+      >
         <image src='{{details.cover_url}}' mode='widthFix' />
       </view>
       <view class='brief'>
@@ -30,6 +33,10 @@
             <button class='button-nostyle flex-align-center button' form-type='submit' open-type='share'>
               <image class='icon' src='/assets/images/icon-share.png' />
               <text>分享</text>
+            </button>
+            <button class='button-nostyle flex-align-center button' bindtap="handleCopyPath">
+              <image class='icon' src='/assets/images/icon-copy.svg' />
+              <text>路径</text>
             </button>
           </view>
         </view>
