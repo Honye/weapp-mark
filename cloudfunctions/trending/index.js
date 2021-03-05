@@ -20,7 +20,8 @@ const fetchTrendingList = async () => {
       const starCount = $repo.find('[aria-label="star"].octicon.octicon-star').parent().text().trim();
       return {
         owner: {
-          login: owner
+          login: owner,
+          avatar_url: `https://github.com/${owner}.png`
         },
         name,
         description,
