@@ -87,13 +87,6 @@ Page({
   },
 
   bindViewTap(event) {
-    // const { version, config } = app.globalData;
-    // if(version.versionCode <= config.newestVersion) {
-    //   const { id, title } = event.currentTarget.dataset;
-    //   wx.navigateTo({
-    //     url: `/pages/pMovie/pages/details/details?title=${title}&id=${id}`,
-    //   })
-    // }
     const { id, title } = event.currentTarget.dataset
     wx.navigateTo({
       url: `/pages/pMovie/pages/details/details?title=${title}&id=${id}`,

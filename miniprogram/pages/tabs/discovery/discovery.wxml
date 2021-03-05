@@ -1,8 +1,7 @@
 <!--发现-->
 <import src="/pages/common/circle/circle.wxml"/>
-<import src='/pages/common/bing/bing.wxml' />
 
-<view class='container page-discovery' wx:if='{{published}}'>
+<view class='container page-discovery'>
   <navigator url='/pages/search/search' hover-class='none'>
     <view class='search-bar'>
       <view class='search-radius btn-opacity'>
@@ -77,5 +76,3 @@
     </scroll-view>
   </view>
 </view>
-
-<template is='temp-bing' wx:elif='{{remoted}}' data='{{bings}}' />

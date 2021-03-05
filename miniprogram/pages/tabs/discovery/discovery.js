@@ -1,11 +1,9 @@
 // discovery
-import Bing from '../../common/bing/bing.js';
 // import wxCloud from '../../../utils/wxCloud';
 import * as GitHubApis from '../../../apis/github';
 import { getShowingMovies } from '../../../apis/douban.js';
 
-var app = getApp()
-const db = wx.cloud.database()
+const db = wx.cloud.database();
 
 Page({
 
@@ -17,12 +15,9 @@ Page({
     ],
     cardCur: 0,
     swiperHide: false,
-    published: true,
-    remoted: false,
     banners: [],
     articles: [],
     nowDay: new Date().getDate(),
-    bings: [],
     intheaters: []
   },
 
@@ -33,9 +28,8 @@ Page({
           swiperHeight: res.windowWidth*3/5
         })
       },
-    })
-    this.getData()
-    // this.getRemoteConfig()
+    });
+    this.getData();
     // wxCloud('wxacode')
     //   .then((res) => {
     //     console.log('app code ===', res);
@@ -47,28 +41,28 @@ Page({
   /**
    * 获取数据
    */
-  getData() {
+  getData () {
     this.getBanners();
     this.getIntheaters();
     this.getArticles();
   },
 
   /** 获取轮播数据 */
-  getBanners() {
+  getBanners () {
     db.collection('banners').orderBy('id', 'desc').limit(4).get().then( ({ data }) => {
       this.setData({
         banners: data,
-      })
-    })
+      });
+    });
   },
 
   /** 文章数据 */
-  getArticles() {
+  getArticles () {
     db.collection('articles').get().then(({ data }) => {
         this.setData({
             articles: data
         })
-    })
+    });
   },
 
   /** 影院热映 */
@@ -89,7 +83,7 @@ Page({
     wx.previewImage({
       current: urls[index],
       urls,
-    })
+    });
   },
 
   toDropDown: function() {
@@ -103,23 +97,6 @@ Page({
       title: "好用得不得了",
       imageUrl: "http://xpic.588ku.com/figure/00/00/00/08/56/5355a15b1f68dfd.jpg!/fw/800"
     }
-  },
-
-  /**
-   * 获取在线配置
-   */
-  getRemoteConfig () {
-    wx.showLoading({
-      title: 'loading...',
-    })
-    app.hasPublished(res => {
-      this.setData({
-        published: res,
-        remoted: true
-      })
-      if(!res) new Bing()
-      wx.hideLoading()
-    })
   },
 
   // cardSwiper

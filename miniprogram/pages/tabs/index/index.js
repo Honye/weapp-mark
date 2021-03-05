@@ -10,7 +10,6 @@ Page({
   behaviors: [storeBindingsBehavior],
 
   data: {
-    version: app.globalData.version,
     userinfo: app.globalData.userInfo
   },
 
@@ -24,11 +23,9 @@ Page({
 
   /** 进入个人资料 */
   bindViewTap () {
-    // const { version, config } = app.globalData;
-    // if (version.versionCode > config.newestVersion) return;
     wx.navigateTo({
       url: '/pages/pUser/pages/userinfo/userinfo'
-    })
+    });
   },
 
   handleUserInfo (e) {
