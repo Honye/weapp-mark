@@ -7,51 +7,49 @@
 <view class='container page-movie'>
   <!-- Tabs -->
   <view class='tabs'>
-    <view wx:for='{{tabs}}' wx:key='index' class='tabs-item{{currentNav==index?" is-active":""}}'
+    <view wx:for='{{tabs}}' wx:key='key' class='tabs-item{{currentNav==index?" is-active":""}}'
       bindtap='changeTab' data-nav='{{index}}'>
-      <view class='tabs-item__content'>{{item}}</view>
+      <view class='tabs-item__content'>{{item.title}}</view>
     </view>
   </view>
   <view class='topbar {{sticky && "sticky"}}'>
     <view class='layout btn-opacity' bindtap='changeLayout'>
       <!-- <image src='{{isGrid?"/assets/images/list_mode_icon.png":"/assets/images/gird_mode_icon.png"}}' mode='widthFix' /> -->
-      <text>共6部，4部可播放</text>
+      <text>共{{total}}部，{{linewatchCount}}部可播放</text>
     </view>
     <view>
       <view class='sort btn-opacity' bindtap='changeSort'>
         <text>排序</text>
-        <!-- <image src='/assets/images/movie_sort_icon.png' mode='widthFix' /> -->
         <view class='arrow-down' />
       </view>
       <view class='sort btn-opacity' bindtap='changeSort'>
-        <text>排序</text>
-        <!-- <image src='/assets/images/movie_sort_icon.png' mode='widthFix' /> -->
+        <text>筛选</text>
         <view class='arrow-down' />
       </view>
     </view>
   </view>
 
-  <view class='content'>    
+  <view class='content'>
     <view wx:if='{{isGrid}}' class='movie-container'>
       <block wx:for='{{movies}}' wx:key='id'>
-        <view data-title="{{item.title}}"
-          data-id="{{item.id}}"
+        <view data-title="{{item.subject.title}}"
+          data-id="{{item.subject.id}}"
           bindtap="bindViewTap">
           <template 
             is="item-movie_grid" 
-            data="{{...item}}">
+            data="{{...item.subject}}">
           </template>
         </view>
       </block>
     </view>
     
     <block wx:for='{{movies}}' wx:key='id' wx:if='{{!isGrid}}'>
-      <view data-title="{{item.title}}"
-          data-id="{{item.id}}"
+      <view data-title="{{item.subject.title}}"
+          data-id="{{item.subject.id}}"
           bindtap="bindViewTap">
         <template 
           is="item-movie_row" 
-          data="{{...item}}">
+          data="{{...item.subject}}">
         </template>
       </view>
     </block>

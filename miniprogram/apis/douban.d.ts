@@ -58,6 +58,8 @@ declare namespace DouBan {
     null_rating_reason: string;
   }
 
+  type SubjectType = 'movie'|'book'|'music';
+
   interface Movie extends Subject {
     has_linewatch: boolean;
     year: string;
@@ -157,7 +159,7 @@ declare namespace DouBan {
     platforms: string[];
     vote_count: number;
     create_time: string;
-    status: string;
+    status: InterestStatus;
     user: User;
     recommend_reason: string;
     user_done_desc: string;
@@ -172,6 +174,8 @@ declare namespace DouBan {
     wechat_timeline_share: 'screenshot';
     interests: Interest[]
   }
+
+  type InterestStatus = 'mark'|'doing'|'done';
 
   interface Image {
     large: ImageMeta;
@@ -326,5 +330,26 @@ export const getSoonMovies: (params: DouBan.ListParams) => Promise<DouBan.ListRe
     release_date: string
     original_title: string
     uri: string
+  }>
+}>
+
+/** 获取用户的书影音 */
+export const getUserInterests: (userID: string, params: {
+  type: DouBan.SubjectType;
+  status: DouBan.InterestStatus;
+  start?: number;
+  count?: number;
+}) => Promise<{
+  count: number;
+  start: number;
+  total: number;
+  interests: Array<{
+    rating: DouBan.Rating;
+    tags: string[];
+    create_time: string;
+    status: DouBan.InterestStatus;
+    id: string;
+    is_private: boolean;
+    subject: DouBan.Movie;
   }>
 }>

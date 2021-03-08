@@ -12,6 +12,9 @@ const request = (params) => {
   return new Promise((resolve, reject) => {
     wx.request({
       url: `${BASE_URL}${params.url}`,
+      header: {
+        ...params.header
+      },
       data: {
         apikey: '054022eaeae0b00e0fc068c0c0a2102a',
         ...(params.data || {})
@@ -120,6 +123,23 @@ export const getShowingMovies = (params) => {
 export const getSoonMovies = (params) => {
   return request({
     url: '/subject_collection/movie_soon/items',
+    data: params
+  });
+}
+
+/**
+ * 获取用户的书影音
+ * @param {string} userID
+ * @param {object} params
+ * @param {'movie'} params.type
+ * @param {'doing'} params.status
+ * @param {number} [params.start]
+ * @param {number} [params.count]
+ * @returns 
+ */
+export const getUserInterests = (userID, params) => {
+  return request({
+    url: `/user/${userID}/interests`,
     data: params
   });
 }
