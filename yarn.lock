@@ -158,10 +158,10 @@
   resolved "https://registry.npm.taobao.org/@types/json-schema/download/@types/json-schema-7.0.7.tgz?cache=0&sync_timestamp=1611098058144&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fjson-schema%2Fdownload%2F%40types%2Fjson-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
   integrity sha1-mKmTUWyFnrDVxMjwmDF6nqaNua0=
 
-"@types/wechat-miniprogram@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.npm.taobao.org/@types/wechat-miniprogram/download/@types/wechat-miniprogram-3.2.0.tgz#6b4034155856d31cd9f342efd217dbc27ea80fb9"
-  integrity sha1-a0A0FVhW0xzZ80Lv0hfbwn6oD7k=
+"@types/wechat-miniprogram@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.npm.taobao.org/@types/wechat-miniprogram/download/@types/wechat-miniprogram-3.3.0.tgz#e56cca3caecc09c7440ea9d3cc35b9617bcbc559"
+  integrity sha1-5WzKPK7MCcdEDqnTzDW5YXvLxVk=
 
 "@typescript-eslint/eslint-plugin@^4.14.1":
   version "4.14.1"
