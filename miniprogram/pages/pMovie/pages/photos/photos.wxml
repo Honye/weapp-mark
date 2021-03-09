@@ -1,0 +1,24 @@
+<wxs module="wxs">
+  function getSpanCount (width, height) {
+    var cssWidth = 365;
+    var basic = 22;
+    var cssHeight = height / width * cssWidth;
+    return parseInt(cssHeight / basic);
+  }
+  module.exports = {
+    getSpanCount: getSpanCount
+  };
+</wxs>
+
+<view class="container">
+  <view class="photos">
+    <block wx:for="{{photos}}" wx:key="id">
+      <image class="image"
+        data-index="{{index}}"
+        bindtap="handlePreview"
+        src="{{item.image.small.url}}"
+        style="grid-row: auto / span {{wxs.getSpanCount(item.image.small.width, item.image.small.height)}};"
+      />
+    </block>
+  </view>
+</view>

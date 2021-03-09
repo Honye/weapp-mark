@@ -124,6 +124,9 @@ image {
   color: #333;
   line-height: 2.8em;
   font-size: 28rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .summary {
   font-size: 26rpx;
@@ -183,7 +186,7 @@ image {
 
 /* 预告片/剧照 */
 .photos .subtitle {
-  margin-left: 30rpx;
+  margin: 0 30rpx;
 }
 .photos>scroll-view {
   white-space: nowrap;

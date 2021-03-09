@@ -84,7 +84,15 @@
     </view>
     <!-- 预告及剧照 -->
     <view class='block photos'>
-      <text class='subtitle'>预告片 / 剧照</text>
+      <navigator class='subtitle' hover-class="btn-opacity"
+        url="../photos/photos?id={{id}}&title={{details.title}}"
+      >
+        <view>预告片 / 剧照</view>
+        <view>
+          <text>全部</text>
+          <view class="arrow-right"></view>
+        </view>
+      </navigator>
       <scroll-view scroll-x>
         <navigator class="trailer" wx:if="{{app.hasPublished && trailers && trailers.length}}"
           url="../trailers/trailers?id={{id}}&resource={{trailers[0].url}}"

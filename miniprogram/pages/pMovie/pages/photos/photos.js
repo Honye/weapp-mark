@@ -1,0 +1,63 @@
+import { getPhotos } from '../../../../apis/douban.js';
+
+Page({
+  data: {
+    id: '',
+    /** @type {import('../../../../apis/douban.js').DouBan.Photo[]} */
+    photos: [],
+    start: 0,
+    count: 24
+  },
+
+  /**
+   * 
+   * @param {object} options
+   * @param {string} options.id 影视类目ID
+   * @param {string} [options.title] 影视类目名
+   */
+  onLoad (options) {
+    this.data.id = options.id;
+    if (options.title) {
+      wx.setNavigationBarTitle({
+        title: `《${options.title}》的剧照`
+      });
+    }
+    this.getPhotoList();
+  },
+
+  onReachBottom () {
+    const { count } = this.data;
+    this.data.start += count;
+    this.getPhotoList();
+  },
+
+  async getPhotoList () {
+    const { id, start, count, photos } = this.data;
+    const res = await getPhotos({
+      id,
+      start,
+      count
+    });
+    const list = res.photos || [];
+    this.setData({
+      photos: start ? [...photos, ...list] : list
+    });
+    const _count = res.count;
+    if (start === 0 && _count < count) {
+      this.onReachBottom();
+    }
+  },
+
+  handlePreview (e) {
+    /**
+     * @type {{ index: number }}
+     */
+    const { index } = e.currentTarget.dataset;
+    const { photos } = this.data;
+    const url = photos[index].image.large.url;
+    wx.previewImage({
+      urls: [url],
+      current: url
+    });
+  }
+});

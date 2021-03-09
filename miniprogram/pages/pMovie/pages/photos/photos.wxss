@@ -1,0 +1,13 @@
+.photos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20rpx;
+  grid-auto-flow: row dense;
+  grid-auto-rows: 2rpx;
+}
+
+.image {
+  width: 100%;
+  background-color: #eee;
+  grid-row: auto / span 50;
+}
