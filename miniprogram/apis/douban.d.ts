@@ -353,3 +353,36 @@ export const getUserInterests: (userID: string, params: {
     subject: DouBan.Movie;
   }>
 }>
+
+/** 登录 */
+export const login: (params: {
+  /** 用户名 */
+  name: string;
+  password: string;
+  /** 小程序 AppID */
+  appid?: string;
+  phone?: string;
+  captcha_id?: string;
+  captcha_solution?: string;
+  ticket?: string;
+  randstr?: string;
+}) => Promise<{
+  status: 'success';
+  message: string;
+  description: string;
+  payload: {
+    access_token: string;
+    douban_user_id: string;
+    account_info: {
+      name: string;
+      weixin_binded: boolean;
+      phone: string;
+      avatar: { medium: string; median: string; large: string; raw: string; small: string; icon: string; };
+      id: string;
+      uid: string;
+    };
+    douban_user_name: string;
+    expires_in: number;
+    refresh_token: string;
+  };
+}>

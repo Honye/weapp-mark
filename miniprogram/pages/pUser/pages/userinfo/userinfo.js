@@ -18,11 +18,12 @@ Page({
     store,
     fields: {
       info: () => store.user.info,
+      douban: () => store.douban,
       thirdAuthor: () => {
         return {
-          wechat: {
-            title: '微信',
-            authorized: true
+          douban: {
+            title: '豆瓣',
+            authorized: !!(store.douban.accessToken)
           },
           qq: {
             title: 'QQ',
@@ -69,6 +70,11 @@ Page({
     switch (key) {
       case 'github':
         this.handleGitHubSwitch(value);
+        break;
+      case 'douban':
+        wx.navigateTo({
+          url: '/pages/douban/pages/login/login'
+        });
         break;
     }
   },

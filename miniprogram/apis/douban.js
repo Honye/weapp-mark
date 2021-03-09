@@ -1,20 +1,27 @@
 /**
  * @file 豆瓣 API
  */
+import storage from '../utils/storage';
 
 const BASE_URL = 'https://frodo.douban.com/api/v2'; // 来自豆瓣小程序
+/** 豆瓣小程序 AppID */
+const AppID = 'wx2f9b06c1de1ccfca';
 
 /**
  * 
  * @param {WechatMiniprogram.RequestOption} params 
  */
 const request = (params) => {
+  const accessToken = storage.get('douban.token');
+
   return new Promise((resolve, reject) => {
     wx.request({
       url: `${BASE_URL}${params.url}`,
-      header: {
-        ...params.header
-      },
+      header: Object.assign(
+        {},
+        accessToken && { Authorization: `Bearer ${accessToken}` },
+        params.header
+      ),
       data: {
         apikey: '054022eaeae0b00e0fc068c0c0a2102a',
         ...(params.data || {})
@@ -141,5 +148,45 @@ export const getUserInterests = (userID, params) => {
   return request({
     url: `/user/${userID}/interests`,
     data: params
+  });
+}
+
+/**
+ * 登录
+ * @param {object} params
+ * @param {string} params.name 用户名
+ * @param {string} params.password 密码
+ * @param {string} [params.appid]
+ * @param {string} [params.phone]
+ * @param {string} [params.captcha_id]
+ * @param {string} [params.captcha_solution]
+ * @param {string} [params.ticket]
+ * @param {string} [params.randstr]
+ * @returns 
+ */
+export const login = (params) => {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: 'https://accounts.douban.com/j/wxa/login/basic',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      method: 'POST',
+      data: {
+        appid: AppID,
+        ...params
+      },
+      success: ({ statusCode, data }) => {
+        if (statusCode >= 200 && statusCode < 300 ) {
+          resolve(data)
+        } else {
+          reject({
+            ...data,
+            message: data.message || data.msg || '服务器开小差了',
+          })
+        }
+      },
+      fail: err => reject(err)
+    });
   });
 }

@@ -1,0 +1,16 @@
+<view class="container">
+  <form class="form" bindsubmit="submit">
+    <view class="title">豆瓣账号密码登录</view>
+    <view class="input-list">
+      <input class="input" name="username" type="text" placeholder="手机号/邮箱"
+        data-name="username"
+        bindinput="handleInput"
+      />
+      <input class="input" name="password" type="text" password placeholder="密码"
+        data-name="password"
+        bindinput="handleInput"
+      />
+    </view>
+    <button class="btn-submit btn-opacity" form-type="submit" disabled="{{!(username && password)}}">登录</button>
+  </form>
+</view>

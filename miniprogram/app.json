@@ -81,6 +81,12 @@
         "pages/starred/starred",
         "pages/trending/trending"
       ]
+    },
+    {
+      "root": "pages/douban/",
+      "pages": [
+        "pages/login/login"
+      ]
     }
   ],
   "requiredBackgroundModes": ["audio"],

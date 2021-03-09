@@ -1,6 +1,36 @@
 // 本地数据存储
 'use strict';
 
+const { miniProgram } = wx.getAccountInfoSync();
+
+/**
+ * @type {Record<WechatMiniprogram.MiniProgram['envVersion'], string>}
+ */
+const prefixes = {
+  develop: 'dev:',
+  trial: 't:',
+  release: ''
+};
+const prefix = prefixes[miniProgram.envVersion];
+
+/**
+ * 
+ * @param {string} key
+ * @param {*} data
+ */
+export const set = (key, data) => {
+  wx.setStorageSync(`${prefix}${key}`, data);
+}
+
+/**
+ * 
+ * @param {string} key 
+ * @returns 
+ */
+export const get = (key) => {
+  return wx.getStorageSync(`${prefix}${key}`);
+}
+
 /**
  * 清空存储
  */
@@ -19,6 +49,8 @@ export function getSetting(callback) {
 }
 
 export default {
+  set,
+  get,
   clear,
   getSetting
 }
