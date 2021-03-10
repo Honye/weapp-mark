@@ -8,6 +8,7 @@ page {
   flex: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 .page-article .bg-title {
   width: 100%;
