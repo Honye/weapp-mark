@@ -9,6 +9,7 @@ image {
 
 .container {
   font-size: 28rpx;
+  background-color: #fff;
 }
 
 .clip-img {
@@ -90,6 +91,32 @@ image {
   width: 32rpx;
   height: 34rpx;
   margin-right: 14rpx;
+}
+
+.actions {
+  margin-top: 42rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 160rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  box-sizing: border-box;
+  border: 2rpx solid #474747;
+}
+.action.active {
+  background-color: #FFE200;
+  border: none;
+}
+.action__icon {
+  margin-right: 10rpx;
+  width: 36rpx;
+  height: 36rpx;
 }
 
 .page-detail .play-source {

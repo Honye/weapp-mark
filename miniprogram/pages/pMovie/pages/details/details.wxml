@@ -42,6 +42,29 @@
         </view>
       </view>
     </view>
+    <view class="block actions">
+      <view class="action {{details.interest.status === 'mark' && 'active'}}"
+        data-action="mark"
+        bindtap="handleAction"
+      >
+        <image class="action__icon" src="../../images/icon-mark.svg" mode="aspectFit" />
+        <view>想看</view>
+      </view>
+      <view class="action {{details.interest.status === 'done' && 'active'}}"
+        data-action="done"
+        bindtap="handleAction"
+      >
+        <image class="action__icon" src="../../images/icon-done.svg" mode="aspectFit" />
+        <view>已看</view>
+      </view>
+      <view class="action {{details.interest.status === 'doing' && 'active'}}"
+        data-action="doing"
+        bindtap="handleAction"
+      >
+        <image class="action__icon" src="../../images/icon-doing.svg" mode="aspectFit" />
+        <view>在看</view>
+      </view>
+    </view>
     <!-- 播放源 -->
     <view class='block play-source' wx:if='{{details.videos.length>0}}'>
       <navigator url='/pages/pMovie/pages/sources/sources?id={{id}}'>

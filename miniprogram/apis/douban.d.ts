@@ -122,6 +122,18 @@ declare namespace DouBan {
     body_bg_color: string;
     card_subtitle: string;
     directors: Actor[];
+    has_linewatch: boolean;
+    interest?: Interest;
+    linewatches: Array<{
+      free: boolean;
+      source: {
+        literal: string;
+        name: string;
+        pic: string;
+      };
+      source_uri: string;
+      url: string;
+    }>;
     title: string;
     trailer: Trailer;
   }
@@ -386,3 +398,35 @@ export const login: (params: {
     refresh_token: string;
   };
 }>
+
+/** 标记影视为想看 */
+export const markMovie: (params: {
+  movieID: string;
+  rating?: 1|2|3|4|5;
+  sync_douban?: 0|1;
+}) => Promise<DouBan.Interest>
+
+/** 删除影视标记 */
+export const unmarkMovie: (params: {
+  movieID: string;
+}) => Promise<{
+  comment: string;
+  status: DouBan.InterestStatus;
+  id: string;
+}>
+
+/** 标记影视为已看 */
+export const doneMovie: (params: {
+  movieID: string;
+  rating?: 1|2|3|4|5;
+  comment?: string;
+  sync_douban?: 0|1;
+}) => Promise<DouBan.Interest>
+
+/** 标记影视为已看 */
+export const doingMovie: (params: {
+  movieID: string;
+  rating?: 1|2|3|4|5;
+  comment?: string;
+  sync_douban?: 0|1;
+}) => Promise<DouBan.Interest>

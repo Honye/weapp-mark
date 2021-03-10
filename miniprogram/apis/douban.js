@@ -190,3 +190,76 @@ export const login = (params) => {
     });
   });
 }
+
+/**
+ * 标记影视为想看
+ * @param {object} params
+ * @param {string} params.movieID
+ * @param {number} [params.rating]
+ * @param {0|1} [params.sync_douban]
+ */
+export const markMovie = (params) => {
+  const { movieID, ...rest } = params;
+  const data = Object.assign({}, { raing: 0, sync_douban: 0 }, rest);
+  return request({
+    url: `/movie/${movieID}/mark`,
+    data
+  });
+}
+
+/**
+ * 删除影视标记
+ * @param {object} params
+ * @param {string} params.movieID
+ */
+export const unmarkMovie = (params) => {
+  return request({
+    url: `/movie/${params.movieID}/unmark`,
+  });
+}
+
+/**
+ * 标记影视为已看
+ * @param {object} params
+ * @param {string} params.movieID
+ * @param {number} [params.rating]
+ * @param {string} [params.comment]
+ * @param {0|1} [params.sync_douban]
+ */
+export const doneMovie = (params) => {
+  const { movieID, ...rest } = params;
+  const data = Object.assign({},
+    {
+      rating: 0,
+      sync_douban: 0
+    },
+    rest
+  );
+  return request({
+    url: `movie/${movieID}/done`,
+    data
+  });
+}
+
+/**
+ * 标记影视为已看
+ * @param {object} params
+ * @param {string} params.movieID
+ * @param {number} [params.rating]
+ * @param {string} [params.comment]
+ * @param {0|1} [params.sync_douban]
+ */
+ export const doingMovie = (params) => {
+  const { movieID, ...rest } = params;
+  const data = Object.assign({},
+    {
+      rating: 0,
+      sync_douban: 0
+    },
+    rest
+  );
+  return request({
+    url: `movie/${movieID}/doing`,
+    data
+  });
+}

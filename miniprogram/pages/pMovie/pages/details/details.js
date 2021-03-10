@@ -1,6 +1,14 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../../store/index';
-import { getDetail, getInterests, getPhotos } from '../../../../apis/douban.js';
+import {
+  getDetail,
+  getInterests,
+  getPhotos,
+  markMovie,
+  unmarkMovie,
+  doneMovie,
+  doingMovie
+} from '../../../../apis/douban.js';
 import Cast from '../../../../models/Cast'
 import Comment from '../../../../models/Comment'
 
@@ -8,6 +16,7 @@ Page({
   behaviors: [storeBindingsBehavior],
 
   data: {
+    /** @type {import('../../../../apis/douban.js').DouBan.MovieDetail} */
     details: {},
     directorList: [],
     actorList: [],
@@ -19,7 +28,7 @@ Page({
     photos: [],
     loaded: false,
     isFold: true,
-    showMovieListPopup: false,
+    showMovieListPopup: false
   },
 
   storeBindings: {
@@ -85,6 +94,59 @@ Page({
     const comments = res.interests.map(item => Comment.fromDouban(item));
     this.setData({
       comments
+    });
+  },
+
+  /** 想看/已看/在看 */
+  async handleAction (e) {
+    /** @type {{ action: import('../../../../apis/douban.js').DouBan.InterestStatus }} */
+    const { action } = e.currentTarget.dataset;
+    const { id, details: { interest } } = this.data;
+    if (interest && action === interest.status) {
+      // 取消标记
+      wx.showModal({
+        title: '提醒',
+        content: '确认删除标记吗？',
+        confirmText: '删除',
+        cancelText: '再想想',
+        success: async ({ confirm }) => {
+          if (confirm) {
+            wx.showLoading();
+            const res = await unmarkMovie({ movieID: id });
+            wx.hideLoading();
+            this.setData({
+              'details.interest.status': res.status
+            });
+          }
+        }
+      });
+      return;
+    }
+
+    wx.showLoading();
+    let res;
+    switch (action) {
+      case 'mark': {
+        res = await markMovie({ movieID: id });
+        break;
+      }
+      case 'done': {
+        res = await doneMovie({
+          movieID: id
+        });
+        break;
+      }
+      case 'doing': {
+        res = await doingMovie({
+          movieID: id
+        });
+        break;
+      }
+      default:
+    }
+    wx.hideLoading();
+    this.setData({
+      'details.interest.status': res.status
     });
   },
 
