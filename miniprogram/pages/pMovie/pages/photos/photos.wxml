@@ -1,9 +1,13 @@
 <wxs module="wxs">
   function getSpanCount (width, height) {
-    var cssWidth = 365;
-    var basic = 22;
+    /** (screenWidth - leftPadding - rightPadding - gridGap) / 2 */
+    var cssWidth = (750 - 20 * 2 - 20) / 2;
+    /** grid-auto-rows in css. 越小精度越高 */
+    var autoRaws = 2;
+    /** grid-gap in css */
+    var gap = 20;
     var cssHeight = height / width * cssWidth;
-    return parseInt(cssHeight / basic);
+    return parseInt((cssHeight + gap) / (autoRaws + gap));
   }
   module.exports = {
     getSpanCount: getSpanCount

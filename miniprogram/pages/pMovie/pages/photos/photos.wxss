@@ -1,5 +1,6 @@
 .photos {
   display: grid;
+  padding: 20rpx;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20rpx;
   grid-auto-flow: row dense;
@@ -10,4 +11,5 @@
   width: 100%;
   background-color: #eee;
   grid-row: auto / span 50;
+  border-radius: 10rpx;
 }
