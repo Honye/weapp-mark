@@ -1,50 +1,40 @@
 // pages/sources/sources.js
-import { Douban } from '../../../../utils/apis.js';
+import { getDetail } from '../../../../apis/douban.js';
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    icons: {
-      mgtv: 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=424835445,735191261&fm=58',
-      letv: 'https://www.le.com/favicon.ico',
-      iqiyi: 'https://www.iqiyi.com/favicon.ico'
-    }
-  },
+  data: {},
 
   /**
-   * 生命周期函数--监听页面加载
+   * @param {object} options
+   * @param {string} options.id
    */
-  onLoad: function (options) {
+  onLoad (options) {
     this.getDetails(options.id);
   },
 
-  /**
-   * 获取影视详情
-   */
-  getDetails: function (id) {
+  /** 获取影视详情 */
+  async getDetails (id) {
     wx.showLoading({
-      title: 'loading...',
+      title: 'loading...'
     });
-    let _this = this;
-    Douban.get(`${Douban.DETAILS}/${id}`)
-      .then(res => {
-        _this.setData({
-          sources: res.videos
-        });
-      })
+    const res = await getDetail({ id });
+    wx.hideLoading();
+    this.setData({
+      sources: res.linewatches || []
+    });
   },
 
-  /**
-   * 复制播放地址
-   */
-  copyUrl: function(e) {
+  /** 复制播放地址 */
+  copyUrl (e) {
     const {url} = e.currentTarget.dataset;
     wx.setClipboardData({
       data: url,
       success: res => {
+        wx.showToast({
+          icon: 'none',
+          title: '已复制链接'
+        });
         wx.showModal({
           content: `播放地址已复制到剪贴板 \n 前往浏览器粘贴访问`,
           showCancel: false
