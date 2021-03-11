@@ -59,10 +59,12 @@ export const search = (params) => {
  *  影视详情
  * @param {object} params
  * @param {string} params.id
+ * @param {'movie'|'tv'} [params.type]
  */
 export const getDetail = (params) => {
+  const { id, type = 'movie' } = params;
   return request({
-    url: `/movie/${params.id}`
+    url: `/${type}/${id}`
   });
 };
 
@@ -73,11 +75,12 @@ export const getDetail = (params) => {
  * @param {number} params.start
  * @param {number} params.count
  * @param {'done'} [params.status]
+ * @param {'movie'|'tv'} [params.type = 'movie']
  */
 export const getInterests = (params) => {
-  const { id, ...data } = params;
+  const { id, type = 'movie', ...data } = params;
   return request({
-    url: `/movie/${id}/interests`,
+    url: `/${type}/${id}/interests`,
     data
   });
 };
@@ -88,11 +91,12 @@ export const getInterests = (params) => {
  * @param {string} params.id
  * @param {number} params.start
  * @param {number} params.count
+ * @param {'movie'|'tv'} [params.type = 'movie']
  */
 export const getPhotos = (params) => {
-  const { id, ...data } = params;
+  const { id, type = 'movie', ...data } = params;
   return request({
-    url: `/movie/${id}/photos`,
+    url: `/${type}/${id}/photos`,
     data
   });
 };
@@ -195,14 +199,15 @@ export const login = (params) => {
  * 标记影视为想看
  * @param {object} params
  * @param {string} params.movieID
+ * @param {'movie'|'tv'} [params.type = 'movie']
  * @param {number} [params.rating]
  * @param {0|1} [params.sync_douban]
  */
 export const markMovie = (params) => {
-  const { movieID, ...rest } = params;
+  const { movieID, type = 'movie', ...rest } = params;
   const data = Object.assign({}, { raing: 0, sync_douban: 0 }, rest);
   return request({
-    url: `/movie/${movieID}/mark`,
+    url: `/${type}/${movieID}/mark`,
     data
   });
 }
@@ -211,10 +216,11 @@ export const markMovie = (params) => {
  * 删除影视标记
  * @param {object} params
  * @param {string} params.movieID
+ * @param {'movie'|'tv'} [params.type = 'movie']
  */
 export const unmarkMovie = (params) => {
   return request({
-    url: `/movie/${params.movieID}/unmark`,
+    url: `/${params.type || 'movie'}/${params.movieID}/unmark`,
   });
 }
 
@@ -222,12 +228,13 @@ export const unmarkMovie = (params) => {
  * 标记影视为已看
  * @param {object} params
  * @param {string} params.movieID
+ * @param {'movie'|'tv'} [params.type = 'movie']
  * @param {number} [params.rating]
  * @param {string} [params.comment]
  * @param {0|1} [params.sync_douban]
  */
 export const doneMovie = (params) => {
-  const { movieID, ...rest } = params;
+  const { movieID, type = 'movie', ...rest } = params;
   const data = Object.assign({},
     {
       rating: 0,
@@ -236,7 +243,7 @@ export const doneMovie = (params) => {
     rest
   );
   return request({
-    url: `movie/${movieID}/done`,
+    url: `/${type}/${movieID}/done`,
     data
   });
 }
@@ -245,12 +252,13 @@ export const doneMovie = (params) => {
  * 标记影视为已看
  * @param {object} params
  * @param {string} params.movieID
+ * @param {'movie'|'tv'} [params.type = 'movie']
  * @param {number} [params.rating]
  * @param {string} [params.comment]
  * @param {0|1} [params.sync_douban]
  */
  export const doingMovie = (params) => {
-  const { movieID, ...rest } = params;
+  const { movieID, type = 'movie', ...rest } = params;
   const data = Object.assign({},
     {
       rating: 0,
@@ -259,7 +267,7 @@ export const doneMovie = (params) => {
     rest
   );
   return request({
-    url: `movie/${movieID}/doing`,
+    url: `${type}/${movieID}/doing`,
     data
   });
 }

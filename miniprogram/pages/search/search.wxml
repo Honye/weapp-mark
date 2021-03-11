@@ -53,7 +53,9 @@
               </view>
             </block>
           </view>
-          <navigator wx:elif="{{item.target_type === 'movie' || item.target_type === 'tv'}}" url='/pages/pMovie/pages/details/details?title={{item.target.title}}&id={{item.target.id}}'>
+          <navigator wx:elif="{{item.target_type === 'movie' || item.target_type === 'tv'}}"
+            url='/pages/pMovie/pages/details/details?title={{item.target.title}}&id={{item.target.id}}&type={{item.target_type}}'
+          >
             <template is="item-movie_row" data="{{...item.target}}" />
           </navigator>
         </block>

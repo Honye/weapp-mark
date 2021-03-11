@@ -34,6 +34,7 @@
       <block wx:for='{{movies}}' wx:key='id'>
         <view data-title="{{item.subject.title}}"
           data-id="{{item.subject.id}}"
+          data-type="{{item.subject.type}}"
           bindtap="bindViewTap">
           <template 
             is="item-movie_grid" 
@@ -46,6 +47,7 @@
     <block wx:for='{{movies}}' wx:key='id' wx:if='{{!isGrid}}'>
       <view data-title="{{item.subject.title}}"
           data-id="{{item.subject.id}}"
+          data-type="{{item.subject.type}}"
           bindtap="bindViewTap">
         <template 
           is="item-movie_row" 

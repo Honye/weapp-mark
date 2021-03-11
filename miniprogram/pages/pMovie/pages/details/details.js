@@ -36,30 +36,39 @@ Page({
     fields: ['app']
   },
 
+  /**
+   * @param {object} options
+   * @param {string} options.id
+   * @param {string} [options.title]
+   * @param {'movie'|'tv'} [options.type = 'movie']
+   */
   onLoad (options) {
+    options = Object.assign({}, { type: 'movie' }, options);
     if (options.title) {
       const title = decodeURIComponent(options.title)
       wx.setNavigationBarTitle({ title })
     }
-    const newData = {
+    this.setData({
       id: options.id,
-    }
-    this.setData(newData)
+      type: options.type
+    })
 
-    this.getDetails(options.id);
-    this.getComments(options.id);
-    this.getPhotos(options.id);
+    this.getDetails(options.id, options.type);
+    this.getComments(options.id, options.type);
+    this.getPhotos(options.id, options.type);
   },
   
   /**
    * 获取影视详情（豆瓣）
+   * @param {string} id
+   * @param {'movie'|'tv'} [type = 'movie']
    */
-  async getDetails (id) {
+  async getDetails (id, type = 'movie') {
     wx.showLoading({
       title: 'loading...',
     });
 
-    const res = await getDetail({ id });
+    const res = await getDetail({ id, type });
     const casts = res.actors.map(item => item.name);
     const directors = res.directors.map(item => Cast.fromDouban(JSON.stringify({ ...item, type: 'Director' })));
     const actors = res.actors.map(item => Cast.fromDouban(JSON.stringify({ ...item, type: 'Actor' })));
@@ -84,12 +93,14 @@ Page({
 
   /**
    * 获取影视短评
+   * @param {'movie'|'tv'} [type = 'movie']
    */
-  async getComments (id) {
+  async getComments (id, type = 'movie') {
     const res = await getInterests({
       id,
       start: 0,
-      count: 10
+      count: 10,
+      type
     });
     const comments = res.interests.map(item => Comment.fromDouban(item));
     this.setData({
@@ -101,7 +112,8 @@ Page({
   async handleAction (e) {
     /** @type {{ action: import('../../../../apis/douban.js').DouBan.InterestStatus }} */
     const { action } = e.currentTarget.dataset;
-    const { id, details: { interest } } = this.data;
+    const { id, details } = this.data;
+    const { interest } = details;
     if (interest && action === interest.status) {
       // 取消标记
       wx.showModal({
@@ -112,7 +124,7 @@ Page({
         success: async ({ confirm }) => {
           if (confirm) {
             wx.showLoading();
-            const res = await unmarkMovie({ movieID: id });
+            const res = await unmarkMovie({ movieID: id, type: details.type });
             wx.hideLoading();
             this.setData({
               'details.interest.status': res.status
@@ -127,19 +139,15 @@ Page({
     let res;
     switch (action) {
       case 'mark': {
-        res = await markMovie({ movieID: id });
+        res = await markMovie({ movieID: id, type: details.type });
         break;
       }
       case 'done': {
-        res = await doneMovie({
-          movieID: id
-        });
+        res = await doneMovie({ movieID: id, type: details.type });
         break;
       }
       case 'doing': {
-        res = await doingMovie({
-          movieID: id
-        });
+        res = await doingMovie({ movieID: id, type: details.type });
         break;
       }
       default:
@@ -150,12 +158,16 @@ Page({
     });
   },
 
-  /** 剧照 */
-  async getPhotos (id) {
+  /**
+   * 剧照
+   * @param {'movie'|'tv'} [type = 'movie']
+   */
+  async getPhotos (id, type = 'movie') {
     const res = await getPhotos({
       id,
       start: 0,
-      count: 12
+      count: 12,
+      type
     });
     this.setData({
       photos: res.photos

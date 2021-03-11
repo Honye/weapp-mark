@@ -67,7 +67,7 @@
     </view>
     <!-- 播放源 -->
     <view class='block play-source' wx:if='{{details.linewatches.length > 0}}'>
-      <navigator url='/pages/pMovie/pages/sources/sources?id={{id}}'>
+      <navigator url='/pages/pMovie/pages/sources/sources?id={{id}}&type={{details.type}}'>
         <view class='source-container'>
           <view>
             <i class="fa fa-play-circle" aria-hidden="true"></i>
@@ -108,7 +108,7 @@
     <!-- 预告及剧照 -->
     <view class='block photos'>
       <navigator class='subtitle' hover-class="btn-opacity"
-        url="../photos/photos?id={{id}}&title={{details.title}}"
+        url="../photos/photos?id={{id}}&title={{details.title}}&type={{details.type}}"
       >
         <view>预告片 / 剧照</view>
         <view>

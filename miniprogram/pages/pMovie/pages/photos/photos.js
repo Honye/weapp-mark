@@ -3,6 +3,7 @@ import { getPhotos } from '../../../../apis/douban.js';
 Page({
   data: {
     id: '',
+    type: 'movie',
     /** @type {import('../../../../apis/douban.js').DouBan.Photo[]} */
     photos: [],
     start: 0,
@@ -14,9 +15,12 @@ Page({
    * @param {object} options
    * @param {string} options.id 影视类目ID
    * @param {string} [options.title] 影视类目名
+   * @param {'movie'|'tv'} [options.type = 'movie']
    */
   onLoad (options) {
+    options = Object.assign({}, { type: 'movie' }, options);
     this.data.id = options.id;
+    this.data.type = options.type;
     if (options.title) {
       wx.setNavigationBarTitle({
         title: `《${options.title}》的剧照`
@@ -32,11 +36,12 @@ Page({
   },
 
   async getPhotoList () {
-    const { id, start, count, photos } = this.data;
+    const { id, type, start, count, photos } = this.data;
     const res = await getPhotos({
       id,
       start,
-      count
+      count,
+      type
     });
     const list = res.photos || [];
     this.setData({

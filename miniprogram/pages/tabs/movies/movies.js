@@ -107,9 +107,9 @@ Page({
   },
 
   bindViewTap(event) {
-    const { id, title } = event.currentTarget.dataset
+    const { id, title, type } = event.currentTarget.dataset;
     wx.navigateTo({
-      url: `/pages/pMovie/pages/details/details?title=${title}&id=${id}`,
+      url: `/pages/pMovie/pages/details/details?title=${title}&id=${id}&type=${type}`,
     })
   },
 

@@ -8,17 +8,21 @@ Page({
   /**
    * @param {object} options
    * @param {string} options.id
+   * @param {'movie'|'tv'} [options.type = 'movie']
    */
   onLoad (options) {
-    this.getDetails(options.id);
+    this.getDetails(options.id, options.type);
   },
 
-  /** 获取影视详情 */
-  async getDetails (id) {
+  /**
+   * 获取影视详情
+   * @param {'movie'|'tv'} [type = 'movie']
+   */
+  async getDetails (id, type = 'movie') {
     wx.showLoading({
       title: 'loading...'
     });
-    const res = await getDetail({ id });
+    const res = await getDetail({ id, type });
     wx.hideLoading();
     this.setData({
       sources: res.linewatches || []
