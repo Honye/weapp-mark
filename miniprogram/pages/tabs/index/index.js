@@ -10,15 +10,22 @@ Page({
   behaviors: [storeBindingsBehavior],
 
   data: {
+    /** @type {WechatMiniprogram.MiniProgram} */
+    miniProgram: {},
     userinfo: app.globalData.userInfo
   },
 
   storeBindings: {
     store,
     fields: {
-      info: () => store.user.info,
+      user: () => store.user,
       app: () => store.app
     }
+  },
+
+  onLoad () {
+    const { miniProgram } = wx.getAccountInfoSync();
+    this.setData({ miniProgram });
   },
 
   /** 进入个人资料 */

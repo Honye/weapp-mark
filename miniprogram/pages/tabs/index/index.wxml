@@ -7,9 +7,9 @@
     <view class="userinfo">
       <view class="cell-left">
         <view class="userinfo-avatar btn-opacity" bindtap="bindViewTap">
-          <image class="img" wx:if="{{info && info.avatarUrl}}" src="{{info.avatarUrl}}" mode="aspectFill" />
+          <image class="img" wx:if="{{user.info && user.info.avatarUrl}}" src="{{user.info.avatarUrl}}" mode="aspectFill" />
           <open-data wx:else type='userAvatarUrl' />
-          <!-- <avatar class="img" wx:if="{{info && info.avatarUrl}}" avatar="{{info.avatarUrl}}" /> -->
+          <!-- <avatar class="img" wx:if="{{user.info && user.info.avatarUrl}}" avatar="{{user.info.avatarUrl}}" /> -->
         </view>
         <button class='button-nostyle userinfo__right' open-type="getUserInfo"
           bindgetuserinfo="handleUserInfo"
@@ -48,7 +48,6 @@
     <button class='contactBtn' open-type='feedback' hover-class='none'>
       <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-feedback.png",title:"意见反馈"}}' />
     </button>
-    <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-about.png",title:"关于",subtitle:"v"+app.version,bindTap:"toAbout"}}' />
+    <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-about.png",title:"关于",subtitle:miniProgram.version && ("v"+miniProgram.version),bindTap:"toAbout"}}' />
   </view>
-
 </view>
