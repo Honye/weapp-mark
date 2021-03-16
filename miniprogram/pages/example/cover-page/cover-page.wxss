@@ -1,0 +1,32 @@
+.movielist-content {
+  /* height: 644rpx; */
+  max-height: 60vh;
+}
+
+.movielist-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 24rpx;
+}
+.movielist-item__img {
+  width: 88rpx;
+  height: 118rpx;
+  margin-right: 16rpx;
+}
+.movielist-item__info {
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.movielist-item__name {
+  color: #333;
+  font-size: 28rpx;
+}
+.movielist-item__count {
+  color: #999;
+  font-size: 22rpx;
+  margin-top: 12rpx;
+}

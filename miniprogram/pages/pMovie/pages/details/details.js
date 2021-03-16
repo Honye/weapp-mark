@@ -27,7 +27,7 @@ Page({
     photos: [],
     loaded: false,
     isFold: true,
-    showMovieListPopup: false
+    movielistList: []
   },
 
   storeBindings: {
@@ -225,15 +225,8 @@ Page({
 
   /** 显示影单弹窗 */
   showMovieListPopup() {
-    this.setData({
-      popupMovieListVisible: true,
-    })
-  },
-
-  hideMovieListPopup() {
-    this.setData({
-      popupMovieListVisible: false,
-    })
+    this.getMovielistList();
+    this.selectComponent('#movielist').show();
   },
 
   /** 加入影单 */
@@ -242,9 +235,7 @@ Page({
       icon: 'none',
       title: '成功加入影单',
     })
-    this.setData({
-      popupMovieListVisible: false,
-    })
+    this.selectComponent('#movielist').hide();
   },
 
   onShareAppMessage() {
@@ -253,4 +244,17 @@ Page({
       title: details.title || details.titleCn,
     }
   },
+
+  /** 影单列表 */
+  async getMovielistList () {
+    const list = Array(6).fill({}).map((item, index) => ({
+      id: index,
+      title: '阳光掉进回忆里',
+      cover: 'https://img1.doubanio.com/view/photo/m_ratio_poster/public/p1756402567.jpg',
+      count: 10
+    }));
+    this.setData({
+      movielistList: list
+    });
+  }
 })

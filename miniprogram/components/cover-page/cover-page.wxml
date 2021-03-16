@@ -1,0 +1,17 @@
+<wxs module="wxs" src="./cover-page.wxs" />
+<view id="coverPage" class="action-sheet-backdrop" catch:tap="hide" catch:touchmove="prevent">
+  <view class="action-sheet-wrapper" catch:tap="prevent"
+    data-distance="{{distance}}"
+    catch:touchmove="{{wxs.handleModalTouchMove}}"
+    bind:touchend="{{wxs.handleModalTouchEnd}}"
+    visible="{{visible}}"
+    change:visible="{{wxs.observeVisible}}"
+  >
+    <view class="action-sheet__title" wx:if="{{title}}">{{title}}</view>
+    <view class="cover-page__content">
+      <scroll-view class="cover-page__scroll" scroll-y>
+        <slot />
+      </scroll-view>
+    </view>
+  </view>
+</view>

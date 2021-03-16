@@ -160,31 +160,21 @@
         </view>
       </block>
     </view>
-    <view class="action-sheet-backdrop popup-movielist {{popupMovieListVisible && 'is-show'}}" catch:tap="hideMovieListPopup">
-      <view class="action-sheet-wrapper" catch:tap>
-        <view class="movielist">
-          <view class="action-sheet__title">加入影单</view>
-          <view class="movielist-content">
-            <view class="movielist-create">
-              <image class="movielist-create__img" src="../../images/img-add.png" mode="aspectFit" />
-              <view class="movielist-create__text">新建影单</view>
-            </view>
-            <view class="movielist-item" bindtap="addToMovieList">
-              <image class="movielist-item__img" src="https://img3.doubanio.com/view/photo/raw/public/p663036666.jpg" mode="aspectFit" />
-              <view class="movielist-item__info">
-                <view class="movielist-item__name">阳光掉进回忆里</view>
-                <view class="movielist-item__count">10部门</view>
-              </view>
-            </view>
-            <view class="movielist-item" bindtap="addToMovieList">
-              <image class="movielist-item__img" src="https://img3.doubanio.com/view/photo/raw/public/p663036666.jpg" mode="aspectFit" />
-              <view class="movielist-item__info">
-                <view class="movielist-item__name">阳光掉进回忆里</view>
-                <view class="movielist-item__count">10部门</view>
-              </view>
+    <cover-page id="movielist" title="加入影单">
+      <view>
+        <view class="movielist-create">
+          <image class="movielist-create__img" src="../../images/img-add.png" mode="aspectFit" />
+          <view class="movielist-create__text">新建影单</view>
+        </view>
+        <block wx:for="{{movielistList}}" wx:key="id">
+          <view class="movielist-item" bindtap="addToMovieList">
+            <image class="movielist-item__img" src="{{item.cover}}" mode="aspectFit" />
+            <view class="movielist-item__info">
+              <view class="movielist-item__name">{{item.title}}</view>
+              <view class="movielist-item__count">{{item.count}}部门</view>
             </view>
           </view>
-        </view>
+        </block>
       </view>
-    </view>
+    </cover-page>
 </view>

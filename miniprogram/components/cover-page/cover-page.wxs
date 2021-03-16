@@ -1,0 +1,48 @@
+function handleModalTouchMove (event, ownerInstance) {
+  var state = ownerInstance.getState();
+  var currentY = event.changedTouches[0].pageY;
+  if (state.startY === undefined) {
+    // 开始滑动的地方。scroll-view 滚动时并不会触发此函数，也就不会有 startY
+    state.startY = currentY;
+  }
+  var diff = currentY - state.startY;
+  event.instance.setStyle({
+    transition: 'none',
+    transform: 'translate3d(0, ' + (diff < 0 ? 0 : diff) + 'px, 0)'
+  });
+}
+
+function handleModalTouchEnd (event, ownerInstance) {
+  var state = ownerInstance.getState();
+  var currentY = event.changedTouches[0].pageY;
+  var diff = currentY - state.startY;
+  var compModal = ownerInstance.selectComponent('#coverPage');
+  var dataset = event.currentTarget.dataset;
+  if (diff > dataset.distance) {
+    compModal.removeClass('is-show');
+    ownerInstance.callMethod('setVisible', { visible: false });
+  } else {
+    ownerInstance.callMethod('setVisible', { visible: true });
+  }
+  // 还原 startY，便于下次记录
+  state.startY = undefined;
+}
+
+function observeVisible (newValue, oldValue, ownerInstance, instance) {
+  var compModal = ownerInstance.selectComponent('#coverPage');
+  if (newValue) {
+    instance.setStyle({
+      transform: 'translate3d(0, 0, 0)'
+    });
+    compModal.addClass('is-show');
+  } else {
+    instance.setStyle({});
+    compModal.removeClass('is-show');
+  }
+}
+
+module.exports = {
+  handleModalTouchMove: handleModalTouchMove,
+  handleModalTouchEnd: handleModalTouchEnd,
+  observeVisible: observeVisible
+}

@@ -1,6 +1,4 @@
 {
-  "navigationBarTitleText": "详情",
-  "disableScroll": false,
   "usingComponents": {
     "cover-page": "/components/cover-page/cover-page"
   }

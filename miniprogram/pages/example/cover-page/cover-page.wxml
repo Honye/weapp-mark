@@ -1,0 +1,20 @@
+<view class="page">
+  <button bindtap="showMovieListPopup">影单</button>
+
+  <cover-page id="movielist"
+    title="Cover Page"
+    distance="{{100}}"
+  >
+    <view>
+      <block wx:for="{{movielistList}}" wx:key="id">
+        <view class="movielist-item" bindtap="addToMovieList">
+          <image class="movielist-item__img" src="{{item.cover}}" mode="aspectFit" />
+          <view class="movielist-item__info">
+            <view class="movielist-item__name">{{item.title}}</view>
+            <view class="movielist-item__count">{{item.count}}部门</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </cover-page>
+</view>
