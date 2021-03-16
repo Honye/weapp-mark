@@ -63,7 +63,8 @@
         "pages/intheaters/in_theaters",
         "pages/sources/sources",
         "pages/trailers/trailers",
-        "pages/photos/photos"
+        "pages/photos/photos",
+        "pages/mark/mark"
       ]
     },
     {

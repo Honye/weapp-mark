@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>edit</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="movie-mark" transform="translate(-666.000000, -1244.000000)" stroke="#999999">
+            <g id="edit" transform="translate(666.000000, 1244.000000)">
+                <g id="Group-5">
+                    <g transform="translate(2.000000, 2.000000)">
+                        <path d="M16,0 L2.81411765,0 C1.25929412,0 0,1.25929412 0,2.81411765 L0,29.1858824 C0,30.7407059 1.25929412,32 2.81411765,32 L29.1858824,32 C30.7407059,32 32,30.7407059 32,29.1858824 L32,16" id="Stroke-1" stroke-width="2"></path>
+                        <path d="M14,18 L32,0" id="Stroke-3" stroke-width="2"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,34 @@
+<wxs module="wxs">
+  function formatDate (dateString) {
+    return dateString.replace(getRegExp('-', 'g'), '.');
+  }
+  module.exports = {
+    formatDate: formatDate
+  }
+</wxs>
+<view class="container">
+  <form class="form" bindsubmit="submit">
+    <view class="input-item">
+      <view class="input-item__title">点击星星进行评分</view>
+      <view class="input-item__input">
+        <rating class="rating" name="rating" max="{{max}}" value="{{rating}}" />
+      </view>
+    </view>
+    <view class="input-item">
+      <view class="input-item__title">选择观影时间</view>
+      <view class="input-item__input">
+        <picker class="date-picker" mode="date" header-text="观影时间"
+          name="date"
+          model:value="{{date}}"
+        >
+          <view class="date-picker__content">
+            <view>{{wxs.formatDate(date)}}</view>
+            <image class="btn-opacity date-picker__icon" src="../../images/edit.svg" mode="aspectFit" />
+          </view>
+        </picker>
+      </view>
+    </view>
+    <button class="btn" hover-class="btn-hover" form-type="submit">确定</button>
+  </form>
+  <button class="btn-text" hover-class="btn-opacity" bindtap="deleteMark">删除标记</button>
+</view>

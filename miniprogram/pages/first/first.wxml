@@ -10,7 +10,7 @@
 
   <view>component 自定义组件</view>
   <view class='rating-comp'>
-    <com-rating max="10" rating='6.5' bindchange='handleChange' />
+    <com-rating max="10" value='{{6.5}}' bindchange='handleChange' />
     <text class='rate-show'>{{rating}}分</text>
   </view>
 ,

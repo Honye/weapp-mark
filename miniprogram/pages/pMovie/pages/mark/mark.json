@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "看过",
+  "usingComponents": {
+    "rating": "/components/rating/rating"
+  }
+}

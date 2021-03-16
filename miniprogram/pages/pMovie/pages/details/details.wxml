@@ -2,6 +2,7 @@
 <import src='/pages/common/rating/rating' />
 <import src='/pages/common/casts/casts' />
 <wxs src='../../../../utils/WxUtil.wxs' module='WxUtil' />
+<wxs src="./details.wxs" module="wxs" />
 
 <view wx:if='{{loaded}}' class='container page-detail'>
     <view class='block'>
@@ -42,7 +43,7 @@
         </view>
       </view>
     </view>
-    <view class="block actions">
+    <view class="block actions" wx:if="{{!(details.interest && details.interest.status === 'done')}}">
       <view class="action {{details.interest.status === 'mark' && 'active'}}"
         data-action="mark"
         bindtap="handleAction"
@@ -64,6 +65,16 @@
         <image class="action__icon" src="../../images/icon-doing.svg" mode="aspectFit" />
         <view>在看</view>
       </view>
+    </view>
+    <view class="block watched" wx:else>
+      <view class="watched__title">已看过</view>
+      <view class="watched__rating">
+        <template is="rating" data="{{rating: details.interest.rating.value ,max: details.interest.rating.max}}" />
+      </view>
+      <view class="watched__date">{{wxs.cutDateString(details.interest.create_time)}}</view>
+      <navigator class="watched__icon" hover-class="btn-opacity" url="../mark/mark?movieID={{id}}&type={{details.type}}">
+        <image src="../../images/edit.svg" mode="aspectFit" />
+      </navigator>
     </view>
     <!-- 播放源 -->
     <view class='block play-source' wx:if='{{details.linewatches.length > 0}}'>

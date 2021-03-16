@@ -1,12 +1,14 @@
 // 组件-评分
 
 Component({
+  behaviors: ['wx://form-field'],
+
   options: {
     addGlobalClass: true
   },
 
   properties: {
-    rating: {
+    value: {
       type: Number,
       value: 10
     },
@@ -21,14 +23,13 @@ Component({
   },
 
   methods: {
-    _handleTap: function (e) {
+    _handleTap (e) {
       if (this.data.disabled) return;
       const { max } = this.data;
       const { num } = e.currentTarget.dataset;
-      this.setData({
-        rating: max / 5 * num
-      })
-      this.triggerEvent('change', { value: max / 5 * num }, e);
+      const value = max / 5 * num;
+      this.setData({ value });
+      this.triggerEvent('change', { value }, e);
     }
   }
 

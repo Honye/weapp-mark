@@ -1,0 +1,7 @@
+function cutDateString (dateString) {
+  return dateString.substring(0, 10).replace(getRegExp('-', 'g'), '.');
+}
+
+module.exports = {
+  cutDateString: cutDateString
+}

@@ -6,7 +6,6 @@ import {
   getPhotos,
   markMovie,
   unmarkMovie,
-  doneMovie,
   doingMovie
 } from '../../../../apis/douban.js';
 import Cast from '../../../../models/Cast'
@@ -143,7 +142,9 @@ Page({
         break;
       }
       case 'done': {
-        res = await doneMovie({ movieID: id, type: details.type });
+        wx.navigateTo({
+          url: `../mark/mark?movieID=${id}&type=${details.type}`
+        });
         break;
       }
       case 'doing': {

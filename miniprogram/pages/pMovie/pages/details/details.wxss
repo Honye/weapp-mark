@@ -119,6 +119,41 @@ image {
   height: 36rpx;
 }
 
+.watched {
+  margin: 40rpx 24rpx 0;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  background-color: #F6F6F6;
+  border-radius: 4rpx;
+  box-sizing: border-box;
+  padding: 24rpx;
+}
+.watched__title {
+  font-size: 26rpx;
+  color: #999;
+}
+.watched__rating {
+  margin-left: 16rpx;
+  display: flex;
+  align-items: center;
+}
+.watched__rating .com-rating {
+  font-size: 26rpx;
+  line-height: 1;
+  letter-spacing: 8rpx;
+}
+.watched__date {
+  margin-left: 84rpx;
+  font-size: 26rpx;
+  color: #999;
+}
+.watched__icon {
+  margin-left: auto;
+  width: 36rpx;
+  height: 36rpx;
+}
+
 .page-detail .play-source {
   padding-top: 2em;
 }

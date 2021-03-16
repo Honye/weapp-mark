@@ -1,0 +1,72 @@
+.container {
+  padding-top: 40rpx;
+}
+
+.input-item:not(:first-child) {
+  margin-top: 80rpx;
+}
+.input-item__title {
+  font-size: 26rpx;
+  color: #999;
+  text-align: center;
+}
+.input-item__input {
+  margin-top: 17rpx;
+  text-align: center;
+}
+
+.btn {
+  margin: 30rpx;
+  margin-top: 213rpx;
+  line-height: 88rpx;
+  height: 88rpx;
+  border-radius: 44rpx;
+  border: none;
+  background-color: #FFE200;
+  color: #333;
+  font-size: 32rpx;
+  --tap-background-color: #ffe833;
+  --tap-color: #5c5c5c;
+}
+.btn::after {
+  content: initial;
+}
+.btn-hover {
+  background-color: var(--tap-background-color);
+  color: var(--tap-color);
+}
+
+.btn-text {
+  position: absolute;
+  bottom: 159rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 26rpx;
+  color: #999;
+  background-color: transparent;
+}
+.btn-text::after {
+  content: initial;
+}
+
+.rating {
+  font-size: 80rpx;
+  line-height: 1;
+}
+
+.date-picker {
+  margin-top: 23rpx;
+  display: inline-block;
+}
+.date-picker__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #999;
+}
+.date-picker__icon {
+  margin-left: 30rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
