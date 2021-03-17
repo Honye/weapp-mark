@@ -127,3 +127,19 @@ image {
   right: 0;
   background: #FFE200;
 }
+
+/* iPhone X 系列下巴占位 */
+.iphonex-bottom-holder {
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: constant(safe-area-inset-bottom);
+}
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .iphonex-bottom-holder {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+@supports (padding-bottom: constant(safe-area-inset-bottom)) {
+  .iphonex-bottom-holder {
+    padding-bottom: constant(safe-area-inset-bottom);
+  }
+}

@@ -1,6 +1,5 @@
 <!--pages/userinfo/userinfo.wxml-->
 <import src='/pages/common/actionsheet/actionsheet' />
-<wxs src='../../../../utils/WxUtil.wxs' module='wxUtil' />
 
 <template is='temp-actionsheet' data='{{...$wux.actionSheet}}' />
 
@@ -17,13 +16,6 @@
       <text>昵称</text>
       <view>
         <text>{{info.nickName}}</text>
-        <image class='icon' src='/assets/images/right_arrow.png' mode='widthFix' />
-      </view>
-    </view>
-    <view class='row-cell btn-bg'>
-      <text>手机号</text>
-      <view>
-        <text>{{wxUtil.cutPhone(phone)}}</text>
         <image class='icon' src='/assets/images/right_arrow.png' mode='widthFix' />
       </view>
     </view>
@@ -51,6 +43,7 @@
         <input class="modal-github__input" placeholder="GitHub Token" model:value="{{githubToken}}" />
         <button class="modal-github__btn" disabled="{{!githubToken}}" bindtap="handleBindGitHub">绑定</button>
       </view>
+      <view class="iphonex-bottom-holder"><!-- iPhone X 下巴占位 --></view>
     </view>
   </view>
 </view>

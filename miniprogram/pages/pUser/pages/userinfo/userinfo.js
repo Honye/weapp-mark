@@ -9,7 +9,6 @@ Page({
 
   data: {
     userInfo: {},
-    phone: '13125368636',
     modalGitHubVisible: false,
     githubToken: ''
   },
