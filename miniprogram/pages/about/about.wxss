@@ -32,6 +32,11 @@
 .self-honye .advert {
   color: #333;
 }
+
+.row-cell .iconfont {
+  margin-right: 10rpx;
+}
+
 .fa-music {
   height: 1.8em;
   width: 1.8em;

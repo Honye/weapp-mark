@@ -14,6 +14,9 @@ const audioManager = wx.getBackgroundAudioManager();
 Page({
 
   data: {
+    datas: {
+      image: 'https://img9.doubanio.com/view/photo/r/public/p2635531435.webp'
+    },
     playing: false,
     repo: null,
     readmeHTML: ''
@@ -40,8 +43,6 @@ Page({
       playing: !audioManager.paused
     });
   },
-
-  onShareAppMessage () {},
 
   /** 播放背景音乐 */
   initAudio () {

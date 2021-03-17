@@ -25,12 +25,10 @@
   </view>
 
   <view class='advert'>
-    <view>原本是出于对原生应用「Mark」的喜欢做的一个模仿秀，后来因为豆瓣停止对外提供免费接口等等原因变成了这幅模样。</view>
-    <view>小程序现包含女友大力支持的美丽的 UI、云函数爬取网页（豆瓣、GitHub）内容、GitHub REST API。</view>
-    <view>但小程序的初衷未曾改变，做一个完整的项目供学习，根据官方 API 的迭代持续更新。</view>
-    <view>已在 GitHub 上开源，源码可在<text class='link' bindtap='toWebview' data-url='https://mp.weixin.qq.com/s/wEkgBTlbBNDT9ALZmdijeA'>公众号文章</text>内找到。</view>
+    <view>iMark 的初衷是成为一个简简单单的观影记录工具。我满怀激情的做，还让美丽大方的女友助力 UI，然而因自己没有影视资源所以采用了豆瓣 API，无赖豆瓣已不再提供公用 API，小程序也就这样那样了...</view>
+    <view>小程序虽已开源，但我并不保证豆瓣数据的可用性，至此也只供学习交流了，有能力我还是会持续更新的。</view>
+    <view>现包含 UI 组件、云函数爬取网页（GitHub）内容、用户登录、云函数存储、GitHub REST API。源码可在<text class='link' bindtap='toWebview' data-url='https://mp.weixin.qq.com/s/wEkgBTlbBNDT9ALZmdijeA'>公众号文章</text>内找到。</view>
   </view>
-  <rich-text nodes="{{readmeHTML}}" />
 </view>
 
 <i wx:if='{{playing}}' class="active fa fa-music" bindtap='audioToggle'></i>
