@@ -1,5 +1,8 @@
 {
   "navigationBarBackgroundColor": "#ffe200",
   "backgroundColorTop": "#ffe200",
-  "backgroundColorBottom": "#ffffff"
+  "backgroundColorBottom": "#ffffff",
+  "usingComponents": {
+    "tab-bar": "/components/tab-bar/index"
+  }
 }

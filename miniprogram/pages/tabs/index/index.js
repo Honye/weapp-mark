@@ -28,6 +28,17 @@ Page({
     this.setData({ miniProgram });
   },
 
+  onShow () {
+    this.selectComponent('#tabBar').setData({ selected: 2 });
+  },
+
+  handleSwitchTab (e) {
+    const { index, list } = e.detail;
+    wx.switchTab({
+      url: list[index].pagePath
+    });
+  },
+
   /** 进入个人资料 */
   bindViewTap () {
     wx.navigateTo({

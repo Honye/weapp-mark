@@ -38,6 +38,17 @@ Page({
     this.getActivityEvents();
   },
 
+  onShow () {
+    this.selectComponent('#tabBar').setData({ selected: 0 });
+  },
+
+  handleSwitchTab (e) {
+    const { index, list } = e.detail;
+    wx.switchTab({
+      url: list[index].pagePath
+    });
+  },
+
   /**
    * 获取数据
    */

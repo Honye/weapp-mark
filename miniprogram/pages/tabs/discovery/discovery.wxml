@@ -76,3 +76,4 @@
     </scroll-view>
   </view>
 </view>
+<tab-bar id="tabBar" bind:change="handleSwitchTab" placeholder />

@@ -51,3 +51,4 @@
     <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-about.png",title:"关于",subtitle:miniProgram.version && ("v"+miniProgram.version),bindTap:"toAbout"}}' />
   </view>
 </view>
+<tab-bar id="tabBar" bind:change="handleSwitchTab" placeholder />

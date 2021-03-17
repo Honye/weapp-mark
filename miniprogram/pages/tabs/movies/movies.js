@@ -43,6 +43,10 @@ Page({
     })
   },
 
+  onShow () {
+    this.selectComponent('#tabBar').setData({ selected: 1 });
+  },
+
   /** 页面隐藏 */
   onHide(options) {
     this.dropMenu && this.dropMenu();
@@ -63,6 +67,13 @@ Page({
       });
       this.getMovies()
     }
+  },
+
+  handleSwitchTab (e) {
+    const { index, list } = e.detail;
+    wx.switchTab({
+      url: list[index].pagePath
+    });
   },
 
   /** 正在上映的电影 */

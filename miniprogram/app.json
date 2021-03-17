@@ -20,6 +20,7 @@
     "backgroundColor": "#f7f7f7"
   },
   "tabBar": {
+    "custom": true,
     "color": "#496069",
     "selectedColor": "#000",
     "backgroundColor": "#fff",
@@ -89,8 +90,16 @@
       "pages": [
         "pages/login/login"
       ]
+    },
+    {
+      "root": "pages/example/",
+      "pages": [
+        "cover-page/cover-page",
+        "tab-bar/tab-bar"
+      ]
     }
   ],
+  "usingComponents": {},
   "requiredBackgroundModes": ["audio"],
   "sitemapLocation": "sitemap.json"
 }

@@ -59,3 +59,4 @@
     <template is='loading-more' wx:if="{{loading}}" />
   </view>
 </view>
+<tab-bar id="tabBar" bind:change="handleSwitchTab" placeholder />

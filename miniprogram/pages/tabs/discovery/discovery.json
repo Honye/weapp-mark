@@ -1,6 +1,7 @@
 {
   "backgroundColor": "#ffffff",
   "usingComponents": {
+    "tab-bar": "/components/tab-bar/index",
     "comp-preImg": "/components/pre-image/PreImage"
   }
 }
