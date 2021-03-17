@@ -8,7 +8,9 @@ Page({
 
   data: {
     username: '',
-    password: ''
+    password: '',
+    captchaData: null,
+    captcha: ''
   },
 
   storeBindings: {
@@ -36,21 +38,37 @@ Page({
      * }}
      */
     const { value } = e.detail;
-    const res = await login({
-      name: value.username,
-      password: value.password
-    });
-    const { access_token, refresh_token } = res.payload;
-    this.updateDouban({
-      accessToken: access_token,
-      refreshToken: refresh_token,
-    });
-    storage.set('douban.token', access_token);
-    storage.set('douban.refresh_token', refresh_token);
-    wx.showToast({
-      icon: 'none',
-      title: '登录成功'
-    });
-    wx.navigateBack();
+    const { captchaData, captcha } = this.data;
+    try {
+      const params = {
+        name: value.username,
+        password: value.password
+      };
+      if (captchaData) {
+        params.captcha_id = captchaData.captcha_id;
+        params.captcha_solution = captcha;
+      }
+      const res = await login(params);
+      const { access_token, refresh_token } = res.payload;
+      this.updateDouban({
+        accessToken: access_token,
+        refreshToken: refresh_token,
+      });
+      storage.set('douban.token', access_token);
+      storage.set('douban.refresh_token', refresh_token);
+      wx.showToast({
+        icon: 'none',
+        title: '登录成功'
+      });
+      wx.navigateBack();
+    } catch (e) {
+      wx.showToast({
+        icon: 'none',
+        title: e.description
+      });
+      this.setData({
+        captchaData: e.payload
+      });
+    }
   }
 });

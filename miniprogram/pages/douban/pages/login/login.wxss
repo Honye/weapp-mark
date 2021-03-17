@@ -26,6 +26,19 @@ page {
   border-top: 1px solid #eee;
 }
 
+.captcha {
+  display: flex;
+  align-items: center;
+}
+.captcha__input {
+  flex: 1;
+}
+.captcha__code {
+  flex-shrink: 0;
+  width: 220rpx;
+  height: 40rpx;
+}
+
 .btn-submit {
   margin: 30rpx;
   margin-top: 80rpx;

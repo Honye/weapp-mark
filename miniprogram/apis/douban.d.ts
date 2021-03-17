@@ -383,7 +383,7 @@ export const login: (params: {
   ticket?: string;
   randstr?: string;
 }) => Promise<{
-  status: 'success';
+  status: 'success'|'failed';
   message: string;
   description: string;
   payload: {
@@ -400,6 +400,12 @@ export const login: (params: {
     douban_user_name: string;
     expires_in: number;
     refresh_token: string;
+  }|{
+    captcha_id: string;
+    captcha_image_url: string;
+    captcha_signature_sample: string;
+    tc_app_id: string;
+    touch_cap_url: string;
   };
 }>
 
