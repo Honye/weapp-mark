@@ -27,6 +27,9 @@
   width: 1.5em;
   margin-right: 1em;
 }
+.row-cell .row-icon .iconfont {
+  font-size: 1.5em;
+}
 
 .tips {
   padding: 30rpx;

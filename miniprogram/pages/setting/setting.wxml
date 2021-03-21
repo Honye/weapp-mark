@@ -26,4 +26,16 @@
       <text>{{storageSize}}kb</text>
     </view>
   </view>
+  <view class="subtitle">调试</view>
+  <view class="row-cell">
+    <view class="row-left">
+      <view class="row-icon">
+        <text class="iconfont icon-daimabeifen" />
+      </view>
+      <text>Enable debug</text>
+    </view>
+    <view class="row-right">
+      <switch color="#ffe200" bindchange="handleDebugSwitch" checked="{{system.enableDebug}}" />
+    </view>
+  </view>
 </view>

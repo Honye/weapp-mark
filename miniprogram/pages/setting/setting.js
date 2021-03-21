@@ -8,7 +8,8 @@ Page({
 
   data: {
     notice: true,
-    storageSize: 0
+    storageSize: 0,
+    system: null
   },
 
   onLoad (options) {
@@ -23,6 +24,12 @@ Page({
         });
       }
     });
+    this.setSystem();
+  },
+
+  setSystem () {
+    const system = wx.getSystemInfoSync();
+    this.setData({ system });
   },
 
   /**
@@ -56,5 +63,17 @@ Page({
       title: '已清除',
       icon: 'success'
     })
+  },
+
+  handleDebugSwitch (e) {
+    const { value } = e.detail;
+    wx.setEnableDebug({
+      enableDebug: value,
+      success: () => {
+        this.setData({
+          'system.enableDebug': value
+        });
+      }
+    });
   }
 })
