@@ -1,0 +1,5 @@
+<view class="container">
+  <block wx:for="{{list}}" wx:key="index">
+    <navigator class="item" url="{{item.url}}">{{item.title}}</navigator>
+  </block>
+</view>

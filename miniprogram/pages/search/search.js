@@ -113,6 +113,11 @@ Page({
           url: '/pages/first/first',
         })
         break;
+      case 'CLOUD':
+        wx.navigateTo({
+          url: '/pages/cloud/pages/index/index'
+        });
+        break;
       default:
         wx.showToast({
           title: '命令错误！',

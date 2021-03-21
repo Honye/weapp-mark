@@ -1,4 +1,7 @@
 /* 公用样式 */
+page {
+  --color-primary: #FFE200;
+}
 
 page {
   background-color: #f7f7f7;

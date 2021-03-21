@@ -97,6 +97,14 @@
         "cover-page/cover-page",
         "tab-bar/tab-bar"
       ]
+    },
+    {
+      "root": "pages/cloud/",
+      "pages": [
+        "pages/index/index",
+        "pages/app/app",
+        "pages/douban/douban"
+      ]
     }
   ],
   "usingComponents": {},

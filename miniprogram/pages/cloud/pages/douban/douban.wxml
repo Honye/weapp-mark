@@ -1,0 +1,3 @@
+<view class="container">
+  <button data-action="cron" bindtap="handleTap">每日卡片</button>
+</view>
