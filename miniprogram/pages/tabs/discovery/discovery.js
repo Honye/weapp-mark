@@ -1,7 +1,7 @@
 // discovery
 // import wxCloud from '../../../utils/wxCloud';
 import * as GitHubApis from '../../../apis/github';
-import { getShowingMovies } from '../../../apis/douban.js';
+import { getHotMovies } from '../../../apis/douban.js';
 
 const db = wx.cloud.database();
 
@@ -18,7 +18,10 @@ Page({
     banners: [],
     articles: [],
     nowDay: new Date().getDate(),
-    intheaters: []
+    intheaters: [],
+    movieStart: 0,
+    movieHasMore: true,
+    movieLoading: false
   },
 
   onLoad (options) {
@@ -34,8 +37,6 @@ Page({
     //   .then((res) => {
     //     console.log('app code ===', res);
     //   });
-    
-    this.getActivityEvents();
   },
 
   onShow () {
@@ -54,7 +55,7 @@ Page({
    */
   getData () {
     this.getBanners();
-    this.getIntheaters();
+    this.getHotMovies();
     this.getArticles();
   },
 
@@ -67,20 +68,35 @@ Page({
     });
   },
 
+  /** 豆瓣热门 */
+  async getHotMovies () {
+    const { movieStart, intheaters } = this.data;
+    this.setData({ movieLoading: true });
+    const res = await getHotMovies({
+      start: movieStart
+    });
+    const list = res.subject_collection_items || [];
+    this.setData({
+      intheaters: movieStart === 0 ? list : [...intheaters, ...list],
+      movieStart: movieStart + res.count,
+      movieHasMore: res.start + res.count < res.total,
+      movieLoading: false
+    });
+  },
+
+  loadMoreHot () {
+    const { movieLoading, movieHasMore } = this.data;
+    if (!movieLoading && movieHasMore) {
+      this.getHotMovies();
+    }
+  },
+
   /** 文章数据 */
   getArticles () {
     db.collection('articles').get().then(({ data }) => {
         this.setData({
             articles: data
         })
-    });
-  },
-
-  /** 影院热映 */
-  async getIntheaters () {
-    const res = await getShowingMovies();
-    this.setData({
-      intheaters: res.subject_collection_items || []
     });
   },
 

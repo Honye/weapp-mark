@@ -58,7 +58,7 @@ declare namespace DouBan {
     null_rating_reason: string;
   }
 
-  type SubjectType = 'movie'|'book'|'music';
+  type SubjectType = 'movie'|'tv'|'book'|'music';
 
   interface Movie extends Subject {
     has_linewatch: boolean;
@@ -114,6 +114,24 @@ declare namespace DouBan {
     type: string;
     id: string;
     desc: string;
+  }
+
+  /** 影视列表单元 */
+  interface MovieItem {
+    rating: Rating;
+    cover: { url: string; width: number; height: number; };
+    year: string;
+    card_subtitle: string;
+    id: string;
+    title: string;
+    type: SubjectType;
+    has_linewatch: boolean;
+    most_recent_release_date: string;
+    info: string;
+    url: string;
+    release_date: string;
+    original_title: string;
+    uri: string;
   }
 
   interface MovieDetail {
@@ -297,6 +315,17 @@ export const getPhotos: (params: {
 export const getTrailers: (params: {
   id: string;
 }) => Promise<DouBan.TrailersResult>
+
+/** 豆瓣热门 */
+export const getHotMovies: (params: {
+  start?: number;
+  count?: number;
+}) => Promise<{
+  count: number;
+  subject_collection_items: Array<DouBan.MovieItem>,
+  total: number;
+  start: number;
+}>
 
 /** 影院热映 */
 export const getShowingMovies: (params: {

@@ -113,6 +113,19 @@ export const getTrailers = (params) => {
 };
 
 /**
+ * 豆瓣热门
+ * @param {object} params
+ * @param {number} [params.start]
+ * @param {number} [params.count]
+ */
+export const getHotMovies = (params) => {
+  return request({
+    url: '/subject_collection/movie_hot_gaia/items',
+    data: params
+  });
+}
+
+/**
  * 影院热映
  * @param {object} params 
  * @param {number} [params.start]

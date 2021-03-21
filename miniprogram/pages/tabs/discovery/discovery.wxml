@@ -37,14 +37,17 @@
         </navigator>
       </view>
 
-      <view class="intheaters">
+      <view class="intheaters" wx:if="{{intheaters && intheaters.length}}">
         <navigator class="intheaters__header" hover-class="hover-opacity"
           url="/pages/pMovie/pages/intheaters/in_theaters"
         >
-          <view class="intheaters__header-title">影院热映</view>
+          <view class="intheaters__header-title">豆瓣热门</view>
           <image class="intheaters__header-arrow" src="/assets/images/discovery/icon-arrow.png" mode="aspectFit" />
         </navigator>
-        <scroll-view class="intheaters__movies" scroll-x>
+        <scroll-view class="intheaters__movies" scroll-x
+          lower-threshold="{{200}}"
+          bindscrolltolower="loadMoreHot"
+        >
           <block wx:for="{{intheaters}}" wx:key="id">
             <navigator class="movie-item" url="/pages/pMovie/pages/details/details?title={{item.title}}&id={{item.id}}">
               <image class="movie-item__img" src="{{item.cover.url}}" mode="aspectFill" />
