@@ -31,5 +31,6 @@
   </view>
 </view>
 
-<i wx:if='{{playing}}' class="active fa fa-music" bindtap='audioToggle'></i>
-<i wx:else class="fa fa-music" bindtap='audioToggle'></i>
+<view class="music-dish" bind:tap="audioToggle">
+  <image class="music-cover {{playing && 'active'}}" src="{{music.cover}}" mode="aspectFill" />
+</view>

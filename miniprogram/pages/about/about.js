@@ -14,6 +14,7 @@ const audioManager = wx.getBackgroundAudioManager();
 Page({
 
   data: {
+    music,
     datas: {
       image: 'https://img9.doubanio.com/view/photo/r/public/p2635531435.webp'
     },
