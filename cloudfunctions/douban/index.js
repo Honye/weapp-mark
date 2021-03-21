@@ -48,7 +48,8 @@ const storeTodayItem = async () => {
       date: (new Date()).toISOString().substring(0, 10),
       alt: 'json',
       _sig: 'tuOyn+2uZDBFGAFBLklc2GkuQk4=',
-      _ts: 1610703479
+      _ts: 1610703479,
+      apiKey: '0ab215a8b1977939201640fa14c66bab'
     }
   });
   return db.collection('cards').add({
