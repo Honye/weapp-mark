@@ -6,6 +6,9 @@ cloud.init({
 const db = cloud.database();
 
 exports.main = async (event, context) => {
-  const { data = [] } = await db.collection('app').limit(1).get();
+  const { data = [] } = await db.collection('app')
+    .orderBy('created_at', 'desc')
+    .limit(1)
+    .get();
   return data[0];
 }
