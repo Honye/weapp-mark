@@ -1,0 +1,7 @@
+.nav-item {
+  margin: 30rpx 30rpx 0;
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  box-shadow: 10rpx 10rpx 10rpx 0 rgba(0,0,0,0.1);
+}

@@ -1,0 +1,30 @@
+page {
+  background-color: #fff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-right: 0.5px solid #bbb;
+  border-bottom: 0.5px solid #bbb;
+  padding: 20rpx;
+}
+.grid-item:nth-child(3n) {
+  border-right: none;
+}
+
+.grid-item .iconfont {
+  font-size: 46rpx;
+}
+
+.icon-class {
+  font-size: 24rpx;
+}

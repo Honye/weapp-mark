@@ -94,8 +94,11 @@
     {
       "root": "pages/example/",
       "pages": [
+        "index/index",
         "cover-page/cover-page",
-        "tab-bar/tab-bar"
+        "tab-bar/tab-bar",
+        "waterfall/waterfall",
+        "icons/icons"
       ]
     },
     {

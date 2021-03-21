@@ -1,0 +1,18 @@
+.unsplash {
+  background-color: #fff;
+  border-radius: 10rpx;
+  overflow: hidden;
+  box-shadow: 0 0 20rpx rgba(0,0,0,0.1);
+}
+.unsplash__img {
+  display: block;
+  width: 100%;
+}
+.unsplash__info {
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  padding: 10rpx 20rpx;
+}

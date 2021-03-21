@@ -1,0 +1,6 @@
+<view class="unsplash">
+  <image class="unsplash__img" src="{{data.url}}" mode="widthFix"
+    bindload="handleImgLoad"
+  />
+  <view class="unsplash__info">{{text}}</view>
+</view>

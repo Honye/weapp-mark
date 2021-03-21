@@ -1,0 +1,36 @@
+<wxs module="wxs">
+  function getSpanCount (width, height) {
+    var padding = 20;
+    var columns = 2;
+    /** grid-gap in css */
+    var vGap = 10;
+    /** (screenWidth - leftPadding - rightPadding - gridGap) / columns */
+    // var cssWidth = (750 - padding * 2 - vGap * (columns - 1)) / columns;
+    var cssWidth = width;
+    /** grid-auto-rows in css. 越小精度越高 */
+    var autoRaws = 0.5;
+    // var cssHeight = height / width * cssWidth;
+    var cssHeight = height;
+    return Math.ceil((cssHeight + vGap) / (autoRaws + vGap));
+  }
+  module.exports = {
+    getSpanCount: getSpanCount
+  };
+</wxs>
+<view class="container">
+  <view class="list">
+    <block wx:for="{{list}}" wx:key="index">
+      <view class="item"
+        style="grid-row: auto / span {{wxs.getSpanCount(item.width, item.height)}};"
+      >
+        <unsplash class="unsplash"
+          data="{{item.image}}"
+          data-index="{{index}}"
+          data-url="{{item.image.url}}"
+          bind:load="handleImgLoad"
+          bindtap="handlePreview"
+        />
+      </view>
+    </block>
+  </view>
+</view>

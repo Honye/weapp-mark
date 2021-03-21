@@ -113,6 +113,11 @@ Page({
           url: '/pages/first/first',
         })
         break;
+      case 'EXAMPLE':
+        wx.navigateTo({
+          url: '/pages/example/index/index'
+        });
+        break;
       case 'CLOUD':
         wx.navigateTo({
           url: '/pages/cloud/pages/index/index'

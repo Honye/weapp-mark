@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "瀑布流",
+  "usingComponents": {
+    "unsplash": "./components/unsplash/unsplash"
+  }
+}

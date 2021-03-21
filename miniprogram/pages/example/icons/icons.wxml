@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="grid">
+    <block wx:for="{{icons}}" wx:key="class">
+      <view class="btn-opacity grid-item"
+        data-class="{{item.class}}"
+        bindtap="handleIconTap"
+      >
+        <text class="iconfont {{item.class}}" />
+        <view class="icon-class">{{item.class}}</view>
+      </view>
+    </block>
+  </view>
+</view>
