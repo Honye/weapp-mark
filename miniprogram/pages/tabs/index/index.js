@@ -10,8 +10,6 @@ Page({
   behaviors: [storeBindingsBehavior],
 
   data: {
-    /** @type {WechatMiniprogram.MiniProgram} */
-    miniProgram: {},
     userinfo: app.globalData.userInfo
   },
 
@@ -23,10 +21,6 @@ Page({
     }
   },
 
-  onLoad () {
-    const { miniProgram } = wx.getAccountInfoSync();
-    this.setData({ miniProgram });
-  },
 
   onShow () {
     this.selectComponent('#tabBar').setData({ selected: 2 });

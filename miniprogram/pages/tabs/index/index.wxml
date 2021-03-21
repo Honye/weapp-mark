@@ -48,7 +48,7 @@
     <button class='contactBtn' open-type='feedback' hover-class='none'>
       <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-feedback.png",title:"意见反馈"}}' />
     </button>
-    <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-about.png",title:"关于",subtitle:miniProgram.version && ("v"+miniProgram.version),bindTap:"toAbout"}}' />
+    <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-about.png",title:"关于",subtitle:"v"+app.version,bindTap:"toAbout"}}' />
   </view>
 </view>
 <tab-bar id="tabBar" bind:change="handleSwitchTab" placeholder />
