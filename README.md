@@ -61,13 +61,15 @@
 
 ## 🪶 笔记 Notes
 
+[小程序使用 IconFont](https://github.com/Honye/notes/blob/vuepress/WeChat/miniprogram-iconfont.md)
+
 [云开发关联表（集合）案例](https://github.com/Hongye567/weapp-mark/wiki/小程序关联表学习)
 
 [写项目时的想法](https://github.com/Hongye567/weapp-mark/wiki/thought)
 
 [边写边记](https://github.com/Hongye567/weapp-mark/wiki/小程序笔记)
 
-[小程序使用外部字体](https://github.com/Hongye567/weapp-mark/wiki/小程序使用外部字体)
+[小程序使用外部字体](https://github.com/Honye/notes/blob/vuepress/WeChat/use-other-font.md)
 
 [小程序自定义评分组件 - tempalte 实现（精度 0.1）](https://github.com/Hongye567/weapp-mark/wiki/小程序自定义评分组件-template（精度0.1）)
 
