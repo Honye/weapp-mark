@@ -1,0 +1,2 @@
+<index-list list="{{list}}" bindchoose="handleChoose">
+</index-list>

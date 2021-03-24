@@ -14,6 +14,7 @@ Page({
       { title: 'Python', value: 'python' }
     ],
     languageIndex: -1,
+    language: '',
     dateRanges: [
       { title: 'Today', value: 'daily' },
       { title: 'This week', value: 'weekly' },
@@ -29,12 +30,12 @@ Page({
 
   async getTrendingList () {
     const {
-      languages, languageIndex,
+      languages, languageIndex, language,
       dateRanges, dateRangeIndex,
       spokenLanguages, spokenLanguageIndex
     } = this.data;
     const res = await wxCloud('trending', {
-      language: languages[languageIndex]?.value,
+      language: language || languages[languageIndex]?.value,
       since: dateRanges[dateRangeIndex]?.value,
       spoken_language_code: spokenLanguages[spokenLanguageIndex]?.value
     });
@@ -67,5 +68,19 @@ Page({
         break;
       default:
     }
+  },
+
+  toChooseLanguage (e) {
+    wx.navigateTo({
+      url: '../languages/languages',
+      events: {
+        choose: ({ value }) => {
+          this.setData(
+            { language: value.name },
+            () => this.getTrendingList()
+          );
+        }
+      }
+    });
   }
 });

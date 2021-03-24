@@ -1,6 +1,6 @@
 <view class="container">
   <view class="filterbar">
-    <view>Repositories</view>
+    <view class="btn-opacity" bindtap="toChooseLanguage">Repositories</view>
     <view>
       <picker class="inline-picker" mode="selector"
         header-text="Spoken Language"

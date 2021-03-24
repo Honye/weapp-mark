@@ -82,7 +82,8 @@
       "pages": [
         "pages/notifications/notifications",
         "pages/starred/starred",
-        "pages/trending/trending"
+        "pages/trending/trending",
+        "pages/languages/languages"
       ]
     },
     {
