@@ -12,6 +12,14 @@ const call = (name, data, loading = true, showError = true) => {
             title: 'loading...',
         })
     }
+    if (Object.prototype.toString.call(data) === '[object Object]') {
+        Object.keys(data).forEach((key) => {
+            const value = data[key];
+            if (!value && value !== 0 && value !== false) {
+                delete data[key];
+            }
+        });
+    }
     
     return wx.cloud.callFunction({
         name,

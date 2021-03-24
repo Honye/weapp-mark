@@ -5,8 +5,13 @@ cloud.init({
 });
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
+const qs = require('querystring');
 
-const fetchTrendingList = async () => {
+/**
+ * 已迁移至 Vercel
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const usedInVercel = async () => {
   const data = await fetch('https://github.com/trending');
   const $ = cheerio.load(await data.text());
   const list = $('.Box .Box-row')
@@ -32,7 +37,26 @@ const fetchTrendingList = async () => {
   return list;
 };
 
-// 云函数入口函数
+const fetchTrendingList = async (params) => {
+  let url = 'https://honyex.vercel.app/api/trending';
+  if (params) {
+    const query = qs.stringify(params);
+    if (query) {
+      url += `?${query}`;
+    }
+  }
+  const data = await fetch(url).then((resp) => resp.json());
+  return data;
+}
+
+/**
+ * 云函数入口函数
+ * 
+ * @param {object} event
+ * @param {string} [event.language]
+ * @param {'daily'|'weekly'|'monthly'} [event.since]
+ * @param {string} [event.spoken_language_code]
+ */
 exports.main = async (event, context) => {
-  return fetchTrendingList();
+  return fetchTrendingList(event);
 }

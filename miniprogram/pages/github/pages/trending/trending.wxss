@@ -1,3 +1,46 @@
+.filterbar {
+  position: sticky;
+  width: 100%;
+  height: 3em;
+  top: 0;
+  z-index: 12;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 22rpx;
+  color: #ccc;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  justify-content: space-between;
+  transition: top .3s;
+}
+
+.inline-picker {
+  display: inline-block;
+}
+.inline-picker + .inline-picker {
+  margin-left: 20rpx;
+}
+
+.sort {
+  display: inline-flex;
+  align-items: center;
+  font-size: 22rpx;
+  color: #ccc;
+  line-height: 32rpx;
+  box-sizing: content-box;
+  border: 2rpx solid #ccc;
+  border-radius: 18rpx;
+  padding: 0 10rpx;
+}
+
+.sort .arrow-down {
+  margin-left: 8rpx;
+  width: 11rpx;
+  height: 11rpx;
+  border-color: #ccc;
+}
+
 .repo-item {
   position: relative;
 }
