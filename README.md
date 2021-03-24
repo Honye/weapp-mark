@@ -61,6 +61,8 @@
 
 ## 🪶 笔记 Notes
 
+[Vercel 托管 Next 实现 GitHub Trending API](https://github.com/Honye/notes/blob/vuepress/React/vercel-github-trending.md)
+
 [小程序使用 IconFont](https://github.com/Honye/notes/blob/vuepress/WeChat/miniprogram-iconfont.md)
 
 [云开发关联表（集合）案例](https://github.com/Hongye567/weapp-mark/wiki/小程序关联表学习)
