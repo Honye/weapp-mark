@@ -1,5 +1,7 @@
 <wxs module="wxs" src="../../../../utils/utils.wxs" />
-<view class="component repo-item">
+<navigator class="component repo-item"
+  url="/pages/github/pages/repository/repository?owner={{repo.owner.login}}&repo={{repo.name}}&branch={{repo.default_branch}}"
+>
   <view class="user">
     <image class="avatar" src="{{repo.owner.avatar_url}}" mode="aspectFit" />
     <view class="nickname">{{repo.owner.login}}</view>
@@ -16,4 +18,4 @@
       <view class="language__value">{{repo.language}}</view>
     </view>
   </view>
-</view>
+</navigator>

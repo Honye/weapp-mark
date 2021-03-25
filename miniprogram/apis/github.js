@@ -9,8 +9,18 @@ import { store } from '../store/index';
  * @returns {Promise<WechatMiniprogram.RequestSuccessCallbackResult['data']>} result
  */
 const request = (options) => {
-  const { header, method, url, ...restOpt } = options;
+  const { header, method, url, data, ...restOpt } = options;
   const token = store.user.info?.githubToken;
+
+  if (Object.prototype.toString.call(data) === '[object Object]') {
+    Object.keys(data).forEach((key) => {
+      const v = data[key];
+      if (!v && v !== 0 && v !== false) {
+        delete data[key];
+      }
+    });
+  }
+
   return new Promise((resolve, reject) => {
     wx.request({
       header: {
@@ -33,6 +43,7 @@ const request = (options) => {
       fail: (err) => {
         reject(err);
       },
+      data,
       ...restOpt
     })
   });
