@@ -132,7 +132,29 @@ export const getNotifications = (params) => {
 /**
  * [Search repositories](https://docs.github.com/en/rest/reference/search#search-repositories)
  * 
- * @param {Query} params 
+ * @param {Query} params
+ * @returns {Promise<{
+ * total_count: number;
+ * incomplete_results: boolean;
+ * items: Array<{
+ *   id: number;
+ *   name: string;
+ *   full_name: string;
+ * }>;
+ * owner: User;
+ * private: boolean;
+ * created_at: string;
+ * updated_at: string;
+ * pushed_at: string;
+ * homepage: string;
+ * stargazers_count: number;
+ * watchers_count: number;
+ * language: string;
+ * forks_count: number;
+ * default_branch: string;
+ * archived: boolean;
+ * disabled: boolean;
+ * }>}
  */
 export const searchRepositories = (params) => {
   return request({
@@ -180,3 +202,10 @@ export const getStarredList = (params) => {
   });
 };
 
+/**
+ * @typedef {{
+ * login: string;
+ * id: number;
+ * avatar_url: string;
+ * }} User
+ */

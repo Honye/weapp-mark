@@ -1,0 +1,21 @@
+<import src='/pages/common/loading/loading' />
+
+<view class="container">
+  <view class="search-bar">
+    <input class="search-bar__input" placeholder="Search GitHub"
+      name="keyword"
+      confirm-type="search"
+      model:value="{{keyword}}"
+      bindconfirm="handleSearch"
+    />
+    <button class="button-nostyle btn-opacity search-bar__btn" bindtap="handleSearch">Search</button>
+  </view>
+  <view>
+    <block wx:for="{{result}}" wx:key="id">
+      <view class="repo">
+        <repo repo="{{item}}" />
+      </view>
+    </block>
+  </view>
+  <template is='loading-more' wx:if="{{loading}}" />
+</view>

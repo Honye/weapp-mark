@@ -21,11 +21,27 @@ Page({
       { title: 'This month', value: 'monthly' }
     ],
     dateRangeIndex: 0,
-    list: []
+    list: [],
+    loading: false,
+    sticky: false
   },
 
   onLoad () {
     this.getTrendingList();
+  },
+
+  onPageScroll (e) {
+    const { scrollTop } = e;
+    if (scrollTop < this.scrollTop && !this.data.sticky) {
+      this.setData({
+        sticky: true
+      });
+    } else if (scrollTop > this.scrollTop && this.data.sticky) {
+      this.setData({
+        sticky: false
+      });
+    }
+    this.scrollTop = scrollTop;
   },
 
   async getTrendingList () {
@@ -34,14 +50,24 @@ Page({
       dateRanges, dateRangeIndex,
       spokenLanguages, spokenLanguageIndex
     } = this.data;
-    const res = await wxCloud('trending', {
-      language: language || languages[languageIndex]?.value,
-      since: dateRanges[dateRangeIndex]?.value,
-      spoken_language_code: spokenLanguages[spokenLanguageIndex]?.value
-    });
-    this.setData({
-      list: res
-    });
+    wx.showNavigationBarLoading();
+    this.setData({ loading: true });
+    try {
+      const res = await wxCloud('trending', {
+        language: language || languages[languageIndex]?.value,
+        since: dateRanges[dateRangeIndex]?.value,
+        spoken_language_code: spokenLanguages[spokenLanguageIndex]?.value
+      });
+      this.setData({
+        list: res,
+        loading: false
+      });
+    } catch (e) {
+      this.setData({
+        loading: false
+      });
+    }
+    wx.hideNavigationBarLoading();
   },
 
   handlePickerChange (e) {

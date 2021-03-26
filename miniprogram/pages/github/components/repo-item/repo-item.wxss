@@ -34,7 +34,7 @@
   font-size: 28rpx;
   line-height: 38rpx;
   overflow-wrap: break-word;
-  word-break: keep-all;
+  word-break: break-all;
   color: #070707;
 }
 
