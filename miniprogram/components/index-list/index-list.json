@@ -1,4 +1,9 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {},
+  "componentGenerics": {
+    "content": {
+      "default": "./components/content/content"
+    }
+  }
 }

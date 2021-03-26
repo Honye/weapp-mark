@@ -1,2 +1,4 @@
-<index-list list="{{list}}" bindchoose="handleChoose">
+<index-list list="{{list}}" bindchoose="handleChoose"
+  generic:content="lang-item"
+>
 </index-list>

@@ -88,10 +88,11 @@ Component({
       }
   },
   methods: {
-      choose(e) {
-          const item = e.target.dataset.item
-          this.triggerEvent('choose', {item})
+      choose (e) {
+          const item = e.currentTarget.dataset.item;
+          this.triggerEvent('choose', { item });
       },
+
       scrollTo(e) {
           this.__scrollTo(e)
       },

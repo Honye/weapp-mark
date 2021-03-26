@@ -1,0 +1,8 @@
+<view class="lang-item">
+  <view class="lang-item__name">{{data.name}}</view>
+  <view class="btn-opacity btn-star {{stared && 'stared'}}" style="--lang-color:{{data.color}};"
+    catch:tap="handleStar"
+  >
+    <text class="iconfont icon-star"></text>
+  </view>
+</view>

@@ -1,0 +1,24 @@
+.lang-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 70rpx;
+}
+
+.btn-star {
+  font-size: 30rpx;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  background-color: #eee;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #ded8d8;
+  box-shadow: 2rpx 2rpx 10rpx #eee;
+  transition: all .2s;
+}
+.btn-star.stared {
+  color: #f7efe4;
+  background-color: var(--lang-color);
+}

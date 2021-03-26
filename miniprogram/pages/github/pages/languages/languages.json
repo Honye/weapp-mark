@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "Languages",
   "usingComponents": {
-    "index-list": "/components/index-list/index-list"
+    "index-list": "/components/index-list/index-list",
+    "lang-item": "../../components/lang-item/lang-item"
   }
 }

@@ -2,11 +2,35 @@ import languages from '../../../../utils/github-colors';
 
 Page({
   data: {
-    list: []
+    /**
+     * @type {Array<{
+     * alpha: string;
+     * anchor: string;
+     * subItems: Array<{
+     *   name: string;
+     *   color: string;
+     * }>
+     * }>}
+     */
+    list: [],
+    changed: false
   },
 
   onLoad () {
     this.setLanguages();
+  },
+
+  onUnload () {
+    // 如果 stared 改变了就通知上一页改变后的 stared 列表
+    const { _changed, list } = this.data;
+    if (_changed) {
+      const first = list[0];
+      let stared = [];
+      if (first.anchor === 'star') {
+        stared = first.subItems;
+      }
+      this.getOpenerEventChannel()?.emit?.('onChange', { stared });
+    }
   },
 
   setLanguages () {
@@ -61,7 +85,37 @@ Page({
 
   handleChoose (e) {
     const eventChannel = this.getOpenerEventChannel();
-    eventChannel && eventChannel.emit('choose', { value: e.detail.item });
+    eventChannel?.emit?.('choose', { value: e.detail.item });
     wx.navigateBack();
+  },
+
+  onLangStar (e) {
+    this.data._changed = true;
+    const { data, stared, indexes } = e.detail.value;
+    const { list } = this.data;
+    const firstItem = list[0];
+    list[indexes[0]].subItems[indexes[1]].stared = stared;
+    if (stared) {
+      if (firstItem.anchor === 'star') {
+        firstItem.subItems.push(data);
+      } else {
+        list.unshift({
+          alpha: '✩',
+          anchor: 'star',
+          subItems: [data]
+        });
+      }
+    } else {
+      if (firstItem.anchor === 'star') {
+        const { subItems } = firstItem;
+        if (subItems.length === 1) {
+          list.splice(0, 1);
+        } else {
+          const index = firstItem.subItems.findIndex((item) => item.name === data.name);
+          subItems.splice(index, 1);
+        }
+      }
+    }
+    this.setData({ list });
   }
 });

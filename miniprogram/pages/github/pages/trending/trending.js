@@ -58,6 +58,7 @@ Page({
         since: dateRanges[dateRangeIndex]?.value,
         spoken_language_code: spokenLanguages[spokenLanguageIndex]?.value
       });
+      wx.pageScrollTo({ scrollTop: 0 });
       this.setData({
         list: res,
         loading: false
@@ -105,6 +106,16 @@ Page({
             { language: value.name },
             () => this.getTrendingList()
           );
+        },
+        onChange: ({ stared = [] }) => {
+          const defaultOne = { title: 'Any', value: '' };
+          const staredLanguages = stared.map((item) => ({
+            title: item.name,
+            value: item.name
+          }));
+          this.setData({
+            languages: [defaultOne, ...staredLanguages]
+          });
         }
       }
     });

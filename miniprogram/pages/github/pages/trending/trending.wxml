@@ -32,7 +32,9 @@
           bindchange="handlePickerChange"
         >
           <view class="sort btn-opacity">
-            <text>{{languages[languageIndex].value && languages[languageIndex].title || 'Language'}}</text>
+            <text>{{languages[languageIndex].value && languages[languageIndex].title
+              || language
+              || 'Language'}}</text>
             <view class="arrow-down" />
           </view>
         </picker>
