@@ -10,6 +10,7 @@ import {
 } from '../../../../apis/douban.js';
 import Cast from '../../../../models/Cast'
 import Comment from '../../../../models/Comment'
+import wxCloud from '../../../../utils/wxCloud';
 
 Page({
   behaviors: [storeBindingsBehavior],
@@ -88,6 +89,7 @@ Page({
       comments_count: res.comment_count,
       trailers
     });
+    this.submitSearchPage();
   },
 
   /**
@@ -278,5 +280,25 @@ Page({
         })
       }
     })
+  },
+
+  submitSearchPage () {
+    const { details } = this.data;
+    const pages = getCurrentPages();
+    console.log({
+      path: pages[pages.length - 1].route,
+      query: `id=${details.id}&title=${details.title}`
+    });
+    wxCloud('site', {
+      action: 'submitPages',
+      payload: {
+        pages: [
+          {
+            path: pages[pages.length - 1].route,
+            query: `id=${details.id}&title=${details.title}`
+          }
+        ]
+      }
+    });
   }
 })
