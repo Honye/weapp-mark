@@ -1,0 +1,29 @@
+<import src='/pages/common/loading/loading' />
+
+<view class="container">
+  <view class="head">
+    <image class="head_bg" src="{{collection.header_bg_image}}" mode="aspectFill" />
+    <image class="head_fg" src="{{collection.header_fg_image}}" mode="aspectFill" />
+  </view>
+  <view class="list" wx:if="{{total > 0}}">
+    <view class="count">共{{total}}部</view>
+    <view class="item" wx:for="{{list}}" wx:key="index">
+      <view class="item__position">No.{{index + 1}}</view>
+      <view class="movie" data-item="{{item}}" bindtap="handleMovieTap">
+        <view class="movie__cover">
+          <image class="img" src="{{item.cover.url}}" mode="widthFix" />
+        </view>
+        <view class="movie__content">
+          <view class="movie__title">{{item.title}}</view>
+          <view class="movie__rating">
+            <rating value="{{item.rating.value}}" max="{{item.rating.max}}" />
+            <view>{{item.rating.value}}</view>
+          </view>
+          <view class="movie__subtitle">{{item.info}}</view>
+          <view class="movie__mark"></view>
+        </view>
+      </view>
+    </view>
+    <template is='loading-more' wx:if="{{loading}}" />
+  </view>
+</view>

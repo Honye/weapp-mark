@@ -126,6 +126,22 @@ export const getHotMovies = (params) => {
 }
 
 /**
+ * 榜单合集
+ * @param {object} params 
+ * @param {string} params.type
+ * @param {number} [params.start]
+ * @param {number} [params.count]
+ * @returns 
+ */
+export const getCollectionList = (params) => {
+  const { type, ...data } = params;
+  return request({
+    url: `/subject_collection/${type}/items`,
+    data
+  });
+}
+
+/**
  * 影院热映
  * @param {object} params 
  * @param {number} [params.start]

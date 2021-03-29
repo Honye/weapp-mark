@@ -1,4 +1,15 @@
 <view class='container page-category'>
+  <view class="category" wx:for="{{list}}" wx:key="index">
+    <view class='category-item category-item--big'>
+      <image class='category-item__icon' src='{{item.icon}}' mode='widthFix' />
+      <text class="category-item__title">{{item.name}}</text>
+    </view>
+    <block wx:for='{{item.children}}' wx:key='index'>
+      <view class='category-item category-item--small {{(item==" ")?"":"btn-bg"}}' data-item='{{item}}' bindtap='toList'>
+        <text class='category-item__name single-line'>{{item.name}}</text>
+      </view>
+    </block>
+  </view>
   <view wx:for='{{categories}}' class='category' wx:key='id'>
     <view class='category-item category-item--big'>
       <image class='category-item__icon' src='{{item.icon}}' mode='widthFix' />

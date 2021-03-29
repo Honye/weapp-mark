@@ -90,7 +90,8 @@
     {
       "root": "pages/douban/",
       "pages": [
-        "pages/login/login"
+        "pages/login/login",
+        "pages/collection/collection"
       ]
     },
     {

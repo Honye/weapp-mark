@@ -327,6 +327,30 @@ export const getHotMovies: (params: {
   start: number;
 }>
 
+/** 榜单合集 */
+export const getCollectionList: (params: {
+  type: string;
+  start?: number;
+  count?: number;
+}) => Promise<{
+  count: number;
+  subject_collection: {
+    subject_type: DouBan.SubjectType;
+    updated_at: string;
+    total: number;
+    header_fg_image: string;
+    header_bg_image: string;
+    title: string;
+    icon_text: string;
+    id: string;
+    description: string;
+    done_count: number;
+  };
+  subject_collection_items: Array<DouBan.MovieItem>;
+  total: number;
+  start: number;
+}>
+
 /** 影院热映 */
 export const getShowingMovies: (params: {
   start?: number
