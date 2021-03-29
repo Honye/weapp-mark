@@ -383,3 +383,41 @@ image {
   font-size: 22rpx;
   margin-top: 12rpx;
 }
+
+#onlineSource .action-sheet-wrapper,
+#onlineSource .action-sheet__title {
+  background-color: #f7f7f7;
+}
+
+.online-source {
+  min-height: 300rpx;
+}
+
+.source-item {
+  margin: 20rpx 30rpx;
+  height: 120rpx;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 20rpx;
+  border-radius: 60rpx;
+  box-shadow: 2rpx 2rpx 20rpx rgba(0,0,0,0.05);
+}
+.source-item__logo {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 80rpx;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.source-item__name {
+  margin-left: 20rpx;
+  font-weight: bold;
+}
+.source-item__charge {
+  color: #666;
+  font-size: 28rpx;
+}
+.source-item .fa-angle-right {
+  margin-left: 20rpx;
+  font-size: 50rpx;
+  color: #666;
+}

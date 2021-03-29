@@ -256,5 +256,27 @@ Page({
     this.setData({
       movielistList: list
     });
+  },
+
+  handleOnlineTap (e) {
+    this.selectComponent('#onlineSource').show();
+  },
+
+  /** 复制播放地址 */
+  handleSourceCopy (e) {
+    const {url} = e.currentTarget.dataset;
+    wx.setClipboardData({
+      data: url,
+      success: res => {
+        wx.showToast({
+          icon: 'none',
+          title: '已复制链接'
+        });
+        wx.showModal({
+          content: `播放地址已复制到剪贴板 \n 前往浏览器粘贴访问`,
+          showCancel: false
+        })
+      }
+    })
   }
 })

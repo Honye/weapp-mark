@@ -62,7 +62,6 @@
         "pages/cards/card",
         "pages/details/details",
         "pages/intheaters/in_theaters",
-        "pages/sources/sources",
         "pages/trailers/trailers",
         "pages/photos/photos",
         "pages/mark/mark"

@@ -77,8 +77,8 @@
       </navigator>
     </view>
     <!-- 播放源 -->
-    <view class='block play-source' wx:if='{{details.linewatches.length > 0}}'>
-      <navigator url='/pages/pMovie/pages/sources/sources?id={{id}}&type={{details.type}}'>
+    <view class='block play-source' wx:if='{{app.hasPublished && details.linewatches.length > 0}}'>
+      <view bindtap="handleOnlineTap">
         <view class='source-container'>
           <view>
             <i class="fa fa-play-circle" aria-hidden="true"></i>
@@ -89,7 +89,7 @@
             <i class="fa fa-angle-right" aria-hidden="true"></i>
           </view>
         </view>
-      </navigator>
+      </view>
     </view>
     <!-- 剧情简介 -->
     <view class='block brief-summary'>
@@ -176,5 +176,24 @@
           </view>
         </block>
       </view>
+    </cover-page>
+    <!-- 播放源 -->
+    <cover-page id="onlineSource" title="在线观看地址">
+      <view class="online-source">
+        <view class="flex align-center justify-between source-item" wx:for="{{details.linewatches}}" wx:key="index"
+          data-url="{{item.url}}"
+          bindtap="handleSourceCopy"
+        >
+          <view class="flex align-center">
+            <image class="source-item__logo" src="{{item.source.pic}}" mode="aspectFill" />
+            <view class="source-item__name">{{item.source.name}}</view>
+          </view>
+          <view class="flex align-center">
+            <view class="source-item__charge">{{item.free ? '免费' : '收费'}}观看</view>
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </view>
+        </view>
+      </view>
+      <view class="iphonex-bottom-holder"><!-- iPhone X 下巴占位 --></view>
     </cover-page>
 </view>
