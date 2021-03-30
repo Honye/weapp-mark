@@ -113,6 +113,20 @@
       ]
     }
   ],
+  "preloadRule": {
+    "pages/tabs/discovery/discovery": {
+      "network": "all",
+      "packages": ["pages/pArticle/", "pages/pMovie/"]
+    },
+    "pages/tabs/index/index": {
+      "network": "all",
+      "packages": ["pages/github/"]
+    },
+    "pages/pArticle/pages/categories/categories": {
+      "network": "all",
+      "packages": ["pages/douban/"]
+    }
+  },
   "usingComponents": {},
   "requiredBackgroundModes": ["audio"],
   "sitemapLocation": "sitemap.json"
