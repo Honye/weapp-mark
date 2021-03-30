@@ -37,9 +37,9 @@
                 <text class='text'>{{cards[current].like_count || 0}}</text>
               </view>
               <button class='button-nostyle flex-center-v actions-item'
-                open-type="getUserInfo"
+                open-type="{{user.info.avatarUrl ? '' : 'getUserInfo'}}"
                 bindgetuserinfo="onUserInfo"
-                catchtap="none"
+                catchtap="handleShareTap"
               >
                 <image class='icon' src='/assets/images/icon-share.png' mode='aspectFit' />
               </button>

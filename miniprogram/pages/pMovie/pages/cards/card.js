@@ -1,8 +1,11 @@
 // 每日卡片
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
+import { store } from '../../../../store/index';
 import { $markShare } from '../../../common/index';
 import wxCloud from '../../../../utils/wxCloud';
 
 Page({
+  behaviors: [storeBindingsBehavior],
 
   data: {
     cards: [{}],
@@ -13,23 +16,58 @@ Page({
     shareCardImg: ''
   },
 
+  storeBindings: {
+    store,
+    fields: {
+      user: () => store.user
+    }
+  },
+
   onLoad (options) {
     this.getCards();
   },
 
-  onUserInfo (e) {
-    const { userInfo } = e.detail;
-    if (userInfo) {
-      this.setData(
-        { userInfo },
-        () => {
-          this.showShareMenu();
-          this.setCanvasData();
-        }
-      );
-    } else {
-      console.warn('用户拒绝授权用户信息');
+  /**
+   * 1. 每次都获取用户最新头像，每次都调用接口更新用户信息，造成服务端没必要的压力
+   * 2. 服务端有用户头像时不需要用户授权最新头像
+   * 
+   * 选择了 ②，用户发现头像过时了可以去个人中心更新
+   * @param {{
+   *  detail: {
+   *    userInfo: any;
+   *    cloudID?: string;
+   *  }
+   * }} e 
+   */
+  async onUserInfo (e) {
+    if (store.user.info?.avatarUrl) {
+      this.setShareMenu();
+      return;
     }
+
+    const { userInfo, cloudID } = e.detail;
+    if (userInfo) {
+      // case 服务端没有用户头像且用户同意授权
+      const { data } = wxCloud('login', {
+        wxUserInfo: wx.cloud.CloudID(cloudID)
+      });
+      store['user/updateUserInfo'](data);
+      this.setShareMenu();
+      return;
+    }
+
+    console.warn('用户拒绝授权用户信息');
+  },
+
+  handleShareTap (e) {
+    if (store.user.info?.avatarUrl) {
+      this.setShareMenu();
+    }
+  },
+
+  setShareMenu () {
+    this.showShareMenu();
+    this.setCanvasData();
   },
 
   /** 获取卡片 */
@@ -58,7 +96,7 @@ Page({
   },
 
   setCanvasData () {
-    const { userInfo, cards, current } = this.data;
+    const { cards, current } = this.data;
     const currentCard = cards[current];
     this.setData({
       painterData: {
@@ -102,7 +140,7 @@ Page({
           {
             type: 'image',
             id: 'img-avatar',
-            url: userInfo.avatarUrl,
+            url: store.user.info.avatarUrl,
             css: {
               left: '24rpx',
               bottom: '30rpx',
@@ -113,7 +151,7 @@ Page({
           },
           {
             type: 'text',
-            text: userInfo.nickName,
+            text: store.user.info.nickName,
             css: {
               left: ['12rpx', 'img-avatar', 1],
               top: ['0rpx', 'img-avatar', 0],
@@ -251,9 +289,5 @@ Page({
         }
       }
     })
-  },
-
-  none () {
-    // avoid warning
   }
 })
