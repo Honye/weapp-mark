@@ -30,7 +30,7 @@ Page({
         })
         Promise.all([
             Honye.get(`${Honye.ARTICLE_DETAIL}/${id}`),
-            wxCloud('getArticleDetails', { id }, false),
+            wxCloud('getArticleDetails', { id }),
         ]).then(([res1, res2]) => {
             this.setData({
                 detail: res1,
