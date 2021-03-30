@@ -1,6 +1,7 @@
-import { observable } from 'mobx-miniprogram';
+import { observable, action } from 'mobx-miniprogram';
 import app from './app';
 import user from './user';
+import douban from './douban';
 
 const scopeModule = (modules) => {
   Object.keys(modules).forEach((key, index) => {
@@ -9,7 +10,11 @@ const scopeModule = (modules) => {
       Object.keys(value).forEach((mKey) => {
         const mValue = value[mKey];
         if (typeof mValue === 'function') {
-          modules[`${key}/${mKey}`] = mValue.bind(value);
+          modules[`${key}/${mKey}`] = action(function (...args) {
+            mValue.call(value, ...args);
+            this[key] = Object.assign({}, value);
+          });
+          delete value[mKey];
         }
       });
     }
@@ -19,5 +24,6 @@ const scopeModule = (modules) => {
 
 export const store = observable(scopeModule({
   app,
-  user
+  user,
+  douban
 }));

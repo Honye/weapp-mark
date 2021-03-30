@@ -1,9 +1,7 @@
-import { action } from 'mobx-miniprogram';
-
 export default {
   info: null,
 
-  updateUserInfo: action(function (userInfo) {
+  updateUserInfo (userInfo) {
     this.info = userInfo;
-  })
+  }
 }

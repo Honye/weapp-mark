@@ -26,7 +26,7 @@ App({
   async login () {
     const { data } = await wxCloud('login');
     this.globalData.userInfo = data;
-    store.user.updateUserInfo(data);
+    store['user/updateUserInfo'](data);
   },
 
   /**
@@ -58,7 +58,7 @@ App({
   /** 从服务器获取默认配置 */
   async getDefaultConfig () {
     const appDesc = await wxCloud('app');
-    store.app.update({
+    store['app/update']({
       hasPublished: compareVersions(store.app.version, appDesc.version) <= 0
     });
   },
