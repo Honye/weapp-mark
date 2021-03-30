@@ -34,13 +34,19 @@ Page({
   },
 
   /** 进入个人资料 */
-  bindViewTap () {
-    wx.navigateTo({
-      url: '/pages/pUser/pages/userinfo/userinfo'
-    });
+  handleUserTap (e) {
+    if (store.user.info && store.user.info.nickName) {
+      wx.navigateTo({
+        url: '/pages/pUser/pages/userinfo/userinfo'
+      });
+    }
   },
 
   handleUserInfo (e) {
+    if (store.user.info && store.user.info.nickName) {
+      return;
+    }
+
     const { cloudID } = e.detail;
     wxCloud('login', {
       wxUserInfo: wx.cloud.CloudID(cloudID)

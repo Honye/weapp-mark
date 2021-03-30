@@ -3,6 +3,11 @@ import app from './app';
 import user from './user';
 import douban from './douban';
 
+/**
+ * @template {Record<string, any>} T
+ * @param {T} modules { moduleA: any, moduleB: any }
+ * @returns {T}
+ */
 const scopeModule = (modules) => {
   Object.keys(modules).forEach((key, index) => {
     const value = modules[key];

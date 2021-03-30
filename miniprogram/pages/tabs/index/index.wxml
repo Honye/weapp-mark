@@ -5,19 +5,19 @@
   <view class='page-header'>
     <view class='bg'></view>
     <view class="userinfo">
-      <view class="cell-left">
-        <view class="userinfo-avatar btn-opacity" bindtap="bindViewTap">
+      <button class="button-nostyle cell-left" open-type="getUserInfo"
+        bindgetuserinfo="handleUserInfo"
+        bindtap="handleUserTap"
+      >
+        <view class="userinfo-avatar btn-opacity">
           <image class="img" wx:if="{{user.info && user.info.avatarUrl}}" src="{{user.info.avatarUrl}}" mode="aspectFill" />
           <open-data wx:else type='userAvatarUrl' />
-          <!-- <avatar class="img" wx:if="{{user.info && user.info.avatarUrl}}" avatar="{{user.info.avatarUrl}}" /> -->
         </view>
-        <button class='button-nostyle userinfo__right' open-type="getUserInfo"
-          bindgetuserinfo="handleUserInfo"
-        >
-          <open-data class="userinfo-nickname" type="userNickName" lang="zh_CN"></open-data>
+        <view class='userinfo__right'>
+          <view class="userinfo-nickname">{{user.info.nickName || '匿名用户'}}</view>
           <view class='userinfo__extra'>这里什么都没有，快去标记啦</view>
-        </button>
-      </view>
+        </view>
+      </button>
       <view class='actions'>
         <view class='actions-item btn-opacity' bindtap='toFavMovieList'>
           <image class='actions-item__icon' src='/assets/images/mine/icon-movielist.png' mode='aspectFit'></image>
