@@ -49,10 +49,11 @@ Page({
         params.captcha_solution = captcha;
       }
       const res = await login(params);
-      const { access_token, refresh_token } = res.payload;
+      const { access_token, refresh_token, account_info } = res.payload;
       this.updateDouban({
         accessToken: access_token,
         refreshToken: refresh_token,
+        user: account_info
       });
       storage.set('douban.token', access_token);
       storage.set('douban.refresh_token', refresh_token);

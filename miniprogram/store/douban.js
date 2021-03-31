@@ -14,6 +14,8 @@ export default {
   user: null,
   
   update (data = {}) {
-    this.user = data;
+    for (const key in data) {
+      this[key] = data[key];
+    }
   }
 }

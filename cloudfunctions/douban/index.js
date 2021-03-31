@@ -20,6 +20,8 @@ exports.main = async (event, context) => {
       /** 每日定时存储每日卡片信息 */
       await storeTodayItem();
       break;
+    case 'login':
+      return login(event.payload);
     default:
   }
 
@@ -64,3 +66,35 @@ const storeTodayItem = async () => {
     }
   });
 }
+
+/**
+ * 存储登录用户信息及 token
+ * @param {object} params
+ * @param {string} params.uid
+ * @param {string} params.user_name
+ * @param {string} params.access_token
+ * @param {string} params.refresh_token
+ */
+const login = async (params) => {
+  const wxContext = cloud.getWXContext();
+  const userCollection = db.collection('users');
+  const { data: users = [] } = await userCollection
+    .where({
+      openid: wxContext.OPENID
+    })
+    .limit(1)
+    .get();
+  const user = users[0];
+  if (user) {
+    const updateData = {
+      douban: params,
+      update_at: db.serverDate()
+    };
+    return await userCollection.doc(user._id)
+      .update({
+        data: updateData
+      });
+  }
+  throw new Error(`user openid=${wxContext.OPENID} not found`);
+}
+

@@ -27,6 +27,16 @@ App({
     const { data } = await wxCloud('login');
     this.globalData.userInfo = data;
     store['user/updateUserInfo'](data);
+    if (data.douban) {
+      const { access_token, refresh_token, ...user } = data.douban;
+      store['douban/update']({
+        accessToken: access_token,
+        refreshToken: refresh_token,
+        user
+      });
+      storage.set('douban.token', access_token);
+      storage.set('douban.refresh_token', refresh_token);
+    }
   },
 
   /**

@@ -5,7 +5,8 @@
   <view class='page-header'>
     <view class='bg'></view>
     <view class="userinfo">
-      <button class="button-nostyle cell-left" open-type="getUserInfo"
+      <button class="button-nostyle cell-left"
+        open-type="{{user.info && user.info.nickName ? '' : 'getUserInfo'}}"
         bindgetuserinfo="handleUserInfo"
         bindtap="handleUserTap"
       >

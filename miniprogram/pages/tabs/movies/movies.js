@@ -1,4 +1,6 @@
 // pages/movies/movies.js
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
+import { store } from '../../../store/index';
 import { $markDropmenu } from '../../common/index.js';
 import { getUserInterests } from '../../../apis/douban.js';
 
@@ -6,6 +8,7 @@ var app = getApp();
 let pageNo = 0;
 const pageSize = 18;
 Page({
+  behaviors: [storeBindingsBehavior],
 
   scrollTop: 0,
 
@@ -32,6 +35,13 @@ Page({
     isGrid: app.globalData.setting.wantSee?app.globalData.setting.wantSee.layout === 'grid':false,
     sortId: app.globalData.setting.wantSee ? app.globalData.setting.wantSee.sort : 'addTime',
     sticky: true
+  },
+
+  storeBindings: {
+    store,
+    fields: {
+      douban: () => store.douban
+    }
   },
 
   /** 生命周期函数--监听页面加载 */
@@ -79,8 +89,9 @@ Page({
   /** 正在上映的电影 */
   async getMovies () {
     const { tabs, currentNav, linewatchCount } = this.data;
+    wx.showNavigationBarLoading();
     const res = await getUserInterests(
-      '158948115',
+      store.douban.user?.id ?? '158948115',
       {
         type: 'movie',
         status: tabs[currentNav].key,
@@ -98,6 +109,7 @@ Page({
       linewatchCount: pageNo ? linewatchCount + lineCount : lineCount,
       loadmore: list.length >= pageSize
     });
+    wx.hideNavigationBarLoading();
   },
 
   /** 改变 Tab */

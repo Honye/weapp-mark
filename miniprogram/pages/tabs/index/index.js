@@ -3,15 +3,10 @@ import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../store/index';
 import wxCloud from '../../../utils/wxCloud';
 
-// 获取应用实例
-const app = getApp();
-
 Page({
   behaviors: [storeBindingsBehavior],
 
-  data: {
-    userinfo: app.globalData.userInfo
-  },
+  data: {},
 
   storeBindings: {
     store,
@@ -42,21 +37,16 @@ Page({
     }
   },
 
-  handleUserInfo (e) {
+  async handleUserInfo (e) {
     if (store.user.info && store.user.info.nickName) {
       return;
     }
 
     const { cloudID } = e.detail;
-    wxCloud('login', {
+    const { data } = await wxCloud('login', {
       wxUserInfo: wx.cloud.CloudID(cloudID)
-    })
-      .then(({ data }) => {
-        app.globalData.userInfo = data;
-        this.setData({
-          userInfo: data
-        });
-      });
+    });
+    store['user/updateUserInfo'](data);
   },
 
   /** 去消息 */

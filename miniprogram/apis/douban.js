@@ -2,6 +2,7 @@
  * @file 豆瓣 API
  */
 import storage from '../utils/storage';
+import wxCloud from '../utils/wxCloud';
 
 const BASE_URL = 'https://frodo.douban.com/api/v2'; // 来自豆瓣小程序
 /** 豆瓣小程序 AppID */
@@ -210,8 +211,21 @@ export const login = (params) => {
         ...params
       },
       success: ({ statusCode, data }) => {
+        console.log(`[request.login<${statusCode}>]: `, data);
         if (statusCode >= 200 && statusCode < 300 ) {
-          resolve(data)
+          if (data.message === 'captcha_required') {
+            reject(data);
+          } else {
+            wxCloud('douban', {
+              action: 'login',
+              payload: {
+                access_token: data.payload.access_token,
+                refresh_token: data.payload.refresh_token,
+                ...data.payload.account_info
+              }
+            });
+            resolve(data);
+          }
         } else {
           reject({
             ...data,
