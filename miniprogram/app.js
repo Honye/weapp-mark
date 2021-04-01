@@ -2,6 +2,7 @@
 import { store } from './store/index';
 import { compareVersions, isEmpty } from './utils/util';
 import wxCloud from './utils/wxCloud';
+import storage from './utils/storage';
 
 wx.cloud.init({
   traceUser: true,

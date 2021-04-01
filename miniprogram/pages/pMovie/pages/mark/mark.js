@@ -13,6 +13,9 @@ Page({
    * @param {object} options
    * @param {string} options.movieID
    * @param {'movie'|'tv'} [options.type = 'movie']
+   * @typedef {{
+   * change?: (interest: import('../../../../apis/douban').DouBan.Interest) => void
+   * }} ChannelEvents
    */
   onLoad (options) {
     this.setData(Object.assign({}, { type: 'movie' }, options));
@@ -37,12 +40,13 @@ Page({
   async submit (e) {
     const { rating, date } = e.detail.value;
     const { movieID, type } = this.data;
-    await doneMovie({
+    const interest = await doneMovie({
       type,
       movieID,
       rating,
       date
     });
+    this.change(interest);
     wx.navigateBack();
   },
 
@@ -56,11 +60,20 @@ Page({
         if (confirm) {
           const { movieID, type } = this.data;
           wx.showLoading();
-          await unmarkMovie({ movieID, type });
+          const interest = await unmarkMovie({ movieID, type });
           wx.hideLoading();
+          this.change(interest);
           wx.navigateBack();
         }
       }
     });
+  },
+
+  /**
+   * @param {import('../../../../apis/douban').DouBan.Interest} interest 
+   */
+  change (interest) {
+    const eventChannel = this.getOpenerEventChannel();
+    eventChannel.emit?.('change', interest);
   }
 });

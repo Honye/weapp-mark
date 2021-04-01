@@ -111,9 +111,32 @@ Page({
 
   /** 想看/已看/在看 */
   async handleAction (e) {
+    if (!store.douban.accessToken) {
+      // case 未登录豆瓣
+      wx.navigateTo({
+        url: '/pages/douban/pages/login/login'
+      });
+      return;
+    }
+
     /** @type {{ action: import('../../../../apis/douban.js').DouBan.InterestStatus }} */
     const { action } = e.currentTarget.dataset;
     const { id, details } = this.data;
+
+    if (action === 'done') {
+      wx.navigateTo({
+        url: `../mark/mark?movieID=${id}&type=${details.type}`,
+        events: {
+          change: ({ status }) => {
+            this.setData({
+              'details.interest.status': status
+            });
+          }
+        }
+      });
+      return;
+    }
+
     const { interest } = details;
     if (interest && action === interest.status) {
       // 取消标记
@@ -141,24 +164,18 @@ Page({
     switch (action) {
       case 'mark': {
         res = await markMovie({ movieID: id, type: details.type });
-        break;
       }
-      case 'done': {
-        wx.navigateTo({
-          url: `../mark/mark?movieID=${id}&type=${details.type}`
-        });
-        break;
-      }
+      // falls through
       case 'doing': {
         res = await doingMovie({ movieID: id, type: details.type });
-        break;
       }
+      // falls through
       default:
+        wx.hideLoading();
+        this.setData({
+          'details.interest.status': res.status
+        });
     }
-    wx.hideLoading();
-    this.setData({
-      'details.interest.status': res.status
-    });
   },
 
   /**

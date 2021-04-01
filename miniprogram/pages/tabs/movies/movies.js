@@ -51,6 +51,7 @@ Page({
       isGrid: app.globalData.setting.wantSee ? app.globalData.setting.wantSee.layout === 'grid' : false,
       sortId: app.globalData.setting.wantSee ? app.globalData.setting.wantSee.sort : 'addTime'
     })
+    this.showDoubanTip();
   },
 
   onShow () {
@@ -76,6 +77,25 @@ Page({
         loading: true
       });
       this.getMovies()
+    }
+  },
+
+  showDoubanTip () {
+    if (!store.douban.accessToken) {
+      wx.showModal({
+        title: '提示',
+        content: '列表默认展示的是开发者的信息，可去个人中心登录豆瓣账号以展示自己的信息',
+        confirmText: '立即登录',
+        cancelText: '稍后登录',
+        confirmColor: '#ffe200',
+        success: ({ confirm }) => {
+          if (confirm) {
+            wx.navigateTo({
+              url: '/pages/douban/pages/login/login'
+            });
+          }
+        }
+      });
     }
   },
 
