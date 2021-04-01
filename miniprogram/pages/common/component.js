@@ -1,16 +1,16 @@
 /**
  * 模块化组件
- * @param {Object} options 配置项
- * @param {String} options.scope 组件的命名空间
- * @param {Object} options.data 组件的动态数据
- * @param {Object} options.methods 组件的事件函数
  */
 class Component {
+    /**
+     * @param {Object} options 配置项
+     * @param {string} options.scope 组件的命名空间
+     * @param {Record<string, any>} [options.data] 组件的动态数据
+     * @param {Record<string, AnyFunction>} [options.methods] 组件的事件函数
+     */
     constructor(options = {}) {
-        Object.assign(this, {
-            options,
-        })
-        this.__init()
+        Object.assign(this, { options });
+        this.__init();
     }
 
     /**
@@ -18,6 +18,7 @@ class Component {
      */
     __init() {
         this.page = getCurrentPages()[getCurrentPages().length - 1]
+        /** @type {WechatMiniprogram.Component.InstanceMethods['setData']} */
         const setData = this.page.setData.bind(this.page)
 
         // 检查版本库是否高于或等于 1.5.0，setData 方法才有回调函数，否则采用 setTimeout 模拟

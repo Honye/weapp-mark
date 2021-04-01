@@ -10,23 +10,34 @@ export default {
       className: undefined,
       titleText: undefined,
       buttons: [],
-      buttonClicked() { },
+      buttonClicked() {},
       cancelText: `取消`,
-      cancel() { },
+      cancel() {},
       // destructiveText: '删除', 
       // destructiveButtonClicked() {}, 
     }
   },
+
+  /**
+   * @typedef {Object} ButtonOption
+   * @property {string} text - 按钮文字
+   * @property {string} [className] - 按钮的类名
+   * @property {'contact'|'share'|'getPhoneNumber'|'getUserInfo'|'launchApp'|'openSetting'|'feedback'} [openType] - 按钮的 open-type 属性
+   */
+
 	/**
 	 * 上拉菜单组件
 	 * @param {Object} opts 配置项
      * @param {String} opts.theme 菜单皮肤
 	 * @param {String} opts.className 自定义类名
 	 * @param {String} opts.titleText 标题
-	 * @param {Array} opts.buttons 按钮
-     * @param {String} opts.buttons.classNmae 按钮的类名
-     * @param {String} opts.buttons.text 按钮的文字
-	 * @param {Function} opts.buttonClicked 按钮点击事件
+	 * @param {ButtonOption[]} opts.buttons 按钮
+	 * @param {(index: number, button: ButtonOption) => void|boolean} opts.buttonClicked 按钮点击事件
+	 * @param {(
+   *  e: (WechatMiniprogram.ButtonGetUserInfo|WechatMiniprogram.ButtonGetPhoneNumber)&WechatMiniprogram.BaseEvent<,{index:number;}>,
+   *  index: number,
+   *  button: ButtonOption
+   * ) => void|boolean} opts.bindGetOpenInfo open-type 响应事件
 	 * @param {String} opts.cancelText 取消按钮的文本
 	 * @param {Function} opts.cancel 取消按钮点击事件
 	 * @param {String} opts.destructiveText 删除按钮的文本
@@ -61,6 +72,7 @@ export default {
         },
         /**
          * 按钮点击事件
+         * @param {WechatMiniprogram.BaseEvent<, {index: number; }>} e
          */
         buttonClicked(e) {
           const index = e.currentTarget.dataset.index
@@ -68,6 +80,17 @@ export default {
             this.removeSheet()
           }
         },
+
+        /**
+         * @param {WechatMiniprogram.BaseEvent<,{ index: number; }>} e
+         */
+        bindGetOpenInfo (e) {
+          const { index } = e.currentTarget.dataset;
+          if (options.bindGetOpenInfo(e, index, options.buttons[index]) === true) {
+            this.removeSheet();
+          }
+        },
+
         /**
          * 删除按钮点击事件
          */

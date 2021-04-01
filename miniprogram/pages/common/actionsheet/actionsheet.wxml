@@ -5,7 +5,12 @@
 				<view class="action-sheet-group action-sheet-options">
 					<view class="action-sheet-title" wx:if="{{ titleText }}">{{ titleText }}</view>
 					<block wx:for="{{ buttons }}" wx:key="">
-						<button class="button action-sheet-option {{ item.classNmae }}" data-index="{{ index }}" catchtap="{{ buttonClicked }}">
+						<button class="button action-sheet-option {{ item.className }}" data-index="{{ index }}"
+							open-type="{{item.openType}}"
+							catchtap="{{ buttonClicked }}"
+							bindgetphonenumber="{{ bindGetOpenInfo }}"
+							bindgetuserinfo="{{ bindGetOpenInfo }}"
+						>
 							{{ item.text }}
 						</button>
 					</block>

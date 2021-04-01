@@ -31,16 +31,23 @@ const login = async (event, context) => {
     })
     .limit(1)
     .get();
+  
   if (users && users.length) {
+    // case 老用户登录，更新用户信息
     const user = users[0];
+    const serverDate = db.serverDate();
     const updateData = {
-      latest_login: db.serverDate()
+      latest_login: serverDate,
+      update_at: serverDate
     };
     if (typeof wxUserInfo === 'object') {
-      // 只更新用户表不存在的信息和 rawData
+      // 每次登录都更新最新信息
       updateData.rawData = wxUserInfo;
       for (const key in wxUserInfo) {
-        if (Object.prototype.hasOwnProperty.call(wxUserInfo, key) && !user[key]) {
+        if (
+          Object.prototype.hasOwnProperty.call(wxUserInfo, key)
+          && !isInvalid(wxUserInfo[key])
+        ) {
           updateData[key] = wxUserInfo[key];
         }
       }
@@ -53,36 +60,48 @@ const login = async (event, context) => {
       data: { ...user, ...updateData },
       message: 'cloud.login:ok'
     };
-  } else {
-    const serverDate = db.serverDate();
-    const user = {
-      openid: wxContext.OPENID,
-      appid: wxContext.APPID,
-      unionid: wxContext.UNIONID,
-      create_at: serverDate,
-      update_at: serverDate,
-      latest_login: serverDate
-    };
-    if (typeof wxUserInfo === 'object') {
-      // 只更新用户表不存在的信息和 rawData
-      Object.assign(user, {
-        ...wxUserInfo,
-        ...user,
-        rawData: wxUserInfo
-      });
-    }
-    const { _id } = await usersCollection.add({
-      data: user
-    });
-    return {
-      data: {
-        _id,
-        ...user
-      },
-      message: 'cloud.login:ok'
-    };
   }
+
+  // case 新用户登录
+  const serverDate = db.serverDate();
+  const user = {
+    openid: wxContext.OPENID,
+    appid: wxContext.APPID,
+    unionid: wxContext.UNIONID,
+    create_at: serverDate,
+    update_at: serverDate,
+    latest_login: serverDate
+  };
+  if (typeof wxUserInfo === 'object') {
+    // 每次登录都更新最新信息
+    user.rawData = wxUserInfo;
+    for (const key in wxUserInfo) {
+      if (
+        Object.prototype.hasOwnProperty.call(wxUserInfo, key)
+        && !isInvalid(wxUserInfo[key])
+      ) {
+        user[key] = wxUserInfo[key];
+      }
+    }
+  }
+  const { _id } = await usersCollection.add({
+    data: user
+  });
+  return {
+    data: {
+      _id,
+      ...user
+    },
+    message: 'cloud.login:ok'
+  };
 };
+
+const isInvalid = (data) => {
+  return data === undefined
+    || data === null
+    || data === ''
+    || (typeof data === 'number' && isNaN(data));
+}
 
 // 云函数入口函数
 exports.main = async (event, context) => {

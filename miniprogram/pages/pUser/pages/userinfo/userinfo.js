@@ -24,10 +24,6 @@ Page({
             title: '豆瓣',
             authorized: !!(store.douban.accessToken)
           },
-          qq: {
-            title: 'QQ',
-            authorized: false
-          },
           github: {
             title: 'GitHub',
             authorized: !!(store.user.info && store.user.info.githubToken)
@@ -44,21 +40,36 @@ Page({
     $wuxActionSheet.show({
       theme: 'wx',
       buttons: [
-        { text: '拍照' },
+        { key: 'sync', text: '同步微信头像', openType: 'getUserInfo' },
         { text: '从相册中选取' },
       ],
       buttonClicked: (index, item) => {
-        wx.chooseImage({
-          count: 1,
-          sourceType: index===0 ? ['camera'] : ['album'],
-          success: (res) => {
-            const { userInfo } = this.data;
-            this.setData({
-              userInfo: { ...userInfo, avatarUrl: res.tempFilePaths[0] }
+        switch (item.key) {
+          case 'sync':
+            break;
+          default:
+            wx.chooseImage({
+              count: 1,
+              sourceType: index===0 ? ['camera'] : ['album'],
+              success: (res) => {
+                const { userInfo } = this.data;
+                this.setData({
+                  userInfo: { ...userInfo, avatarUrl: res.tempFilePaths[0] }
+                })
+              },
             })
-          },
-        })
+        }
         return true;
+      },
+      bindGetOpenInfo: async (e, index, item) => {
+        if (item.key === 'sync' && e.detail.cloudID) {
+          const { cloudID } = e.detail;
+          const { data } = await wxCloud('login', {
+            wxUserInfo: wx.cloud.CloudID(cloudID)
+          });
+          store['user/updateUserInfo'](data);
+          return true;
+        }
       }
     })
   },
