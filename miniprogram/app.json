@@ -79,6 +79,7 @@
     {
       "root": "pages/github/",
       "pages": [
+        "pages/home/home",
         "pages/notifications/notifications",
         "pages/starred/starred",
         "pages/trending/trending",
