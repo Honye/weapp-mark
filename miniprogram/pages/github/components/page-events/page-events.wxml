@@ -1,0 +1,6 @@
+<scroll-view class="page" scroll-y enable-back-to-top>
+  <block wx:for="{{events}}" wx:key="id">
+    <event-item event="{{item}}" />
+  </block>
+  <slot name="tabbar"></slot>
+</scroll-view>

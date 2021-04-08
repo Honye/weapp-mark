@@ -1,0 +1,4 @@
+<scroll-view class="page" scroll-y enable-back-to-top>
+  <navigator url="../../pages/starred/starred"><button>Author's starred list</button></navigator>
+  <slot name="tabbar"></slot>
+</scroll-view>

@@ -1,0 +1,31 @@
+<wxs module="wxs" src="./event-item.wxs" />
+
+<view class="event">
+  <image class="event__avatar" src="{{event.actor.avatar_url}}" mode="aspectFill" />
+  <view>
+    <!-- case ForkEvent -->
+    <view class="event__title" wx:if="{{event.type === 'ForkEvent'}}">
+      <navigator class="event__actor">{{event.actor.display_login}}</navigator>
+      <text space="nbsp"> forked </text>
+      <navigator class="event__repo" hover-class="hover-opacity"
+        url="../../pages/repository/repository?owner={{event.payload.forkee.owner.login}}&repo={{event.payload.forkee.name}}"
+      >
+        {{event.payload.forkee.full_name}}
+      </navigator>
+      <text space="nbsp"> from </text>
+      <navigator class="event__repo" hover-class="hover-opacity"
+        url="../../pages/repository/repository?owner={{wxs.splitRepoName(event.repo.name).owner}}&repo={{wxs.splitRepoName(event.repo.name).repo}}"
+      >
+        {{event.repo.name}}
+      </navigator>
+    </view>
+    <view class="event__title" wx:else>
+      <navigator class="event__actor">{{event.actor.display_login}}</navigator>
+      <text space="nbsp"> {{wxs.getDisplayAction(event)}} </text>
+      <navigator class="event__repo btn-opacity" hover-class="hover-opacity"
+        url="../../pages/repository/repository?owner={{wxs.splitRepoName(event.repo.name).owner}}&repo={{wxs.splitRepoName(event.repo.name).repo}}"
+      >{{event.repo.name}}</navigator>
+    </view>
+    <view class="event__time">{{wxs.getDisplayTime(event)}}</view>
+  </view>
+</view>

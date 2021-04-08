@@ -1,0 +1,66 @@
+function getDisplayAction (event) {
+  if (!event) {
+    return '';
+  }
+  var type = event.type;
+  if (type === 'WatchEvent') {
+    return event.payload.action;
+  }
+  if (type === 'IssuesEvent') {
+    return event.payload.action + ' issue';
+  }
+  if (type === 'IssueCommentEvent') {
+    return event.payload.action + ' issue comment';
+  }
+  if (type === 'ForkEvent') {
+    return 'forked'
+  }
+  return '';
+}
+
+function getDisplayTime (event) {
+  if (!event) {
+    return '';
+  }
+  /** @type {Date} */
+  var createdAt = getDate(event.created_at);
+  /** @type {Date} */
+  var now = getDate();
+  var diff = now.getTime() - createdAt.getTime();
+  var m = 60 * 1000;
+  if (diff < m) {
+    return '1 minutes ago';
+  }
+  var h = 60 * m;
+  if (diff < h) {
+    return Math.round(diff / m) + ' minutes ago';
+  }
+  var d = 24 * h;
+  if (diff < d) {
+    return Math.round(diff / h) + ' hours ago';
+  }
+  if (diff / d < 4) {
+    return Math.round(diff / d) + ' days ago';
+  }
+  return event.created_at.substring(0, 10);
+}
+
+/**
+ * @param {string} name
+ */
+function splitRepoName (name) {
+  if (!name) {
+    return null;
+  }
+  var arr = name.split('/');
+  return {
+    owner: arr[0],
+    repo: arr[1]
+  };
+}
+
+module.exports = {
+  getDisplayAction: getDisplayAction,
+  getDisplayTime: getDisplayTime,
+  splitRepoName: splitRepoName
+};

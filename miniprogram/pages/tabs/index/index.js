@@ -56,6 +56,12 @@ Page({
     });
   },
 
+  toGitMark () {
+    wx.navigateTo({
+      url: '/pages/github/pages/home/home'
+    });
+  },
+
   /** 去设置 */
   toSetting() {
     wx.navigateTo({

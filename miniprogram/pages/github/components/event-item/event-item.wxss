@@ -1,0 +1,42 @@
+.event {
+  display: flex;
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+}
+.event__avatar {
+  margin-right: 16rpx;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  flex-shrink: 0;
+}
+.event__title {
+  margin-top: -0.2em;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 1.4;
+}
+.event__actor,
+.event__repo {
+  color: #0366d6;
+}
+.event__time {
+  font-size: 24rpx;
+}
+
+
+.event {
+  position: relative;
+}
+.event:after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #ddd;
+  transform-origin: 0 100%;
+  transform: scaleY(0.5);
+}

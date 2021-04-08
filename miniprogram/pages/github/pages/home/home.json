@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "GitMark",
+  "disableScroll": true,
+  "usingComponents": {
+    "tab-bar": "/components/tab-bar/index",
+    "page-events": "../../components/page-events/page-events",
+    "page-trending": "../../components/page-trending/page-trending",
+    "page-user": "../../components/page-user/page-user"
+  }
+}

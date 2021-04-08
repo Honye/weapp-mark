@@ -1,0 +1,33 @@
+<swiper class="swiper" circular="{{false}}" current="{{current}}" duration="{{duration}}"
+  bindchange="handleSwiperChange"
+  bindanimationfinish="handleSwipeFinish"
+>
+  <block wx:for="{{pages}}" wx:key="index">
+    <swiper-item class="swiper-item">
+      <template wx:if="{{item.attached}}" is="{{item.component}}" data="{{tabs: pages}}" />
+    </swiper-item>
+  </block>
+</swiper>
+<tab-bar list="{{pages}}" bind:change="switchTab" selected="{{current}}" />
+
+<template name="page-events">
+  <page-events>
+    <view slot="tabbar" style="opacity:0">
+      <tab-bar list="{{tabs}}" placeholder></tab-bar>
+    </view>
+  </page-events>
+</template>
+<template name="page-trending">
+  <page-trending>
+    <view slot="tabbar" style="opacity:0">
+      <tab-bar list="{{tabs}}" placeholder></tab-bar>
+    </view>
+  </page-trending>
+</template>
+<template name="page-user">
+  <page-user>
+    <view slot="tabbar" style="opacity:0">
+      <tab-bar list="{{tabs}}" placeholder></tab-bar>
+    </view>
+  </page-user>
+</template>
