@@ -51,13 +51,32 @@
 
 ## 🛠 运行 Run
 
-没有使用其它打包工具，无需额外的环境配置，直接 clone 本项目，使用微信 Web 开发工具打开即可看见效果。
+克隆本项目，使用微信 Web 开发工具打开项目根目录
 
-**注意：** 如果你没有 AppID 可能看不到数据，手机无法预览。开发工具需要关闭安全域名的校验，**工具栏 --> 详情 --> 项目设置 --> 勾选不校验安全域名...以及 HTTPS 证书**。
+#### 安装依赖
+
+```bash
+yarn # or npm install
+```
+
+菜单栏 **工具 --> 构建 npm**
+
+#### 云开发环境
+
+开通云开发环境后将项目 `/cloudfunctions/` 同步至云，修改 `app.js`
+
+```javascript
+wx.cloud.init({
+  traceUser: true,
+  env: 'dev-oucwt' // 此处替换为你自己的云环境 ID
+});
+```
 
 #### Mock API
 
-参考官方文档 [API Mock/规则导入导出](https://developers.weixin.qq.com/miniprogram/dev/devtools/api-mock.html)，导入 [mock/mock.config.json](./mock/mock.config.json)
+参考官方文档 [API Mock/规则导入导出](https://developers.weixin.qq.com/miniprogram/dev/devtools/api-mock.html)，导入 [mock/mock.config.json](./mock/mock.config.json)。**开发工具提供的 Mock 能力暂不支持手机预览**
+
+**注意：** 如果你没有 AppID 可能看不到数据，手机无法预览。开发工具需要关闭安全域名的校验，**工具栏 --> 详情 --> 项目设置 --> 勾选不校验安全域名...以及 HTTPS 证书**。
 
 ## 🪶 笔记 Notes
 
