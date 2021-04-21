@@ -33,6 +33,8 @@ exports.main = async (event, context) => {
       return getStarredList(event.data);
     case 'removeAccessToken':
       return removeAccessToken(event.data);
+    case 'homePage':
+      return getHomePage(event.data);
     default:
   }
 }
@@ -135,4 +137,16 @@ const getStarredList = async (params) => {
     code: 0,
     data: resp
   };
+};
+
+/**
+ * GitHub user home page info
+ * 
+ * @param {object} params
+ * @param {string} params.user
+ */
+const getHomePage = async (params) => {
+  return request({
+    url: `https://imark.vercel.app/api/github/${params.user}`
+  }).then((resp) => resp.json());
 };

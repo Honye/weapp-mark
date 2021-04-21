@@ -203,6 +203,18 @@ export const getStarredList = (params) => {
 };
 
 /**
+ * 获取已授权的用户信息
+ * 
+ * [Get the authenticated user](https://docs.github.com/en/rest/reference/users#get-the-authenticated-user)
+ */
+export const getSelfInfo = () => {
+  return request({
+    url: '/user',
+    method: 'GET'
+  });
+}
+
+/**
  * @typedef {{
  * login: string;
  * id: number;

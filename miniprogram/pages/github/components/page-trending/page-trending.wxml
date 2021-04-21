@@ -1,56 +1,58 @@
 <import src='/pages/common/loading/loading' />
 
-<scroll-view class="page" scroll-y enable-back-to-top>
-  <view class="sticky {{sticky && 'show-search'}}">
-    <navigator url="/pages/github/pages/search/search">
-      <view class="search-bar">
-        <input class="search-bar__input" placeholder="Search GitHub" disabled />
-      </view>
-    </navigator>
-    <view class="filterbar">
-      <view class="btn-opacity" bindtap="toChooseLanguage">Repositories</view>
-      <view>
-        <picker class="inline-picker" mode="selector"
-          header-text="Spoken Language"
-          range="{{spokenLanguages}}"
-          range-key="title"
-          value="{{spokenLanguageIndex > -1 ? spokenLanguageIndex : 0}}"
-          data-name="spokenLanguage"
-          bindchange="handlePickerChange"
-        >
-          <view class="sort btn-opacity">
-            <text>{{spokenLanguages[spokenLanguageIndex].value && spokenLanguages[spokenLanguageIndex].title || 'Spoken Language'}}</text>
-            <view class="arrow-down" />
-          </view>
-        </picker>
-        <picker class="inline-picker" mode="selector"
-          header-text="Language"
-          range="{{languages}}"
-          range-key="title"
-          value="{{languageIndex > -1 ? languageIndex : 0}}"
-          data-name="language"
-          bindchange="handlePickerChange"
-        >
-          <view class="sort btn-opacity">
-            <text>{{languages[languageIndex].value && languages[languageIndex].title
-              || language
-              || 'Language'}}</text>
-            <view class="arrow-down" />
-          </view>
-        </picker>
-        <picker class="inline-picker" mode="selector"
-          header-text="Date range"
-          range="{{dateRanges}}"
-          range-key="title"
-          value="{{dateRangeIndex}}"
-          data-name="dateRange"
-          bindchange="handlePickerChange"
-        >
-          <view class="sort btn-opacity">
-            <text>{{dateRanges[dateRangeIndex].title || 'Today'}}</text>
-            <view class="arrow-down" />
-          </view>
-        </picker>
+<scroll-view class="page" scroll-y enable-back-to-top bindscroll="onPageScroll">
+  <view>
+    <view class="sticky {{sticky && 'show-search'}}" wx:for="{{[1,2]}}" wx:key="index">
+      <navigator url="/pages/github/pages/search/search" class="search-bar-wrap">
+        <view class="search-bar">
+          <input class="search-bar__input" placeholder="Search GitHub" disabled />
+        </view>
+      </navigator>
+      <view class="filterbar">
+        <view class="btn-opacity" bindtap="toChooseLanguage">Repositories</view>
+        <view>
+          <picker class="inline-picker" mode="selector"
+            header-text="Spoken Language"
+            range="{{spokenLanguages}}"
+            range-key="title"
+            value="{{spokenLanguageIndex > -1 ? spokenLanguageIndex : 0}}"
+            data-name="spokenLanguage"
+            bindchange="handlePickerChange"
+          >
+            <view class="sort btn-opacity">
+              <text>{{spokenLanguages[spokenLanguageIndex].value && spokenLanguages[spokenLanguageIndex].title || 'Spoken Language'}}</text>
+              <view class="arrow-down" />
+            </view>
+          </picker>
+          <picker class="inline-picker" mode="selector"
+            header-text="Language"
+            range="{{languages}}"
+            range-key="title"
+            value="{{languageIndex > -1 ? languageIndex : 0}}"
+            data-name="language"
+            bindchange="handlePickerChange"
+          >
+            <view class="sort btn-opacity">
+              <text>{{languages[languageIndex].value && languages[languageIndex].title
+                || language
+                || 'Language'}}</text>
+              <view class="arrow-down" />
+            </view>
+          </picker>
+          <picker class="inline-picker" mode="selector"
+            header-text="Date range"
+            range="{{dateRanges}}"
+            range-key="title"
+            value="{{dateRangeIndex}}"
+            data-name="dateRange"
+            bindchange="handlePickerChange"
+          >
+            <view class="sort btn-opacity">
+              <text>{{dateRanges[dateRangeIndex].title || 'Today'}}</text>
+              <view class="arrow-down" />
+            </view>
+          </picker>
+        </view>
       </view>
     </view>
   </view>

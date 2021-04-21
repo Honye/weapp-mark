@@ -1,0 +1,5 @@
+<view class="container">
+  <block wx:for="{{events}}" wx:key="id">
+    <event-item event="{{item}}" />
+  </block>
+</view>

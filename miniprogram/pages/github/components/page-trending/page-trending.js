@@ -29,7 +29,7 @@ Component({
     dateRangeIndex: 0,
     list: [],
     loading: false,
-    sticky: false
+    sticky: true
   },
 
   lifetimes: {
@@ -40,12 +40,12 @@ Component({
 
   methods: {
     onPageScroll (e) {
-      const { scrollTop } = e;
+      const { scrollTop } = e.detail;
       if (scrollTop < this.scrollTop && !this.data.sticky) {
         this.setData({
           sticky: true
         });
-      } else if (scrollTop > this.scrollTop && this.data.sticky) {
+      } else if (scrollTop > this.scrollTop && scrollTop > 0 && this.data.sticky) {
         this.setData({
           sticky: false
         });

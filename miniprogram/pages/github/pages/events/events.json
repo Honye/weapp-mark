@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "Events",
+  "usingComponents": {
+    "event-item": "../../components/event-item/event-item"
+  }
+}

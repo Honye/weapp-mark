@@ -13,7 +13,10 @@ function getDisplayAction (event) {
     return event.payload.action + ' issue comment';
   }
   if (type === 'ForkEvent') {
-    return 'forked'
+    return 'forked';
+  }
+  if (type === 'CreateEvent') {
+    return 'created a ' + event.payload.ref_type;
   }
   return '';
 }

@@ -5,7 +5,7 @@
 }
 
 .sticky {
-  position: sticky;
+  position: fixed;
   z-index: 10;
   top: -106rpx; /* (66 + 20 * 2) */
   left: 0;
@@ -13,10 +13,13 @@
   transition: top .3s;
   background-color: #fff;
 }
+.sticky:nth-child(2n) {
+  position: sticky;
+  opacity: 0;
+}
 .sticky.show-search {
   top: 0;
 }
-
 .search-bar {
   background-color: #fff;
   padding: 20rpx 30rpx;

@@ -1,4 +1,32 @@
-<scroll-view class="page" scroll-y enable-back-to-top>
-  <navigator url="../../pages/starred/starred"><button>Author's starred list</button></navigator>
+<scroll-view class="page" scroll-y enable-back-to-top enhanced>
+  <view class="info">
+    <view class="user">
+      <image class="avatar" src="{{user.avatar_url}}" mode="aspectFill" />
+      <view>
+        <view class="fullname" wx:if="{{user.name}}">{{user.name}}</view>
+        <view class="username">{{user.login}}</view>
+      </view>
+    </view>
+    <view class="joined">{{user.created_at}}</view>
+    <view class="bio">{{user.bio}}</view>
+  </view>
+  <view class="counts">
+    <view class="counter">
+      <view class="counter-numer">{{user.public_repos + user.owned_private_repos}}</view>
+      <view class="counter-name">Repositories</view>
+    </view>
+    <navigator class="counter" url="../../pages/starred/starred">
+      <view class="counter-numer">{{homeInfo.stars || 0}}</view>
+      <view class="counter-name">Stars</view>
+    </navigator>
+    <view class="counter">
+      <view class="counter-numer">{{user.followers}}</view>
+      <view class="counter-name">Followers</view>
+    </view>
+    <view class="counter">
+      <view class="counter-numer">{{user.following}}</view>
+      <view class="counter-name">Following</view>
+    </view>
+  </view>
   <slot name="tabbar"></slot>
 </scroll-view>
