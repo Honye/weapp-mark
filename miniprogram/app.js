@@ -2,7 +2,6 @@
 import { store } from './store/index';
 import { compareVersions, isEmpty } from './utils/util';
 import wxCloud from './utils/wxCloud';
-import storage from './utils/storage';
 
 wx.cloud.init({
   traceUser: true,
@@ -35,8 +34,6 @@ App({
         refreshToken: refresh_token,
         user
       });
-      storage.set('douban.token', access_token);
-      storage.set('douban.refresh_token', refresh_token);
     }
   },
 

@@ -11,6 +11,7 @@ const db = cloud.database();
  * 云函数入口函数
  * @param {object} event
  * @param {'cron'} [event.action]
+ * @param {object} [event.payload]
  */ 
 exports.main = async (event, context) => {
   /** 默认视为定时任务 */
@@ -74,6 +75,7 @@ const storeTodayItem = async () => {
  * @param {string} params.user_name
  * @param {string} params.access_token
  * @param {string} params.refresh_token
+ * @param {number} params.expires_in token 有效时间，秒为单位
  */
 const login = async (params) => {
   const wxContext = cloud.getWXContext();
@@ -86,8 +88,14 @@ const login = async (params) => {
     .get();
   const user = users[0];
   if (user) {
+    const { expires_in: expiresIn, ...douban } = params;
     const updateData = {
-      douban: params,
+      douban: {
+        ...douban,
+        expires_at: db.serverDate({
+          offset: (expiresIn - 60) * 1000
+        })
+      },
       update_at: db.serverDate()
     };
     return await userCollection.doc(user._id)

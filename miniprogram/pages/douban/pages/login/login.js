@@ -1,7 +1,6 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../../store/index';
 import { login } from '../../../../apis/douban.js';
-import storage from '../../../../utils/storage';
 
 Page({
   behaviors: [storeBindingsBehavior],
@@ -55,8 +54,6 @@ Page({
         refreshToken: refresh_token,
         user: account_info
       });
-      storage.set('douban.token', access_token);
-      storage.set('douban.refresh_token', refresh_token);
       wx.showToast({
         icon: 'none',
         title: '登录成功'

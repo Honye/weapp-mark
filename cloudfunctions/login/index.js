@@ -56,8 +56,16 @@ const login = async (event, context) => {
       .update({
         data: updateData
       });
+    const updatedUser = { ...user, ...updateData };
+    if (updatedUser.douban) {
+      const { expires_at: expiresAt } = updatedUser.douban;
+      if (!expiresAt || new Date(expiresAt).getTime() < Date.now()) {
+        // 豆瓣登录已失效，清除 access_token
+        updatedUser.douban.access_token = '';
+      }
+    }
     return {
-      data: { ...user, ...updateData },
+      data: updatedUser,
       message: 'cloud.login:ok'
     };
   }

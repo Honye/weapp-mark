@@ -1,8 +1,8 @@
 /**
  * @file 豆瓣 API
  */
-import storage from '../utils/storage';
 import wxCloud from '../utils/wxCloud';
+import { store } from '../store/index';
 
 const BASE_URL = 'https://frodo.douban.com/api/v2'; // 来自豆瓣小程序
 /** 豆瓣小程序 AppID */
@@ -13,7 +13,7 @@ const AppID = 'wx2f9b06c1de1ccfca';
  * @param {WechatMiniprogram.RequestOption} params 
  */
 const request = (params) => {
-  const accessToken = storage.get('douban.token');
+  const accessToken = store.douban.accessToken;
 
   return new Promise((resolve, reject) => {
     wx.request({
@@ -221,6 +221,7 @@ export const login = (params) => {
               payload: {
                 access_token: data.payload.access_token,
                 refresh_token: data.payload.refresh_token,
+                expires_in: data.payload.expires_in,
                 ...data.payload.account_info
               }
             });
