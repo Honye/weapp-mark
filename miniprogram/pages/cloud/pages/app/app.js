@@ -8,6 +8,7 @@ Page({
   },
 
   async onLoad () {
+    // FIXME collection app 不存在时异常
     const { data: [app] } = await db.collection('app')
       .orderBy('created_at', 'desc')
       .limit(1)

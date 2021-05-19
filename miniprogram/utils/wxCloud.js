@@ -42,6 +42,7 @@ const call = (name, data, options) => {
             })
         }
     }).catch( err => {
+        console.error(`[wxCloud]: call function "${name}" occurred error`)
         if (loading) {
             wx.hideLoading()
         }
