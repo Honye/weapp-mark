@@ -127,9 +127,11 @@ Page({
       wx.navigateTo({
         url: `../mark/mark?movieID=${id}&type=${details.type}`,
         events: {
-          change: ({ status }) => {
+          change: ({ status, rating, create_time }) => {
             this.setData({
-              'details.interest.status': status
+              'details.interest.status': status,
+              'details.interest.rating': rating,
+              'details.interest.create_time': create_time
             });
           }
         }
@@ -162,20 +164,18 @@ Page({
     wx.showLoading();
     let res;
     switch (action) {
-      case 'mark': {
+      case 'mark':
         res = await markMovie({ movieID: id, type: details.type });
-      }
-      // falls through
-      case 'doing': {
+        break;
+      case 'doing':
         res = await doingMovie({ movieID: id, type: details.type });
-      }
-      // falls through
+        break;
       default:
-        wx.hideLoading();
-        this.setData({
-          'details.interest.status': res.status
-        });
     }
+    wx.hideLoading();
+    this.setData({
+      'details.interest.status': res.status
+    });
   },
 
   /**

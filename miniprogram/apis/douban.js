@@ -311,7 +311,7 @@ export const doneMovie = (params) => {
     rest
   );
   return request({
-    url: `${type}/${movieID}/doing`,
+    url: `/${type}/${movieID}/doing`,
     data
   });
 }
