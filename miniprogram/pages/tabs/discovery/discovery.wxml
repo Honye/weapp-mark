@@ -37,7 +37,7 @@
         </navigator>
       </view>
 
-      <view class="intheaters" wx:if="{{intheaters && intheaters.length}}">
+      <view class="intheaters" wx:if="{{intheaters === null || (intheaters && intheaters.length)}}">
         <navigator class="intheaters__header" hover-class="hover-opacity"
           url="/pages/pMovie/pages/intheaters/in_theaters"
         >
@@ -48,12 +48,19 @@
           lower-threshold="{{200}}"
           bindscrolltolower="loadMoreHot"
         >
-          <block wx:for="{{intheaters}}" wx:key="id">
-            <navigator class="movie-item" url="/pages/pMovie/pages/details/details?title={{item.title}}&id={{item.id}}">
+          <block wx:for="{{intheaters || ['','','','']}}" wx:key="id">
+            <navigator class="movie-item"
+              url="{{item && '/pages/pMovie/pages/details/details?title=' + item.title + '&id=' + item.id}}"
+            >
               <image class="movie-item__img" src="{{item.cover.url}}" mode="aspectFill" />
               <view class="movie-item__info">
-                <view class="movie-item__name">{{item.title}}</view>
-                <view class="movie-item__rate">{{item.rating.value > 0 ? item.rating.value + '分（豆瓣）' : '暂无评分'}}</view>
+                <block wx:if="{{item}}">
+                  <view class="movie-item__name">{{item.title}}</view>
+                  <view class="movie-item__rate">{{item.rating.value > 0 ? item.rating.value + '分（豆瓣）' : '暂无评分'}}</view>
+                </block>
+                <block wx:else>
+                  <view class="movie-item__name skeleton">  </view>
+                </block>
               </view>
             </navigator>
           </block>

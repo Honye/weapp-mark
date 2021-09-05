@@ -18,7 +18,7 @@ Page({
     banners: [],
     articles: [],
     nowDay: new Date().getDate(),
-    intheaters: [],
+    intheaters: null,
     movieStart: 0,
     movieHasMore: true,
     movieLoading: false

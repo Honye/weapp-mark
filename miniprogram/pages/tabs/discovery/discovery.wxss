@@ -142,6 +142,7 @@ page {
   height: 280rpx;
   border-radius: 8rpx;
   font-size: 0;
+  background-color: #eee;
 }
 
 .movie-item__info {
@@ -154,6 +155,12 @@ page {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.movie-item__name.skeleton {
+  width: 5em;
+  height: 1.4em;
+  border-radius: 4rpx;
+  background-color: #eee;
 }
 
 .movie-item__rate {
