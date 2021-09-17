@@ -1,3 +1,4 @@
+// @ts-check
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../../store/index';
 import {
@@ -16,8 +17,8 @@ Page({
   behaviors: [storeBindingsBehavior],
 
   data: {
-    /** @type {import('../../../../apis/douban.js').DouBan.MovieDetail} */
-    details: {},
+    id: '',
+    details: /** @type {import('../../../../apis/douban.js').DouBan.MovieDetail} */ ({}),
     directorList: [],
     actorList: [],
     trailers: [],  // 预告片 { url: string, image: string }
@@ -149,7 +150,7 @@ Page({
         cancelText: '再想想',
         success: async ({ confirm }) => {
           if (confirm) {
-            wx.showLoading();
+            wx.showLoading({ title: '' });
             const res = await unmarkMovie({ movieID: id, type: details.type });
             wx.hideLoading();
             this.setData({
@@ -161,7 +162,7 @@ Page({
       return;
     }
 
-    wx.showLoading();
+    wx.showLoading({ title: '' });
     let res;
     switch (action) {
       case 'mark':
@@ -260,7 +261,7 @@ Page({
   onShareAppMessage() {
     const { details } = this.data
     return {
-      title: details.title || details.titleCn,
+      title: details.title,
     }
   },
 

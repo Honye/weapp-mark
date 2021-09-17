@@ -192,7 +192,7 @@
             <view class="source-item__name">{{item.source.name}}</view>
           </view>
           <view class="flex align-center">
-            <view class="source-item__charge">{{item.free ? '免费' : '收费'}}观看</view>
+            <view wx:if="{{item.free}}" class="source-item__charge">免费观看</view>
             <i class="fa fa-angle-right" aria-hidden="true"></i>
           </view>
         </view>

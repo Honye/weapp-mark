@@ -135,10 +135,12 @@ declare namespace DouBan {
   }
 
   interface MovieDetail {
+    id: string;
     actors: Actor[];
     aka: string[];
     body_bg_color: string;
     card_subtitle: string;
+    comment_count: number;
     directors: Actor[];
     has_linewatch: boolean;
     interest?: Interest;
@@ -291,7 +293,7 @@ export const search: (params: {
 export const getDetail: (params: {
   /** 影视 ID */
   id: string;
-  type?: 'movie'|'tv' = 'movie';
+  type?: 'movie'|'tv';
 }) => Promise<DouBan.MovieDetail>
 
 /** 短评列表 */
@@ -300,7 +302,7 @@ export const getInterests: (params: {
   start: number;
   count: number;
   status?: 'done';
-  type?: 'movie'|'tv' = 'movie';
+  type?: 'movie'|'tv';
 }) => Promise<DouBan.InterestResult>
 
 /** 剧照 */
@@ -308,7 +310,7 @@ export const getPhotos: (params: {
   id: string;
   start: number;
   count: number;
-  type?: 'movie'|'tv' = 'movie';
+  type?: 'movie'|'tv';
 }) => Promise<DouBan.PhotosResult>
 
 /** 预告片列表 */
@@ -465,7 +467,7 @@ export const login: (params: {
 /** 标记影视为想看 */
 export const markMovie: (params: {
   movieID: string;
-  type?: 'movie'|'tv' = 'movie';
+  type?: DouBan.SubjectType;
   rating?: 1|2|3|4|5;
   sync_douban?: 0|1;
 }) => Promise<DouBan.Interest>
@@ -473,7 +475,7 @@ export const markMovie: (params: {
 /** 删除影视标记 */
 export const unmarkMovie: (params: {
   movieID: string;
-  type?: 'movie'|'tv' = 'movie';
+  type?: DouBan.SubjectType;
 }) => Promise<{
   comment: string;
   status: DouBan.InterestStatus;
@@ -483,7 +485,7 @@ export const unmarkMovie: (params: {
 /** 标记影视为已看 */
 export const doneMovie: (params: {
   movieID: string;
-  type?: 'movie'|'tv' = 'movie';
+  type?: 'movie'|'tv';
   rating?: 1|2|3|4|5;
   comment?: string;
   sync_douban?: 0|1;
@@ -492,7 +494,7 @@ export const doneMovie: (params: {
 /** 标记影视为已看 */
 export const doingMovie: (params: {
   movieID: string;
-  type?: 'movie'|'tv' = 'movie';
+  type?: DouBan.SubjectType;
   rating?: 1|2|3|4|5;
   comment?: string;
   sync_douban?: 0|1;
