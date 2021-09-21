@@ -230,15 +230,17 @@ Page({
     })
   },
 
-  /** 喜欢/取消喜欢 */
-  async onFavChange (e) {
-    const { checked } = e.detail;
-    let { cards, current } = this.data;
-    await wxCloud('favCard', {
-      id: cards[current]._id
-    });
-    cards[current].like_state = Number(!checked);
-    cards[current].like_count = checked ? --cards[current].like_count : ++cards[current].like_count;
+  /**
+   * 喜欢/取消喜欢
+   * @param {WechatMiniprogram.BaseEvent<,{ id: string }>} e
+   */
+  async favOrCancel (e) {
+    const { id } = e.currentTarget.dataset;
+    await wxCloud('favCard', { id });
+    const { cards, current } = this.data;
+    const checked = !cards[current].like_state;
+    cards[current].like_state = Number(checked);
+    cards[current].like_count = checked ? ++cards[current].like_count : --cards[current].like_count;
     this.setData({ cards });
   },
 
@@ -289,5 +291,5 @@ Page({
         }
       }
     })
-  }
+  },
 })

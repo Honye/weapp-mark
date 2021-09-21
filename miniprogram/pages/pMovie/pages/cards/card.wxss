@@ -39,8 +39,8 @@ swiper-item {
 }
 .card .card-img {
   display: block;
-  width: 100%;
-  height: 480rpx;
+  width: 100%; /** 750rpx * 0.9 */
+  height: 379.375rpx; /** 原图尺寸 1080 x 607，750rpx * 0.9 * (607 / 1080) */
   background-color: #f7f7f7;
 }
 .card .card-text {
@@ -99,6 +99,7 @@ swiper-item {
 }
 .card .card-footer .actions .text {
   margin-left: 8rpx;
+  min-width: 1em;
 }
 .card .card-footer .actions .actions-item {
   color: #999;

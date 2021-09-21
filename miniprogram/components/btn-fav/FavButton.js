@@ -1,8 +1,5 @@
-// components/btn-fav/FavButton.js
+// @ts-check
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
     height: {
       type: String,
@@ -18,28 +15,18 @@ Component({
     },
     iconNormal: {
       type: String,
-      // value: '/assets/images/daily_card_like_unchecked.png'
       value: '/assets/images/icon-unlike.png'
     },
     iconChecked: {
       type: String,
-      // value: '/assets/images/daily_card_like_checked.png'
       value: '/assets/images/icon-liked.png'
     },
   },
 
-  /**
-   * 组件的初始数据
-   */
-  data: {
-    
-  },
+  data: {},
 
-  /**
-   * 组件的方法列表
-   */
   methods: {
-    _onToggle: function(e) {
+    _onToggle (e) {
       const { checked } = this.data;
       this.triggerEvent('change', { checked })
     }

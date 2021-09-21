@@ -1,5 +1,4 @@
-<!--components/btn-fav/FavButton.wxml-->
-<view class='wrapper' catchtap='_onToggle' style='height:{{height}};width:{{width}}' >
+<view class='wrapper' bind:tap='_onToggle' style='height:{{height}};width:{{width}}'>
   <image class='icon-like' 
     hidden='{{checked}}'
     src='{{checked?iconChecked:iconNormal}}'

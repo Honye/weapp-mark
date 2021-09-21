@@ -32,8 +32,13 @@
               <open-data class='nickname' type='userNickName' />
             </view>
             <view class='flex-center-v actions'>
-              <view class='flex-center-v actions-item'>
-                <view style="font-size:18rpx;"><comp-btnFav checked='{{!!(cards[current].like_state)}}' bindchange='onFavChange' /></view>
+              <view class='flex-center-v actions-item'
+                data-id="{{cards[current]._id}}"
+                catchtap="favOrCancel"
+              >
+                <view style="font-size:18rpx;">
+                  <comp-btnFav checked='{{!!(cards[current].like_state)}}' />
+                </view>
                 <text class='text'>{{cards[current].like_count || 0}}</text>
               </view>
               <button class='button-nostyle flex-center-v actions-item'
