@@ -7,9 +7,9 @@ import {
   getPhotos,
   markMovie,
   unmarkMovie,
-  doingMovie
+  doingMovie,
+  getCelebrities,
 } from '../../../../apis/douban.js';
-import Cast from '../../../../models/Cast'
 import Comment from '../../../../models/Comment'
 import wxCloud from '../../../../utils/wxCloud';
 
@@ -21,6 +21,7 @@ Page({
     details: /** @type {import('../../../../apis/douban.js').DouBan.MovieDetail} */ ({}),
     directorList: [],
     actorList: [],
+    crewCount: 0,
     trailers: [],  // 预告片 { url: string, image: string }
     pubdates: '',
     comments_count: 0,
@@ -55,6 +56,7 @@ Page({
     })
 
     this.getDetails(options.id, options.type);
+    this.getCelebrities(options.id, options.type);
     this.getComments(options.id, options.type);
     this.getPhotos(options.id, options.type);
   },
@@ -71,8 +73,6 @@ Page({
 
     const res = await getDetail({ id, type });
     const casts = res.actors.map(item => item.name);
-    const directors = res.directors.map(item => Cast.fromDouban(JSON.stringify({ ...item, type: 'Director' })));
-    const actors = res.actors.map(item => Cast.fromDouban(JSON.stringify({ ...item, type: 'Actor' })));
     const trailers = res.trailer && [{
       image: res.trailer.cover_url,
       url: res.trailer.video_url
@@ -83,14 +83,26 @@ Page({
     });
     this.setData({
       details: res,
-      directorList: directors,
-      actorList: actors,
       casts: casts.join('/'),
       loaded: true,
       comments_count: res.comment_count,
       trailers
     });
     this.submitSearchPage();
+  },
+
+  /**
+   * 获取影人列表
+   * @param {string} id
+   * @param {'movie'|'tv'} [type = 'movie']
+   */
+  async getCelebrities (id, type = 'movie') {
+    const { directors, actors, total } = await getCelebrities({ id, type });
+    this.setData({
+      directorList: directors,
+      actorList: actors,
+      crewCount: total,
+    });
   },
 
   /**

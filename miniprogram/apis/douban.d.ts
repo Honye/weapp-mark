@@ -296,6 +296,17 @@ export const getDetail: (params: {
   type?: 'movie'|'tv';
 }) => Promise<DouBan.MovieDetail>
 
+/** 影人列表 */
+export const getCelebrities: (params: {
+  /** 影视 ID */
+  id: string;
+  type?: 'movie'|'tv';
+}) => Promise<{
+  actors: DouBan.Actor[];
+  directors: DouBan.Actor[];
+  total: number;
+}>;
+
 /** 短评列表 */
 export const getInterests: (params: {
   id: string;

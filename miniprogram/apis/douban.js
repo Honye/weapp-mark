@@ -70,6 +70,18 @@ export const getDetail = (params) => {
 };
 
 /**
+ * 影人列表
+ * @param {string} params.id
+ * @param {'movie'|'tv'} [params.type]
+ */
+export const getCelebrities = (params) => {
+  const { id, type = 'movie' } = params;
+  return request({
+    url: `/${type}/${id}/celebrities`
+  });
+};
+
+/**
  * 短评列表
  * @param {object} params
  * @param {string} params.id

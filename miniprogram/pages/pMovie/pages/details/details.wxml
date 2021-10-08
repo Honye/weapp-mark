@@ -116,7 +116,7 @@
         <block wx:for="{{actorList}}" wx:key="id">
           <template is='item-cast' data='{{item}}' />
         </block>
-        <template is='item-casts-all' />
+        <template is='item-casts-all' data="{{crewCount}}" />
       </scroll-view>
     </view>
     <!-- 预告及剧照 -->

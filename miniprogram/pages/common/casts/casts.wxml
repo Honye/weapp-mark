@@ -13,10 +13,10 @@
 <template name='item-cast'>
   <view class='casts-item'>
     <view class='item-container'>
-      <image class='avatar' src='{{item.avatar}}' />
+      <image class='avatar' src='{{item.avatar.large}}' />
       <view class='item-casts-name'>
         <text class='single-line'>{{item.name}}</text>
-        <text class='single-line'>{{item.type === "Director" ? "导演" : item.role ? "饰: " + item.role : ""}}</text>
+        <text class='single-line'>{{item.character}}</text>
       </view>
     </view>
   </view>
@@ -26,7 +26,7 @@
   <view class='casts-item'>
     <view class='item-all'>
       <text>全部</text>
-      <text>00人</text>
+      <text>{{crewCount || '00'}}人</text>
     </view>
   </view>
 </template>
