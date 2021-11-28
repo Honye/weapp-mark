@@ -17,6 +17,7 @@ const getFavCards = async (event, context) => {
         .aggregate()
         .match({
             openid: openId,
+            state: 1,
         })
         .lookup({
             from: 'cards',
