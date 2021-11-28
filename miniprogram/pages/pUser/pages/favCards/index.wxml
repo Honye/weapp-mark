@@ -2,7 +2,7 @@
 <import src='/pages/common/loading/loading' />
 
 <view class='container page-favcards'>
-  <block wx:for='{{cards}}' wx:key='id'>
+  <block wx:for='{{cards}}' wx:key='_id'>
     <view class='item-favcard'>
       <image class='favcard-img' src='{{item.image}}' mode='widthFix' />
       <text class='favcard-quote dLine'>{{item.quote}}</text>

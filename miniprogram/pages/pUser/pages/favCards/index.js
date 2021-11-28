@@ -1,23 +1,19 @@
 // liked cards
-import wxCloud from '../../../../utils/wxCloud'
+import wxCloud from '../../../../utils/wxCloud';
 
 Page({
 
-    data: {
-        cards: null,
-    },
+  data: {
+    cards: null,
+  },
 
-    /** lifecycle */
-    onLoad(options) {
-        this.getFavCards()
-    },
+  onLoad(options) {
+    this.getFavCards();
+  },
 
-    /** get the cards user liked */
-    getFavCards() {
-        wxCloud('getFavCards').then( res => {
-            this.setData({
-                cards: res.data,
-            })
-        })
-    },
-})
+  /** get the cards user liked */
+  async getFavCards() {
+    const res = await wxCloud('getFavCards');
+    this.setData({ cards: res.list || [] });
+  },
+});
