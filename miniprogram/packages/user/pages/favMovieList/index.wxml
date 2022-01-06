@@ -1,0 +1,28 @@
+<!-- 喜欢的影单 -->
+<import src='/pages/common/loading/loading' />
+
+<view class='container'>
+    <tabs tabs="{{tabs}}" bind:change="handleTabChange" bind:itemtap="handleTabItemTap" />
+    <view class='list-container' wx:for='{{list}}' wx:key='id'>
+        <navigator class="list-item" url='/packages/article/pages/details/detail?id={{item.id}}'>
+            <image class="list-item__img" src="{{item.image}}" mode="top" />
+            <view class="list-item__content">
+                <view class="list-item__name">{{item.title}}</view>
+                <view class="list-item__count">{{item.likeCount}}</view>
+                <view class="list-item__more">
+                    <view class="userinfo">
+                        <image class="userinfo__avatar" src="{{item.image}}" mode="aspectFill" />
+                        <text class="userinfo__name">猫猫不爱鱼</text>
+                    </view>
+                    <text class="list-item__date">2019.04.03创建</text>
+                </view>
+            </view>
+            <image class="list-item__action" src="/assets/images/icon-more.png" mode="aspectFit" catch:tap="showMoreAction" />
+        </navigator>
+    </view>
+    <!-- <template is='loading-none' wx:if='{{list && !list.length}}' /> -->
+    <view class='empty-view' wx:if='{{list && !list.length}}'>
+      <image src='/assets/images/bg-empty.png' mode='aspectFit' />
+      <view>你的网络被挟持了，快刷新一下拯救他啦~</view>
+    </view>
+</view>

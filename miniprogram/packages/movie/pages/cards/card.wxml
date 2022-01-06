@@ -1,0 +1,65 @@
+<!--pages/card/card.wxml-->
+<import src='/pages/common/share/share.wxml' />
+
+<template is='com-share' data='{{...$mark.share}}'/>
+
+<view class="container">
+<swiper
+  bindchange='onChange'>
+  <block wx:for='{{cards}}' wx:key='id'>
+    <swiper-item>
+      <navigator class='card {{current === index && "current"}}'
+        hover-class='none'
+        url='/packages/movie/pages/details/details?id={{cards[current].movieId}}'>
+        <view class='card-body'>
+          <image class='card-img'
+          src='{{item.image}}'
+          mode='widthFix'>
+          </image>
+          <view class='card-text'>
+            <text wx:if='{{item.quote}}'>{{item.quote}}\n\n</text>
+            <text wx:else class='place-text'></text>
+            <view class='source'>
+              <text  wx:if='{{item.source}}'>——{{item.source}}</text>
+              <text wx:else class='place-source'></text>
+            </view>
+          </view>
+          <view class='card-footer'>
+            <view class='flex-center-v'>
+              <view class="avatar-wrapper">
+                <view class='avatar'><open-data type='userAvatarUrl' /></view>
+              </view>
+              <open-data class='nickname' type='userNickName' />
+            </view>
+            <view class='flex-center-v actions'>
+              <view class='flex-center-v actions-item'
+                data-id="{{cards[current]._id}}"
+                catchtap="favOrCancel"
+              >
+                <view style="font-size:18rpx;">
+                  <comp-btnFav checked='{{!!(cards[current].like_state)}}' />
+                </view>
+                <text class='text'>{{cards[current].like_count || 0}}</text>
+              </view>
+              <button class='button-nostyle flex-center-v actions-item'
+                open-type="{{user.info.avatarUrl ? '' : 'getUserInfo'}}"
+                bindgetuserinfo="onUserInfo"
+                catchtap="handleShareTap"
+              >
+                <image class='icon' src='/assets/images/icon-share.png' mode='aspectFit' />
+              </button>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </swiper-item>
+  </block>
+</swiper>
+  <view class="share-card">
+    <painter class="share-card__canvas"
+      id="shareCanvas"
+      palette="{{painterData}}"
+      bind:imgOK="onPaintSuccess"
+    />
+  </view>
+</view>

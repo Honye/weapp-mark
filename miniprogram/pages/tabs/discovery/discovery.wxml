@@ -39,7 +39,7 @@
 
       <view class="intheaters" wx:if="{{intheaters === null || (intheaters && intheaters.length)}}">
         <navigator class="intheaters__header" hover-class="hover-opacity"
-          url="/pages/pMovie/pages/intheaters/in_theaters"
+          url="/packages/movie/pages/intheaters/in_theaters"
         >
           <view class="intheaters__header-title">豆瓣热门</view>
           <image class="intheaters__header-arrow" src="/assets/images/discovery/icon-arrow.png" mode="aspectFit" />
@@ -50,7 +50,7 @@
         >
           <block wx:for="{{intheaters || ['','','','']}}" wx:key="id">
             <navigator class="movie-item"
-              url="{{item && '/pages/pMovie/pages/details/details?title=' + item.title + '&id=' + item.id}}"
+              url="{{item && '/packages/movie/pages/details/details?title=' + item.title + '&id=' + item.id}}"
             >
               <image class="movie-item__img" src="{{item.cover.url}}" mode="aspectFill" />
               <view class="movie-item__info">
@@ -73,7 +73,7 @@
           <image class="intheaters__header-arrow" src="/assets/images/discovery/icon-arrow.png" mode="aspectFit" />
         </view>
         <navigator class="movielist-item" wx:for="{{articles}}" wx:key="id"
-          url="/pages/pArticle/pages/details/detail?id={{item.id}}"
+          url="/packages/article/pages/details/detail?id={{item.id}}"
         >
           <image class="movielist-item__img" src="{{item.image}}" mode="aspectFill" />
           <view class="movielist-item__info">

@@ -32,7 +32,7 @@ Page({
   handleUserTap (e) {
     if (store.user.info && store.user.info.nickName) {
       wx.navigateTo({
-        url: '/pages/pUser/pages/userinfo/userinfo'
+        url: '/packages/user/pages/userinfo/userinfo'
       });
     }
   },
@@ -52,13 +52,13 @@ Page({
   /** 去消息 */
   toNotifications () {
     wx.navigateTo({
-      url: '/pages/github/pages/notifications/notifications'
+      url: '/packages/github/pages/notifications/notifications'
     });
   },
 
   toGitMark () {
     wx.navigateTo({
-      url: '/pages/github/pages/home/home'
+      url: '/packages/github/pages/home/home'
     });
   },
 
@@ -88,24 +88,24 @@ Page({
   /** 我喜欢的影单 */
   toFavMovieList() {
     wx.navigateTo({
-      url: '/pages/pUser/pages/favMovieList/index',
+      url: '/packages/user/pages/favMovieList/index',
     })
   },
 
   /** 我喜欢的卡片 */
   toFavCards() {
     wx.navigateTo({
-      url: '/pages/pUser/pages/favCards/index',
+      url: '/packages/user/pages/favCards/index',
     })
   },
 
   /** 作出评价 */
   toEvalute () {
     wx.navigateTo({
-      url: '/pages/github/pages/trending/trending'
+      url: '/packages/github/pages/trending/trending'
     });
     // wx.navigateTo({
-    //   url: '/pages/pUser/pages/evaluate/evaluate',
+    //   url: '/packages/user/pages/evaluate/evaluate',
     // })
   },
 

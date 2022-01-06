@@ -1,0 +1,21 @@
+<wxs module="wxs" src="../../../../utils/utils.wxs" />
+<navigator class="component repo-item"
+  url="/packages/github/pages/repository/repository?owner={{repo.owner.login}}&repo={{repo.name}}&branch={{repo.default_branch}}"
+>
+  <view class="user">
+    <image class="avatar" src="{{repo.owner.avatar_url}}" mode="aspectFit" />
+    <view class="nickname">{{repo.owner.login}}</view>
+  </view>
+  <view class="repo-name">{{repo.name}}</view>
+  <view class="desc" wx:if="{{repo.description}}">{{repo.description}}</view>
+  <view class="info">
+    <view class="stars">
+      <text class="iconfont icon-star"></text>
+      <view class="stars__value">{{wxs.milliFormat(repo.stargazers_count)}}</view>
+    </view>
+    <view class="language" wx:if="{{repo.language}}">
+      <text class="iconfont icon-dot" style="color:{{colors[repo.language].color}}"></text>
+      <view class="language__value">{{repo.language}}</view>
+    </view>
+  </view>
+</navigator>

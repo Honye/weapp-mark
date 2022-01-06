@@ -29,7 +29,7 @@
           <view class='actions-item__name'>卡片</view>
         </view>
         <view class='actions-item btn-opacity'
-          data-url="/pages/github/pages/starred/starred"
+          data-url="/packages/github/pages/starred/starred"
           bindtap="navigate"
         >
           <image class='actions-item__icon' src='/assets/images/mine/icon-achievement.png' mode='aspectFit'></image>

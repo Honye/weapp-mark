@@ -91,7 +91,7 @@ Page({
         success: ({ confirm }) => {
           if (confirm) {
             wx.navigateTo({
-              url: '/pages/douban/pages/login/login'
+              url: '/packages/douban/pages/login/login'
             });
           }
         }
@@ -152,7 +152,7 @@ Page({
   bindViewTap(event) {
     const { id, title, type } = event.currentTarget.dataset;
     wx.navigateTo({
-      url: `/pages/pMovie/pages/details/details?title=${title}&id=${id}&type=${type}`,
+      url: `/packages/movie/pages/details/details?title=${title}&id=${id}&type=${type}`,
     })
   },
 

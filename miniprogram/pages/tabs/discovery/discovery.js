@@ -9,9 +9,9 @@ Page({
 
   data: {
     circles: [
-      { url: '/pages/pArticle/pages/categories/categories', image: '/assets/images/discovery/icon_classification.png', title: '分类查找' },
-      { url: '/pages/pMovie/pages/cards/card', image: '/assets/images/discovery/icon_daily.png', title: '每日电影卡片' },
-      { url: '/pages/pMovie/pages/intheaters/in_theaters', image: '/assets/images/discovery/icon_mood.png', title: '影院热映' },
+      { url: '/packages/article/pages/categories/categories', image: '/assets/images/discovery/icon_classification.png', title: '分类查找' },
+      { url: '/packages/movie/pages/cards/card', image: '/assets/images/discovery/icon_daily.png', title: '每日电影卡片' },
+      { url: '/packages/movie/pages/intheaters/in_theaters', image: '/assets/images/discovery/icon_mood.png', title: '影院热映' },
     ],
     cardCur: 0,
     swiperHide: false,

@@ -115,12 +115,12 @@ Page({
         break;
       case 'EXAMPLE':
         wx.navigateTo({
-          url: '/pages/example/index/index'
+          url: '/packages/example/pages/index/index'
         });
         break;
       case 'CLOUD':
         wx.navigateTo({
-          url: '/pages/cloud/pages/index/index'
+          url: '/packages/admin/pages/index/index'
         });
         break;
       default:

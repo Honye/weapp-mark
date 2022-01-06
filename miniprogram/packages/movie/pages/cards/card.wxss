@@ -1,0 +1,170 @@
+/* pages/card/card.wxss */
+@import '/pages/common/share/share';
+
+page {
+  background-color: #ffffff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+swiper {
+  flex: 1;
+}
+swiper-item {
+  display: flex;
+  flex-direction: column;
+  width: 90% !important;
+  left: 5%;
+  overflow: visible;
+}
+.card {
+  flex: 1;
+  margin: 80rpx 0 126rpx;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 3px 3px 3px #bbb;
+  background-color: #fff;
+  transform: scaleX(0.95) scaleY(0.9);
+  opacity: 0.8;
+  transition: all 0.2s ease-in 0s;
+  position: relative;
+}
+.card.current {
+  transform: none;
+  opacity: 1;
+}
+.card .card-body {
+  height: 100%;
+}
+.card .card-img {
+  display: block;
+  width: 100%; /** 750rpx * 0.9 */
+  height: 379.375rpx; /** 原图尺寸 1080 x 607，750rpx * 0.9 * (607 / 1080) */
+  background-color: #f7f7f7;
+}
+.card .card-text {
+  display: flex;
+  flex-direction: column;
+  padding: 24rpx;
+  font-size: 28rpx;
+}
+.card .card-text .place-text {
+  height: 3em;
+  background-color: #f7f7f7;
+}
+.card .source {
+  text-align: end;
+  min-height: 1em;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 28rpx;
+}
+.card .source .place-source{
+  width: 7em;
+  height: 1em;
+  background-color: #f7f7f7;
+  margin-top: 2em;
+}
+.card .card-footer {
+  position: absolute;
+  bottom: 30rpx;
+  left: 24rpx;
+  right: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card .card-footer .avatar-wrapper {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 30rpx;
+  margin-right: 12rpx;
+  overflow: hidden;
+}
+.card .card-footer .avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 60rpx;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+}
+.card .card-footer .nickname {
+  color: #999;
+  font-size: 22rpx;
+}
+.card .card-footer .actions .icon {
+  width: 36rpx;
+  height: 36rpx;
+}
+.card .card-footer .actions .text {
+  margin-left: 8rpx;
+  min-width: 1em;
+}
+.card .card-footer .actions .actions-item {
+  color: #999;
+  font-size: 26rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+  margin: -20rpx;
+}
+.card .card-footer .actions .actions-item:not(:first-child) {
+  box-sizing: border-box;
+  padding: 30rpx;
+  margin: -30rpx;
+  margin-left: 30rpx;
+}
+
+.action {
+  padding: 30rpx 60rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.action .look {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #e5e6e7;
+  height: 2em;
+  border-radius: 1em;
+  padding: 0 1em;
+}
+.action .icon {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+}
+.action .action-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.action .count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #818c91;
+}
+.action .count:not(:first-child) {
+  margin-left: 50rpx;
+}
+.action .icon-big {
+  width: 2em;
+  height: 2em;
+}
+
+.share-card {
+  position: absolute;
+  top: 80rpx;
+  left: 50%;
+  width: 675rpx;
+  transform: translate3d(-50%,0,0);
+}
+
+.share-card__canvas {
+  position: fixed;
+  top: -9999rpx;
+}
