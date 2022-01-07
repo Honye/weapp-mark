@@ -1,7 +1,7 @@
 // 每日卡片
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../../store/index';
-import { $markShare } from '../../../../pages/common/index';
+import { $markShare } from '../../../../templates/index';
 import wxCloud from '../../../../utils/wxCloud';
 
 Page({

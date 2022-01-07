@@ -1,4 +1,4 @@
-@import '/pages/common/actionsheet/actionsheet';
+@import '/templates/actionsheet/actionsheet';
 
 .page-userinfo .top {
   margin-top: 1em;

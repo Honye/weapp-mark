@@ -1,5 +1,5 @@
 // pages/marked/marked.js
-const WxParse = require('./../common/wxParse/wxParse.js');
+const WxParse = require('../../templates/wxParse/wxParse.js');
 
 Page({
 

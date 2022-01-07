@@ -1,5 +1,5 @@
 <!--pages/search/search.wxml-->
-<import src='./../common/movie/movieRow' />
+<import src='/templates/movie/movieRow' />
 
 <view class='container page-search'>
   <view>

@@ -1,5 +1,5 @@
 <!-- the cards I liked -->
-<import src='/pages/common/loading/loading' />
+<import src='/templates/loading/loading' />
 
 <view class='container page-favcards'>
   <block wx:for='{{cards}}' wx:key='_id'>

@@ -1,5 +1,5 @@
 // pages/userinfo/userinfo.js
-import { $wuxActionSheet } from '../../../../pages/common/index';
+import { $wuxActionSheet } from '../../../../templates/index';
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../../store/index';
 import wxCloud from '../../../../utils/wxCloud';

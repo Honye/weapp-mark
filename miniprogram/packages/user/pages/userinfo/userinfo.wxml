@@ -1,5 +1,5 @@
 <!--pages/userinfo/userinfo.wxml-->
-<import src='/pages/common/actionsheet/actionsheet' />
+<import src='/templates/actionsheet/actionsheet' />
 
 <template is='temp-actionsheet' data='{{...$wux.actionSheet}}' />
 

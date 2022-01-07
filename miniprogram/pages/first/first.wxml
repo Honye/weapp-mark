@@ -1,5 +1,5 @@
 <!-- 尝试 -->
-<import src='./../common/rating/rating' />
+<import src='/templates/rating/rating' />
 <wxs src='../../utils/WxUtil.wxs' module='wxUtil' />
 
 <view class='container page-first'>

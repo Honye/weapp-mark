@@ -1,5 +1,5 @@
 /* pages/marked/marked.wxss */
-@import './../common/wxParse/wxParse';
+@import '/templates/wxParse/wxParse';
 
 .container.page-marked {
   height: 100vh;

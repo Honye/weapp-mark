@@ -1,4 +1,4 @@
-@import '/pages/common/movie/movieRow';
+@import '/templates/movie/movieRow';
 
 page {
   background-color: #fff;

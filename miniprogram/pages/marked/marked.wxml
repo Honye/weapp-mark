@@ -1,5 +1,5 @@
 <!--pages/marked/marked.wxml-->
-<import src='./../common/wxParse/wxParse' />
+<import src='/templates/wxParse/wxParse' />
 
 <view class='container page-marked'>
   <view class='nav-bar'>

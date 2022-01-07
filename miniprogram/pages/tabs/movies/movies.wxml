@@ -1,7 +1,7 @@
 <!--电影列表-->
-<import src='/pages/common/movie/movieRow' />
-<import src='/pages/common/loading/loading' />
-<import src='/pages/common/dropmenu/dropmenu' />
+<import src='/templates/movie/movieRow' />
+<import src='/templates/loading/loading' />
+<import src='/templates/dropmenu/dropmenu' />
 
 <template is='temp-dropmenu' data='{{...$mark.dropMenu}}' />
 <view class='container page-movie'>

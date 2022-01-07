@@ -1,6 +1,6 @@
 /* pages/movies/movies.wxss */
-@import '/pages/common/movie/movieRow';
-@import '/pages/common/dropmenu/dropmenu';
+@import '/templates/movie/movieRow';
+@import '/templates/dropmenu/dropmenu';
 
 .page-movie {
   padding-top: 74rpx;

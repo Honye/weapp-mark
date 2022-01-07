@@ -1,6 +1,6 @@
 /* pages/movies/movieDetails.wxss */
-@import '/pages/common/rating/rating';
-@import '/pages/common/casts/casts';
+@import '/templates/rating/rating';
+@import '/templates/casts/casts';
 
 image {
   width: 100%;

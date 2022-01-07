@@ -1,4 +1,4 @@
-<import src='/pages/common/loading/loading' />
+<import src='/templates/loading/loading' />
 
 <view class="container">
   <view class="search-bar">

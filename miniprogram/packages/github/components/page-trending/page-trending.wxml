@@ -1,4 +1,4 @@
-<import src='/pages/common/loading/loading' />
+<import src='/templates/loading/loading' />
 
 <scroll-view class="page" scroll-y enable-back-to-top bindscroll="onPageScroll">
   <view>

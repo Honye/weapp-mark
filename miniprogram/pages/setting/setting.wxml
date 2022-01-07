@@ -1,5 +1,5 @@
 <!--pages/setting/setting.wxml-->
-<import src='../common/cell/cell' />
+<import src='/templates/cell/cell' />
 
 <view class='subtitle'>
   <text>消息设置</text>

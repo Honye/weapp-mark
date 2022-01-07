@@ -1,5 +1,5 @@
 /**index.wxss**/
-@import '/pages/common/cell/cell';
+@import '/templates/cell/cell';
 
 page {
   background: #fff;

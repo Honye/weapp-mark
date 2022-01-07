@@ -1,5 +1,5 @@
 /* pages/article/detail.wxss */
-@import '/pages/common/share/share';
+@import '/templates/share/share';
 
 page {
   height: 100%;

@@ -1,7 +1,7 @@
 // pages/movies/movies.js
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../store/index';
-import { $markDropmenu } from '../../common/index.js';
+import { $markDropmenu } from '../../../templates/index.js';
 import { getUserInterests } from '../../../apis/douban.js';
 
 var app = getApp();

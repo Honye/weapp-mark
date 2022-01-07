@@ -1,5 +1,5 @@
 /* pages/search/search.wxss */
-@import '../common/movie/movieRow';
+@import '/templates/movie/movieRow';
 
 page,
 .page-search {

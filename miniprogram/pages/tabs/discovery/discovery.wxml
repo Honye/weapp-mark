@@ -1,5 +1,5 @@
 <!--发现-->
-<import src="/pages/common/circle/circle.wxml"/>
+<import src="/templates/circle/circle.wxml"/>
 
 <view class='container page-discovery'>
   <navigator url='/pages/search/search' hover-class='none'>

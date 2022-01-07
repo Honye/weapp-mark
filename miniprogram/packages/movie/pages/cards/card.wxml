@@ -1,5 +1,5 @@
 <!--pages/card/card.wxml-->
-<import src='/pages/common/share/share.wxml' />
+<import src='/templates/share/share.wxml' />
 
 <template is='com-share' data='{{...$mark.share}}'/>
 

@@ -1,5 +1,5 @@
 /* pages/first/first.wxss */
-@import './../common/rating/rating.wxss';
+@import '/templates/rating/rating.wxss';
 
 .page-first {
   padding: 20rpx;

@@ -1,6 +1,6 @@
 <!--pages/article/detail.wxml 影单详情-->
-<import src="/pages/common/wxParse/wxParse.wxml"/>
-<import src='/pages/common/share/share.wxml' />
+<import src="/templates/wxParse/wxParse.wxml"/>
+<import src='/templates/share/share.wxml' />
 
 <template is='com-share' data='{{...$mark.share}}'/>
 

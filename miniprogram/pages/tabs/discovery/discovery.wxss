@@ -1,6 +1,6 @@
 /* pages/discovery/discovery.wxss */
-@import "/pages/common/circle/circle.wxss";
-@import '/pages/common/bing/bing.wxss';
+@import "/templates/circle/circle.wxss";
+@import '/templates/bing/bing.wxss';
 
 page {
   height: 100%;

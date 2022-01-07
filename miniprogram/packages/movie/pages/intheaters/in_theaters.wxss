@@ -1,6 +1,6 @@
 /* pages/intheaters/in_theaters.wxss */
-@import '/pages/common/rating/rating';
-@import '/pages/common/movie/movieRow';
+@import '/templates/rating/rating';
+@import '/templates/movie/movieRow';
 
 page {
   height: 100%;

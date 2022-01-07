@@ -1,6 +1,6 @@
 <!--pages/movies/movieDetails.wxml-->
-<import src='/pages/common/rating/rating' />
-<import src='/pages/common/casts/casts' />
+<import src='/templates/rating/rating' />
+<import src='/templates/casts/casts' />
 <wxs src='../../../../utils/WxUtil.wxs' module='WxUtil' />
 <wxs src="./details.wxs" module="wxs" />
 

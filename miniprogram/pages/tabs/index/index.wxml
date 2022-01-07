@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<import src='/pages/common/cell/cell' />
+<import src='/templates/cell/cell' />
 
 <view class="container page-user">
   <view class='page-header'>

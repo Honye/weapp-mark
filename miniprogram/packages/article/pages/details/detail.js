@@ -1,7 +1,7 @@
 // 文章详情
 import { Honye } from '../../../../utils/apis'
-import WxParse from '../../../../pages/common/wxParse/wxParse'
-import { $markShare } from '../../../../pages/common/index'
+import WxParse from '../../../../templates/wxParse/wxParse'
+import { $markShare } from '../../../../templates/index'
 import wxCloud from '../../../../utils/wxCloud'
 
 Page({

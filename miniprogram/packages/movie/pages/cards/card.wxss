@@ -1,5 +1,5 @@
 /* pages/card/card.wxss */
-@import '/pages/common/share/share';
+@import '/templates/share/share';
 
 page {
   background-color: #ffffff;

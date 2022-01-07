@@ -1,4 +1,4 @@
-<import src="/pages/common/movie/movieRow" />
+<import src="/templates/movie/movieRow" />
 <view class="container">
   <image class="bg-blur" src="{{info.cover}}" mode="top" />
   <view class="info">
