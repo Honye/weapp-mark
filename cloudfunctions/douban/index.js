@@ -42,13 +42,17 @@ exports.main = async (event, context) => {
  * - 用于定时任务
  */
 const storeTodayItem = async () => {
+  // 云函数默认时区为 UTC+0
+  const date = new Date();
+  const utcTime = date.getTime() + date.getTimezoneOffset() * 60000;
+  const now = new Date(utcTime + 8 * 60 * 60 * 1000);
   const res = await request({
     headers: {
       'User-Agent': 'api-client/0.1.3 com.douban.frodo/6.50.0'
     },
     path: '/calendar/today',
     data: {
-      date: (new Date()).toISOString().substring(0, 10),
+      date: now.toISOString().substring(0, 10),
       alt: 'json',
       _sig: 'tuOyn+2uZDBFGAFBLklc2GkuQk4=',
       _ts: 1610703479,
