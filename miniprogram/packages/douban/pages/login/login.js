@@ -38,15 +38,15 @@ Page({
      */
     const { value } = e.detail
     const { captchaData, captcha } = this.data
+    const params = {
+      name: value.username,
+      password: value.password,
+    }
+    if (captchaData) {
+      params.captcha_id = captchaData.captcha_id
+      params.captcha_solution = captcha
+    }
     try {
-      const params = {
-        name: value.username,
-        password: value.password,
-      }
-      if (captchaData) {
-        params.captcha_id = captchaData.captcha_id
-        params.captcha_solution = captcha
-      }
       const res = await login(params)
       const { access_token, refresh_token, account_info } = res.payload
       this.updateDouban({
@@ -65,7 +65,7 @@ Page({
         title: e.description,
       })
       this.setData({
-        captchaData: e.payload,
+        captchaData: e.message === 'captcha_required' ? e.payload : '',
       })
     }
   }

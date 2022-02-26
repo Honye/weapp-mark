@@ -226,6 +226,10 @@ export const login = (params) => {
         console.log(`[request.login<${statusCode}>]: `, data);
         if (statusCode >= 200 && statusCode < 300 ) {
           if (data.message === 'captcha_required') {
+            // 需要验证码
+            reject(data);
+          } else if (data.message === 'unmatch_name_password') {
+            // 用户名或密码错误
             reject(data);
           } else {
             wxCloud('douban', {
