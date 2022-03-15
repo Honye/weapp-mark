@@ -1,4 +1,3 @@
-// pages/trailers/trailers.js
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../../store/index';
 import { getTrailers } from '../../../../apis/douban.js';
@@ -8,6 +7,7 @@ Page({
 
   data: {
     currUrl: '',
+    trailerId: '',
     trailers: []
   },
 
@@ -16,44 +16,46 @@ Page({
     fields: ['app']
   },
 
-  onLoad (options) {
+  /**
+   * @param {object} options
+   * @param {string} options.trailer 预告片 ID
+   */
+  async onLoad (options) {
     wx.setNavigationBarTitle({
       title: '中国预告片（中文字幕）',
-    })
-    const {id, resource} = options;
-    this.setData({ currUrl: resource })
-    this.getDetails(id);
+    });
+    const { id, resource, trailer } = options;
+    this.setData({
+      currUrl: resource,
+      trailerId: trailer,
+    });
+
+    const { trailers } = await getTrailers({ id });
+    this.setData({ trailers });
+    const activedTrailer = (trailers || []).find(item => String(item.id) === String(trailer));
+    if (activedTrailer) {
+      wx.setNavigationBarTitle({
+        title: activedTrailer.title,
+      });
+    }
   },
 
   onShareAppMessage () {
     // nothing
   },
 
-  /**
-   * 获取影视详情
-   */
-  async getDetails (id) {
-    wx.showLoading({
-      title: 'loading...',
-    });
-    const res = await getTrailers({ id });
-    wx.hideLoading();
-    this.setData({
-      trailers: res.trailers,
-      loaded: true
-    });
-  },
-
-  /**
-   * 改变当前预告
-   */
+  /** 改变当前预告 */
   changeTrailer (e) {
     const { trailers } = this.data;
-    const {index, url} = e.currentTarget.dataset;
-    this.setData({ currUrl: url })
+    const { index } = e.currentTarget.dataset;
+    const trailer = trailers[index];
+    this.setData({
+      currUrl: trailer.video_url,
+      trailerId: trailer.id,
+    });
     wx.setNavigationBarTitle({
-      title: trailers[index].title,
-    })
+      title: trailer.title,
+    });
   },
 
   /**

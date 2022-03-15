@@ -132,7 +132,7 @@
       </navigator>
       <scroll-view scroll-x>
         <navigator class="trailer" wx:if="{{app.hasPublished && trailers && trailers.length}}"
-          url="../trailers/trailers?id={{id}}&resource={{trailers[0].url}}"
+          url="../trailers/trailers?id={{id}}&resource={{trailers[0].url}}&trailer={{trailers[0].id}}"
         >
           <image class="image" src="{{trailers[0].image}}" />
           <view class="front">

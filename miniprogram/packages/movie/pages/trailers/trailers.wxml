@@ -1,4 +1,3 @@
-<!--pages/trailers/trailers.wxml-->
 <view class='container page-trailers'>
   <video class="video"
     wx:if="{{app.hasPublished}}"
@@ -9,8 +8,11 @@
   />
   <scroll-view class="trailer-list" scroll-y>
     <block wx:for='{{trailers}}' wx:key='id'>
-      <view class='trailer button {{currUrl===item.video_url ? "active" : ""}}' bindtap='changeTrailer'
-        data-index='{{index}}' data-url='{{item.video_url}}'>
+      <view
+        class="trailer button {{trailerId === item.id ? 'active' : ''}}"
+        data-index="{{index}}"
+        bindtap="changeTrailer"
+      >
         <image class="image" src='{{item.cover_url}}' mode="aspectFill" />
         <view class='title'>{{item.title}}</view>
       </view>
