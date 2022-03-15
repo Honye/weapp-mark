@@ -34,3 +34,9 @@
 <view class="music-dish" bind:tap="audioToggle">
   <image class="music-cover {{playing && 'active'}}" src="{{music.cover}}" mode="aspectFill" />
 </view>
+
+<view class="ad-container">
+  <view class="ad-wrapper">
+    <ad unit-id="adunit-e4aa5a1a9c05d2ee"></ad>
+  </view>
+</view>

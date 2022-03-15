@@ -1,4 +1,3 @@
-/* pages/about/about.wxss */
 .self-honye .banner {
   margin: 20rpx;
   box-sizing: border-box;
@@ -78,4 +77,15 @@
 }
 .music-cover.active {
   animation-play-state: running;
+}
+
+.ad-container {
+  margin-bottom: 10rpx;
+  margin-bottom: max(env(safe-area-inset-bottom), 10rpx);
+  margin-bottom: max(constant(safe-area-inset-bottom), 10rpx);
+}
+.ad-wrapper {
+  margin: 0 20rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
 }

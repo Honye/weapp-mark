@@ -1,6 +1,12 @@
 <!--pages/trailers/trailers.wxml-->
 <view class='container page-trailers'>
-  <video class="video" wx:if="{{app.hasPublished}}" autoplay src="{{currUrl}}" bindended='videoEnded' />
+  <video class="video"
+    wx:if="{{app.hasPublished}}"
+    autoplay
+    src="{{currUrl}}"
+    bindended='videoEnded'
+    ad-unit-id="adunit-dadacb30174d719e"
+  />
   <scroll-view class="trailer-list" scroll-y>
     <block wx:for='{{trailers}}' wx:key='id'>
       <view class='trailer button {{currUrl===item.video_url ? "active" : ""}}' bindtap='changeTrailer'
