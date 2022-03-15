@@ -1,4 +1,3 @@
-// pages/userinfo/userinfo.js
 import { $wuxActionSheet } from '../../../../templates/index';
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../../store/index';
@@ -40,13 +39,22 @@ Page({
     $wuxActionSheet.show({
       theme: 'wx',
       buttons: [
-        { key: 'sync', text: '同步微信头像', openType: 'getUserInfo' },
+        { key: 'sync', text: '使用微信头像和昵称' },
         { text: '从相册中选取' },
       ],
       buttonClicked: (index, item) => {
         switch (item.key) {
           case 'sync':
-            break;
+            wx.getUserProfile({
+              desc: '仅个人信息显示和卡片分享',
+              success: async (res) => {
+                const { data } = await wxCloud('login', {
+                  wxUserInfo: wx.cloud.CloudID(res.cloudID),
+                });
+                store['user/updateUserInfo'](data);
+              },
+            });
+            return true;
           default:
             wx.chooseImage({
               count: 1,

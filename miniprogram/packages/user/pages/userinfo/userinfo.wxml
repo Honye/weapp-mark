@@ -16,7 +16,6 @@
       <text>昵称</text>
       <view>
         <text>{{info.nickName}}</text>
-        <image class='icon' src='/assets/images/right_arrow.png' mode='widthFix' />
       </view>
     </view>
   </view>
