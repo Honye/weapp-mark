@@ -75,3 +75,5 @@ sync_hook.script
 
 **/miniprogram_npm
 project.private.config.json
+private.key
+private.*.key

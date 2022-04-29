@@ -1,0 +1,39 @@
+# 构建并上传到小程序后台
+
+name: Upload to weixin
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push but only for the main branch
+  push:
+    branches:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Create file "private.key"
+        env:
+          WX_PRIVATE_KEY: ${{ secrets.WX_PRIVATE_KEY }}
+        run: |
+          echo "$WX_PRIVATE_KEY" > private.key
+
+      - name: Install dependencies
+        run: |
+          npm install -g yarn
+          yarn install
+
+      - name: Upload to weixin
+        run: |
+          node scripts/release.js

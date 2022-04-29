@@ -8,12 +8,15 @@
     "es6": true,
     "enhance": true,
     "postcss": true,
+    "preloadBackgroundData": false,
     "minified": true,
     "newFeature": true,
     "coverView": true,
+    "nodeModules": true,
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
     "scopeDataCheck": false,
+    "uglifyFileName": false,
     "checkInvalidKey": true,
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
@@ -26,10 +29,7 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "bundle": false,
-    "useIsolateContext": true,
-    "useCompilerModule": true,
-    "userConfirmedUseCompilerModuleSwitch": false,
+    "useIsolateContext": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": true,
     "packNpmRelationList": [
@@ -39,7 +39,11 @@
       }
     ],
     "minifyWXSS": true,
-    "nodeModules": true
+    "disableUseStrict": false,
+    "minifyWXML": true,
+    "showES6CompileOption": false,
+    "useCompilerPlugins": false,
+    "ignoreUploadUnusedFiles": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.10.4",
@@ -65,36 +69,7 @@
       "list": []
     },
     "miniprogram": {
-      "list": [
-        {
-          "id": 3,
-          "name": "豆瓣详情",
-          "pathName": "pages/pMovie/pages/details/details",
-          "query": "title=罗小黑战记&id=26709258",
-          "scene": null
-        },
-        {
-          "id": 6,
-          "name": "时光详情",
-          "pathName": "pages/pMovie/pages/details/details",
-          "query": "title=&id=259358&origin=mtime",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "影单详情",
-          "pathName": "pages/pArticle/pages/movie-list-detail/movie-list-detail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "测试",
-          "pathName": "pages/test/test",
-          "query": "",
-          "scene": null
-        }
-      ]
+      "list": []
     }
   }
 }
