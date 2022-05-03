@@ -92,6 +92,7 @@
       "root": "packages/douban/",
       "pages": [
         "pages/login/login",
+        "pages/login-phone/login-phone",
         "pages/collection/collection"
       ]
     },

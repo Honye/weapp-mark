@@ -1,0 +1,28 @@
+<view class="container">
+  <form class="form" bindsubmit="submit">
+    <view class="title">短信登录/注册</view>
+    <view class="input-list">
+      <input class="form-item input" placeholder="手机号"
+        name="phone"
+        type="number"
+        model:value="{{phone}}"
+      />
+      <view class="form-item flex align-center">
+        <input class="flex-1 input" placeholder="验证码"
+          name="code"
+          type="number"
+          model:value="{{code}}"
+        />
+        <button class="button-nostyle btn-code" bind:tap="handlePhoneConfirm">获取验证码</button>
+      </view>
+      <label class="form-item flex align-center" wx:if="{{captchaData}}">
+        <input class="flex-1 input" placeholder="图形验证码"
+          name="captcha"
+          model:value="{{captcha}}"
+        />
+        <image class="captcha__code" src="{{captchaData.captcha_image_url}}" mode="heightFix" />
+      </label>
+    </view>
+    <button class="btn-submit btn-opacity" form-type="submit" disabled="{{!(phone && code)}}">登录</button>
+  </form>
+</view>

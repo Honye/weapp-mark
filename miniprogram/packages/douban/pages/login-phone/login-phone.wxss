@@ -1,0 +1,58 @@
+page {
+  background-color: #fff;
+}
+
+.form {
+  padding-top: 80rpx;
+}
+
+.title {
+  font-size: 50rpx;
+  font-weight: bold;
+  text-align: center;
+}
+
+.input-list {
+  margin: 30rpx;
+  margin-top: 60rpx;
+  border: 1px solid #eee;
+  border-radius: 8rpx;
+}
+.form-item:not(:first-child) {
+  border-top: 1px solid #eee;
+}
+
+.input {
+  padding: 20rpx;
+}
+.input:not(:first-child) {
+  border-top: 1px solid #eee;
+}
+
+.btn-code {
+  padding: 10rpx 20rpx 10rpx 10rpx;
+  color: #39b344;
+}
+
+.captcha__code {
+  flex-shrink: 0;
+  width: 220rpx;
+  align-self: stretch;
+}
+
+.btn-submit {
+  margin: 30rpx;
+  margin-top: 80rpx;
+  background-color: #39b344;
+  color: #fff;
+  border: none;
+  border-radius: 8rpx;
+}
+.btn-submit::after {
+  content: none;
+}
+.btn-submit[disabled]:not([type]) {
+  background-color: #39b344;
+  color: #fff;
+  opacity: 0.5;
+}

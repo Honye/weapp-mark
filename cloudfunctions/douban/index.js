@@ -1,5 +1,6 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk');
+const fetch = require('node-fetch');
 
 cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV
@@ -23,6 +24,10 @@ exports.main = async (event, context) => {
       break;
     case 'login':
       return login(event.payload);
+    case 'fetch': {
+      const { url, ...payload } = event.payload;
+      return fetch(url, payload).then((resp) => resp.json());
+    }
     default:
   }
 

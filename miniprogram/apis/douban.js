@@ -10,14 +10,15 @@ const AppID = 'wx2f9b06c1de1ccfca';
 
 /**
  * 
- * @param {WechatMiniprogram.RequestOption} params 
+ * @param {WechatMiniprogram.RequestOption & { baseURL?: string }} params 
  */
 const request = (params) => {
   const accessToken = store.douban.accessToken;
 
   return new Promise((resolve, reject) => {
+    const { baseURL = BASE_URL } = params;
     wx.request({
-      url: `${BASE_URL}${params.url}`,
+      url: `${baseURL}${params.url}`,
       header: Object.assign(
         {},
         accessToken && { Authorization: `Bearer ${accessToken}` },
@@ -254,6 +255,70 @@ export const login = (params) => {
     });
   });
 }
+
+/**
+ * 获取手机验证码
+ * @param {object} params
+ * @param {string} [params.area_code]
+ * @param {number} params.number
+ */
+export const getCaptcha = (params) => {
+  params = {
+    appid: AppID,
+    area_code: '+86',
+    ...params,
+  }
+  const formData = [];
+  for (const k in params) {
+    formData.push(`${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
+  }
+  return wxCloud('douban', {
+    action: 'fetch',
+    payload: {
+      url: 'https://accounts.douban.com/j/wxa/login/request_phone_code',
+      method: 'POST',
+      headers: {
+        Referer: `https://servicewechat.com/${AppID}/84/page-frame.html`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: formData.join('&'),
+    },
+  })
+}
+
+/**
+ * 验证验证码
+ * @param {object} params
+ * @param {string} params.number
+ * @param {string} params.code
+ * @returns {Promise<Douban.LoginSuccessResult>}
+ */
+export const verifyCaptcha = (params) => {
+  params = {
+    area_code: '+86',
+    appid: AppID,
+    ...params,
+  };
+
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: 'https://accounts.douban.com/j/wxa/login/verify_phone_code',
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+      data: params,
+      success: ({ statusCode, data }) => {
+        if (statusCode >= 200 & statusCode < 300 && data.status === 'success') {
+          resolve(data.payload);
+        } else {
+          reject(data);
+        }
+      },
+      fail: (err) => reject(err),
+    });
+  });
+};
 
 /**
  * 标记影视为想看

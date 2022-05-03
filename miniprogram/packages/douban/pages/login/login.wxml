@@ -20,4 +20,5 @@
     </view>
     <button class="btn-submit btn-opacity" form-type="submit" disabled="{{!(username && password)}}">登录</button>
   </form>
+  <navigator url="../login-phone/login-phone">验证码登录</navigator>
 </view>
