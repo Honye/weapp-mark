@@ -1,6 +1,6 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../../../store/index'
-import { login } from '../../../../apis/douban.js'
+import { login } from '../../../../apis/douban/accounts';
 
 Page({
   behaviors: [storeBindingsBehavior],
