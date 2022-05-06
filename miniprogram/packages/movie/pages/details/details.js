@@ -18,18 +18,23 @@ Page({
 
   data: {
     id: '',
-    details: /** @type {import('../../../../apis/douban.js').DouBan.MovieDetail} */ ({}),
+    details: /** @type {DouBan.MovieDetail} */ ({}),
+    /** @type {DouBan.Actor[]} */
     directorList: [],
+    /** @type {DouBan.Actor[]} */
     actorList: [],
     crewCount: 0,
-    trailers: [],  // 预告片 { url: string, image: string }
+    /** @type {{ image: string; url: string }[]} */
+    trailers: [],  // 预告片
     pubdates: '',
     comments_count: 0,
+    /** @type {Comment[]} */
     comments: [],
-    /** @type {import('../../../../apis/douban.js').DouBan.Photo[]} */
+    /** @type {DouBan.Photo[]} */
     photos: [],
     loaded: false,
     isFold: true,
+    /** @type {{ id: number; title: string; cover: string; count: number; }[]} */
     movielistList: []
   },
 
@@ -107,6 +112,7 @@ Page({
 
   /**
    * 获取影视短评
+   * @param {string} id
    * @param {'movie'|'tv'} [type = 'movie']
    */
   async getComments (id, type = 'movie') {
@@ -132,7 +138,7 @@ Page({
       return;
     }
 
-    /** @type {{ action: import('../../../../apis/douban.js').DouBan.InterestStatus }} */
+    /** @type {{ action: DouBan.InterestStatus }} */
     const { action } = e.currentTarget.dataset;
     const { id, details } = this.data;
 
@@ -212,6 +218,8 @@ Page({
    */
   foldToggle() {
     const {isFold} = this.data;
+    if (!isFold) return;
+
     this.setData({
       isFold: !isFold
     })
@@ -262,7 +270,7 @@ Page({
   },
 
   /** 加入影单 */
-  addToMovieList(e) {
+  addToMovieList() {
     wx.showToast({
       icon: 'none',
       title: '成功加入影单',
@@ -290,7 +298,7 @@ Page({
     });
   },
 
-  handleOnlineTap (e) {
+  handleOnlineTap () {
     this.selectComponent('#onlineSource').show();
   },
 

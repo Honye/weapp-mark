@@ -97,8 +97,10 @@
     <!-- 剧情简介 -->
     <view class='block brief-summary'>
       <text class='subtitle'>{{details.title}}的剧情简介\n</text>
-      <text class='summary {{isFold && "isFold"}}'>{{details.intro}}</text>
-      <view wx:if='{{isFold}}' class='fold {{!isFold && "active"}}' bindtap='foldToggle'>展开</view>
+      <view bind:tap="foldToggle">
+        <text class='summary {{isFold && "isFold"}}'>{{details.intro}}</text>
+        <view wx:if='{{isFold}}' class='fold {{!isFold && "active"}}'>展开</view>
+      </view>
     </view>
     <!-- 影人 -->
     <view class='block casts'>
