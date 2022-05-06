@@ -1,21 +1,54 @@
 /**
  * @file 豆瓣 API
  */
+import { request as baseRequest } from '../utils/request';
 import wxCloud from '../utils/wxCloud';
 import { store } from '../store/index';
 
 const BASE_URL = 'https://frodo.douban.com/api/v2'; // 来自豆瓣小程序
 
 /**
- * 
- * @param {WechatMiniprogram.RequestOption & { baseURL?: string }} params 
+ * @template T
+ * @param {RequestOption<T>} params
+ * @returns {Promise<T>}
  */
 const request = (params) => {
   const accessToken = store.douban.accessToken;
+  const { header, data, ...rest } = {
+    baseURL: BASE_URL,
+    ...params,
+  };
 
-  return new Promise((resolve, reject) => {
-    const { baseURL = BASE_URL } = params;
-    wx.request({
+  return baseRequest({
+    header: {
+      ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+      ...header,
+    },
+    data: {
+      apikey: '054022eaeae0b00e0fc068c0c0a2102a',
+      ...data,
+    },
+    ...rest,
+  })
+    .then((resp) => {
+      if (resp.ok) {
+        return resp.data;
+      } else {
+        return Promise.reject(resp.data);
+      }
+    });
+};
+
+/**
+ * 使用云函数代理请求
+ * @param {WechatMiniprogram.RequestOption & { baseURL?: string }} params
+ */
+const request1 = (params) => {
+  const accessToken = store.douban.accessToken;
+  const { baseURL = BASE_URL } = params;
+  return wxCloud('douban', {
+    action: 'api.proxy',
+    payload: {
       url: `${baseURL}${params.url}`,
       header: Object.assign(
         {},
@@ -25,28 +58,18 @@ const request = (params) => {
       data: {
         apikey: '054022eaeae0b00e0fc068c0c0a2102a',
         ...(params.data || {})
-      },
-      success: ({ statusCode, data }) => {
-        if (statusCode >= 200 && statusCode < 300 ) {
-          resolve(data)
-        } else {
-          reject({
-            ...data,
-            message: data.message || data.msg || '服务器开小差了',
-          })
-        }
-      },
-      fail: err => reject(err)
-    })
+      }
+    }
   });
 };
 
 /**
  * 搜索
  * @param {object} params
- * @param {string} params.q
- * @param {number} params.start
- * @param {number} params.count
+ * @param {string} params.q 关键字
+ * @param {number} params.start 起始位置
+ * @param {number} params.count 查询数量
+ * @returns {Promise<DouBan.SearchResult>}
  */
 export const search = (params) => {
   return request({
@@ -60,6 +83,7 @@ export const search = (params) => {
  * @param {object} params
  * @param {string} params.id
  * @param {'movie'|'tv'} [params.type]
+ * @returns {Promise<DouBan.MovieDetail>}
  */
 export const getDetail = (params) => {
   const { id, type = 'movie' } = params;
@@ -70,8 +94,14 @@ export const getDetail = (params) => {
 
 /**
  * 影人列表
+ * @param {object} params
  * @param {string} params.id
  * @param {'movie'|'tv'} [params.type]
+ * @returns {Promise<{
+ *   actors: DouBan.Actor[];
+ *   directors: DouBan.Actor[];
+ *   total: number;
+ * }>}
  */
 export const getCelebrities = (params) => {
   const { id, type = 'movie' } = params;
@@ -88,6 +118,7 @@ export const getCelebrities = (params) => {
  * @param {number} params.count
  * @param {'done'} [params.status]
  * @param {'movie'|'tv'} [params.type = 'movie']
+ * @returns {Promise<DouBan.InterestResult>}
  */
 export const getInterests = (params) => {
   const { id, type = 'movie', ...data } = params;
@@ -104,6 +135,7 @@ export const getInterests = (params) => {
  * @param {number} params.start
  * @param {number} params.count
  * @param {'movie'|'tv'} [params.type = 'movie']
+ * @returns {Promise<DouBan.PhotosResult>}
  */
 export const getPhotos = (params) => {
   const { id, type = 'movie', ...data } = params;
@@ -117,6 +149,7 @@ export const getPhotos = (params) => {
  * 预告片列表
  * @param {object} params
  * @param {string} params.id
+ * @returns {Promise<DouBan.TrailersResult>}
  */
 export const getTrailers = (params) => {
   return request({
@@ -129,6 +162,12 @@ export const getTrailers = (params) => {
  * @param {object} params
  * @param {number} [params.start]
  * @param {number} [params.count]
+ * @returns {Promise<{
+ *   count: number;
+ *   subject_collection_items: DouBan.MovieItem[];
+ *   total: number;
+ *   start: number;
+ * }>}
  */
 export const getHotMovies = (params) => {
   return request({
@@ -143,7 +182,7 @@ export const getHotMovies = (params) => {
  * @param {string} params.type
  * @param {number} [params.start]
  * @param {number} [params.count]
- * @returns 
+ * @returns {Promise<Douban.SubjectCollectionItemsResult>}
  */
 export const getCollectionList = (params) => {
   const { type, ...data } = params;
@@ -158,6 +197,7 @@ export const getCollectionList = (params) => {
  * @param {object} params 
  * @param {number} [params.start]
  * @param {number} [params.count]
+ * @returns {Promise<Douban.SubjectCollectionShowingItemsResult>}
  */
 export const getShowingMovies = (params) => {
   return request({
@@ -171,6 +211,7 @@ export const getShowingMovies = (params) => {
  * @param {object} params
  * @param {number} [params.start]
  * @param {number} [params.count]
+ * @returns {Promise<Douban.SubjectCollectionSoonItemsResult>}
  */
 export const getSoonMovies = (params) => {
   return request({
@@ -187,7 +228,7 @@ export const getSoonMovies = (params) => {
  * @param {'doing'} params.status
  * @param {number} [params.start]
  * @param {number} [params.count]
- * @returns 
+ * @returns {Promise<Douban.UserInterestsResult>}
  */
 export const getUserInterests = (userID, params) => {
   return request({
@@ -200,9 +241,10 @@ export const getUserInterests = (userID, params) => {
  * 标记影视为想看
  * @param {object} params
  * @param {string} params.movieID
- * @param {'movie'|'tv'} [params.type = 'movie']
+ * @param {DouBan.SubjectType} [params.type = 'movie']
  * @param {number} [params.rating]
  * @param {0|1} [params.sync_douban]
+ * @returns {Promise<DouBan.Interest>}
  */
 export const markMovie = (params) => {
   const { movieID, type = 'movie', ...rest } = params;
@@ -217,7 +259,12 @@ export const markMovie = (params) => {
  * 删除影视标记
  * @param {object} params
  * @param {string} params.movieID
- * @param {'movie'|'tv'} [params.type = 'movie']
+ * @param {DouBan.SubjectType} [params.type = 'movie']
+ * @returns {Promise<{
+ *   comment: string;
+ *   status: DouBan.InterestStatus;
+ *   id: string;
+ * }>}
  */
 export const unmarkMovie = (params) => {
   return request({
@@ -233,6 +280,7 @@ export const unmarkMovie = (params) => {
  * @param {number} [params.rating]
  * @param {string} [params.comment]
  * @param {0|1} [params.sync_douban]
+ * @returns {Promise<DouBan.Interest>}
  */
 export const doneMovie = (params) => {
   const { movieID, type = 'movie', ...rest } = params;
@@ -253,10 +301,11 @@ export const doneMovie = (params) => {
  * 标记影视为已看
  * @param {object} params
  * @param {string} params.movieID
- * @param {'movie'|'tv'} [params.type = 'movie']
+ * @param {DouBan.SubjectType} [params.type = 'movie']
  * @param {number} [params.rating]
  * @param {string} [params.comment]
  * @param {0|1} [params.sync_douban]
+ * @returns {Promise<DouBan.Interest>}
  */
  export const doingMovie = (params) => {
   const { movieID, type = 'movie', ...rest } = params;
