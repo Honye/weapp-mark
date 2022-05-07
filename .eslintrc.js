@@ -11,7 +11,7 @@ module.exports = {
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly",
-    "wx": "readonly",
+    "wx": "writable",
     "App": "readonly",
     "Page": "readonly",
     "Component": "readonly",
@@ -54,6 +54,23 @@ module.exports = {
       "rules": {
         "@typescript-eslint/no-var-requires": "off"
       }
-    }
+    },
+    {
+      "files": ["*.js"],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    },
+    {
+      files: ['./scripts/**/*.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
+    {
+      files: ['**/*.spec.{js,mjs}'],
+      env: { jest: true },
+    },
   ]
 };

@@ -21,7 +21,7 @@
     "resolveJsonModule": true,
     "noEmit": true,
     "downlevelIteration": true,
-    "typeRoots": ["./@types", "node_modules/@types"],
-    "types": ["miniprogram-api-typings"]
+    "typeRoots": ["./@types", "./node_modules/@types"],
+    "types": ["miniprogram-api-typings", "jest"]
   }
 }

@@ -1,9 +1,14 @@
 {
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+  },
   "devDependencies": {
+    "@types/jest": "^27.5.0",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
+    "jest": "^28.1.0",
     "miniprogram-api-typings": "^3.4.4",
     "miniprogram-ci": "^1.8.18",
     "typescript": "^4.4.3"
@@ -12,6 +17,7 @@
   "version": "1.1.6",
   "description": "iMark mark anything!",
   "main": "index.js",
+  "type": "module",
   "repository": "https://github.com/Honye/weapp-mark.git",
   "author": "Honye <hongye.jun@qq.com>",
   "license": "MIT",

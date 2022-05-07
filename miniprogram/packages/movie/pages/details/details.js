@@ -12,6 +12,7 @@ import {
 } from '../../../../apis/douban.js';
 import Comment from '../../../../models/Comment'
 import wxCloud from '../../../../utils/wxCloud';
+import { emitter, events } from '../../../../utils/events';
 
 Page({
   behaviors: [storeBindingsBehavior],
@@ -152,6 +153,7 @@ Page({
               'details.interest.rating': rating,
               'details.interest.create_time': create_time
             });
+            emitter.emit(events.TAB_MOVIES_UPDATE, { status });
           }
         }
       });
@@ -174,6 +176,7 @@ Page({
             this.setData({
               'details.interest.status': res.status
             });
+            emitter.emit(events.TAB_MOVIES_UPDATE, { status: res.status });
           }
         }
       });
@@ -195,6 +198,7 @@ Page({
     this.setData({
       'details.interest.status': res.status
     });
+    emitter.emit(events.TAB_MOVIES_UPDATE, { status: res.status });
   },
 
   /**

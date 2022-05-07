@@ -1,8 +1,8 @@
-// pages/movies/movies.js
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../store/index';
 import { $markDropmenu } from '../../../templates/index.js';
 import { getUserInterests } from '../../../apis/douban.js';
+import { emitter, events } from '../../../utils/events';
 
 var app = getApp();
 let pageNo = 0;
@@ -52,15 +52,20 @@ Page({
       sortId: app.globalData.setting.wantSee ? app.globalData.setting.wantSee.sort : 'addTime'
     })
     this.showDoubanTip();
+    emitter.on(events.TAB_MOVIES_UPDATE, this.getMovies);
   },
 
-  onShow () {
+  onShow() {
     this.selectComponent('#tabBar').setData({ selected: 1 });
   },
 
   /** 页面隐藏 */
   onHide(options) {
     this.dropMenu && this.dropMenu();
+  },
+
+  onUnload() {
+    emitter.off(events.TAB_MOVIES_UPDATE, this.getMovies);
   },
 
   /** 页面相关事件处理函数--监听用户下拉动作 */
