@@ -36,4 +36,4 @@ jobs:
 
       - name: Upload to weixin
         run: |
-          node scripts/release.js
+          node scripts/release.cjs
