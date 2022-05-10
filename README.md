@@ -9,7 +9,7 @@
 
 纯属娱乐学习项目，偶尔记录下开发中遇到的问题和想法，不定期更新，如果你有什么建议也请告诉我（[issues](https://github.com/Honye/weapp-mark/issues)）。项目中自己有封装一些组件，可在项目结构查看。
 
-~~影视数据全部由[豆瓣](https://developers.douban.com/) API 提供。~~ 目前豆瓣搜索接口已经没有免费的可以使用了，由豆瓣提供的数据可能不能正常使用了，项目提供了 mock 数据可使用。小程序个人开发功能限制太多，无法完全上线。如若喜欢可以克隆项目自己运行看看。
+~~影视数据全部由[豆瓣](https://developers.douban.com/) API 提供。~~ 目前豆瓣搜索接口已经没有免费的可以使用了，本人提供的接口部署在 Vercel，未备案不可添加到微信后台，项目同时提供了 mock 数据可使用。小程序个人开发功能限制太多，无法完全上线。如若喜欢可以克隆项目自己运行看看。
 
 ## 💥 扫码体验
 
@@ -72,6 +72,8 @@ wx.cloud.init({
 });
 ```
 
+*注意：真机预览开发环境时需打开调试*
+
 #### Mock API
 
 参考官方文档 [API Mock/规则导入导出](https://developers.weixin.qq.com/miniprogram/dev/devtools/api-mock.html)，导入 [mock/mock.config.json](./mock/mock.config.json)。**开发工具提供的 Mock 能力暂不支持手机预览**
@@ -127,6 +129,10 @@ wx.cloud.init({
 ├── app.json
 └── app.wxss
 ```
+
+## 痛点
+
+- 小程序不支持全局组件，需每个页面都引入组件。如自定义全局提示框
 
 ## 🔗 参考 Reference
 
