@@ -5,7 +5,7 @@ import { request as baseRequest } from '../utils/request';
 import wxCloud from '../utils/wxCloud';
 import { store } from '../store/index';
 
-const BASE_URL = 'https://frodo.douban.com/api/v2'; // 来自豆瓣小程序
+const BASE_URL = 'https://imarkr-server.vercel.app/douban';
 
 /**
  * @template T
