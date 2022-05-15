@@ -13,7 +13,7 @@
 <template name='item-cast'>
   <view class='casts-item'>
     <view class='item-container'>
-      <image class='avatar' src='{{item.avatar.large}}' mode="heightFix" />
+      <image class='avatar' src='{{item.avatar.large}}' mode="aspectFill" />
       <view class='item-casts-name'>
         <text class='single-line'>{{item.name}}</text>
         <text class='single-line'>{{item.character}}</text>
