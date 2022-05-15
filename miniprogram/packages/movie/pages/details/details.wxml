@@ -122,7 +122,7 @@
       </scroll-view>
     </view>
     <!-- 预告及剧照 -->
-    <view class='block photos'>
+    <view class='block photos' wx:if="{{trailers.length || photos.length}}">
       <navigator class='subtitle' hover-class="btn-opacity"
         url="../photos/photos?id={{id}}&title={{details.title}}&type={{details.type}}"
       >
