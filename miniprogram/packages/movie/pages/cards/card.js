@@ -23,8 +23,16 @@ Page({
     }
   },
 
-  onLoad (options) {
-    this.getCards();
+  /**
+   * @param {object} options
+   * @param {string} [options._id]
+   */
+  onLoad(options) {
+    if (options._id) {
+      this.getCard(options._id);
+    } else {
+      this.getCards();
+    }
   },
 
   /**
@@ -76,6 +84,11 @@ Page({
     this.setData({
       cards: res.list || []
     });
+  },
+
+  async getCard(_id) {
+    const res = await wxCloud('getCard', { _id });
+    this.setData({ cards: [res] });
   },
 
   /** 用户点击右上角分享 */

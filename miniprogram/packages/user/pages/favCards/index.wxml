@@ -3,11 +3,11 @@
 
 <view class='container page-favcards'>
   <block wx:for='{{cards}}' wx:key='_id'>
-    <view class='item-favcard'>
+    <navigator class='item-favcard' url="{{'/packages/movie/pages/cards/card?_id='+item._id}}">
       <image class='favcard-img' src='{{item.image}}' mode='widthFix' />
       <text class='favcard-quote dLine'>{{item.quote}}</text>
       <text class='favcard-source'>--{{item.source}}</text>
-    </view>
+    </navigator>
   </block>
   <template is='loading-none' wx:if='{{cards && !cards.length}}' />
 </view>
