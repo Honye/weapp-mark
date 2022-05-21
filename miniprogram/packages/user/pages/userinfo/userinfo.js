@@ -90,9 +90,7 @@ Page({
         this.handleGitHubSwitch(value);
         break;
       case 'douban':
-        wx.navigateTo({
-          url: '/packages/douban/pages/login/login'
-        });
+        this.handleDoubanSwitch(value);
         break;
     }
   },
@@ -177,5 +175,30 @@ Page({
         'thirdAuthor.github.authorized': false
       });
     }
-  }
+  },
+
+  async handleDoubanSwitch(checked) {
+    if (checked) {
+      wx.navigateTo({
+        url: '/packages/douban/pages/login/login',
+      });
+      return;
+    }
+
+    const { confirm } = await wx.showModal({
+      title: '提示',
+      content: '确定要退出豆瓣登录吗？（已经和微信关联的数据并不会丢失）',
+      cancelText: '再想想',
+      confirmText: '决定了',
+      confirmColor: '#ffe200',
+    });
+    if (confirm) {
+      await wxCloud('douban', { action: 'logout' });
+      store['douban/logout']();
+      return;
+    }
+    this.setData({
+      'thirdAuthor.douban.authorized': this.data.thirdAuthor.douban.authorized,
+    });
+  },
 })

@@ -1,21 +1,21 @@
 export default {
   accessToken: '',
   refreshToken: '',
-  /**
-   * @type {{
-   * name: string;
-   * weixin_binded: boolean;
-   * phone: string;
-   * avatar: { medium: string; median: string; large: string; raw: string; small: string; icon: string; };
-   * id: string;
-   * uid: string;
-   * }|null}
-   */
+  /** @type {Douban.AccountInfo | null} */
   user: null,
   
   update (data = {}) {
     for (const key in data) {
       this[key] = data[key];
     }
-  }
+  },
+
+  /**
+   * // FIXME async 函数时更新存在问题，视图先更新，状态后变化
+   */
+  logout() {
+    this.accessToken = '';
+    this.refreshToken = '';
+    this.user = null;
+  },
 }

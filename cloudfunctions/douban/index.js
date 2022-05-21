@@ -11,7 +11,7 @@ const db = cloud.database();
 /**
  * 云函数入口函数
  * @param {object} event
- * @param {'cron'} [event.action]
+ * @param {'cron'|'api.proxy'|'login'|'logout'|'fetch'} [event.action]
  * @param {object} [event.payload]
  */ 
 exports.main = async (event, context) => {
@@ -24,6 +24,8 @@ exports.main = async (event, context) => {
       break;
     case 'login':
       return login(event.payload);
+    case 'logout':
+      return logout();
     case 'fetch': {
       const { url, ...payload } = event.payload;
       return fetch(url, payload).then((resp) => resp.json());
@@ -107,11 +109,33 @@ const login = async (params) => {
       },
       update_at: db.serverDate()
     };
-    return await userCollection.doc(user._id)
-      .update({
-        data: updateData
+    const { _id, ...profile } = user;
+    return await userCollection.doc(_id)
+      .set({
+        data: { ...profile, ...updateData },
       });
   }
   throw new Error(`user openid=${wxContext.OPENID} not found`);
+}
+
+const logout = async () => {
+  const wxContext = cloud.getWXContext();
+  const usersCollection = db.collection('users');
+  const user = await usersCollection
+    .where({ openid: wxContext.OPENID })
+    .limit(1)
+    .get()
+    .then(({ data }) => data[0]);
+  
+  if (user) {
+    return usersCollection.doc(user._id)
+      .update({
+        data: { douban: null },
+        update_at: db.serverDate(),
+      });
+  }
+
+  throw new Error(`user openid=${wxContext.OPENID} not found`);
+};
 }
 
