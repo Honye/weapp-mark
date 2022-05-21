@@ -1,6 +1,7 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../../../store/index'
 import { login } from '../../../../apis/douban/accounts';
+import { emitter, events } from '../../../../utils/events';
 
 Page({
   behaviors: [storeBindingsBehavior],
@@ -54,6 +55,7 @@ Page({
         refreshToken: refresh_token,
         user: account_info,
       })
+      emitter.emit(events.LOGIN_SUCCESS);
       wx.showToast({
         icon: 'none',
         title: '登录成功',

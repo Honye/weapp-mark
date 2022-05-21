@@ -7,19 +7,14 @@ import { emitter, events } from '../../../utils/events';
 var app = getApp();
 let pageNo = 0;
 const pageSize = 18;
+
 Page({
   behaviors: [storeBindingsBehavior],
 
   scrollTop: 0,
 
-  /** 页面的初始数据 */
   data: {
-    /**
-     * @type {Array<{
-     *   key: import('../../../apis/douban.js').DouBan.InterestStatus;
-     *   title: string;
-     * }>}
-     */
+    /** @type {Array<{ key: DouBan.InterestStatus; title: string; }>} */
     tabs: [
       { key: 'mark', title: '想看' },
       { key: 'done', title: '已看' },
@@ -44,7 +39,6 @@ Page({
     }
   },
 
-  /** 生命周期函数--监听页面加载 */
   onLoad(options) {
     this.getMovies()
     this.setData({
@@ -52,6 +46,7 @@ Page({
       sortId: app.globalData.setting.wantSee ? app.globalData.setting.wantSee.sort : 'addTime'
     })
     this.showDoubanTip();
+    emitter.on(events.LOGIN_SUCCESS, this.getMovies);
     emitter.on(events.TAB_MOVIES_UPDATE, this.getMovies);
   },
 
@@ -66,6 +61,7 @@ Page({
 
   onUnload() {
     emitter.off(events.TAB_MOVIES_UPDATE, this.getMovies);
+    emitter.off(events.LOGIN_SUCCESS, this.getMovies);
   },
 
   /** 页面相关事件处理函数--监听用户下拉动作 */
@@ -111,8 +107,7 @@ Page({
     });
   },
 
-  /** 正在上映的电影 */
-  async getMovies () {
+  async getMovies() {
     const { tabs, currentNav, linewatchCount } = this.data;
     wx.showNavigationBarLoading();
     const res = await getUserInterests(
