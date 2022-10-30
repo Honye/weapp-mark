@@ -147,6 +147,6 @@ const getStarredList = async (params) => {
  */
 const getHomePage = async (params) => {
   return request({
-    url: `https://imark.vercel.app/api/github/${params.user}`
+    url: `https://www.imarkr.com/api/github/${params.user}`
   }).then((resp) => resp.json());
 };
