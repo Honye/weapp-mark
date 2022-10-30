@@ -16,7 +16,6 @@ Page({
     cardCur: 0,
     swiperHide: false,
     banners: [],
-    articles: [],
     nowDay: new Date().getDate(),
     intheaters: null,
     movieStart: 0,
@@ -56,7 +55,6 @@ Page({
   getData () {
     this.getBanners();
     this.getHotMovies();
-    this.getArticles();
   },
 
   /** 获取轮播数据 */
@@ -89,15 +87,6 @@ Page({
     if (!movieLoading && movieHasMore) {
       this.getHotMovies();
     }
-  },
-
-  /** 文章数据 */
-  getArticles () {
-    db.collection('articles').get().then(({ data }) => {
-        this.setData({
-            articles: data
-        })
-    });
   },
 
   onBannerTap(event) {
