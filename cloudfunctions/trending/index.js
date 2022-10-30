@@ -38,7 +38,7 @@ const usedInVercel = async () => {
 };
 
 const fetchTrendingList = async (params) => {
-  let url = 'https://honyex.vercel.app/api/trending';
+  let url = 'https://www.imarkr.com/api/trending';
   if (params) {
     const query = qs.stringify(params);
     if (query) {
