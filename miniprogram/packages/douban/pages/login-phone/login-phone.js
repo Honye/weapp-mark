@@ -33,11 +33,11 @@ Page({
           this.setData({
             captchaData: err.payload,
           });
-          wx.showToast({
-            icon: 'none',
-            title: err.description,
-          });
         }
+        wx.showToast({
+          icon: 'none',
+          title: err.description,
+        });
         return Promise.reject(err);
       });
     wx.showToast({
@@ -48,19 +48,29 @@ Page({
 
   async submit (e) {
     const { value } = e.detail;
-    
-      const params = {
-        number: value.phone,
-        code: value.code,
-      };
-      const res = await verifyCaptcha(params)
-        .catch((err) => {
-          wx.showToast({
-            icon: 'none',
-            title: err.description,
+    const params = {
+      number: value.phone,
+      code: value.code,
+    };
+    const { captchaData, captcha } = this.data;
+    if (captchaData) {
+      params.captcha_id = captchaData.captcha_id;
+      params.captcha_solution = captcha;
+    }
+
+    const res = await verifyCaptcha(params)
+      .catch((err) => {
+        if (err.message === 'captcha_required') {
+          this.setData({
+            captchaData: err.payload,
           });
-          return Promise.reject(err);
+        }
+        wx.showToast({
+          icon: 'none',
+          title: err.description,
         });
+        return Promise.reject(err);
+      });
       const { access_token, refresh_token, account_info } = res;
       this.updateDouban({
         accessToken: access_token,
