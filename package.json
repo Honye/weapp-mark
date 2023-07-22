@@ -24,5 +24,6 @@
   "dependencies": {
     "mobx-miniprogram": "^4.13.2",
     "mobx-miniprogram-bindings": "^1.2.1"
-  }
+  },
+  "packageManager": "pnpm@7.9.0"
 }
