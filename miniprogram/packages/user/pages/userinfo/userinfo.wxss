@@ -40,6 +40,9 @@
   width: 45%;
   height: 45%;
 }
+.nickname {
+  text-align: right;
+}
 .icon {
   width: .5em;
   height: .5em;

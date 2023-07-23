@@ -35,51 +35,23 @@ Page({
     }
   },
 
-  showActionSheet () {
-    $wuxActionSheet.show({
-      theme: 'wx',
-      buttons: [
-        { key: 'sync', text: '使用微信头像和昵称' },
-        { text: '从相册中选取' },
-      ],
-      buttonClicked: (index, item) => {
-        switch (item.key) {
-          case 'sync':
-            wx.getUserProfile({
-              desc: '仅个人信息显示和卡片分享',
-              success: async (res) => {
-                const { data } = await wxCloud('login', {
-                  wxUserInfo: wx.cloud.CloudID(res.cloudID),
-                });
-                store['user/updateUserInfo'](data);
-              },
-            });
-            return true;
-          default:
-            wx.chooseImage({
-              count: 1,
-              sourceType: index===0 ? ['camera'] : ['album'],
-              success: (res) => {
-                const { userInfo } = this.data;
-                this.setData({
-                  userInfo: { ...userInfo, avatarUrl: res.tempFilePaths[0] }
-                })
-              },
-            })
-        }
-        return true;
+  async onChooseAvatar(e) {
+    const { data } = await wxCloud('login', {
+      wxUserInfo: {
+        data: e.detail
       },
-      bindGetOpenInfo: async (e, index, item) => {
-        if (item.key === 'sync' && e.detail.cloudID) {
-          const { cloudID } = e.detail;
-          const { data } = await wxCloud('login', {
-            wxUserInfo: wx.cloud.CloudID(cloudID)
-          });
-          store['user/updateUserInfo'](data);
-          return true;
-        }
+    });
+    store['user/updateUserInfo'](data);
+  },
+
+  async onNicknameConfirm(e) {
+    const { value } = e.detail;
+    const { data } = await wxCloud('login', {
+      wxUserInfo: {
+        data: { nickName: value }
       }
-    })
+    });
+    store['user/updateUserInfo'](data);
   },
 
   handleThirdSwitch (e) {

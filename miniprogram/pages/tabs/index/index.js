@@ -16,7 +16,6 @@ Page({
     }
   },
 
-
   onShow () {
     this.selectComponent('#tabBar').setData({ selected: 2 });
   },
@@ -35,18 +34,6 @@ Page({
         url: '/packages/user/pages/userinfo/userinfo'
       });
     }
-  },
-
-  async handleUserInfo (e) {
-    if (store.user.info && store.user.info.nickName) {
-      return;
-    }
-
-    const { cloudID } = e.detail;
-    const { data } = await wxCloud('login', {
-      wxUserInfo: wx.cloud.CloudID(cloudID)
-    });
-    store['user/updateUserInfo'](data);
   },
 
   /** 去消息 */

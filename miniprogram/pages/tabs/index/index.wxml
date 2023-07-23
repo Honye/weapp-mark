@@ -5,11 +5,7 @@
   <view class='page-header'>
     <view class='bg'></view>
     <view class="userinfo">
-      <button class="button-nostyle cell-left"
-        open-type="{{user.info && user.info.nickName ? '' : 'getUserInfo'}}"
-        bindgetuserinfo="handleUserInfo"
-        bindtap="handleUserTap"
-      >
+      <button class="button-nostyle cell-left" bindtap="handleUserTap">
         <view class="userinfo-avatar btn-opacity">
           <image class="img" wx:if="{{user.info && user.info.avatarUrl}}" src="{{user.info.avatarUrl}}" mode="aspectFill" />
           <open-data wx:else type='userAvatarUrl' />
