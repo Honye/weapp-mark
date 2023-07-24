@@ -1,11 +1,14 @@
 // discovery
 // import wxCloud from '../../../utils/wxCloud';
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
+import { store } from '../../../store/index';
 import * as GitHubApis from '../../../apis/github';
 import { getHotMovies } from '../../../apis/douban.js';
 
 const db = wx.cloud.database();
 
 Page({
+  behaviors: [storeBindingsBehavior],
 
   data: {
     circles: [
@@ -21,6 +24,11 @@ Page({
     movieStart: 0,
     movieHasMore: true,
     movieLoading: false
+  },
+
+  storeBindings: {
+    store,
+    fields: ['app']
   },
 
   onLoad (options) {
@@ -39,7 +47,9 @@ Page({
   },
 
   onShow () {
-    this.selectComponent('#tabBar').setData({ selected: 0 });
+    try {
+      this.selectComponent('#tabBar').setData({ selected: 0 });
+    } catch (e) {}
   },
 
   handleSwitchTab (e) {

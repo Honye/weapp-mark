@@ -45,7 +45,7 @@ Page({
 
   toGitMark () {
     wx.navigateTo({
-      url: '/packages/github/pages/home/home'
+      url: '/packages/wallpaper/pages/categories/categories'
     });
   },
 

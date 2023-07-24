@@ -2,71 +2,74 @@
 <import src="/templates/circle/circle.wxml"/>
 
 <view class='container page-discovery'>
-  <navigator url='/pages/search/search' hover-class='none'>
-    <view class='search-bar'>
-      <view class='search-radius btn-opacity'>
-        <image class='icon' src='/assets/images/icon-search.png' mode='aspectFit' />
-        <text>搜索</text>
+  <block wx:if='{{app.hasPublished}}'>
+    <navigator url='/pages/search/search' hover-class='none'>
+      <view class='search-bar'>
+        <view class='search-radius btn-opacity'>
+          <image class='icon' src='/assets/images/icon-search.png' mode='aspectFit' />
+          <text>搜索</text>
+        </view>
       </view>
+    </navigator>
+    <view class='content'>
+      <scroll-view scroll-y enable-back-to-top>
+        <swiper class='banner card-swiper'
+          indicator-dots
+          autoplay
+          indicator-active-color="#fff"
+          circular
+          bindtransition="hideSwiperBg"
+          bindanimationfinish="showSwiperBg"
+          bindchange="cardSwiper">
+          <swiper-item wx:for="{{banners}}" wx:key="id" class="{{cardCur==index?'cur':''}}">
+            <view class='swiper-item'>
+              <image data-index='{{index}}' src="{{item.image}}" class="slide-image"  bindtap='onBannerTap'/>
+            </view>
+          </swiper-item>
+        </swiper>
+  
+        <view class="kind-container">
+          <navigator wx:for='{{circles}}' wx:key='index' class='item-container' hover-class='hover-bg'
+            url='{{item.url}}'
+          >
+            <template is="circle" 
+              data="{{ imgUrl: item.image, title: item.title }}"
+            />
+          </navigator>
+        </view>
+  
+        <view class="intheaters" wx:if="{{intheaters === null || (intheaters && intheaters.length)}}">
+          <navigator class="intheaters__header" hover-class="hover-opacity"
+            url="/packages/movie/pages/intheaters/in_theaters"
+          >
+            <view class="intheaters__header-title">豆瓣热门</view>
+            <image class="intheaters__header-arrow" src="/assets/images/discovery/icon-arrow.png" mode="aspectFit" />
+          </navigator>
+          <scroll-view class="intheaters__movies" scroll-x
+            lower-threshold="{{200}}"
+            bindscrolltolower="loadMoreHot"
+          >
+            <block wx:for="{{intheaters || ['','','','']}}" wx:key="id">
+              <navigator class="movie-item"
+                url="{{item && '/packages/movie/pages/details/details?title=' + item.title + '&id=' + item.id}}"
+              >
+                <image class="movie-item__img" src="{{item.cover.url}}" mode="aspectFill" />
+                <view class="movie-item__info">
+                  <block wx:if="{{item}}">
+                    <view class="movie-item__name">{{item.title}}</view>
+                    <view class="movie-item__rate">{{item.rating.value > 0 ? item.rating.value + '分（豆瓣）' : '暂无评分'}}</view>
+                  </block>
+                  <block wx:else>
+                    <view class="movie-item__name skeleton">  </view>
+                  </block>
+                </view>
+              </navigator>
+            </block>
+          </scroll-view>
+        </view>
+        <tab-bar id="tabBar" bind:change="handleSwitchTab" placeholder />
+      </scroll-view>
     </view>
-  </navigator>
-  <view class='content'>
-    <scroll-view scroll-y enable-back-to-top>
-      <swiper class='banner card-swiper'
-        indicator-dots
-        autoplay
-        indicator-active-color="#fff"
-        circular
-        bindtransition="hideSwiperBg"
-        bindanimationfinish="showSwiperBg"
-        bindchange="cardSwiper">
-        <swiper-item wx:for="{{banners}}" wx:key="id" class="{{cardCur==index?'cur':''}}">
-          <view class='swiper-item'>
-            <image data-index='{{index}}' src="{{item.image}}" class="slide-image"  bindtap='onBannerTap'/>
-          </view>
-        </swiper-item>
-      </swiper>
-
-      <view class="kind-container">
-        <navigator wx:for='{{circles}}' wx:key='index' class='item-container' hover-class='hover-bg'
-          url='{{item.url}}'
-        >
-          <template is="circle" 
-            data="{{ imgUrl: item.image, title: item.title }}"
-          />
-        </navigator>
-      </view>
-
-      <view class="intheaters" wx:if="{{intheaters === null || (intheaters && intheaters.length)}}">
-        <navigator class="intheaters__header" hover-class="hover-opacity"
-          url="/packages/movie/pages/intheaters/in_theaters"
-        >
-          <view class="intheaters__header-title">豆瓣热门</view>
-          <image class="intheaters__header-arrow" src="/assets/images/discovery/icon-arrow.png" mode="aspectFit" />
-        </navigator>
-        <scroll-view class="intheaters__movies" scroll-x
-          lower-threshold="{{200}}"
-          bindscrolltolower="loadMoreHot"
-        >
-          <block wx:for="{{intheaters || ['','','','']}}" wx:key="id">
-            <navigator class="movie-item"
-              url="{{item && '/packages/movie/pages/details/details?title=' + item.title + '&id=' + item.id}}"
-            >
-              <image class="movie-item__img" src="{{item.cover.url}}" mode="aspectFill" />
-              <view class="movie-item__info">
-                <block wx:if="{{item}}">
-                  <view class="movie-item__name">{{item.title}}</view>
-                  <view class="movie-item__rate">{{item.rating.value > 0 ? item.rating.value + '分（豆瓣）' : '暂无评分'}}</view>
-                </block>
-                <block wx:else>
-                  <view class="movie-item__name skeleton">  </view>
-                </block>
-              </view>
-            </navigator>
-          </block>
-        </scroll-view>
-      </view>
-      <tab-bar id="tabBar" bind:change="handleSwitchTab" placeholder />
-    </scroll-view>
-  </view>
+  </block>
+  <wallpaper-categories wx:else />
 </view>

@@ -56,4 +56,8 @@ const call = (name, data, options) => {
     })
 }
 
+export const fetch = (options) => {
+    return call('fetch', options)
+}
+
 export default call

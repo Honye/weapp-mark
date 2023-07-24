@@ -2,6 +2,7 @@
   "backgroundColor": "#ffffff",
   "usingComponents": {
     "tab-bar": "/components/tab-bar/index",
-    "comp-preImg": "/components/pre-image/PreImage"
+    "comp-preImg": "/components/pre-image/PreImage",
+    "wallpaper-categories": "/packages/wallpaper/pages/categories/categories"
   }
 }

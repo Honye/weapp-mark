@@ -10,7 +10,8 @@
     "pages/about/about",
     "pages/first/first",
     "pages/webview/index",
-    "pages/test/test"
+    "pages/test/test",
+    "packages/wallpaper/pages/categories/categories"
   ],
   "window": {
     "backgroundTextStyle": "dark",

@@ -1,0 +1,4 @@
+<view class='load-more'>
+  <view wx:if='{{loading}}' class='weui-loading' />
+  <view>{{loading ? 'Loading...' : 'Load more'}}</view>
+</view>

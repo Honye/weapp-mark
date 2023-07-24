@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "壁纸",
+  "usingComponents": {
+    "load-more": "/components/load-more/load-more"
+  }
+}
