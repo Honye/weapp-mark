@@ -1,0 +1,102 @@
+{
+  "version": "2.0",
+  "region": "sh",
+  "envId": "release-5g2g137xcedfade7",
+  "functionRoot": "./cloudfunctions",
+  "functions": [
+    {
+      "name": "app",
+      "runtime": "Nodejs16.13"
+    },
+    {
+      "name": "douban",
+      "runtime": "Nodejs16.13",
+      "triggers": [
+        {
+          "name": "CronDouban",
+          "type": "timer",
+          "config": "0 10 0 * * * *"
+        }
+      ]
+    },
+    {
+      "name": "favCard",
+      "runtime": "Nodejs16.13"
+    },
+    {
+      "name": "fetch",
+      "runtime": "Nodejs16.13"
+    },
+    {
+      "name": "getCard",
+      "runtime": "Nodejs16.13"
+    },
+    {
+      "name": "getCards",
+      "runtime": "Nodejs16.13"
+    },
+    {
+      "name": "getCategories",
+      "runtime": "Nodejs16.13"
+    },
+    {
+      "name": "getFavCards",
+      "runtime": "Nodejs16.13"
+    },
+    {
+      "name": "initdb",
+      "runtime": "Nodejs16.13"
+    },
+    {
+      "name": "login",
+      "runtime": "Nodejs16.13"
+    },
+    {
+      "name": "nowPlaying",
+      "runtime": "Nodejs16.13"
+    },
+    {
+      "name": "showingSoon",
+      "runtime": "Nodejs16.13"
+    },
+    {
+      "name": "site",
+      "runtime": "Nodejs16.13",
+      "permissions": {
+        "openapi": [
+          "openapi.search.submitPages"
+        ]
+      }
+    },
+    {
+      "name": "subscribeMessage",
+      "runtime": "Nodejs16.13"
+    },
+    {
+      "name": "subscription",
+      "runtime": "Nodejs16.13",
+      "triggers": [
+        {
+          "name": "trending",
+          "type": "timer",
+          "config": "*/10 * * * * * *"
+        }
+      ],
+      "permissions": {
+        "openapi": [
+          "subscribeMessage.send"
+        ]
+      }
+    },
+    {
+      "name": "wxacode",
+      "runtime": "Nodejs16.13",
+      "permissions": {
+        "openapi": [
+          "wxacode.getUnlimited",
+          "wxacode.get"
+        ]
+      }
+    }
+  ]
+}

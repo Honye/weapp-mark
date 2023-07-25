@@ -63,7 +63,7 @@ yarn # or npm install
 
 #### 云开发环境
 
-开通云开发环境后将项目 `/cloudfunctions/` 同步至云，修改 `app.js`
+开通云开发环境后将项目 `/cloudfunctions/` 同步至云（参考 [云开发环境初始化](./docs/云开发环境初始化.md)），修改 `app.js`
 
 ```javascript
 wx.cloud.init({

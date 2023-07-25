@@ -1,10 +1,6 @@
 const cloud = require('wx-server-sdk')
 
-cloud.init(
-  // {
-  //   env: 'dv-963c46'
-  // }
-)
+cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
 
 const db = cloud.database()
 
@@ -13,6 +9,11 @@ const db = cloud.database()
  */
 const initBanners = async () => {
     console.log('*** start initBanners ***')
+    const collection = 'banners'
+    await db.createCollection(collection)
+        .catch((e) => {
+            // 集合已存在
+        })
     const banners = [{
             image: 'http://static.zhidao.manmankan.com/kimages/201609/26_1474884213331602.jpg',
             type: 'image',
@@ -26,13 +27,13 @@ const initBanners = async () => {
         },
     ]
     let docLength = 0
-    await db.collection('banners').get().then(({
-        data
-    }) => {
-        docLength = data.length
-    })
+    await db.collection(collection)
+        .get()
+        .then(({ data }) => {
+            docLength = data.length
+        })
     for (let i = 0, length = banners.length; i < length; ++i) {
-        await db.collection('banners').add({
+        await db.collection(collection).add({
             data: {
                 id: docLength + i + 1,
                 createTime: db.serverDate(),
@@ -116,6 +117,11 @@ const initArticles = async () => {
  */
 const initCards = async () => {
     console.log('*** start init cards ***')
+    const collection = 'cards'
+    await db.createCollection(collection)
+        .catch(() => {
+            // 集合已存在
+        })
     const cards = [
         {
             id: 11,
@@ -200,7 +206,7 @@ const initCards = async () => {
         }
     ]
     for (let i = 0, length = cards.length; i < length; ++i) {
-        await db.collection('cards').add({
+        await db.collection(collection).add({
             data: {
                 createTime: db.serverDate(),
                 ...cards[i]
@@ -216,7 +222,7 @@ const initCards = async () => {
 
 exports.main = async(event, context) => {
     console.log('*** 开始初始化 ***')
-    // await initBanners()
+    await initBanners()
     // await initArticles()
     await initCards()
     console.log('*** 初始化结束 ***')
