@@ -22,6 +22,6 @@
     "noEmit": true,
     "downlevelIteration": true,
     "typeRoots": ["./@types", "./node_modules/@types"],
-    "types": ["miniprogram-api-typings", "jest"]
+    "types": ["jest"]
   }
 }

@@ -1,3 +1,5 @@
+import 'miniprogram-api-typings'
+
 declare namespace IMarkr {
 }
 
