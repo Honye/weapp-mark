@@ -2,6 +2,7 @@ import { $wuxActionSheet } from '../../../../templates/index';
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../../store/index';
 import wxCloud from '../../../../utils/wxCloud';
+import { rUploadAvatar } from '../../../../apis/server';
 
 Page({
   behaviors: [storeBindingsBehavior],
@@ -36,9 +37,16 @@ Page({
   },
 
   async onChooseAvatar(e) {
+    const { avatarUrl } = e.detail;
+    const base64 = wx.getFileSystemManager().readFileSync(avatarUrl, 'base64');
+    console.log(base64)
+    const url = await rUploadAvatar({
+      filename: this.data.info.openid,
+      base64
+    })
     const { data } = await wxCloud('login', {
       wxUserInfo: {
-        data: e.detail
+        data: { avatarUrl: url }
       },
     });
     store['user/updateUserInfo'](data);

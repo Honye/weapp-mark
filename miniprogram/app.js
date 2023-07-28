@@ -2,10 +2,11 @@
 import { store } from './store/index';
 import { compareVersions, isEmpty } from './utils/util';
 import wxCloud from './utils/wxCloud';
+import { Cloud } from './config';
 
 wx.cloud.init({
   traceUser: true,
-  env: 'dev-oucwt'
+  env: Cloud.env
 });
 
 App({
