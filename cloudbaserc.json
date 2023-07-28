@@ -89,6 +89,10 @@
       }
     },
     {
+      "name": "wallpaper",
+      "runtime": "Nodejs16.13"
+    },
+    {
       "name": "wxacode",
       "runtime": "Nodejs16.13",
       "permissions": {
