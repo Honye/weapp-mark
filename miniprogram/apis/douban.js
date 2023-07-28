@@ -5,7 +5,7 @@ import { request as baseRequest } from '../utils/request';
 import wxCloud from '../utils/wxCloud';
 import { store } from '../store/index';
 
-const BASE_URL = 'https://imarkr-server.vercel.app/douban';
+const BASE_URL = 'https://d.imarkr.com/douban';
 
 /**
  * @template T
