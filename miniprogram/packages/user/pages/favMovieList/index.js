@@ -1,4 +1,3 @@
-// 喜欢的影单
 import wxCloud from '../../../../utils/wxCloud'
 
 Page({
@@ -15,11 +14,11 @@ Page({
 
     /** 获取喜欢的影单 */
     getFavArticles() {
-        wxCloud('getFavArticles').then( res => {
-            this.setData({
-                list: res.data,
-            })
-        })
+        // wxCloud('getFavArticles').then( res => {
+        //     this.setData({
+        //         list: res.data,
+        //     })
+        // })
     },
     
     /** 取消喜欢 */

@@ -1,8 +1,7 @@
-<!--pages/about/about.wxml-->
 <view class='container self-honye'>
   <view class='banner'>
     <pre-image 
-      src='{{datas.image}}' 
+      src='{{app.cover}}' 
       mode='widthFix'
       height='100%'
       place-img='/assets/images/bg-default.jpg'
@@ -25,9 +24,16 @@
   </view>
 
   <view class='advert'>
-    <view>iMark 的初衷是成为一个简简单单的观影记录工具。我满怀激情的做，还让美丽大方的女友助力 UI，然而因自己没有影视资源所以采用了豆瓣 API，无赖豆瓣已不再提供公用 API，小程序也就这样那样了...</view>
-    <view>小程序虽已开源，但我并不保证豆瓣数据的可用性，至此也只供学习交流了，有能力我还是会持续更新的。</view>
-    <view>现包含 UI 组件、云函数爬取网页（GitHub）内容、用户登录、云函数存储、GitHub REST API。源码可在<text class='link' bindtap='toWebview' data-url='https://mp.weixin.qq.com/s/wEkgBTlbBNDT9ALZmdijeA'>公众号文章</text>内找到。</view>
+    <block wx:for="{{nodes}}">
+      <text wx:if="{{item.type === 'text'}}">{{item.text}}</text>
+      <text
+        wx:if="{{item.type === 'link'}}"
+        class="link"
+        bindtap="toWebview"
+        data-url="{{item.url}}"
+      >{{item.block[0].text}}</text>
+      <view wx:if="{{item.type === 'break'}}"></view>
+    </block>
   </view>
 </view>
 

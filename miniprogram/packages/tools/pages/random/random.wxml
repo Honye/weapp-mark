@@ -1,0 +1,6 @@
+<view class="container">
+  <textarea class="textarea" model:value="{{min}}" placeholder="最小数" />
+  <textarea class="textarea" model:value="{{max}}" placeholder="最大数" />
+  <textarea class="textarea" model:value="{{num}}" />
+  <button class="btn" type="primary" bind:tap="generate">生成</button>
+</view>

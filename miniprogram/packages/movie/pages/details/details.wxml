@@ -1,4 +1,3 @@
-<!--pages/movies/movieDetails.wxml-->
 <import src='/templates/rating/rating' />
 <import src='/templates/casts/casts' />
 <wxs src='../../../../utils/WxUtil.wxs' module='WxUtil' />
@@ -103,7 +102,7 @@
       </view>
     </view>
     <!-- 影人 -->
-    <view class='block casts'>
+    <view wx:if="{{crewCount}}" class='block casts'>
       <text class='subtitle'>影人</text>
       <scroll-view scroll-x>
         <!-- <block wx:for='{{details.directors}}' wx:key='id'>
@@ -148,6 +147,11 @@
         </block>
       </scroll-view>
     </view>
+    <view class="ad-container">
+      <view class="ad-wrapper">
+        <ad unit-id="adunit-e4aa5a1a9c05d2ee"></ad>
+      </view>
+    </view>
     <!-- 短评 -->
     <view class='block comments'>
       <text class='subtitle'>短评({{comments_count}})</text>
@@ -167,7 +171,7 @@
     </view>
     <cover-page id="movielist" title="加入影单">
       <view>
-        <view class="movielist-create">
+        <view class="movielist-create" bindtap="createList">
           <image class="movielist-create__img" src="../../images/img-add.png" mode="aspectFit" />
           <view class="movielist-create__text">新建影单</view>
         </view>

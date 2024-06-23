@@ -22,6 +22,9 @@ exports.main = async (event, context) => {
       /** 每日定时存储每日卡片信息 */
       await storeTodayItem();
       break;
+    case 'api.proxy':
+      // case 代理接口请求，伪装请求
+      return apiProxy(event.payload);
     case 'login':
       return login(event.payload);
     case 'logout':
@@ -50,16 +53,13 @@ exports.main = async (event, context) => {
  */
 const storeTodayItem = async () => {
   // 云函数默认时区为 UTC+0
-  const date = new Date();
-  const utcTime = date.getTime() + date.getTimezoneOffset() * 60000;
-  const now = new Date(utcTime + 8 * 60 * 60 * 1000);
   const res = await request({
     headers: {
-      'User-Agent': 'api-client/0.1.3 com.douban.frodo/6.50.0'
+      'User-Agent': 'api-client/0.1.3 com.douban.frodo/8.0.0'
     },
     path: '/calendar/today',
     data: {
-      date: now.toISOString().substring(0, 10),
+      date: new Intl.DateTimeFormat('zh-CN').format().replace(/\//g, '-'),
       alt: 'json',
       _sig: 'tuOyn+2uZDBFGAFBLklc2GkuQk4=',
       _ts: 1610703479,
@@ -137,5 +137,90 @@ const logout = async () => {
 
   throw new Error(`user openid=${wxContext.OPENID} not found`);
 };
+
+/**
+ * 
+ * @param {WechatMiniprogram.RequestOption} params
+ */
+const apiProxy = (params) => {
+  const headers = Object.assign({},
+    {
+      Referer: 'https://servicewechat.com/wx2f9b06c1de1ccfca/81/page-frame.html',
+      'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.2(0x18000236) NetType/WIFI Language/en'
+    },
+    params.header
+  );
+  return request({
+    url: params.url,
+    method: params.method,
+    data: params.data,
+    headers
+  });
 }
 
+/**
+ * @typedef {'movie_showing'|'movie_soon'} RankType
+ */
+
+/**
+ * 各个排行榜
+ * @param {object} params
+ * @param {RankType} params.type
+ * @param {object} params.params
+ */
+const getRankList = async (params) => {
+  const collectionName = params.type;
+  /** @type {Record<RankType, string>} */
+  const names = {
+    movie_showing: '正在热映',
+    movie_soon: '即将上映'
+  };
+  /**
+   * @type {{
+   * _id: string;
+   * update_time: Date;
+   * }}
+   */
+  let stored;
+  try {
+    const ranks = await db.collection(collectionName)
+    .where({ key: collectionName })
+    .limit(1)
+    .get();
+    stored = ranks[0];
+  } catch (e) {
+    if (e.errCode === -502005) {
+      await db.createCollection(collectionName);
+    }
+  }
+  if (stored && stored.update_time.getTime() + 2 * 60 * 60 * 1000 > Date.now()) {
+    // 每两小时一更新
+    return stored.data;
+  }
+
+  const res = await apiProxy(params.params);
+  if (stored) {
+    // case 更新
+    db.collection(collectionName)
+      .doc(stored._id)
+      .update({
+        data: {
+          update_time: db.serverDate(),
+          data: res
+        }
+      });
+  } else {
+    // case 存储
+    db.collection(collectionName)
+      .add({
+        data: {
+          key: collectionName,
+          title: names[collectionName],
+          create_time: db.serverDate(),
+          update_time: db.serverDate(),
+          data: res
+        }
+      });
+  }
+  return res;
+}

@@ -77,3 +77,5 @@ sync_hook.script
 project.private.config.json
 private.key
 private.*.key
+
+backup

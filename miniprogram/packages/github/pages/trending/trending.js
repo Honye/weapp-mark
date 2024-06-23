@@ -27,7 +27,7 @@ Page({
   },
 
   onLoad () {
-    this.getTrendingList();
+    // this.getTrendingList();
   },
 
   onPageScroll (e) {

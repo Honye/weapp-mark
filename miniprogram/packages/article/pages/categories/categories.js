@@ -1,12 +1,21 @@
-// 分类查找
-import wxCloud from '../../../../utils/wxCloud'
-
 Page({
 
   data: {
     /** @type {Array<Categorie>} */
     categories: [],
-    list: [
+    list: [],
+    loaded: false,
+  },
+
+  onLoad(options) {
+    this.getData()
+  },
+
+  /**
+   * 获取数据
+   */
+  async getData () {
+    const data = [
       {
         name: '榜单',
         icon: 'https://i.loli.net/2019/12/30/xyh67CYXlOeEoSp.png',
@@ -54,28 +63,10 @@ Page({
           {
             name: '经典爱情',
             url: '/packages/douban/pages/collection/collection?type=movie_love'
-          },
-          ' ', ' ', ' '
+          }
         ]
       }
-    ],
-    loaded: false,
-  },
-
-  onLoad(options) {
-    this.getData()
-  },
-
-  /**
-   * 获取数据
-   */
-  async getData () {
-    /**
-     * @type {{
-     * data: Array<Categorie>
-     * }}
-     */
-    const { data = [] } = await wxCloud('getCategories');
+    ];
     this.modifyData(data);
   },
 
@@ -96,7 +87,7 @@ Page({
       }
     }
     this.setData({
-      categories,
+      list: categories,
       loaded: true
     });
   },
@@ -108,10 +99,6 @@ Page({
         wx.navigateTo({
           url: item.url
         });
-      } else {
-        wx.navigateTo({
-          url: `/packages/article/pages/list/list?title=${item.name}`,
-        })
       }
     }
   }

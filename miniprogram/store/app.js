@@ -1,5 +1,5 @@
 export default {
-  version: '1.1.9',
+  version: '1.1.18',
   hasPublished: false,
 
   update (data = {}) {

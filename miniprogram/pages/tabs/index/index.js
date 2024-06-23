@@ -1,7 +1,5 @@
-// 个人中心
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../store/index';
-import wxCloud from '../../../utils/wxCloud';
 
 Page({
   behaviors: [storeBindingsBehavior],
@@ -29,18 +27,15 @@ Page({
 
   /** 进入个人资料 */
   handleUserTap (e) {
-    if (store.user.info && store.user.info.nickName) {
+    if (store.user.info && store.user.info.name) {
       wx.navigateTo({
         url: '/packages/user/pages/userinfo/userinfo'
       });
+    } else {
+      wx.navigateTo({
+        url: '/packages/douban/pages/login-phone/login-phone'
+      });
     }
-  },
-
-  /** 去消息 */
-  toNotifications () {
-    wx.navigateTo({
-      url: '/packages/github/pages/notifications/notifications'
-    });
   },
 
   toGitMark () {

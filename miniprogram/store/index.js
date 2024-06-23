@@ -32,3 +32,39 @@ export const store = observable(scopeModule({
   user,
   douban
 }));
+
+// export const store = observable({
+//   app: {
+//     version: '1.0.14',
+//     hasPublished: false
+//   },
+//   'app/update': action(function (data = {}) {
+//     this.app = Object.assign({}, this.app, data);
+//   }),
+
+//   user: {
+//     info: null
+//   },
+//   'user/updateUserInfo': action(function (userInfo) {
+//     this.user = Object.assign({}, this.user, { info: userInfo });
+//   }),
+
+//   douban: {
+//     accessToken: '',
+//     refreshToken: '',
+//     /**
+//      * @type {{
+//      * name: string;
+//      * weixin_binded: boolean;
+//      * phone: string;
+//      * avatar: { medium: string; median: string; large: string; raw: string; small: string; icon: string; };
+//      * id: string;
+//      * uid: string;
+//      * }|null}
+//      */
+//     user: null
+//   },
+//   'douban/update': action(function (data = {}) {
+//     this.douban = Object.assign({}, this.douban, data);
+//   })
+// });

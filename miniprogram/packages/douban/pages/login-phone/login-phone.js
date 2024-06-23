@@ -1,6 +1,8 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../../store/index';
+import { setLoginIng } from '../../../../apis/douban';
 import { getCaptcha, verifyCaptcha } from '../../../../apis/douban/accounts';
+import { apiSyncDouban } from '../../../../apis/vercel';
 import { emitter, events } from '../../../../utils/events';
 
 Page({
@@ -18,6 +20,14 @@ Page({
     actions: {
       updateDouban: 'douban/update',
     },
+  },
+
+  onLoad() {
+    console.log('=== 登录', store)
+  },
+
+  onUnload() {
+    setLoginIng(false);
   },
 
   async handlePhoneConfirm() {
@@ -49,6 +59,8 @@ Page({
   async submit (e) {
     const { value } = e.detail;
     const params = {
+      openid: store.user.info.openid,
+      unionid: store.user.info.unionid,
       number: value.phone,
       code: value.code,
     };
@@ -72,6 +84,14 @@ Page({
         return Promise.reject(err);
       });
       const { access_token, refresh_token, account_info } = res;
+      const { openid, unionid } = store.user.info;
+      apiSyncDouban({
+        openid,
+        unionid,
+        account_info,
+        access_token,
+        refresh_token
+      });
       this.updateDouban({
         accessToken: access_token,
         refreshToken: refresh_token,
@@ -82,6 +102,6 @@ Page({
         icon: 'none',
         title: '登录成功',
       });
-      wx.navigateBack({ delta: 2 });
+      wx.navigateBack();
   },
 });

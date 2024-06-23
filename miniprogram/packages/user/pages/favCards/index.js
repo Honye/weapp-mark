@@ -8,7 +8,7 @@ Page({
   },
 
   onLoad(options) {
-    this.getFavCards();
+    // this.getFavCards();
   },
 
   /** get the cards user liked */

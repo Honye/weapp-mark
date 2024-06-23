@@ -1,0 +1,16 @@
+<view class="container">
+  <textarea class="textarea" model:value="{{input}}" placeholder="输入" />
+  <picker
+    model:value="{{type}}"
+    mode="selector"
+    range="{{options}}"
+    range-key="label"
+  >
+    <button class="picker" type="primary">{{options[type].label}}</button>
+  </picker>
+  <textarea class="textarea" model:value="{{output}}" placeholder="输出" />
+  <view class="flex">
+    <button class="btn" type="primary" bind:tap="encode">编码</button>
+    <button class="btn" type="primary" bind:tap="decode">解码</button>
+  </view>
+</view>

@@ -7,11 +7,11 @@
     <view class="userinfo">
       <button class="button-nostyle cell-left" bindtap="handleUserTap">
         <view class="userinfo-avatar btn-opacity">
-          <image class="img" wx:if="{{user.info && user.info.avatarUrl}}" src="{{user.info.avatarUrl}}" mode="aspectFill" />
+          <image class="img" wx:if="{{user.info && user.info.avatar}}" src="{{user.info.avatar}}" mode="aspectFill" />
           <open-data wx:else type='userAvatarUrl' />
         </view>
         <view class='userinfo__right'>
-          <view class="userinfo-nickname">{{user.info.nickName || '匿名用户'}}</view>
+          <view class="userinfo-nickname">{{user.info.name || '匿名用户'}}</view>
           <view class='userinfo__extra'>这里什么都没有，快去标记啦</view>
         </view>
       </button>
@@ -25,7 +25,7 @@
           <view class='actions-item__name'>卡片</view>
         </view>
         <view class='actions-item btn-opacity'
-          data-url="/packages/github/pages/starred/starred"
+          data-url="/packages/user/pages/achievement/achievement"
           bindtap="navigate"
         >
           <image class='actions-item__icon' src='/assets/images/mine/icon-achievement.png' mode='aspectFit'></image>
@@ -36,8 +36,7 @@
   </view>
 
   <view class='row-list'>
-    <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-message.png",title:"消息",bindTap:"toNotifications"}}' />
-    <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-record.png",title:"影视档案",bindTap:"toEvalute"}}' />
+    <!-- <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-record.png",title:"影视档案",bindTap:"toEvalute"}}' /> -->
     <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-setting.png",title:"设置",bindTap:"toSetting"}}' />
     <button class='contactBtn' open-type='contact' hover-class='none'>
       <template is='row-cell' data='{{iconPath:"/assets/images/mine/icon-contact.png",title:"在线客服"}}' />

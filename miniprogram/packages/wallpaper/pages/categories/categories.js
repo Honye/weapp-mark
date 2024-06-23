@@ -4,8 +4,8 @@ Component({
   data: {
     categories: null,
     wallpapers: [],
-    cid: '6',
-    start: 0,
+    lid: 357,
+    page: 1,
     loading: false,
     hasMore: true
   },
@@ -16,38 +16,43 @@ Component({
   },
 
   methods: {
+    onLoad() {
+      wx.createInterstitialAd({ adUnitId: 'adunit-56316cd90de2e91c' }).show();
+    },
     async getCategories() {
       const res = await fetchCategories()
       this.setData({
-        categories: res.data
+        categories: res
       })
     },
     async getWallpapers() {
-      const { cid, start, wallpapers } = this.data
+      const { lid, page, wallpapers } = this.data
       this.setData({ loading: true })
-      const res = await fetchListByCategory({ cid, start })
+      const res = await fetchListByCategory({ lid, page, size: 19 })
         .finally(() => {
           this.setData({ loading: false })
         })
-      const list = res.data || []
+      const list = res.list || []
+      const i = parseInt(Math.random() * 20)
+      list.splice(i, 0, { type: 'ad', id: `ad-${page}` });
       this.setData({
-        wallpapers: start > 0 ? [...wallpapers, ...list] : list,
-        start: start + 20,
-        hasMore: list.length >= 20
+        wallpapers: page > 1 ? [...wallpapers, ...list] : list,
+        page: page + 1,
+        hasMore: res.has_more
       })
     },
     onCategoryTap(e) {
       const { item } = e.currentTarget.dataset
       Object.assign(this.data, {
-        cid: item.id,
-        start: 0
+        lid: item.id,
+        page: 1
       })
       this.getWallpapers()
     },
     onImgTap(e) {
       const { item } = e.currentTarget.dataset
       wx.previewImage({
-        urls: [item.url]
+        urls: [item.img]
       })
     },
 

@@ -92,7 +92,7 @@ Page({
         success: ({ confirm }) => {
           if (confirm) {
             wx.navigateTo({
-              url: '/packages/douban/pages/login/login'
+              url: '/packages/douban/pages/login-phone/login-phone'
             });
           }
         }

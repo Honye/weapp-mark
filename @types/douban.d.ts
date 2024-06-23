@@ -155,7 +155,7 @@ declare namespace DouBan {
       url: string;
     }>;
     title: string;
-    trailer: Trailer;
+    trailers: Trailer[];
     type: SubjectType;
   }
 

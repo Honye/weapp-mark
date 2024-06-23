@@ -46,10 +46,11 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
-  padding: 1rem;
+  padding: 20rpx;
 }
 .img-item {
   display: block;
   width: 100%;
   aspect-ratio: 1.618 / 1;
+  overflow: hidden;
 }

@@ -37,7 +37,7 @@ export const request = ({ baseURL, controller, ...config }) => {
       /** @type {WechatMiniprogram.RequestOption<T>} */
       ({
         ...config,
-        url: `${baseURL}${config.url}`,
+        url: `${baseURL || ''}${config.url}`,
         success: (res) => {
           res.ok = res.statusCode >= 200 && res.statusCode < 300;
           resolve(res);

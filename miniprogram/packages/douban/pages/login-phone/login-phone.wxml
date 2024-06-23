@@ -23,6 +23,6 @@
         <image class="captcha__code" src="{{captchaData.captcha_image_url}}" mode="heightFix" />
       </label>
     </view>
-    <button class="btn-submit btn-opacity" form-type="submit" disabled="{{!(phone && code)}}">登录</button>
+    <button class="btn-submit btn-opacity" form-type="submit" disabled="{{!(phone && code)}}">登录豆瓣</button>
   </form>
 </view>

@@ -1,4 +1,4 @@
-<view class='container'>
+<view wx:if="{{wallpapers && wallpapers.length}}" class='container'>
   <view class='categories'>
     <view
       wx:for='{{categories}}'
@@ -11,22 +11,26 @@
       <image
         class='category-item-bg'
         mode='aspectFill'
-        src='{{item.cover}}'
+        src='{{item.img}}'
       />
       <view>{{item.name}}</view>
     </view>
   </view>
   <view class='imgs'>
-    <image
-      wx:for='{{wallpapers}}'
-      wx:key='id'
-      class='img-item'
-      mode='aspectFill'
-      src='{{item.url}}'
-      data-item='{{item}}'
-      lazy-load
-      bind:tap='onImgTap'
-    />
+    <block wx:for="{{wallpapers}}" wx:key="id">
+      <view wx:if="{{item.type === 'ad'}}" class="img-item">
+        <ad-custom unit-id="adunit-f844ca212ba92679" />
+      </view>
+      <image
+        wx:else
+        class='img-item'
+        mode='aspectFill'
+        src='{{item.img}}'
+        data-item='{{item}}'
+        lazy-load
+        bind:tap='onImgTap'
+      />
+    </block>
   </view>
   <load-more
     wx:if='{{hasMore}}'

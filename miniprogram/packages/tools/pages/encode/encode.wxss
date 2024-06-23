@@ -1,0 +1,21 @@
+.container {
+  padding: 32rpx;
+}
+.textarea {
+  display: block;
+  width: auto;
+  background: #fff;
+  padding: 1em;
+  border-radius: 12rpx;
+}
+.picker {
+  margin: 40rpx 0;
+}
+.flex {
+  margin-top: 40rpx;
+  display: flex;
+  column-gap: 32rpx;
+}
+.btn {
+  flex: 1;
+}

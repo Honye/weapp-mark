@@ -1,7 +1,6 @@
-//app.js
 import { store } from './store/index';
 import { compareVersions, isEmpty } from './utils/util';
-import wxCloud from './utils/wxCloud';
+import { apiAppInfo, apiWxLogin } from './apis/vercel';
 
 wx.cloud.init({
   traceUser: true,
@@ -24,9 +23,20 @@ App({
 
   /** 通过云函数直接登录 */
   async login () {
-    const { data } = await wxCloud('login');
+    const { code } = await new Promise((resolve, reject) => {
+      wx.login({ success: resolve, fail: reject });
+    });
+    const data = await apiWxLogin({ code });
     this.globalData.userInfo = data;
     store['user/updateUserInfo'](data);
+    if (data.access_token) {
+      const { access_token, refresh_token, ...user } = data;
+      store['douban/update']({
+        accessToken: access_token,
+        refreshToken: refresh_token,
+        user
+      });
+    }
     if (data.douban) {
       const { access_token, refresh_token, ...user } = data.douban;
       store['douban/update']({
@@ -65,9 +75,10 @@ App({
 
   /** 从服务器获取默认配置 */
   async getDefaultConfig () {
-    const appDesc = await wxCloud('app');
+    const appInfo = await apiAppInfo();
     store['app/update']({
-      hasPublished: compareVersions(store.app.version, appDesc.version) <= 0
+      hasPublished: compareVersions(store.app.version, appInfo.version) <= 0,
+      ...appInfo
     });
   },
 

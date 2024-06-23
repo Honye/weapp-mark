@@ -52,7 +52,6 @@
       "root": "packages/article/",
       "pages": [
         "pages/categories/categories",
-        "pages/list/list",
         "pages/details/detail",
         "pages/movie-list-detail/movie-list-detail"
       ]
@@ -74,7 +73,8 @@
         "pages/favMovieList/index",
         "pages/evaluate/evaluate",
         "pages/favCards/index",
-        "pages/userinfo/userinfo"
+        "pages/userinfo/userinfo",
+        "pages/achievement/achievement"
       ]
     },
     {
@@ -92,7 +92,6 @@
     {
       "root": "packages/douban/",
       "pages": [
-        "pages/login/login",
         "pages/login-phone/login-phone",
         "pages/collection/collection"
       ]
@@ -113,6 +112,14 @@
         "pages/index/index",
         "pages/app/app",
         "pages/douban/douban"
+      ]
+    },
+    {
+      "root": "packages/tools",
+      "pages": [
+        "pages/index/index",
+        "pages/encode/encode",
+        "pages/random/random"
       ]
     }
   ],

@@ -1,11 +1,14 @@
 
+// /**
+//  * wx.callFunction 的简单封装
+//  * @param {String} name 云函数名
+//  * @param {Object} data 传递参数
+//  * @param {object} [options] 其余配置项
+//  * @param {boolean} [options.loading] 是否显示加载提示框
+//  * @param {boolean} [options.showError] 是否显示错误提示框
+//  */
 /**
- * wx.callFunction 的简单封装
- * @param {String} name 云函数名
- * @param {Object} data 传递参数
- * @param {object} [options] 其余配置项
- * @param {boolean} [options.loading] 是否显示加载提示框
- * @param {boolean} [options.showError] 是否显示错误提示框
+ * @type {CallCloud}
  */
 const call = (name, data, options) => {
     const defaultOptions = {

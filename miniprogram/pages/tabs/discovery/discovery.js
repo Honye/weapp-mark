@@ -1,11 +1,8 @@
-// discovery
 // import wxCloud from '../../../utils/wxCloud';
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../store/index';
-import * as GitHubApis from '../../../apis/github';
-import { getHotMovies } from '../../../apis/douban.js';
-
-const db = wx.cloud.database();
+import { getHotMovies } from '../../../apis/douban';
+import { apiGetBanners } from '../../../apis/vercel';
 
 Page({
   behaviors: [storeBindingsBehavior],
@@ -68,12 +65,9 @@ Page({
   },
 
   /** 获取轮播数据 */
-  getBanners () {
-    db.collection('banners').orderBy('id', 'desc').limit(4).get().then( ({ data }) => {
-      this.setData({
-        banners: data,
-      });
-    });
+  async getBanners () {
+    const banners = await apiGetBanners();
+    this.setData({ banners });
   },
 
   /** 豆瓣热门 */
@@ -142,17 +136,5 @@ Page({
     this.setData({
       swiperHide: false,
     })
-  },
-
-  getActivityEvents () {
-    GitHubApis.getEvents({
-      username: 'Honye'
-    })
-      .then((res) => {
-        console.log('GitHub ', res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
   }
 })

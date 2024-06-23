@@ -421,3 +421,12 @@ image {
   font-size: 50rpx;
   color: #666;
 }
+
+.ad-container {
+  margin-block: 10rpx;
+}
+.ad-wrapper {
+  margin: 0 20rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+}

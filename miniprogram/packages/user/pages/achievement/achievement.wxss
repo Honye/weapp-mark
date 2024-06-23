@@ -1,0 +1,10 @@
+.img {
+  margin: 160rpx auto;
+  display: block;
+  width: 240rpx;
+  height: 166.504rpx;
+}
+.holder {
+  font-size: 30rpx;
+  text-align: center;
+}

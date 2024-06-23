@@ -1,4 +1,6 @@
-// about
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
+import md from 'markdown-ast';
+import { store } from '../../store/index';
 import { getRepoInfo, getRepoReadme } from '../../apis/github';
 
 const music = {
@@ -12,6 +14,7 @@ const music = {
 const audioManager = wx.getBackgroundAudioManager();
 
 Page({
+  behaviors: [storeBindingsBehavior],
 
   data: {
     music,
@@ -20,7 +23,15 @@ Page({
     },
     playing: false,
     repo: null,
-    readmeHTML: ''
+    readmeHTML: '',
+    nodes: []
+  },
+
+  storeBindings: {
+    store,
+    fields: {
+      app: () => store.app
+    }
   },
 
   onLoad (options) {
@@ -37,6 +48,9 @@ Page({
           readmeHTML: res
         });
       });
+
+    const nodes = md(store.app.intro);
+    this.setData({ nodes });
   },
 
   onShow (options) {

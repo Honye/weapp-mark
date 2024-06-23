@@ -10,6 +10,7 @@ interface RequestController extends WechatMiniprogram.RequestTask {
 interface RequestOption<T> extends Omit<WechatMiniprogram.RequestOption<T>, 'success' | 'fail' | 'complete'> {
   baseURL?: string;
   controller?: RequestController;
+  notAuthorization?: boolean
 }
 
 interface RequestSuccessResult<T> extends WechatMiniprogram.RequestSuccessCallbackResult<T> {

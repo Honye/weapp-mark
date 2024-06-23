@@ -12,7 +12,7 @@
     >
       <text>头像</text>
       <view class='avatar'>
-        <image src='{{info.avatarUrl}}' />
+        <image src='{{info.avatar}}' />
         <image class='icon' src='/assets/images/change_head_img_icon.png' mode='widthFix' />
       </view>
     </button>
@@ -21,7 +21,7 @@
       <view class="nickname">
         <input
           type='nickname'
-          value='{{info.nickName}}'
+          value='{{info.name}}'
           always-embed
           bind:confirm='onNicknameConfirm'
         />
@@ -41,17 +41,5 @@
         />
       </view>
     </block>
-  </view>
-
-  <view class="modal modal--bottom {{modalGitHubVisible && 'visible'}}">
-    <view class="modal__mask" bindtap="handleModalGitHubClose"></view>
-    <view class="modal__content modal-github">
-      <view class="modal-github__title">GitHub Token</view>
-      <view class="modal-github__content">
-        <input class="modal-github__input" placeholder="GitHub Token" model:value="{{githubToken}}" />
-        <button class="modal-github__btn" disabled="{{!githubToken}}" bindtap="handleBindGitHub">绑定</button>
-      </view>
-      <view class="iphonex-bottom-holder"><!-- iPhone X 下巴占位 --></view>
-    </view>
   </view>
 </view>

@@ -40,7 +40,8 @@ swiper-item {
 .card .card-img {
   display: block;
   width: 100%; /** 750rpx * 0.9 */
-  height: 379.375rpx; /** 原图尺寸 1080 x 607，750rpx * 0.9 * (607 / 1080) */
+  /** height: 379.375rpx; */ /** 原图尺寸 1080 x 607，750rpx * 0.9 * (607 / 1080) */
+  aspect-ratio: 4 / 3;
   background-color: #f7f7f7;
 }
 .card .card-text {
@@ -74,24 +75,6 @@ swiper-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.card .card-footer .avatar-wrapper {
-  width: 30rpx;
-  height: 30rpx;
-  border-radius: 30rpx;
-  margin-right: 12rpx;
-  overflow: hidden;
-}
-.card .card-footer .avatar {
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 60rpx;
-  transform: scale(0.5);
-  transform-origin: 0 0;
-}
-.card .card-footer .nickname {
-  color: #999;
-  font-size: 22rpx;
 }
 .card .card-footer .actions .icon {
   width: 36rpx;

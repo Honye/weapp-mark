@@ -3,6 +3,7 @@ import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../../store/index';
 import { $markShare } from '../../../../templates/index';
 import wxCloud from '../../../../utils/wxCloud';
+import { apiGetCards } from '../../../../apis/vercel';
 
 Page({
   behaviors: [storeBindingsBehavior],
@@ -35,42 +36,8 @@ Page({
     }
   },
 
-  /**
-   * 1. 每次都获取用户最新头像，每次都调用接口更新用户信息，造成服务端没必要的压力
-   * 2. 服务端有用户头像时不需要用户授权最新头像
-   * 
-   * 选择了 ②，用户发现头像过时了可以去个人中心更新
-   * @param {{
-   *  detail: {
-   *    userInfo: any;
-   *    cloudID?: string;
-   *  }
-   * }} e 
-   */
-  async onUserInfo (e) {
-    if (store.user.info?.avatarUrl) {
-      this.setShareMenu();
-      return;
-    }
-
-    const { userInfo, cloudID } = e.detail;
-    if (userInfo) {
-      // case 服务端没有用户头像且用户同意授权
-      const { data } = wxCloud('login', {
-        wxUserInfo: wx.cloud.CloudID(cloudID)
-      });
-      store['user/updateUserInfo'](data);
-      this.setShareMenu();
-      return;
-    }
-
-    console.warn('用户拒绝授权用户信息');
-  },
-
   handleShareTap (e) {
-    if (store.user.info?.avatarUrl) {
-      this.setShareMenu();
-    }
+    this.setShareMenu();
   },
 
   setShareMenu () {
@@ -80,10 +47,8 @@ Page({
 
   /** 获取卡片 */
   async getCards () {
-    const res = await wxCloud('getCards');
-    this.setData({
-      cards: res.list || []
-    });
+    const cards = await apiGetCards();
+    this.setData({ cards });
   },
 
   async getCard(_id) {
@@ -119,18 +84,20 @@ Page({
           {
             type: 'image',
             id: 'img-head',
-            url: currentCard.image,
+            url: currentCard.image.replace(/\.webp$/, '.jpg'),
             css: {
               top: '0rpx',
               left: '0rpx',
               width: '675rpx',
-              height: 'auto',
+              // height: 'auto',
+              // maxHeight: '510rpx',
+              height: '510rpx'
             }
           },
           {
             type: 'text',
             id: 'text-word',
-            text: currentCard.quote,
+            text: currentCard.content,
             css: {
               top: ['24rpx', 'img-head', 1],
               left: '24rpx',
@@ -150,29 +117,35 @@ Page({
               textALign: 'right'
             }
           },
-          {
-            type: 'image',
-            id: 'img-avatar',
-            url: store.user.info.avatarUrl,
-            css: {
-              left: '24rpx',
-              bottom: '30rpx',
-              width: '30rpx',
-              height: '30rpx',
-              borderRadius: '30rpx'
-            }
-          },
-          {
-            type: 'text',
-            text: store.user.info.nickName,
-            css: {
-              left: ['12rpx', 'img-avatar', 1],
-              top: ['0rpx', 'img-avatar', 0],
-              fontSize: '22rpx',
-              lineHeight: '30rpx',
-              color: '#999'
-            }
-          },
+          ...(store.user.info.avatar
+            ? [{
+              type: 'image',
+              id: 'img-avatar',
+              url: store.user.info.avatar,
+              css: {
+                left: '24rpx',
+                bottom: '30rpx',
+                width: '30rpx',
+                height: '30rpx',
+                borderRadius: '30rpx'
+              }
+            }]
+            : []
+          ),
+          ...(store.user.info.name
+            ? [{
+              type: 'text',
+              text: store.user.info.name,
+              css: {
+                left: ['12rpx', 'img-avatar', 1],
+                top: ['0rpx', 'img-avatar', 0],
+                fontSize: '22rpx',
+                lineHeight: '30rpx',
+                color: '#999'
+              }
+            }]
+            : []
+          ),
           {
             type: 'image',
             url: '/assets/images/iMark.jpg',
@@ -272,6 +245,7 @@ Page({
           wx.showToast({
             title: '保存成功'
           });
+          wx.createInterstitialAd({ adUnitId: 'adunit-56316cd90de2e91c' }).show();
         }
       });
     };

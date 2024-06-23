@@ -1,0 +1,4 @@
+<view class="container">
+  <image class="img" src="/assets/images/developing.svg" />
+  <view class="holder">规划中，敬请期待</view>
+</view>

@@ -1,0 +1,5 @@
+<view class="grid">
+  <view class="item" bind:tap="scan">扫码</view>
+  <navigator class="item" url="/packages/tools/pages/encode/encode">编码/解码</navigator>
+  <navigator class="item" url="/packages/tools/pages/random/random">随机数</navigator>
+</view>

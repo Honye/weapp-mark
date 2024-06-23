@@ -1,4 +1,4 @@
-import { Douban } from '../../../../utils/apis'
+import { getHotMovies } from '../../../../apis/douban'
 
 Page({
   data: {
@@ -25,24 +25,12 @@ Page({
     })
   },
   /** 获取影单影视列表 */
-  getMovieList() {
-    Douban.get(
-      Douban.IN_THEATERS,
-      {
-        start: 0,
-        count: 10,
-      },
-    )
-      .then(res => {
-        wx.stopPullDownRefresh()
-        let subjects = res.subjects
-        for (let item of subjects) {
-          item.genres = item.genres.join('/')
-        }
-        this.setData({
-          movieList: subjects,
-        })
-      })
+  async getMovieList() {
+    const res = await getHotMovies()
+    const subjects = res.subject_collection_items || []
+    this.setData({
+      movieList: subjects,
+    })
   },
   /** 去影视详情 */
   toMovieDetail(e) {

@@ -1,0 +1,18 @@
+.container {
+  padding: 32rpx;
+}
+
+.textarea {
+  display: block;
+  width: auto;
+  background: #fff;
+  padding: 1em;
+  border-radius: 12rpx;
+}
+.textarea + .textarea {
+  margin-top: 20rpx;
+}
+.btn {
+  margin-top: 40rpx;
+  width: 100%;
+}

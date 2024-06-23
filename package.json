@@ -1,8 +1,10 @@
 {
   "scripts": {
+    "release:beta": "node scripts/release.cjs",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
     "@types/jest": "^27.5.0",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
@@ -24,6 +26,8 @@
   "author": "Honye <hongye.jun@qq.com>",
   "license": "MIT",
   "dependencies": {
+    "crypto-js": "^4.2.0",
+    "markdown-ast": "^0.3.0",
     "mobx-miniprogram": "^4.13.2",
     "mobx-miniprogram-bindings": "^1.2.1"
   },

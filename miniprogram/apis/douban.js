@@ -2,10 +2,17 @@
  * @file 豆瓣 API
  */
 import { request as baseRequest } from '../utils/request';
-import wxCloud from '../utils/wxCloud';
 import { store } from '../store/index';
 
-const BASE_URL = 'https://d.imarkr.com/douban';
+export let isLoginIng = false;
+/**
+ * @param {boolean} value
+ */
+export const setLoginIng = (value) => {
+  isLoginIng = value;
+};
+
+const BASE_URL = 'https://mmovie.imarkr.com/douban/api';
 
 /**
  * @template T
@@ -14,53 +21,32 @@ const BASE_URL = 'https://d.imarkr.com/douban';
  */
 const request = (params) => {
   const accessToken = store.douban.accessToken;
-  const { header, data, ...rest } = {
+  const { header, notAuthorization, ...rest } = {
     baseURL: BASE_URL,
     ...params,
   };
 
   return baseRequest({
     header: {
-      ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+      ...(!notAuthorization && accessToken && { Authorization: `Bearer ${accessToken}` }),
       ...header,
-    },
-    data: {
-      apikey: '054022eaeae0b00e0fc068c0c0a2102a',
-      ...data,
     },
     ...rest,
   })
     .then((resp) => {
       if (resp.ok) {
         return resp.data;
+      } else if (resp.statusCode === 400 && [103, 106].includes(resp.data.code)) {
+        if (!isLoginIng) {
+          isLoginIng = true;
+          wx.navigateTo({
+            url: '/packages/douban/pages/login-phone/login-phone'
+          });
+        }
       } else {
         return Promise.reject(resp.data);
       }
     });
-};
-
-/**
- * 使用云函数代理请求
- * @param {WechatMiniprogram.RequestOption & { baseURL?: string }} params
- */
-const request1 = (params) => {
-  const accessToken = store.douban.accessToken;
-  const { baseURL = BASE_URL } = params;
-  return wxCloud('douban', {
-    action: 'api.proxy',
-    payload: {
-      url: `${baseURL}${params.url}`,
-      header: Object.assign(
-        {},
-        accessToken && { Authorization: `Bearer ${accessToken}` },
-        params.header
-      ),
-      data: {
-        apikey: '054022eaeae0b00e0fc068c0c0a2102a',
-        ...(params.data || {})
-      }
-    }
-  });
 };
 
 /**
@@ -172,7 +158,8 @@ export const getTrailers = (params) => {
 export const getHotMovies = (params) => {
   return request({
     url: '/subject_collection/movie_hot_gaia/items',
-    data: params
+    data: params,
+    notAuthorization: true
   });
 }
 

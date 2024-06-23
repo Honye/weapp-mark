@@ -11,7 +11,7 @@
       <view class="item__position">No.{{index + 1}}</view>
       <view class="movie" data-item="{{item}}" bindtap="handleMovieTap">
         <view class="movie__cover">
-          <image class="img" src="{{item.cover.url}}" mode="widthFix" />
+          <image class="img" src="{{item.cover_url}}" mode="widthFix" />
         </view>
         <view class="movie__content">
           <view class="movie__title">{{item.title}}</view>
@@ -19,7 +19,7 @@
             <rating value="{{item.rating.value}}" max="{{item.rating.max}}" />
             <view>{{item.rating.value}}</view>
           </view>
-          <view class="movie__subtitle">{{item.info}}</view>
+          <view class="movie__subtitle">{{item.card_subtitle}}</view>
           <view class="movie__mark"></view>
         </view>
       </view>

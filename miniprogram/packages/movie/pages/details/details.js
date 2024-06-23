@@ -11,7 +11,7 @@ import {
   getCelebrities,
 } from '../../../../apis/douban.js';
 import Comment from '../../../../models/Comment'
-import wxCloud from '../../../../utils/wxCloud';
+import { apiSubmitPages } from '../../../../apis/vercel';
 import { emitter, events } from '../../../../utils/events';
 
 Page({
@@ -79,9 +79,10 @@ Page({
 
     const res = await getDetail({ id, type });
     const casts = res.actors.map(item => item.name);
-    const trailers = res.trailer && [{
-      image: res.trailer.cover_url,
-      url: res.trailer.video_url
+    const [trailer] = res.trailers || [];
+    const trailers = trailer && [{
+      image: trailer.cover_url,
+      url: trailer.video_url
     }];
     wx.hideLoading();
     wx.setNavigationBarTitle({
@@ -134,7 +135,7 @@ Page({
     if (!store.douban.accessToken) {
       // case 未登录豆瓣
       wx.navigateTo({
-        url: '/packages/douban/pages/login/login'
+        url: '/packages/douban/pages/login-phone/login-phone'
       });
       return;
     }
@@ -154,6 +155,7 @@ Page({
               'details.interest.create_time': create_time
             });
             emitter.emit(events.TAB_MOVIES_UPDATE, { status });
+            wx.createInterstitialAd({ adUnitId: 'adunit-56316cd90de2e91c' }).show();
           }
         }
       });
@@ -180,6 +182,7 @@ Page({
           }
         }
       });
+      wx.createInterstitialAd({ adUnitId: 'adunit-56316cd90de2e91c' }).show();
       return;
     }
 
@@ -199,6 +202,7 @@ Page({
       'details.interest.status': res.status
     });
     emitter.emit(events.TAB_MOVIES_UPDATE, { status: res.status });
+    wx.createInterstitialAd({ adUnitId: 'adunit-56316cd90de2e91c' }).show();
   },
 
   /**
@@ -273,6 +277,13 @@ Page({
     this.selectComponent('#movielist').show();
   },
 
+  createList() {
+    wx.showModal({
+      content: '正在开发中...',
+      showCancel: false
+    });
+  },
+
   /** 加入影单 */
   addToMovieList() {
     wx.showToast({
@@ -291,15 +302,15 @@ Page({
 
   /** 影单列表 */
   async getMovielistList () {
-    const list = Array(6).fill({}).map((item, index) => ({
-      id: index,
-      title: '阳光掉进回忆里',
-      cover: 'https://img1.doubanio.com/view/photo/m_ratio_poster/public/p1756402567.jpg',
-      count: 10
-    }));
-    this.setData({
-      movielistList: list
-    });
+    // const list = Array(6).fill({}).map((item, index) => ({
+    //   id: index,
+    //   title: '阳光掉进回忆里',
+    //   cover: 'https://img1.doubanio.com/view/photo/m_ratio_poster/public/p1756402567.jpg',
+    //   count: 10
+    // }));
+    // this.setData({
+    //   movielistList: list
+    // });
   },
 
   handleOnlineTap () {
@@ -311,7 +322,7 @@ Page({
     const {url} = e.currentTarget.dataset;
     wx.setClipboardData({
       data: url,
-      success: res => {
+      success: () => {
         wx.showToast({
           icon: 'none',
           title: '已复制链接'
@@ -331,16 +342,13 @@ Page({
       path: pages[pages.length - 1].route,
       query: `id=${details.id}&title=${details.title}`
     });
-    wxCloud('site', {
-      action: 'submitPages',
-      payload: {
-        pages: [
-          {
-            path: pages[pages.length - 1].route,
-            query: `id=${details.id}&title=${details.title}`
-          }
-        ]
-      }
+    apiSubmitPages({
+      pages: [
+        {
+          path: pages[pages.length - 1].route,
+          query: `id=${details.id}&title=${details.title}`
+        }
+      ]
     });
   }
 })
