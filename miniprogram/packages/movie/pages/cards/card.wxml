@@ -9,7 +9,9 @@
     <swiper-item>
       <navigator class='card {{current === index && "current"}}'
         hover-class='none'
-        url='/packages/movie/pages/details/details?id={{cards[current].movie_id}}'>
+        url='/packages/movie/pages/details/details?id={{item.movie_id}}'
+        aria-disabled='{{!item.movie_id}}'
+      >
         <view class='card-body'>
           <image class='card-img'
           src='{{item.image}}'
