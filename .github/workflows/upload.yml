@@ -31,8 +31,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install -g yarn
-          yarn install
+          corepack enable pnpm
+          pnpm install
 
       - name: Upload to weixin
         run: |
