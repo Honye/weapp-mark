@@ -1,6 +1,6 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../../../../store/index';
-import { setLoginIng } from '../../../../apis/douban';
+import { replayRequest, setLoginIng } from '../../../../apis/douban';
 import { getCaptcha, verifyCaptcha } from '../../../../apis/douban/accounts';
 import { apiSyncDouban } from '../../../../apis/vercel';
 import { emitter, events } from '../../../../utils/events';
@@ -20,10 +20,6 @@ Page({
     actions: {
       updateDouban: 'douban/update',
     },
-  },
-
-  onLoad() {
-    console.log('=== 登录', store)
   },
 
   onUnload() {
@@ -97,6 +93,7 @@ Page({
         refreshToken: refresh_token,
         user: account_info,
       });
+      replayRequest()
       emitter.emit(events.LOGIN_SUCCESS);
       wx.showToast({
         icon: 'none',

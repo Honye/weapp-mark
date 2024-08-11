@@ -4,6 +4,11 @@
 import { request as baseRequest } from '../utils/request';
 import { store } from '../store/index';
 
+/**
+ * @type {{ params: RequestOption<any>, resolve: (data: any) => void, reject: (err: any) => void }[]}
+ */
+const queue = [];
+
 export let isLoginIng = false;
 /**
  * @param {boolean} value
@@ -26,27 +31,38 @@ const request = (params) => {
     ...params,
   };
 
-  return baseRequest({
-    header: {
-      ...(!notAuthorization && accessToken && { Authorization: `Bearer ${accessToken}` }),
-      ...header,
-    },
-    ...rest,
-  })
-    .then((resp) => {
-      if (resp.ok) {
-        return resp.data;
-      } else if (resp.statusCode === 400 && [103, 106].includes(resp.data.code)) {
-        if (!isLoginIng) {
-          isLoginIng = true;
-          wx.navigateTo({
-            url: '/packages/douban/pages/login-phone/login-phone'
-          });
+  return new Promise((resolve, reject) => {
+    baseRequest({
+      header: {
+        ...(!notAuthorization && accessToken && { Authorization: `Bearer ${accessToken}` }),
+        ...header,
+      },
+      ...rest,
+    })
+      .then((resp) => {
+        if (resp.ok) {
+          resolve(resp.data);
+        } else if (resp.statusCode === 400 && [103, 106].includes(resp.data.code)) {
+          queue.push({ params, resolve, reject });
+          if (!isLoginIng) {
+            isLoginIng = true;
+            wx.navigateTo({
+              url: '/packages/douban/pages/login-phone/login-phone'
+            });
+          }
+        } else {
+          reject(resp.data);
         }
-      } else {
-        return Promise.reject(resp.data);
-      }
-    });
+      });
+  });
+};
+
+/** 登录成功后重放登录失效接口 */
+export const replayRequest = () => {
+  while (queue.length) {
+    const { params, resolve, reject } = queue.shift();
+    request(params).then(resolve, reject);
+  }
 };
 
 /**
@@ -165,7 +181,7 @@ export const getHotMovies = (params) => {
 
 /**
  * 榜单合集
- * @param {object} params 
+ * @param {object} params
  * @param {string} params.type
  * @param {number} [params.start]
  * @param {number} [params.count]
@@ -181,7 +197,7 @@ export const getCollectionList = (params) => {
 
 /**
  * 影院热映
- * @param {object} params 
+ * @param {object} params
  * @param {number} [params.start]
  * @param {number} [params.count]
  * @returns {Promise<Douban.SubjectCollectionShowingItemsResult>}
