@@ -30,12 +30,12 @@ swiper-item {
   transition: all 0.2s ease-in 0s;
   position: relative;
 }
-.card[aria-disabled] {
-  pointer-events: none;
-}
 .card.current {
   transform: none;
   opacity: 1;
+}
+.card.disabled {
+  pointer-events: none;
 }
 .card .card-body {
   height: 100%;
