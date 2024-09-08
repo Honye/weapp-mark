@@ -179,10 +179,10 @@ Page({
               'details.interest.status': res.status
             });
             emitter.emit(events.TAB_MOVIES_UPDATE, { status: res.status });
+            wx.createInterstitialAd({ adUnitId: 'adunit-56316cd90de2e91c' }).show();
           }
         }
       });
-      wx.createInterstitialAd({ adUnitId: 'adunit-56316cd90de2e91c' }).show();
       return;
     }
 
