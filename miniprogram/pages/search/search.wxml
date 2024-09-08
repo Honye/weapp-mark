@@ -1,4 +1,3 @@
-<!--pages/search/search.wxml-->
 <import src='/templates/movie/movieRow' />
 
 <view class='container page-search'>
@@ -44,13 +43,13 @@
         <block wx:for='{{result}}' wx:key='id'>
           <view class="doulist" wx:if="{{item.target_type === 'doulist_cards'}}">
             <block wx:for="{{item.target.doulists}}" wx:key="id" wx:for-item="doulist">
-              <view class="doulist-item">
+              <navigator class="doulist-item" url="/packages/douban/pages/collection/collection?type={{doulist.id}}">
                 <view class="doulist-item__img">
                   <image class="img" src="{{doulist.cover_url}}" mode="aspectFill" />
                   <view class="label">{{doulist.image_label}}</view>
                 </view>
                 <view class="doulist-item__title">{{doulist.title}}</view>
-              </view>
+              </navigator>
             </block>
           </view>
           <navigator wx:elif="{{item.target_type === 'movie' || item.target_type === 'tv'}}"
