@@ -1,0 +1,3 @@
+.comment-content.comment-content--full {
+  display: block;
+}

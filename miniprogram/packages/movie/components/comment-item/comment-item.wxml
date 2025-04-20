@@ -1,0 +1,16 @@
+<import src='/templates/rating/rating' />
+
+<view class='item-comment'>
+  <image class='user-header' src='{{avatar}}' />
+  <view class='comment-right'>
+    <view class='name-rating'>
+      <text class='username'>{{nickname}}</text>
+      <template wx:if="{{rating}}" is='rating' data='{{rating: rating, max: 10}}' />
+    </view>
+    <text class='date'>{{time}}</text>
+    <text
+      class='comment-content {{expanded ? "comment-content--full" : ""}}'
+      bind:tap='expand'
+    >{{content}}</text>
+  </view>
+</view>

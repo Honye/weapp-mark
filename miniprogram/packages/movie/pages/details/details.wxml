@@ -156,17 +156,13 @@
     <view class='block comments'>
       <text class='subtitle'>短评({{comments_count}})</text>
       <block wx:for='{{comments}}' wx:key='id'>
-        <view class='item-comment'>
-          <image class='user-header' src='{{item.avatar}}'></image>
-          <view class='comment-right'>
-            <view class='name-rating'>
-              <text class='username'>{{item.nickname}}</text>
-              <template wx:if="{{item.rating}}" is='rating' data='{{rating:item.rating, max:10}}' />
-            </view>
-            <text class='date'>{{item.time}}</text>
-            <text class='comment-content'>{{item.content}}</text>
-          </view>
-        </view>
+        <comment-item
+          avatar='{{item.avatar}}'
+          nickname='{{item.nickname}}'
+          rating='{{item.rating}}'
+          time='{{item.time}}'
+          content='{{item.content}}'
+        />
       </block>
     </view>
     <cover-page id="movielist" title="加入影单">
