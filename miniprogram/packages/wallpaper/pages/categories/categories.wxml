@@ -29,6 +29,7 @@
         data-item='{{item}}'
         lazy-load
         bind:tap='onImgTap'
+        bindlongpress='onImgLongPress'
       />
     </block>
   </view>

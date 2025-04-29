@@ -55,6 +55,17 @@ Component({
         urls: [item.img]
       })
     },
+    onImgLongPress(e) {
+      const { item } = e.currentTarget.dataset
+      wx.downloadFile({
+        url: item.img,
+        success: ({ tempFilePath }) => {
+          wx.showShareImageMenu({
+            path: tempFilePath
+          })
+        }
+      })
+    },
 
     onLoadMore() {
       this.getWallpapers()
