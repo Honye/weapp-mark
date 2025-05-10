@@ -8,21 +8,6 @@
     />
   </view>
 
-  <view class="blogger" wx:if="{{repo}}">
-    <view class="row-cell">
-      <text class="iconfont icon-github"></text>
-      <text>{{repo.name}}</text>
-    </view>
-    <view class="row-cell">
-      <text class="iconfont icon-star"></text>
-      <text>{{repo.stargazers_count}}</text>
-    </view>
-    <view class="row-cell">
-      <text class="iconfont icon-license"></text>
-      <text>{{repo.license.name}}</text>
-    </view>
-  </view>
-
   <view class='advert'>
     <block wx:for="{{nodes}}">
       <text wx:if="{{item.type === 'text'}}">{{item.text}}</text>

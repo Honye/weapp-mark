@@ -12,7 +12,6 @@
   width: 100%;
   height: 100%;
 }
-.self-honye .blogger,
 .self-honye .advert {
   background-color: #fff;
   margin: 0 20rpx 20rpx;
@@ -25,17 +24,10 @@
 .self-honye .advert view:not(:first-child) {
   margin-top: 10rpx;
 }
-.self-honye .blogger {
-  color: #21BF8F;
-}
+
 .self-honye .advert {
   color: #333;
 }
-
-.row-cell .iconfont {
-  margin-right: 10rpx;
-}
-
 
 @keyframes roate {
   0% {
