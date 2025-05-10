@@ -85,6 +85,11 @@ Page({
         playing: false
       });
     });
+    audioManager.onEnded(() => {
+      this.setData({
+        playing: false
+      });
+    });
   },
 
   toWebview (e) {
