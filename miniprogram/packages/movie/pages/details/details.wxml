@@ -14,7 +14,10 @@
       <view class='brief'>
         <image class='img-mv' src='{{details.cover_url}}' mode='widthFix' />
         <view class='.brief-info'>
-          <text wx:if='{{details.title}}' class='title' user-select>{{details.title}}<text wx:if='{{details.original_title && details.original_title !== details.title}}'>（{{details.original_title}}）</text></text>
+          <view wx:if='{{details.title}}' class="relative text-32 whitespace-nowrap">
+            <view class='title'>{{details.title}}<text wx:if='{{details.original_title && details.original_title !== details.title}}'>（{{details.original_title}}）</text></view>
+            <text class='absolute top-0 opacity-0' user-select>{{details.title}}<text wx:if='{{details.original_title && details.original_title !== details.title}}'>（{{details.original_title}}）</text></text>
+          </view>
           <!-- 概述 -->
           <view class='brief-time'>
             <text>{{details.pubdate}} / {{details.countries[0]}} / {{WxUtil.arr2str(details.genres," ")}} / {{details.directors[0].name}}(导演) / {{casts}}</text>

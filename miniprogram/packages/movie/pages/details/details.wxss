@@ -2,6 +2,13 @@
 @import '/templates/rating/rating';
 @import '/templates/casts/casts';
 
+.relative { position: relative; }
+.absolute { position: absolute; }
+.opacity-0 { color: transparent; }
+.top-0 { top: 0; }
+.text-32 { font-size: 32rpx; }
+.whitespace-nowrap { white-space: nowrap; }
+
 image {
   width: 100%;
   height: 100%;
@@ -47,9 +54,7 @@ image {
 }
 .brief-info .title {
   color: #333;
-  font-size: 32rpx;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
 }
 .brief-info .brief-time {
