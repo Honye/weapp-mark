@@ -25,7 +25,7 @@ const request = (options) => {
     wx.request({
       header: {
         Accept: 'application/vnd.github.v3+json',
-        Authorization: `token ${token}`,
+        Authorization: token ? `token ${token}` : undefined,
         ...header
       },
       method: method || 'GET',
